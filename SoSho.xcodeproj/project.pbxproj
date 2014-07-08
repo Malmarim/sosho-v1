@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC2893C51935C25600A4AE78 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893C41935C25500A4AE78 /* bg.jpg */; };
+		CC2893C71935C84000A4AE78 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893C61935C84000A4AE78 /* logo.jpg */; };
+		CC2893C91935CE6300A4AE78 /* slogan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893C81935CE6300A4AE78 /* slogan.jpg */; };
+		CC2893CB1935D55500A4AE78 /* footer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893CA1935D55500A4AE78 /* footer.jpg */; };
+		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
+		CC37C8ED1949AFB600C4F964 /* facebook-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC37C8EC1949AFB500C4F964 /* facebook-login-button.png */; };
+		CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
+		CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D11926025A007EBCE3 /* CoreGraphics.framework */; };
+		CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D31926025A007EBCE3 /* UIKit.framework */; };
+		CCB348D61926025A007EBCE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D51926025A007EBCE3 /* CoreData.framework */; };
+		CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCB348DA1926025A007EBCE3 /* InfoPlist.strings */; };
+		CCB348DE1926025A007EBCE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB348DD1926025A007EBCE3 /* main.m */; };
+		CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */; };
+		CCB348E51926025B007EBCE3 /* SoSho.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */; };
+		CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCB348E61926025C007EBCE3 /* Images.xcassets */; };
+		CCB348EE1926025D007EBCE3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348ED1926025D007EBCE3 /* XCTest.framework */; };
+		CCB348EF1926025D007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
+		CCB348F01926025D007EBCE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D31926025A007EBCE3 /* UIKit.framework */; };
+		CCB348F11926025D007EBCE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D51926025A007EBCE3 /* CoreData.framework */; };
+		CCB348F91926025D007EBCE3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCB348F71926025D007EBCE3 /* InfoPlist.strings */; };
+		CCB348FB1926025D007EBCE3 /* SoShoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB348FA1926025D007EBCE3 /* SoShoTests.m */; };
+		CCB3490519260428007EBCE3 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB3490419260428007EBCE3 /* Storyboard.storyboard */; };
+		CCB34907192614AA007EBCE3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB34906192614AA007EBCE3 /* FacebookSDK.framework */; };
+		CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */; };
+		CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */; };
+		CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB34912192A3E5F007EBCE3 /* SOSItem.m */; };
+		CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */; };
+		CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CCB348F21926025D007EBCE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCB348C419260258007EBCE3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CCB348CB19260259007EBCE3;
+			remoteInfo = SoSho;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CC2893C41935C25500A4AE78 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = "../../../../SoSho Team/Presentations/osia appista/bg.jpg"; sourceTree = "<group>"; };
+		CC2893C61935C84000A4AE78 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo.jpg; path = "../../../../SoSho Team/Presentations/osia appista/logo.jpg"; sourceTree = "<group>"; };
+		CC2893C81935CE6300A4AE78 /* slogan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = slogan.jpg; path = "../../../../SoSho Team/Presentations/osia appista/slogan.jpg"; sourceTree = "<group>"; };
+		CC2893CA1935D55500A4AE78 /* footer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = footer.jpg; path = "../../../../SoSho Team/Presentations/osia appista/footer.jpg"; sourceTree = "<group>"; };
+		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
+		CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewController.m; sourceTree = "<group>"; };
+		CC37C8EC1949AFB500C4F964 /* facebook-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook-login-button.png"; path = "../../../../facebook-login-button.png"; sourceTree = "<group>"; };
+		CCB348CC19260259007EBCE3 /* SoSho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoSho.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCB348CF19260259007EBCE3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CCB348D11926025A007EBCE3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CCB348D31926025A007EBCE3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CCB348D51926025A007EBCE3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CCB348D91926025A007EBCE3 /* SoSho-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SoSho-Info.plist"; sourceTree = "<group>"; };
+		CCB348DB1926025A007EBCE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCB348DD1926025A007EBCE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CCB348DF1926025A007EBCE3 /* SoSho-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoSho-Prefix.pch"; sourceTree = "<group>"; };
+		CCB348E01926025A007EBCE3 /* SOSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOSAppDelegate.h; sourceTree = "<group>"; };
+		CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SOSAppDelegate.m; sourceTree = "<group>"; };
+		CCB348E41926025B007EBCE3 /* SoSho.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SoSho.xcdatamodel; sourceTree = "<group>"; };
+		CCB348E61926025C007EBCE3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CCB348EC1926025D007EBCE3 /* SoShoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoShoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCB348ED1926025D007EBCE3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CCB348F61926025D007EBCE3 /* SoShoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SoShoTests-Info.plist"; sourceTree = "<group>"; };
+		CCB348F81926025D007EBCE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCB348FA1926025D007EBCE3 /* SoShoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoShoTests.m; sourceTree = "<group>"; };
+		CCB3490419260428007EBCE3 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		CCB34906192614AA007EBCE3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSLoginViewController.h; sourceTree = "<group>"; };
+		CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLoginViewController.m; sourceTree = "<group>"; };
+		CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItemViewController.h; sourceTree = "<group>"; };
+		CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItemViewController.m; sourceTree = "<group>"; };
+		CCB34911192A3E5F007EBCE3 /* SOSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItem.h; sourceTree = "<group>"; };
+		CCB34912192A3E5F007EBCE3 /* SOSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItem.m; sourceTree = "<group>"; };
+		CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoritesViewController.h; sourceTree = "<group>"; };
+		CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoritesViewController.m; sourceTree = "<group>"; };
+		CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewCell.h; sourceTree = "<group>"; };
+		CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCB348C919260259007EBCE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */,
+				CCB34907192614AA007EBCE3 /* FacebookSDK.framework in Frameworks */,
+				CCB348D61926025A007EBCE3 /* CoreData.framework in Frameworks */,
+				CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */,
+				CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCB348E91926025D007EBCE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCB348EE1926025D007EBCE3 /* XCTest.framework in Frameworks */,
+				CCB348F11926025D007EBCE3 /* CoreData.framework in Frameworks */,
+				CCB348F01926025D007EBCE3 /* UIKit.framework in Frameworks */,
+				CCB348EF1926025D007EBCE3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CCB348C319260258007EBCE3 = {
+			isa = PBXGroup;
+			children = (
+				CCB348D71926025A007EBCE3 /* SoSho */,
+				CCB348F41926025D007EBCE3 /* SoShoTests */,
+				CCB348CE19260259007EBCE3 /* Frameworks */,
+				CCB348CD19260259007EBCE3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CCB348CD19260259007EBCE3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCB348CC19260259007EBCE3 /* SoSho.app */,
+				CCB348EC1926025D007EBCE3 /* SoShoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCB348CE19260259007EBCE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCB34906192614AA007EBCE3 /* FacebookSDK.framework */,
+				CCB348CF19260259007EBCE3 /* Foundation.framework */,
+				CCB348D11926025A007EBCE3 /* CoreGraphics.framework */,
+				CCB348D31926025A007EBCE3 /* UIKit.framework */,
+				CCB348D51926025A007EBCE3 /* CoreData.framework */,
+				CCB348ED1926025D007EBCE3 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCB348D71926025A007EBCE3 /* SoSho */ = {
+			isa = PBXGroup;
+			children = (
+				CC37C8EC1949AFB500C4F964 /* facebook-login-button.png */,
+				CC2893CA1935D55500A4AE78 /* footer.jpg */,
+				CCB348E01926025A007EBCE3 /* SOSAppDelegate.h */,
+				CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */,
+				CCB348E61926025C007EBCE3 /* Images.xcassets */,
+				CC2893C41935C25500A4AE78 /* bg.jpg */,
+				CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */,
+				CCB348D81926025A007EBCE3 /* Supporting Files */,
+				CCB3490419260428007EBCE3 /* Storyboard.storyboard */,
+				CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */,
+				CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */,
+				CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */,
+				CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */,
+				CC2893C81935CE6300A4AE78 /* slogan.jpg */,
+				CC2893C61935C84000A4AE78 /* logo.jpg */,
+				CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */,
+				CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */,
+				CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */,
+				CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */,
+				CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */,
+				CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */,
+				CCB34911192A3E5F007EBCE3 /* SOSItem.h */,
+				CCB34912192A3E5F007EBCE3 /* SOSItem.m */,
+			);
+			path = SoSho;
+			sourceTree = "<group>";
+		};
+		CCB348D81926025A007EBCE3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCB348D91926025A007EBCE3 /* SoSho-Info.plist */,
+				CCB348DA1926025A007EBCE3 /* InfoPlist.strings */,
+				CCB348DD1926025A007EBCE3 /* main.m */,
+				CCB348DF1926025A007EBCE3 /* SoSho-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CCB348F41926025D007EBCE3 /* SoShoTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCB348FA1926025D007EBCE3 /* SoShoTests.m */,
+				CCB348F51926025D007EBCE3 /* Supporting Files */,
+			);
+			path = SoShoTests;
+			sourceTree = "<group>";
+		};
+		CCB348F51926025D007EBCE3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCB348F61926025D007EBCE3 /* SoShoTests-Info.plist */,
+				CCB348F71926025D007EBCE3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CCB348CB19260259007EBCE3 /* SoSho */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCB348FE1926025E007EBCE3 /* Build configuration list for PBXNativeTarget "SoSho" */;
+			buildPhases = (
+				CCB348C819260259007EBCE3 /* Sources */,
+				CCB348C919260259007EBCE3 /* Frameworks */,
+				CCB348CA19260259007EBCE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SoSho;
+			productName = SoSho;
+			productReference = CCB348CC19260259007EBCE3 /* SoSho.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CCB348EB1926025D007EBCE3 /* SoShoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCB349011926025E007EBCE3 /* Build configuration list for PBXNativeTarget "SoShoTests" */;
+			buildPhases = (
+				CCB348E81926025D007EBCE3 /* Sources */,
+				CCB348E91926025D007EBCE3 /* Frameworks */,
+				CCB348EA1926025D007EBCE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CCB348F31926025D007EBCE3 /* PBXTargetDependency */,
+			);
+			name = SoShoTests;
+			productName = SoShoTests;
+			productReference = CCB348EC1926025D007EBCE3 /* SoShoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CCB348C419260258007EBCE3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SOS;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = SoSho;
+				TargetAttributes = {
+					CCB348CB19260259007EBCE3 = {
+						DevelopmentTeam = D7X9758DS9;
+					};
+					CCB348EB1926025D007EBCE3 = {
+						TestTargetID = CCB348CB19260259007EBCE3;
+					};
+				};
+			};
+			buildConfigurationList = CCB348C719260258007EBCE3 /* Build configuration list for PBXProject "SoSho" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CCB348C319260258007EBCE3;
+			productRefGroup = CCB348CD19260259007EBCE3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CCB348CB19260259007EBCE3 /* SoSho */,
+				CCB348EB1926025D007EBCE3 /* SoShoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CCB348CA19260259007EBCE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */,
+				CC2893C71935C84000A4AE78 /* logo.jpg in Resources */,
+				CC2893C91935CE6300A4AE78 /* slogan.jpg in Resources */,
+				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
+				CC2893CB1935D55500A4AE78 /* footer.jpg in Resources */,
+				CC37C8ED1949AFB600C4F964 /* facebook-login-button.png in Resources */,
+				CCB3490519260428007EBCE3 /* Storyboard.storyboard in Resources */,
+				CC2893C51935C25600A4AE78 /* bg.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCB348EA1926025D007EBCE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCB348F91926025D007EBCE3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CCB348C819260259007EBCE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
+				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
+				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
+				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
+				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
+				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
+				CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */,
+				CCB348DE1926025A007EBCE3 /* main.m in Sources */,
+				CCB348E51926025B007EBCE3 /* SoSho.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCB348E81926025D007EBCE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCB348FB1926025D007EBCE3 /* SoShoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CCB348F31926025D007EBCE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CCB348CB19260259007EBCE3 /* SoSho */;
+			targetProxy = CCB348F21926025D007EBCE3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CCB348DA1926025A007EBCE3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCB348DB1926025A007EBCE3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CCB348F71926025D007EBCE3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCB348F81926025D007EBCE3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CCB348FC1926025E007EBCE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CCB348FD1926025E007EBCE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCB348FF1926025E007EBCE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mikkomalmari/Documents/FacebookSDK,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
+				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D242294A-A325-47E8-A615-177ACBCAAF8B";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CCB349001926025E007EBCE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mikkomalmari/Documents/FacebookSDK,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
+				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A24417A0-77A6-4AB9-AA1F-114499C73FCE";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CCB349021926025E007EBCE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SoSho.app/SoSho";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SoShoTests/SoShoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CCB349031926025E007EBCE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SoSho.app/SoSho";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
+				INFOPLIST_FILE = "SoShoTests/SoShoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCB348C719260258007EBCE3 /* Build configuration list for PBXProject "SoSho" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCB348FC1926025E007EBCE3 /* Debug */,
+				CCB348FD1926025E007EBCE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCB348FE1926025E007EBCE3 /* Build configuration list for PBXNativeTarget "SoSho" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCB348FF1926025E007EBCE3 /* Debug */,
+				CCB349001926025E007EBCE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCB349011926025E007EBCE3 /* Build configuration list for PBXNativeTarget "SoShoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCB349021926025E007EBCE3 /* Debug */,
+				CCB349031926025E007EBCE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CCB348E41926025B007EBCE3 /* SoSho.xcdatamodel */,
+			);
+			currentVersion = CCB348E41926025B007EBCE3 /* SoSho.xcdatamodel */;
+			path = SoSho.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CCB348C419260258007EBCE3 /* Project object */;
+}
