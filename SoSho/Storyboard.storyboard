@@ -104,12 +104,15 @@
                                     <constraint firstAttribute="height" constant="266" id="Foi-qk-jHI"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPW-tE-Dp0">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPW-tE-Dp0">
                                 <rect key="frame" x="86" y="484" width="149" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Ask a friend">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="askFriend:" destination="O5m-Rp-S2O" eventType="touchUpInside" id="k7u-7G-jdf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -121,8 +124,11 @@
                             <constraint firstAttribute="trailing" secondItem="3f4-PO-0J2" secondAttribute="trailing" id="L3N-WB-a4p"/>
                             <constraint firstItem="3f4-PO-0J2" firstAttribute="centerX" secondItem="ibv-jm-Lil" secondAttribute="centerX" id="RdG-Q2-mvk"/>
                             <constraint firstItem="3f4-PO-0J2" firstAttribute="centerX" secondItem="DKx-aC-DP2" secondAttribute="centerX" id="bhY-0x-Bie"/>
+                            <constraint firstItem="xPW-tE-Dp0" firstAttribute="centerX" secondItem="3f4-PO-0J2" secondAttribute="centerX" id="h9w-84-1F9"/>
                             <constraint firstAttribute="bottom" secondItem="3f4-PO-0J2" secondAttribute="bottom" id="lTv-6W-w2g"/>
+                            <constraint firstItem="3f4-PO-0J2" firstAttribute="top" secondItem="xPW-tE-Dp0" secondAttribute="bottom" constant="8" symbolic="YES" id="rs9-ex-0HW"/>
                             <constraint firstItem="DKx-aC-DP2" firstAttribute="top" secondItem="ibv-jm-Lil" secondAttribute="bottom" constant="23" id="tvU-o7-qvH"/>
+                            <constraint firstItem="xPW-tE-Dp0" firstAttribute="leading" secondItem="CZs-tR-puw" secondAttribute="leading" constant="86" id="ubo-zQ-lxJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WVq-DZ-wxT"/>

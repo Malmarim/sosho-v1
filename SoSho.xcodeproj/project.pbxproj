@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC2893C51935C25600A4AE78 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893C41935C25500A4AE78 /* bg.jpg */; };
-		CC2893C71935C84000A4AE78 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893C61935C84000A4AE78 /* logo.jpg */; };
-		CC2893C91935CE6300A4AE78 /* slogan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893C81935CE6300A4AE78 /* slogan.jpg */; };
-		CC2893CB1935D55500A4AE78 /* footer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC2893CA1935D55500A4AE78 /* footer.jpg */; };
+		B1827243196DEB290092654B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1827242196DEB290092654B /* FacebookSDK.framework */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
-		CC37C8ED1949AFB600C4F964 /* facebook-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC37C8EC1949AFB500C4F964 /* facebook-login-button.png */; };
 		CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
 		CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D11926025A007EBCE3 /* CoreGraphics.framework */; };
 		CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D31926025A007EBCE3 /* UIKit.framework */; };
@@ -29,7 +25,6 @@
 		CCB348F91926025D007EBCE3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCB348F71926025D007EBCE3 /* InfoPlist.strings */; };
 		CCB348FB1926025D007EBCE3 /* SoShoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB348FA1926025D007EBCE3 /* SoShoTests.m */; };
 		CCB3490519260428007EBCE3 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB3490419260428007EBCE3 /* Storyboard.storyboard */; };
-		CCB34907192614AA007EBCE3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB34906192614AA007EBCE3 /* FacebookSDK.framework */; };
 		CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */; };
 		CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */; };
 		CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB34912192A3E5F007EBCE3 /* SOSItem.m */; };
@@ -48,13 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CC2893C41935C25500A4AE78 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = "../../../../SoSho Team/Presentations/osia appista/bg.jpg"; sourceTree = "<group>"; };
-		CC2893C61935C84000A4AE78 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo.jpg; path = "../../../../SoSho Team/Presentations/osia appista/logo.jpg"; sourceTree = "<group>"; };
-		CC2893C81935CE6300A4AE78 /* slogan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = slogan.jpg; path = "../../../../SoSho Team/Presentations/osia appista/slogan.jpg"; sourceTree = "<group>"; };
-		CC2893CA1935D55500A4AE78 /* footer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = footer.jpg; path = "../../../../SoSho Team/Presentations/osia appista/footer.jpg"; sourceTree = "<group>"; };
+		B1827242196DEB290092654B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
 		CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewController.m; sourceTree = "<group>"; };
-		CC37C8EC1949AFB500C4F964 /* facebook-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook-login-button.png"; path = "../../../../facebook-login-button.png"; sourceTree = "<group>"; };
 		CCB348CC19260259007EBCE3 /* SoSho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoSho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB348CF19260259007EBCE3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCB348D11926025A007EBCE3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -74,7 +65,6 @@
 		CCB348F81926025D007EBCE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCB348FA1926025D007EBCE3 /* SoShoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoShoTests.m; sourceTree = "<group>"; };
 		CCB3490419260428007EBCE3 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		CCB34906192614AA007EBCE3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSLoginViewController.h; sourceTree = "<group>"; };
 		CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLoginViewController.m; sourceTree = "<group>"; };
 		CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItemViewController.h; sourceTree = "<group>"; };
@@ -92,8 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1827243196DEB290092654B /* FacebookSDK.framework in Frameworks */,
 				CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */,
-				CCB34907192614AA007EBCE3 /* FacebookSDK.framework in Frameworks */,
 				CCB348D61926025A007EBCE3 /* CoreData.framework in Frameworks */,
 				CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */,
 				CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */,
@@ -136,7 +126,7 @@
 		CCB348CE19260259007EBCE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CCB34906192614AA007EBCE3 /* FacebookSDK.framework */,
+				B1827242196DEB290092654B /* FacebookSDK.framework */,
 				CCB348CF19260259007EBCE3 /* Foundation.framework */,
 				CCB348D11926025A007EBCE3 /* CoreGraphics.framework */,
 				CCB348D31926025A007EBCE3 /* UIKit.framework */,
@@ -149,12 +139,9 @@
 		CCB348D71926025A007EBCE3 /* SoSho */ = {
 			isa = PBXGroup;
 			children = (
-				CC37C8EC1949AFB500C4F964 /* facebook-login-button.png */,
-				CC2893CA1935D55500A4AE78 /* footer.jpg */,
 				CCB348E01926025A007EBCE3 /* SOSAppDelegate.h */,
 				CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */,
 				CCB348E61926025C007EBCE3 /* Images.xcassets */,
-				CC2893C41935C25500A4AE78 /* bg.jpg */,
 				CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */,
 				CCB348D81926025A007EBCE3 /* Supporting Files */,
 				CCB3490419260428007EBCE3 /* Storyboard.storyboard */,
@@ -162,8 +149,6 @@
 				CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */,
 				CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */,
 				CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */,
-				CC2893C81935CE6300A4AE78 /* slogan.jpg */,
-				CC2893C61935C84000A4AE78 /* logo.jpg */,
 				CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */,
 				CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */,
 				CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */,
@@ -285,13 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */,
-				CC2893C71935C84000A4AE78 /* logo.jpg in Resources */,
-				CC2893C91935CE6300A4AE78 /* slogan.jpg in Resources */,
 				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
-				CC2893CB1935D55500A4AE78 /* footer.jpg in Resources */,
-				CC37C8ED1949AFB600C4F964 /* facebook-login-button.png in Resources */,
 				CCB3490519260428007EBCE3 /* Storyboard.storyboard in Resources */,
-				CC2893C51935C25600A4AE78 /* bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +422,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mikkomalmari/Documents/FacebookSDK,
+					/Users/arturminasjan/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
@@ -463,6 +444,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mikkomalmari/Documents/FacebookSDK,
+					/Users/arturminasjan/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";

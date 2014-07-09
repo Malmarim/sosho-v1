@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOSFavoriteViewController : UIViewController
+@interface SOSFavoriteViewController : UIViewController 
 
 -(void) loadItem;
 
