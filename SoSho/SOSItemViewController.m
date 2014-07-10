@@ -12,6 +12,8 @@
 
 @interface SOSItemViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *dis;
+@property (weak, nonatomic) IBOutlet UIButton *like;
 @property (weak, nonatomic) IBOutlet UIButton *favorites;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logout;
 @property (weak, nonatomic) IBOutlet UILabel *name;
@@ -59,7 +61,7 @@
             [FBSession.activeSession closeAndClearTokenInformation];
         }
     }
-    else if((UIButton *)sender == self.favorites){
+    else if((UIButton *)sender == self.dis){
     }
 }
 
@@ -317,8 +319,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage* myImage = [UIImage imageNamed:@"footer.jpg"];
-    [self.favorites setImage:myImage forState:UIControlStateNormal];
+    UIImage* disImage = [UIImage imageNamed:@"dis-icon.png"];
+    [self.dis setImage:disImage forState:UIControlStateNormal];
+    UIImage* likeImage = [UIImage imageNamed:@"like-icon.png"];
+    [self.like setImage:likeImage forState:UIControlStateNormal];
+    UIImage* favImage = [UIImage imageNamed:@"fav-icon.png"];
+    [self.favorites setImage:favImage forState:UIControlStateNormal];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
     [self loadPresets];

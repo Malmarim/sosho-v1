@@ -11,6 +11,11 @@
 
 @interface SOSLoginViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIImageView *background;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet UIImageView *slogan;
+
 @end
 
 @implementation SOSLoginViewController
@@ -65,11 +70,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage* bg = [UIImage imageNamed:@"bg.jpg"];
+    UIImage* bg = [UIImage imageNamed:@"pic-logo.png"];
     [self.background setImage:bg];
-    UIImage* lg = [UIImage imageNamed:@"logo.jpg"];
+    UIImage* lg = [UIImage imageNamed:@"text-logo.jpg"];
     [self.logo setImage:lg];
-    UIImage* myImage = [UIImage imageNamed:@"facebook-login-button.png"];
+    UIImage* sl = [UIImage imageNamed:@"slogan.jpg"];
+    [self.slogan setImage:sl];
+    UIImage* myImage = [UIImage imageNamed:@"login-button.png"];
     [self.loginButton setImage:myImage forState:UIControlStateNormal];
 }
 

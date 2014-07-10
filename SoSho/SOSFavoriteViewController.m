@@ -13,7 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
-@property (weak, nonatomic) IBOutlet UIButton *visit;
+@property (weak, nonatomic) IBOutlet UIButton *store;
+@property (weak, nonatomic) IBOutlet UIButton *share;
 
 @property (strong, nonatomic) NSString *urlString;
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
@@ -67,6 +68,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage* shareImage = [UIImage imageNamed:@"share-button.png"];
+    [self.share setImage:shareImage forState:UIControlStateNormal];
+    UIImage* storeImage = [UIImage imageNamed:@"store-button.png"];
+    [self.store setImage:storeImage forState:UIControlStateNormal];
+    
     [self loadItem];
 }
 
