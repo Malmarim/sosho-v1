@@ -11,11 +11,6 @@
 
 @interface SOSLoginViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIImageView *background;
-@property (weak, nonatomic) IBOutlet UIImageView *logo;
-@property (weak, nonatomic) IBOutlet UIImageView *slogan;
-
 - (void) login;
 - (void) logout;
 
