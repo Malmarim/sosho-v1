@@ -14,6 +14,9 @@
 		CC09B539196EA04E000E1B3F /* like-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B538196EA04E000E1B3F /* like-icon.png */; };
 		CC09B53B196EB81B000E1B3F /* share-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B53A196EB81B000E1B3F /* share-button.png */; };
 		CC09B53D196EB822000E1B3F /* store-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B53C196EB822000E1B3F /* store-button.png */; };
+		CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC13263E1970127C00657E54 /* SOSVoteViewController.m */; };
+		CC13264119704D5700657E54 /* yes-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264019704D5700657E54 /* yes-icon.png */; };
+		CC13264319704D6000657E54 /* no-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264219704D6000657E54 /* no-icon.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
 		CC75CE9E196E69EA00F23954 /* text-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC75CE9D196E69EA00F23954 /* text-logo.jpg */; };
 		CC75CEA0196E6A1500F23954 /* pic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CC75CE9F196E6A1500F23954 /* pic-logo.png */; };
@@ -59,6 +62,10 @@
 		CC09B538196EA04E000E1B3F /* like-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-icon.png"; path = "images/like-icon.png"; sourceTree = "<group>"; };
 		CC09B53A196EB81B000E1B3F /* share-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share-button.png"; path = "images/share-button.png"; sourceTree = "<group>"; };
 		CC09B53C196EB822000E1B3F /* store-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "store-button.png"; path = "images/store-button.png"; sourceTree = "<group>"; };
+		CC13263D1970127C00657E54 /* SOSVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSVoteViewController.h; sourceTree = "<group>"; };
+		CC13263E1970127C00657E54 /* SOSVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSVoteViewController.m; sourceTree = "<group>"; };
+		CC13264019704D5700657E54 /* yes-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "yes-icon.png"; path = "images/yes-icon.png"; sourceTree = "<group>"; };
+		CC13264219704D6000657E54 /* no-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "no-icon.png"; path = "images/no-icon.png"; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
 		CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewController.m; sourceTree = "<group>"; };
 		CC75CE9D196E69EA00F23954 /* text-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "text-logo.jpg"; path = "images/text-logo.jpg"; sourceTree = "<group>"; };
@@ -159,6 +166,8 @@
 		CCB348D71926025A007EBCE3 /* SoSho */ = {
 			isa = PBXGroup;
 			children = (
+				CC13264219704D6000657E54 /* no-icon.png */,
+				CC13264019704D5700657E54 /* yes-icon.png */,
 				CC09B53C196EB822000E1B3F /* store-button.png */,
 				CC09B53A196EB81B000E1B3F /* share-button.png */,
 				CC09B538196EA04E000E1B3F /* like-icon.png */,
@@ -174,6 +183,8 @@
 				CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */,
 				CCB348D81926025A007EBCE3 /* Supporting Files */,
 				CCB3490419260428007EBCE3 /* Storyboard.storyboard */,
+				CC13263D1970127C00657E54 /* SOSVoteViewController.h */,
+				CC13263E1970127C00657E54 /* SOSVoteViewController.m */,
 				CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */,
 				CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */,
 				CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */,
@@ -301,9 +312,11 @@
 				CC09B53B196EB81B000E1B3F /* share-button.png in Resources */,
 				CC09B53D196EB822000E1B3F /* store-button.png in Resources */,
 				CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */,
+				CC13264119704D5700657E54 /* yes-icon.png in Resources */,
 				CC09B533196E8205000E1B3F /* login-button.png in Resources */,
 				CC09B535196EA039000E1B3F /* fav-icon.png in Resources */,
 				CC09B539196EA04E000E1B3F /* like-icon.png in Resources */,
+				CC13264319704D6000657E54 /* no-icon.png in Resources */,
 				CC75CE9E196E69EA00F23954 /* text-logo.jpg in Resources */,
 				CC75CEA0196E6A1500F23954 /* pic-logo.png in Resources */,
 				CC75CEA2196E6BC900F23954 /* slogan.jpg in Resources */,
@@ -330,6 +343,7 @@
 			files = (
 				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
 				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
+				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
 				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,

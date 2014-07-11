@@ -141,6 +141,9 @@
                                 <state key="normal" title="like">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="bpC-Oz-Txo" kind="push" id="52l-OK-fxV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foR-Y8-lox">
                                 <rect key="frame" x="255" y="70" width="50" height="50"/>
@@ -203,7 +206,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCell" id="QRP-Yo-SdQ" customClass="SOSFavoriteViewCell">
-                                <rect key="frame" x="10" y="74" width="103" height="103"/>
+                                <rect key="frame" x="10" y="10" width="103" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
@@ -233,6 +236,61 @@
             </objects>
             <point key="canvasLocation" x="1754" y="-630"/>
         </scene>
+        <!--Vote View Controller-->
+        <scene sceneID="Sdf-Ib-0KP">
+            <objects>
+                <viewController storyboardIdentifier="voteView" id="bpC-Oz-Txo" customClass="SOSVoteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KMo-Oc-9CI"/>
+                        <viewControllerLayoutGuide type="bottom" id="ig2-Em-drq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="vote" id="5IT-Wa-zxF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="skV-kQ-0ea">
+                                <rect key="frame" x="37" y="126" width="221" height="205"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUU-6F-2KZ">
+                                <rect key="frame" x="59" y="414" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="yes">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqe-x6-aOG">
+                                <rect key="frame" x="222" y="414" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="no">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7I5-pf-z3k">
+                                <rect key="frame" x="253" y="38" width="40" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="shoe">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Kna-pb-C7F" kind="push" id="Mtz-QP-IIC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kpv-KN-Jmz"/>
+                    <connections>
+                        <outlet property="backButton" destination="7I5-pf-z3k" id="UM3-MS-Bnc"/>
+                        <outlet property="noButton" destination="wqe-x6-aOG" id="br4-lf-tRq"/>
+                        <outlet property="shoeImage" destination="skV-kQ-0ea" id="Vvz-oj-MdV"/>
+                        <outlet property="yesButton" destination="PUU-6F-2KZ" id="cCe-r4-fGS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5q-Dv-JHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1258" y="88"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6vz-QF-k0U">
             <objects>
@@ -257,4 +315,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Mtz-QP-IIC"/>
+    </inferredMetricsTieBreakers>
 </document>

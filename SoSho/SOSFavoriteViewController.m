@@ -135,7 +135,6 @@
     [self.share setImage:shareImage forState:UIControlStateNormal];
     UIImage* storeImage = [UIImage imageNamed:@"store-button.png"];
     [self.store setImage:storeImage forState:UIControlStateNormal];
-    
     [self loadItem];
 }
 
