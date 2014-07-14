@@ -27,6 +27,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+//    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+//        UIAlertView *alertView;
+//        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was launched without any text. Open this app using the Sender app to send text." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alertView show];
+//    }
+    
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         //NSLog(@"Found a cached session");
@@ -129,6 +135,11 @@
 // After authentication, your app will be called back with the session information.
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    UIAlertView *alertView;
+    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 

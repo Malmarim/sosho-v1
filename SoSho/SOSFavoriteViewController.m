@@ -54,6 +54,9 @@
         NSLog(@"Present feed dialog");
         // Put together the dialog parameters
         params = nil;
+        
+        NSString *appUrl = @"fb600087446740715://";
+        
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        [self.favorite valueForKey: @"name"], @"name",
                                        @"", @"caption",

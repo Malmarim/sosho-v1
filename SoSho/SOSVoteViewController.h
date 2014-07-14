@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SOSItem.h"
 
 @interface SOSVoteViewController : UIViewController
+
+@property SOSItem *item;
 
 @end

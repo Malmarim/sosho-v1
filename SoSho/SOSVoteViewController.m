@@ -18,6 +18,8 @@
 
 @implementation SOSVoteViewController
 
+@synthesize item;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,12 +39,33 @@
     UIImage* no = [UIImage imageNamed:@"no-icon.png"];
     [self.noButton setImage:no forState:UIControlStateNormal];
     // Do any additional setup after loading the view.
+    
+    
+    NSURL *url = [NSURL URLWithString:[item valueForKey: @"image"]];
+    [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
+        if (succeeded) {
+            //[self.name setText:[item valueForKey: @"name"]];
+            [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, NSData *data))completionBlock
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (!error) {
+            completionBlock(YES, data);
+        } else {
+            completionBlock(NO, nil);
+        }
+    }];
 }
 
 /*

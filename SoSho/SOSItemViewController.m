@@ -9,6 +9,7 @@
 #import "SOSItemViewController.h"
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSAppDelegate.h"
+#import "SOSVoteViewController.h"
 
 @interface SOSItemViewController ()
 
@@ -61,7 +62,31 @@
             [FBSession.activeSession closeAndClearTokenInformation];
         }
     }
+    else if((UIButton *) sender == self.like) {
+        [self performSegueWithIdentifier:@"voteView" sender:sender];
+    }
     else if((UIButton *)sender == self.dis){
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"voteView"]) {
+        
+        // Get destination view
+        SOSVoteViewController *vc = [segue destinationViewController];
+        SOSItem *itemForSegue = [[SOSItem alloc] init];
+
+        if([self.displayItems count] > 0){
+            NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
+            
+            [itemForSegue setName:[item valueForKey:@"name"]];
+            [itemForSegue setUrl:[item valueForKey:@"url"]];
+            [itemForSegue setImage:[item valueForKey:@"image"]];
+        }
+        
+        // Pass the information to your destination view
+        [vc setItem:itemForSegue];
     }
 }
 
