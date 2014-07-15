@@ -38,7 +38,7 @@
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentShareDialogWithParams:params]) {
         // Present the share dialog
-        [FBDialogs presentShareDialogWithLink:params.link
+        [FBDialogs presentMessageDialogWithLink:params.link
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
                                           if(error) {
                                               // An error occurred, we need to handle the error
@@ -55,8 +55,8 @@
         // Put together the dialog parameters
         params = nil;
         
-        NSString *appUrl = @"fb600087446740715://";
-        
+//        NSString *appUrl = @"fb600087446740715";
+//        
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        [self.favorite valueForKey: @"name"], @"name",
                                        @"", @"caption",
@@ -64,6 +64,7 @@
                                        [self.favorite valueForKey: @"url"], @"link",
                                        [self.favorite valueForKey: @"image"], @"picture",
                                        nil];
+        
         
         [FBWebDialogs presentFeedDialogModallyWithSession:nil
                                                parameters:params
