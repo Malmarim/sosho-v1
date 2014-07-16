@@ -32,13 +32,18 @@
 
 - (IBAction)askFriend:(id)sender {
     // Check if the Facebook app is installed and we can present the share dialog
-    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
+//    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] initWithLink:[NSURL URLWithString:[self.favorite valueForKey:@"url"]] name:[self.favorite valueForKey:@"name"] caption:@"" description:@"" picture:[NSURL URLWithString:[self.favorite valueForKey:@"image"]]];
+
+    
+    
+//    params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
     
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentShareDialogWithParams:params]) {
         // Present the share dialog
-        [FBDialogs presentMessageDialogWithLink:params.link
+        [FBDialogs presentShareDialogWithLink:params.link
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
                                           if(error) {
                                               // An error occurred, we need to handle the error
