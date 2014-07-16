@@ -97,7 +97,7 @@
 
 -(void) fetchNewCount
 {
-    NSString *url = [NSString stringWithFormat:@"http://sosho-service.herokuapp.com/newCount/%d", self.lastFetched];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/newCount/%d", self.lastFetched];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -118,7 +118,7 @@
 // Fetch itemdata asynchroniously
 - (void) fetchData
 {
-    NSString *url = [NSString stringWithFormat:@"http://sosho-service.herokuapp.com/new/%d", self.lastFetched];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/new/%d", self.lastFetched];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -199,7 +199,7 @@
 -(void) postNewFavorite:(long) pid
 {
    /*
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://sosho-service/addFavorite/"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://soshoapp/addFavorite/"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", self.fbId, pid];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
@@ -219,6 +219,14 @@
 // Select the next item from array
 - (void) setNextItem
 {
+    [self.context deleteObject:[self.displayItems objectAtIndex:(NSUInteger)self.viewIndex]];
+    NSError *error = nil;
+    if(![self.context save:&error]){
+        //NSLog(@"Delete failed");
+    }else{
+        //NSLog(@"Delete succeeded");
+    }
+    
     if((self.viewIndex+1) < [self.displayItems count])
     {
         NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
@@ -293,8 +301,8 @@
                                        entityForName:@"Products" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"id > %d", self.lastViewed];
-    [request setPredicate:predicate];
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat: @"id > %d", self.lastViewed];
+    //[request setPredicate:predicate];
     NSError *error;
     self.displayItems = [self.context executeFetchRequest:request error:&error];
     [self.name setText:@""];
@@ -313,10 +321,12 @@
                 //[self.name setText:[item valueForKey: @"name"]];
                 [self.name setHidden:TRUE];
                 [self.image setImage:[[UIImage alloc] initWithData:data]];
+            }else{
+                // If unable to load image, show next product instead
+                [self setNextItem];
             }
         }];
     }
-    //else{}
 }
 
 - (void) downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, NSData *data))completionBlock

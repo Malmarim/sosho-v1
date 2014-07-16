@@ -469,8 +469,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Teemu Kinos (27J98VR4QS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Teemu Kinos (27J98VR4QS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mikkomalmari/Documents/FacebookSDK,
@@ -480,7 +480,8 @@
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D242294A-A325-47E8-A615-177ACBCAAF8B";
+				PROVISIONING_PROFILE = "CD29E951-2389-41A2-8633-BF0CE862F3AF";
+				"PROVISIONING_PROFILE[sdk=*]" = "CD29E951-2389-41A2-8633-BF0CE862F3AF";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -491,7 +492,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -502,7 +503,8 @@
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A24417A0-77A6-4AB9-AA1F-114499C73FCE";
+				PROVISIONING_PROFILE = "63A3C57C-982C-4088-8FC1-16029345C889";
+				"PROVISIONING_PROFILE[sdk=*]" = "63A3C57C-982C-4088-8FC1-16029345C889";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
