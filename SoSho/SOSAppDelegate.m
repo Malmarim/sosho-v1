@@ -126,6 +126,31 @@
     [self.sosLoginViewController login];
 }
 
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSString *newToken = [deviceToken description];
+	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"Formatted as %@", newToken);
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *oldToken = [defaults objectForKey:@"pushtoken"];
+    // Check if pushtoken is not set or newToken is same as set token
+    if(oldToken == nil || ![oldToken isEqualToString:newToken]){
+        [defaults setValue:newToken forKey:@"pushtoken"];
+        [defaults synchronize];
+    }
+    /*
+     else{
+        NSLog(@"Same token as old");
+    }*/
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+}
+
 // Show an alert message
 - (void)showMessage:(NSString *)text withTitle:(NSString *)title
 {

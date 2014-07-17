@@ -123,6 +123,23 @@
     }];
 }
 
+- (void) fetchVotes
+{
+    /*
+    // Fetch votes, parse them, and set them visible
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/getVotes/%d", self.itemId];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+        NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        int yesCount = [[item valueForKey: @"yes"] intValue];
+        int noCount = [[item valueForKey: @"no"] intValue];
+    }];
+    */
+}
+
 - (void)loadItem
 {
     if(self.favorite != nil){
@@ -145,6 +162,7 @@
     UIImage* storeImage = [UIImage imageNamed:@"store-button.png"];
     [self.store setImage:storeImage forState:UIControlStateNormal];
     [self loadItem];
+    // Fetch vote count
 }
 
 - (void)didReceiveMemoryWarning

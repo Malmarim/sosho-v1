@@ -469,8 +469,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Artur Minasjan (7NEE2L7LWC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Artur Minasjan (7NEE2L7LWC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Teemu Kinos (27J98VR4QS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Teemu Kinos (27J98VR4QS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mikkomalmari/Documents/FacebookSDK,
@@ -480,8 +480,8 @@
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD29E951-2389-41A2-8633-BF0CE862F3AF";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
+				PROVISIONING_PROFILE = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
+				"PROVISIONING_PROFILE[sdk=*]" = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -492,8 +492,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Artur Minasjan (7NEE2L7LWC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Artur Minasjan (7NEE2L7LWC)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mikkomalmari/Documents/FacebookSDK,
@@ -503,8 +503,8 @@
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD29E951-2389-41A2-8633-BF0CE862F3AF";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
+				PROVISIONING_PROFILE = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
+				"PROVISIONING_PROFILE[sdk=*]" = "07FE6764-B8E3-4333-9F9E-F1AC44B1CD21";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

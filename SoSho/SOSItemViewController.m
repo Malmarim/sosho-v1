@@ -27,7 +27,6 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) NSString *fbId;
-@property (nonatomic) int lastViewed;
 @property (nonatomic) int lastFetched;
 @property (nonatomic) int viewIndex;
 
@@ -134,15 +133,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if([defaults objectForKey:@"lastViewed"] == nil){
-        self.lastViewed = 0;
-        [defaults setInteger:self.lastViewed forKey:@"lastViewed"];
-        [defaults synchronize];
-    }
-    else
-    {
-        self.lastViewed = (int)[defaults integerForKey:@"lastViewed"];
-    }
     if([defaults objectForKey:@"lastFetched"] == nil){
         self.lastFetched = 0;
         [defaults setInteger:self.lastFetched forKey:@"lastFetched"];
@@ -187,31 +177,25 @@
     [defaults synchronize];
 }
 
-// Save info regarding last viewed item
-- (void) saveLastViewed
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:self.lastViewed forKey:@"lastViewed"];
-    [defaults synchronize];
-}
-
 // Post new favorite to the server
 -(void) postNewFavorite:(long) pid
 {
-   /*
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://soshoapp/addFavorite/"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", self.fbId, pid];
+    /*
+    long foo = 12;
+    NSString *url = @"http://soshoapp.herokuapp.com/addFavorite";
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", @"asd", foo];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        if(!error)
-            NSLog(@"All is good");
-        else
-            NSLog(@"Something went wrong");
-        //NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-        //self.loadedItems = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        //[self saveItems];
+        if(!error){
+            NSLog(@"No Error");
+        }
+        else{
+            NSLog(@"Error");
+        }
     }];
     */
 }
@@ -229,9 +213,6 @@
     
     if((self.viewIndex+1) < [self.displayItems count])
     {
-        NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
-        self.lastViewed = [[item valueForKey: @"id"] intValue];
-        [self saveLastViewed];
         self.viewIndex++;
         [self loadDisplayItem];
     }

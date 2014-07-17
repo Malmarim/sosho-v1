@@ -20,6 +20,51 @@
 
 @synthesize item;
 
+
+- (IBAction)buttonTouched:(id)sender {
+    
+    if((UIButton *) sender == self.yesButton){
+        [self postVote:TRUE];
+    }
+    else if ((UIButton *)sender == self.noButton){
+        [self postVote:FALSE];
+    }
+    
+    
+}
+
+/*
+ Posts users vote on the item online
+ */
+-(void)postVote:(BOOL) vote
+{
+    if(vote){
+        NSLog(@"Yes");
+    }else{
+        NSLog(@"No");
+    }
+    /*
+    long foo = 12;
+    NSString *url = @"http://soshoapp.herokuapp.com/addFavorite";
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", @"asd", foo];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSLog(@"No Error");
+        }
+        else{
+            NSLog(@"Error");
+        }
+    }];
+    */
+}
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
