@@ -166,6 +166,7 @@
 		CCB348D71926025A007EBCE3 /* SoSho */ = {
 			isa = PBXGroup;
 			children = (
+				CCC1070B19793457004BAB5D /* iPad */,
 				CC13264219704D6000657E54 /* no-icon.png */,
 				CC13264019704D5700657E54 /* yes-icon.png */,
 				CC09B53C196EB822000E1B3F /* store-button.png */,
@@ -228,6 +229,13 @@
 				CCB348F71926025D007EBCE3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CCC1070B19793457004BAB5D /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,10 +487,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
 				"PROVISIONING_PROFILE[sdk=*]" = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -502,10 +511,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
 				"PROVISIONING_PROFILE[sdk=*]" = "07FE6764-B8E3-4333-9F9E-F1AC44B1CD21";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -20,7 +20,14 @@
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
-@property (nonatomic) int itemId;
+@property (weak, nonatomic) IBOutlet UIImageView *yesIcon;
+@property (weak, nonatomic) IBOutlet UITextView *yesLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *noIcon;
+@property (weak, nonatomic) IBOutlet UITextView *noLabel;
+
+
+
+@property (nonatomic) long itemId;
 
 @end
 
@@ -125,24 +132,37 @@
 
 - (void) fetchVotes
 {
-    /*
-    // Fetch votes, parse them, and set them visible
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/getVotes/%d", self.itemId];
-    NSURL * fetchURL = [NSURL URLWithString:url];
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-        NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        int yesCount = [[item valueForKey: @"yes"] intValue];
-        int noCount = [[item valueForKey: @"no"] intValue];
-    }];
-    */
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults objectForKey:@"lastFetched"] == nil)
+    {
+        NSString *fbId = [defaults valueForKey:@"fbId"];
+        // Fetch votes, parse them, and set them visible
+        NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/getVotes/%@/%ld", fbId, self.itemId];
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            int yesCount = [[item valueForKey: @"yes"] intValue];
+            int noCount = [[item valueForKey: @"no"] intValue];
+            if(yesCount > 0){
+                NSString *yesText = [NSString stringWithFormat:@"%d", yesCount];
+                [self.yesLabel setText:yesText];
+            }
+            if(noCount > 0){
+                NSString *noText = [NSString stringWithFormat:@"%d", noCount];
+                [self.noLabel setText:noText];
+            }
+        }];
+    }
 }
 
 - (void)loadItem
 {
     if(self.favorite != nil){
+        self.itemId = [[self.favorite valueForKey: @"id"] longValue];
         [self.name setText:[self.favorite valueForKey: @"name"]];
         NSURL *url = [NSURL URLWithString:[self.favorite valueForKey: @"image"]];
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
@@ -161,8 +181,12 @@
     [self.share setImage:shareImage forState:UIControlStateNormal];
     UIImage* storeImage = [UIImage imageNamed:@"store-button.png"];
     [self.store setImage:storeImage forState:UIControlStateNormal];
+    UIImage* no = [UIImage imageNamed:@"no-icon.png"];
+    [self.noIcon setImage:no];
+    UIImage* yes = [UIImage imageNamed:@"yes-icon.png"];
+    [self.yesIcon setImage:yes];
     [self loadItem];
-    // Fetch vote count
+    [self fetchVotes];
 }
 
 - (void)didReceiveMemoryWarning

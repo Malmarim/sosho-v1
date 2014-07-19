@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) NSString *fbId;
+@property (strong, nonatomic) NSString *pushtoken;
 @property (nonatomic) int lastFetched;
 @property (nonatomic) int viewIndex;
 
@@ -78,7 +79,7 @@
 
         if([self.displayItems count] > 0){
             NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
-            
+            [itemForSegue setId: (long)[item valueForKey:@"id"]];
             [itemForSegue setName:[item valueForKey:@"name"]];
             [itemForSegue setUrl:[item valueForKey:@"url"]];
             [itemForSegue setImage:[item valueForKey:@"image"]];
@@ -148,24 +149,19 @@
         [[FBRequest requestForMe] startWithCompletionHandler:
          ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
              if (!error) {
-                 //NSLog(@"FBID fetched as %@",[aUser objectForKey:@"id"]);
                  self.fbId = [aUser objectForKey:@"id"];
                  // name = [aUser objectForKey:@"name"];
-                 //
                  [defaults setValue:self.fbId forKey:@"fbId"];
                  [defaults synchronize];
-                 //NSLog(@"FBID set as %@", self.fbId);
-                 
+                 self.pushtoken = [defaults valueForKey:@"pushtoken"];
+                 [self postUserData];
+                 // Create new user with fbId and pushtoken
              }
          }];
     }
     else
     {
-        
-        [defaults setValue:nil forKey:@"fbId"];
-        [defaults synchronize];
-        //self.fbId =[defaults valueForKey:@"fbId"];
-        //NSLog(@"FBID loaded: %@", self.fbId);
+        self.fbId = [defaults valueForKey:@"fbId"];
     }
 }
 
@@ -177,15 +173,36 @@
     [defaults synchronize];
 }
 
+
+// Create a new user with fbId and pushtoken
+-(void) postUserData
+{
+    if(self.pushtoken != nil){
+        NSString *url = @"http://soshoapp.herokuapp.com/userData";
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@", self.fbId, self.pushtoken];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+            if(!error){
+                //NSLog(@"No Error");
+            }
+            else{
+                //NSLog(@"Error");
+            }
+        }];
+    }
+}
+
 // Post new favorite to the server
 -(void) postNewFavorite:(long) pid
 {
-    /*
-    long foo = 12;
     NSString *url = @"http://soshoapp.herokuapp.com/addFavorite";
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", @"asd", foo];
+    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", @"asd", pid];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -197,7 +214,6 @@
             NSLog(@"Error");
         }
     }];
-    */
 }
 
 // Select the next item from array
@@ -282,8 +298,6 @@
                                        entityForName:@"Products" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
-    //NSPredicate *predicate = [NSPredicate predicateWithFormat: @"id > %d", self.lastViewed];
-    //[request setPredicate:predicate];
     NSError *error;
     self.displayItems = [self.context executeFetchRequest:request error:&error];
     [self.name setText:@""];

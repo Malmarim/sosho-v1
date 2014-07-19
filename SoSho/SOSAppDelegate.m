@@ -27,11 +27,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
-//        UIAlertView *alertView;
-//        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was launched without any text. Open this app using the Sender app to send text." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alertView show];
-//    }
+    //    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+    //        UIAlertView *alertView;
+    //        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was launched without any text. Open this app using the Sender app to send text." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //        [alertView show];
+    //    }
     
     
     // Let the device know we want to receive push notifications
@@ -139,16 +139,32 @@
     if(oldToken == nil || ![oldToken isEqualToString:newToken]){
         [defaults setValue:newToken forKey:@"pushtoken"];
         [defaults synchronize];
+        NSString *fbId = [defaults objectForKey:@"fbId"];
+        // If fbId is set then update the new token on the server
+        if(fbId != nil){
+            // Post updated push token
+            NSString *url = @"http://soshoapp.herokuapp.com/userData";
+            NSURL * fetchURL = [NSURL URLWithString:url];
+            NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+            NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@", fbId, newToken];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+            NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+                if(!error){
+                    //NSLog(@"No Error");
+                }
+                else{
+                    //NSLog(@"Error");
+                }
+            }];
+        }
     }
-    /*
-     else{
-        NSLog(@"Same token as old");
-    }*/
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
-	NSLog(@"Failed to get token, error: %@", error);
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 // Show an alert message

@@ -38,17 +38,20 @@
  */
 -(void)postVote:(BOOL) vote
 {
+    int voteInt;
     if(vote){
         NSLog(@"Yes");
+        voteInt = 1;
     }else{
         NSLog(@"No");
+        voteInt = 0;
     }
-    /*
-    long foo = 12;
-    NSString *url = @"http://soshoapp.herokuapp.com/addFavorite";
+    
+    long pid = (long)[self.item valueForKey:@"id"];
+    NSString *url = @"http://soshoapp.herokuapp.com/vote";
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", @"asd", foo];
+    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld&vote=%d", @"asd", pid, voteInt];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -60,7 +63,7 @@
             NSLog(@"Error");
         }
     }];
-    */
+    
 }
 
 

@@ -10,6 +10,7 @@
 
 @interface SOSItem : NSObject
 
+@property (nonatomic) long id;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) NSString *image;

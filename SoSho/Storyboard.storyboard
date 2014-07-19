@@ -70,7 +70,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f4-PO-0J2">
-                                <rect key="frame" x="136" y="360" width="50" height="50"/>
+                                <rect key="frame" x="135" y="447" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="store">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,7 +84,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPW-tE-Dp0">
-                                <rect key="frame" x="136" y="302" width="50" height="50"/>
+                                <rect key="frame" x="135" y="389" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="share">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,6 +93,28 @@
                                     <action selector="askFriend:" destination="O5m-Rp-S2O" eventType="touchUpInside" id="Et6-eH-OVX"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-5N-Ygv">
+                                <rect key="frame" x="40" y="329" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2s-cg-UGo">
+                                <rect key="frame" x="252" y="329" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="0" translatesAutoresizingMaskIntoConstraints="NO" id="qIE-kk-a9j">
+                                <rect key="frame" x="38" y="367" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="0" translatesAutoresizingMaskIntoConstraints="NO" id="3XU-YX-bXB">
+                                <rect key="frame" x="252" y="367" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -100,8 +122,12 @@
                     <connections>
                         <outlet property="image" destination="DKx-aC-DP2" id="3t2-zX-85F"/>
                         <outlet property="name" destination="ibv-jm-Lil" id="aGe-CX-gq2"/>
+                        <outlet property="noIcon" destination="e2s-cg-UGo" id="8da-N5-Fto"/>
+                        <outlet property="noLabel" destination="3XU-YX-bXB" id="Z6z-g4-Dsz"/>
                         <outlet property="share" destination="xPW-tE-Dp0" id="vda-3Z-8p1"/>
                         <outlet property="store" destination="3f4-PO-0J2" id="fSx-Id-Y4r"/>
+                        <outlet property="yesIcon" destination="dh6-5N-Ygv" id="uXx-OT-UNg"/>
+                        <outlet property="yesLabel" destination="qIE-kk-a9j" id="DbT-G2-1jC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Vb-wD-OQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
