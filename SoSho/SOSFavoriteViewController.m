@@ -38,14 +38,50 @@
 }
 
 - (IBAction)askFriend:(id)sender {
-    // Check if the Facebook app is installed and we can present the share dialog
+    
 //    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+//    params.link =
+//    [NSURL URLWithString:[self.favorite valueForKey:@"url"]];
+//    params.name = @"Message Dialog Tutorial";
+//    params.caption = @"Build great social apps that engage your friends.";
+//    params.picture = [NSURL URLWithString:[self.favorite valueForKey:@"image"]];
+//    params.linkDescription = @"Send links from your app using the iOS SDK.";
+//    
+//    // If the Facebook app is installed and we can present the share dialog
+//    if ([FBDialogs canPresentMessageDialogWithParams:params]) {
+//        // Enable button or other UI to initiate launch of the Message Dialog
+//        [FBDialogs presentMessageDialogWithLink:[self.favorite valueForKey:@"url"]
+//                                        handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//                                            if(error) {
+//                                                // An error occurred, we need to handle the error
+//                                                // See: https://developers.facebook.com/docs/ios/errors
+//                                                NSLog([NSString stringWithFormat:@"Error messaging link: %@", error.description]);
+//                                            } else {
+//                                                // Success
+//                                                NSLog(@"result %@", results);
+//                                            }
+//                                        }];
+//    }  else {
+//        // Disable button or other UI for Message Dialog
+//        [FBDialogs presentMessageDialogWithLink:[self.favorite valueForKey:@"url"]
+//                                        handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//                                            if(error) {
+//                                                // An error occurred, we need to handle the error
+//                                                // See: https://developers.facebook.com/docs/ios/errors
+//                                                NSLog([NSString stringWithFormat:@"Error messaging link: %@", error.description]);
+//                                            } else {
+//                                                // Success
+//                                                NSLog(@"result %@", results);
+//                                            }
+//                                        }];
+//
+//    }
     
     FBLinkShareParams *params = [[FBLinkShareParams alloc] initWithLink:[NSURL URLWithString:[self.favorite valueForKey:@"url"]] name:[self.favorite valueForKey:@"name"] caption:@"" description:@"" picture:[NSURL URLWithString:[self.favorite valueForKey:@"image"]]];
 
     
     
-//    params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
+
     
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentShareDialogWithParams:params]) {
@@ -66,9 +102,7 @@
         NSLog(@"Present feed dialog");
         // Put together the dialog parameters
         params = nil;
-        
-//        NSString *appUrl = @"fb600087446740715";
-//        
+
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        [self.favorite valueForKey: @"name"], @"name",
                                        @"", @"caption",
