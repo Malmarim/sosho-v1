@@ -181,12 +181,17 @@
 // After authentication, your app will be called back with the session information.
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    UIAlertView *alertView;
-    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
+    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                sourceApplication:sourceApplication
+                                  fallbackHandler:^(FBAppCall *call) {
+                                      NSLog(@"Unhandled deep link: %@", url);
+                                      // Here goes the code to handle
+                                      // the links.
+                                      // Use the links to show a relevant
+                                      // view of your app to the user
+                                  }];
     
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    return urlWasHandled;
 }
 
 
