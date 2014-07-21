@@ -15,10 +15,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *dis;
 @property (weak, nonatomic) IBOutlet UIButton *like;
-@property (weak, nonatomic) IBOutlet UIButton *favorites;
+@property (weak, nonatomic) IBOutlet UIButton *wishlist;
+@property (weak, nonatomic) IBOutlet UIButton *menu;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logout;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
 
 @property (strong, nonatomic) NSArray *displayItems;
 @property (strong, nonatomic) NSMutableArray *loadedItems;
@@ -84,7 +87,6 @@
             [itemForSegue setUrl:[item valueForKey:@"url"]];
             [itemForSegue setImage:[item valueForKey:@"image"]];
         }
-        
         // Pass the information to your destination view
         [vc setItem:itemForSegue];
     }
@@ -150,6 +152,7 @@
          ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
              if (!error) {
                  self.fbId = [aUser objectForKey:@"id"];
+                 // Save required field to server
                  // name = [aUser objectForKey:@"name"];
                  [defaults setValue:self.fbId forKey:@"fbId"];
                  [defaults synchronize];
@@ -194,6 +197,24 @@
             }
         }];
     }
+    else{
+        NSLog(@"No pushtoken, doing testpost");
+        NSString *url = @"http://soshoapp.herokuapp.com/userData";
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@", self.fbId, @"testuser"];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+            if(!error){
+                NSLog(@"Testpost: No Error");
+            }
+            else{
+                NSLog(@"Testpost: Error");
+            }
+        }];
+    }
 }
 
 // Post new favorite to the server
@@ -202,16 +223,16 @@
     NSString *url = @"http://soshoapp.herokuapp.com/addFavorite";
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", @"asd", pid];
+    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", self.fbId, pid];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
         if(!error){
-            NSLog(@"No Error");
+            //NSLog(@"No Error");
         }
         else{
-            NSLog(@"Error");
+            //NSLog(@"Error");
         }
     }];
 }
@@ -279,6 +300,7 @@
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"name"] forKey:@"name"];
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"url"] forKey:@"url"];
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"image"] forKey:@"image"];
+        [newProduct setValue:[self.loadedItems objectAtIndex: i][@"category"][@"name"] forKey:@"category"];
         NSError *error;
         [self.context save:&error];
         if(i == [self.loadedItems count]-1)
@@ -353,8 +375,12 @@
     [self.dis setImage:disImage forState:UIControlStateNormal];
     UIImage* likeImage = [UIImage imageNamed:@"like-icon.png"];
     [self.like setImage:likeImage forState:UIControlStateNormal];
-    UIImage* favImage = [UIImage imageNamed:@"fav-icon.png"];
-    [self.favorites setImage:favImage forState:UIControlStateNormal];
+    UIImage* favImage = [UIImage imageNamed:@"wishlist-button.png"];
+    [self.wishlist setImage:favImage forState:UIControlStateNormal];
+    UIImage* menuImage = [UIImage imageNamed:@"menu-button.png"];
+    [self.menu setImage:menuImage forState:UIControlStateNormal];
+    UIImage* logoImg = [UIImage imageNamed:@"small-logo.png"];
+    [self.logo setImage:logoImg];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
     [self loadPresets];

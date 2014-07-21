@@ -25,8 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *noIcon;
 @property (weak, nonatomic) IBOutlet UITextView *noLabel;
 
-
-
 @property (nonatomic) long itemId;
 
 @end
@@ -39,16 +37,33 @@
 
 - (IBAction)askFriend:(id)sender {
     // Check if the Facebook app is installed and we can present the share dialog
-//    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    
-    FBLinkShareParams *params = [[FBLinkShareParams alloc] initWithLink:[NSURL URLWithString:[self.favorite valueForKey:@"url"]] name:[self.favorite valueForKey:@"name"] caption:@"" description:@"" picture:[NSURL URLWithString:[self.favorite valueForKey:@"image"]]];
-
-    
-    
-//    params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
-    
+    // FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    /*FBLinkShareParams *params = [[FBLinkShareParams alloc] initWithLink:[NSURL URLWithString:[self.favorite valueForKey:@"url"]] name:[self.favorite valueForKey:@"name"] caption:@"" description:@"Do these suit me?" picture:[NSURL URLWithString:[self.favorite valueForKey:@"image"]]];*/
+    // params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    params.link = [NSURL URLWithString:[self.favorite valueForKey:@"url"]];
+    params.name = @"Name";
+    params.caption = @"Caption";
+    params.picture = [NSURL URLWithString:[self.favorite valueForKey:@"image"]];
+    params.linkDescription = @"Check it out.";
+    // Check if the Facebook app is installed and we can present
+    // the message dialog
     // If the Facebook app is installed and we can present the share dialog
-    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+    if ([FBDialogs canPresentMessageDialogWithParams:params]) {
+        // Enable button or other UI to initiate launch of the Message Dialog
+        [FBDialogs presentMessageDialogWithLink:params.link
+                                        handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                            if(error) {
+                                                // An error occurred, we need to handle the error
+                                                // See: https://developers.facebook.com/docs/ios/errors
+                                                NSLog(@"Error messaging link: %@", error);
+                                            } else {
+                                                // Success
+                                                NSLog(@"result %@", results);
+                                            }
+                                        }];
+    }
+    else if ([FBDialogs canPresentShareDialogWithParams:params]) {
         // Present the share dialog
         [FBDialogs presentShareDialogWithLink:params.link
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
@@ -66,9 +81,7 @@
         NSLog(@"Present feed dialog");
         // Put together the dialog parameters
         params = nil;
-        
-//        NSString *appUrl = @"fb600087446740715";
-//        
+        // NSString *appUrl = @"fb600087446740715";
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        [self.favorite valueForKey: @"name"], @"name",
                                        @"", @"caption",
@@ -76,8 +89,6 @@
                                        [self.favorite valueForKey: @"url"], @"link",
                                        [self.favorite valueForKey: @"image"], @"picture",
                                        nil];
-        
-        
         [FBWebDialogs presentFeedDialogModallyWithSession:nil
                                                parameters:params
                                                   handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
@@ -106,7 +117,6 @@
                                                       }
                                                   }];
     }
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -134,29 +144,28 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if([defaults objectForKey:@"lastFetched"] == nil)
-    {
-        NSString *fbId = [defaults valueForKey:@"fbId"];
-        // Fetch votes, parse them, and set them visible
-        NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/getVotes/%@/%ld", fbId, self.itemId];
-        NSURL * fetchURL = [NSURL URLWithString:url];
-        NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-            int yesCount = [[item valueForKey: @"yes"] intValue];
-            int noCount = [[item valueForKey: @"no"] intValue];
-            if(yesCount > 0){
-                NSString *yesText = [NSString stringWithFormat:@"%d", yesCount];
-                [self.yesLabel setText:yesText];
-            }
-            if(noCount > 0){
-                NSString *noText = [NSString stringWithFormat:@"%d", noCount];
-                [self.noLabel setText:noText];
-            }
-        }];
-    }
+    NSString *fbId = [defaults valueForKey:@"fbId"];
+    // Fetch votes, parse them, and set them visible
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/votes/%@/%ld", fbId, self.itemId];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        NSLog(@"Votes fetched");
+        NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+        NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        
+        int yesCount = [[item valueForKey: @"yes"] intValue];
+        int noCount = [[item valueForKey: @"no"] intValue];
+        if(yesCount > 0){
+            NSString *yesText = [NSString stringWithFormat:@"%d", yesCount];
+            [self.yesLabel setText:yesText];
+        }
+        if(noCount > 0){
+            NSString *noText = [NSString stringWithFormat:@"%d", noCount];
+            [self.noLabel setText:noText];
+        }
+    }];
 }
 
 - (void)loadItem

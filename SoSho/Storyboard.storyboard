@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="u70-t7-Ylb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0Tb-FF-a2f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXO-1g-Gz6">
-                                <rect key="frame" x="18" y="421" width="284" height="50"/>
+                                <rect key="frame" x="18" y="355" width="284" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log in with Facebook"/>
                                 <connections>
@@ -25,25 +25,28 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0nO-pm-fQC">
-                                <rect key="frame" x="52" y="118" width="213" height="135"/>
+                                <rect key="frame" x="52" y="62" width="213" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAa-eX-fRy">
-                                <rect key="frame" x="52" y="265" width="213" height="64"/>
+                                <rect key="frame" x="52" y="232" width="213" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4a-j1-jgA">
-                                <rect key="frame" x="18" y="344" width="284" height="47"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SEARCHING  FOR  THE  PERFECT PAIR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipU-Fw-bxQ">
+                                <rect key="frame" x="20" y="313" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="background" destination="0nO-pm-fQC" id="JeH-7H-DUE"/>
+                        <outlet property="imageLogo" destination="0nO-pm-fQC" id="nEF-Mm-hv1"/>
                         <outlet property="loginButton" destination="CXO-1g-Gz6" id="trW-fB-u4L"/>
                         <outlet property="logo" destination="NAa-eX-fRy" id="PUb-kh-eMB"/>
-                        <outlet property="slogan" destination="Z4a-j1-jgA" id="tuH-s4-Q6v"/>
+                        <outlet property="slogan" destination="ipU-Fw-bxQ" id="PVa-Lw-OwD"/>
                         <segue destination="cEX-Xd-Gh9" kind="modal" identifier="LoggedIn" animates="NO" id="a3I-wt-ujH"/>
                     </connections>
                 </viewController>
@@ -60,7 +63,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Oua-IP-bJj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CZs-tR-puw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibv-jm-Lil">
@@ -143,7 +146,7 @@
                         <viewControllerLayoutGuide type="bottom" id="aQW-a7-pzC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4z5-uB-sq1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mjf-hD-hLp">
@@ -172,12 +175,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foR-Y8-lox">
-                                <rect key="frame" x="255" y="70" width="50" height="50"/>
+                                <rect key="frame" x="295" y="70" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="fav">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwc-Ba-qj3">
+                                <rect key="frame" x="0.0" y="70" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="m">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsv-fx-Tw0">
+                                <rect key="frame" x="137" y="70" width="46" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -195,10 +209,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dis" destination="ERD-gA-FK0" id="XMD-bC-L3F"/>
-                        <outlet property="favorites" destination="foR-Y8-lox" id="iOy-6n-hdG"/>
                         <outlet property="image" destination="Mjf-hD-hLp" id="o5D-ep-VJu"/>
                         <outlet property="like" destination="lL0-6b-v9U" id="yCi-sa-6Me"/>
+                        <outlet property="logo" destination="nsv-fx-Tw0" id="8Gr-cV-U2k"/>
                         <outlet property="logout" destination="DLh-3b-ATy" id="nNd-4V-8Uh"/>
+                        <outlet property="menu" destination="uwc-Ba-qj3" id="UFJ-aM-sfo"/>
+                        <outlet property="wishlist" destination="foR-Y8-lox" id="7GQ-vx-ScO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjz-mu-ZTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,7 +237,7 @@
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="nAK-cb-5ag" customClass="SOSFavoritesViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="3h2-zh-VrK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dpz-3Q-a2r">
@@ -271,11 +287,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ig2-Em-drq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="vote" id="5IT-Wa-zxF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="skV-kQ-0ea">
-                                <rect key="frame" x="20" y="126" width="280" height="205"/>
+                                <rect key="frame" x="20" y="126" width="280" height="117"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUU-6F-2KZ">
@@ -342,7 +358,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Mtz-QP-IIC"/>
