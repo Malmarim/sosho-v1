@@ -161,7 +161,6 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonTouched:" destination="Kna-pb-C7F" eventType="touchUpInside" id="t3z-GL-hjU"/>
-                                    <segue destination="nAK-cb-5ag" kind="push" id="nG8-aQ-SrE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-6b-v9U">
@@ -302,9 +301,9 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7I5-pf-z3k">
-                                <rect key="frame" x="253" y="38" width="40" height="34"/>
+                                <rect key="frame" x="295" y="63" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="shoe">
+                                <state key="normal" title="fav">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>

@@ -13,5 +13,6 @@
 
 @property (nonatomic) long id;
 @property (strong, nonatomic) NSString *fbId;
+@property (strong, nonatomic) NSDictionary *item;
 
 @end

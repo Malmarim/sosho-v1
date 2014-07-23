@@ -78,14 +78,11 @@
         
         // Get destination view
         SOSVoteViewController *vc = [segue destinationViewController];
-        SOSItem *itemForSegue = [[SOSItem alloc] init];
+        NSDictionary *itemForSegue;
 
         if([self.displayItems count] > 0){
             NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
-            [itemForSegue setId: (long)[item valueForKey:@"id"]];
-            [itemForSegue setName:[item valueForKey:@"name"]];
-            [itemForSegue setUrl:[item valueForKey:@"url"]];
-            [itemForSegue setImage:[item valueForKey:@"image"]];
+            itemForSegue = item;
         }
         // Pass the information to your destination view
         [vc setItem:itemForSegue];

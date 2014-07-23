@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *shoeImage;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
-@property (strong, nonatomic) NSDictionary *item;
 
 @end
 
@@ -63,8 +62,6 @@
     
 }
 
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -77,7 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage* shoe = [UIImage imageNamed:@"fav-button.png"];
+    UIImage* shoe = [UIImage imageNamed:@"wishlist-button.png"];
     [self.backButton setImage:shoe forState:UIControlStateNormal];
     UIImage* yes = [UIImage imageNamed:@"yes-icon.png"];
     [self.yesButton setImage:yes forState:UIControlStateNormal];
@@ -97,8 +94,10 @@
     // If item is not set it needs to be from db or server
     else
     {
-        // Check if item with given id exists
-        // If not check online and download
+        [self.noButton setEnabled:false];
+        [self.yesButton setEnabled:false];
+        // Check if item with given id exists from local storage
+        // If not check online and download from soshoapp.herokuapp.com/getById/id
     }
 }
 

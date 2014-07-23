@@ -49,32 +49,6 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
-
-    /*
-    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    params.link = [NSURL URLWithString:@"http://www.hs.fi"];
-    params.name = @"Name";
-    params.caption = @"Caption";
-    params.linkDescription = @"Hesari";
-    
-    // If the Facebook app is installed and we can present the share dialog
-    if ([FBDialogs canPresentMessageDialogWithParams:params]) {
-        // Enable button or other UI to initiate launch of the Message Dialog
-        [FBDialogs presentMessageDialogWithLink:params.link
-                                        handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                            if(error) {
-                                                // An error occurred, we need to handle the error
-                                                // See: https://developers.facebook.com/docs/ios/errors
-                                                NSLog(@"Error: %@", error);
-                                            } else
-                                                // Success
-                                                NSLog(@"result %@", results);
-                                            }
-                                        ];
-    }  else {
-        NSLog(@"No message dialog, duh");
-    }
-    */
 }
 
 - (void) login

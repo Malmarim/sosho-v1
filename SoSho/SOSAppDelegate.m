@@ -16,8 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UINavigationController *navi = (UINavigationController *) self.window.rootViewController;
-    self.sosLoginViewController = (SOSLoginViewController *)navi.topViewController;
+    self.navi = (UINavigationController *) self.window.rootViewController;
+    self.sosLoginViewController = (SOSLoginViewController *)self.navi.topViewController;
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
@@ -163,8 +163,11 @@
         NSLog(@"%@", [asdparams valueForKey:@"fbId"]);
         NSLog(@"%@", [asdparams valueForKey:@"id"]);
         self.sosLoginViewController.vote = true;
-        if(FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
+        if(FBSession.activeSession.state == FBSessionStateOpen){
+            NSLog(@"Session found, going to vote");
             [self.sosLoginViewController goVote];
+            //[self.navi pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>
+        }
         return true;
     }
     else{
