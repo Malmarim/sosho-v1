@@ -13,12 +13,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *shoeImage;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
+@property (strong, nonatomic) NSDictionary *item;
 
 @end
 
 @implementation SOSVoteViewController
-
-@synthesize item;
 
 
 - (IBAction)buttonTouched:(id)sender {
@@ -29,8 +28,6 @@
     else if ((UIButton *)sender == self.noButton){
         [self postVote:FALSE];
     }
-    
-    
 }
 
 /*
@@ -87,15 +84,22 @@
     UIImage* no = [UIImage imageNamed:@"no-icon.png"];
     [self.noButton setImage:no forState:UIControlStateNormal];
     // Do any additional setup after loading the view.
-    
-    
-    NSURL *url = [NSURL URLWithString:[item valueForKey: @"image"]];
-    [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
-        if (succeeded) {
-            //[self.name setText:[item valueForKey: @"name"]];
-            [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
-        }
-    }];
+    // Check if item has already been set (coming from votes view)
+    if([self.item count] > 0){
+        NSURL *url = [NSURL URLWithString:[self.item valueForKey: @"image"]];
+        [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
+            if (succeeded) {
+                //[self.name setText:[item valueForKey: @"name"]];
+                [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
+            }
+        }];
+    }
+    // If item is not set it needs to be from db or server
+    else
+    {
+        // Check if item with given id exists
+        // If not check online and download
+    }
 }
 
 - (void)didReceiveMemoryWarning

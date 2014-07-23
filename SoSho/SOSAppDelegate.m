@@ -16,31 +16,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    UIStoryboard *storyboard =  [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
-    SOSLoginViewController *sosLoginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
-    self.sosItemViewController = [storyboard instantiateViewControllerWithIdentifier:@"ItemView"];
-    self.sosLoginViewController = sosLoginViewController;
-    // Set loginUIViewController as root view controller
-    [[self window] setRootViewController:sosLoginViewController];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
-    //    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
-    //        UIAlertView *alertView;
-    //        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was launched without any text. Open this app using the Sender app to send text." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //        [alertView show];
-    //    }
-    
-    
+    UINavigationController *navi = (UINavigationController *) self.window.rootViewController;
+    self.sosLoginViewController = (SOSLoginViewController *)navi.topViewController;
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        //NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends"]
                                            allowLoginUI:NO
@@ -59,15 +42,10 @@
 {
     // If the session was opened successfully
     if (!error && state == FBSessionStateOpen){
-        //NSLog(@"Session opened");
-        // Show the user the logged-in UI
         [self userLoggedIn];
         return;
     }
     if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
-        // If the session is closed
-        //NSLog(@"Session closed");
-        // Show the user the logged-out UI
         [self userLoggedOut];
     }
     
@@ -82,17 +60,13 @@
             alertText = [FBErrorUtility userMessageForError:error];
             [self showMessage:alertText withTitle:alertTitle];
         } else {
-            
             // If the user cancelled login, do nothing
             if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-                //NSLog(@"User cancelled login");
-                
                 // Handle session closures that happen outside of the app
             } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
                 alertTitle = @"Session Error";
                 alertText = @"Your current session is no longer valid. Please log in again.";
                 [self showMessage:alertText withTitle:alertTitle];
-                
                 // Here we will handle all other errors with a generic error message.
                 // We recommend you check our Handling Errors guide for more information
                 // https://developers.facebook.com/docs/ios/errors/
@@ -106,7 +80,6 @@
                 [self showMessage:alertText withTitle:alertTitle];
             }
         }
-        //NSLog(@"Error, but loggout anyways");
         // Clear this token
         [FBSession.activeSession closeAndClearTokenInformation];
         // Show the user the logged-out UI
@@ -155,7 +128,7 @@
                     //NSLog(@"No Error");
                 }
                 else{
-                    //NSLog(@"Error");
+                    //NSLog(@"Error: ");
                 }
             }];
         }
@@ -181,19 +154,56 @@
 // After authentication, your app will be called back with the session information.
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-                                sourceApplication:sourceApplication
-                                  fallbackHandler:^(FBAppCall *call) {
-                                      NSLog(@"Unhandled deep link: %@", url);
-                                      // Here goes the code to handle
-                                      // the links.
-                                      // Use the links to show a relevant
-                                      // view of your app to the user
-                                  }];
-    
-    return urlWasHandled;
+    NSString *scheme = [url scheme];
+    NSString *query = [url query];
+    NSLog(@"URL scheme: %@", scheme);
+    NSLog(@"URL query: %@", query);
+    if([scheme isEqualToString:@"soshoapp"]){
+        NSDictionary *asdparams = [self parseURLParams:query];
+        NSLog(@"%@", [asdparams valueForKey:@"fbId"]);
+        NSLog(@"%@", [asdparams valueForKey:@"id"]);
+        self.sosLoginViewController.vote = true;
+        if(FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
+            [self.sosLoginViewController goVote];
+        return true;
+    }
+    else{
+        BOOL urlWasHandled =
+        [FBAppCall handleOpenURL:url sourceApplication:sourceApplication fallbackHandler: ^(FBAppCall *call) {
+            // Parse the incoming URL to look for a target_url parameter
+            NSString *query = [url query];
+            NSDictionary *params = [self parseURLParams:query];
+            // Check if target URL exists
+            NSString *appLinkDataString = [params valueForKey:@"al_applink_data"];
+            if (appLinkDataString) {
+                NSError *error = nil;
+                NSDictionary *applinkData =
+                [NSJSONSerialization JSONObjectWithData:[appLinkDataString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+                if (!error && [applinkData isKindOfClass:[NSDictionary class]] && applinkData[@"target_url"]) {
+                    NSString *targetURLString = applinkData[@"target_url"];
+                    // Show the incoming link in an alert
+                    // Your code to direct the user to the
+                    // appropriate flow within your app goes here
+                    [[[UIAlertView alloc] initWithTitle:@"Received link:" message:targetURLString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                }
+            }
+        }];
+        return urlWasHandled;
+    }
 }
 
+// A function for parsing URL parameters
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val = [[kv objectAtIndex:1]
+                         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [params setObject:val forKey:[kv objectAtIndex:0]];
+    }
+    return params;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -234,7 +244,7 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
              // Replace this implementation with code to handle the error appropriately.
              // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         } 
     }

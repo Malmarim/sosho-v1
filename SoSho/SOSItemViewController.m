@@ -154,6 +154,7 @@
                  self.fbId = [aUser objectForKey:@"id"];
                  // Save required field to server
                  // name = [aUser objectForKey:@"name"];
+                 // email = [aUser obejctForKey:@"email"];
                  [defaults setValue:self.fbId forKey:@"fbId"];
                  [defaults synchronize];
                  self.pushtoken = [defaults valueForKey:@"pushtoken"];

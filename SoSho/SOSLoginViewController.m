@@ -44,6 +44,7 @@
          ^(FBSession *session, FBSessionState state, NSError *error) {
              // Retrieve the app delegate
              SOSAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+             
              // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
@@ -78,12 +79,24 @@
 
 - (void) login
 {
-    [self performSegueWithIdentifier:@"LoggedIn" sender:self];
+    NSLog(@"Login called");
+    if(self.vote){
+        [self performSegueWithIdentifier:@"govote" sender:self];
+    }
+    else{
+        [self performSegueWithIdentifier:@"loggedin" sender:self];
+    }
 }
 
 - (void) logout
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void) goVote
+{
+    [self performSegueWithIdentifier:@"govote" sender:self];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -133,6 +146,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    NSLog(@"Mememory warning!");
     // Dispose of any resources that can be recreated.
 }
 
@@ -144,6 +158,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
 
 @end

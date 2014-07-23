@@ -13,5 +13,8 @@
 
 - (void) login;
 - (void) logout;
+- (void) goVote;
+
+@property BOOL vote;
 
 @end

@@ -23,8 +23,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.sosho.SoSho</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>soshoapp</string>
 				<string>fb600087446740715</string>
 			</array>
 		</dict>

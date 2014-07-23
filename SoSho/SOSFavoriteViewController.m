@@ -21,9 +21,9 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet UIImageView *yesIcon;
-@property (weak, nonatomic) IBOutlet UITextView *yesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yesLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *noIcon;
-@property (weak, nonatomic) IBOutlet UITextView *noLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noLabel;
 
 @property (nonatomic) long itemId;
 
@@ -39,6 +39,9 @@
     // Check if the Facebook app is installed and we can present the share dialog
     // FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     /*FBLinkShareParams *params = [[FBLinkShareParams alloc] initWithLink:[NSURL URLWithString:[self.favorite valueForKey:@"url"]] name:[self.favorite valueForKey:@"name"] caption:@"" description:@"Do these suit me?" picture:[NSURL URLWithString:[self.favorite valueForKey:@"image"]]];*/
+    // fetch fbid
+    NSString *urlString = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/appLink/%@/%ld", @"foo", self.itemId];
+    NSURL *shareUrl = [NSURL URLWithString:urlString];
     // params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     params.link = [NSURL URLWithString:[self.favorite valueForKey:@"url"]];
@@ -51,7 +54,7 @@
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentMessageDialogWithParams:params]) {
         // Enable button or other UI to initiate launch of the Message Dialog
-        [FBDialogs presentMessageDialogWithLink:params.link
+        [FBDialogs presentMessageDialogWithLink:shareUrl
                                         handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
                                             if(error) {
                                                 // An error occurred, we need to handle the error
@@ -82,16 +85,8 @@
         // Put together the dialog parameters
         params = nil;
         // NSString *appUrl = @"fb600087446740715";
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       [self.favorite valueForKey: @"name"], @"name",
-                                       @"", @"caption",
-                                       @"", @"description",
-                                       [self.favorite valueForKey: @"url"], @"link",
-                                       [self.favorite valueForKey: @"image"], @"picture",
-                                       nil];
-        [FBWebDialogs presentFeedDialogModallyWithSession:nil
-                                               parameters:params
-                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys: [self.favorite valueForKey: @"name"], @"name", @"", @"caption", @"", @"description", [self.favorite valueForKey: @"url"], @"link", [self.favorite valueForKey: @"image"], @"picture", nil];
+        [FBWebDialogs presentFeedDialogModallyWithSession:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
                                                       if (error) {
                                                           // An error occurred, we need to handle the error
                                                           // See: https://developers.facebook.com/docs/ios/errors
