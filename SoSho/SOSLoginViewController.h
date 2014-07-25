@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FacebookSDK/FacebookSDK.h"
+#import "SOSVoteViewController.h"
 
 @interface SOSLoginViewController : UIViewController
 
@@ -16,5 +17,7 @@
 - (void) goVote;
 
 @property BOOL vote;
+@property NSString *fbId;
+@property NSNumber  *pid;
 
 @end

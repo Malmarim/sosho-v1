@@ -31,7 +31,7 @@
 		CCB348F11926025D007EBCE3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D51926025A007EBCE3 /* CoreData.framework */; };
 		CCB348F91926025D007EBCE3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCB348F71926025D007EBCE3 /* InfoPlist.strings */; };
 		CCB348FB1926025D007EBCE3 /* SoShoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB348FA1926025D007EBCE3 /* SoShoTests.m */; };
-		CCB3490519260428007EBCE3 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB3490419260428007EBCE3 /* Storyboard.storyboard */; };
+		CCB3490519260428007EBCE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB3490419260428007EBCE3 /* Main.storyboard */; };
 		CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */; };
 		CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */; };
 		CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB34912192A3E5F007EBCE3 /* SOSItem.m */; };
@@ -44,6 +44,7 @@
 		CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A82197CE98F00E8C919 /* fb-login.png */; };
 		CCBB3A88197CF59F00E8C919 /* Lato-Bla.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */; };
 		CCBB3A89197CF5A300E8C919 /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */; };
+		CCBBA99E19817D3700D43738 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA99D19817D3700D43738 /* Main-iPad.storyboard */; };
 		CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */; };
 		CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */; };
 /* End PBXBuildFile section */
@@ -88,7 +89,7 @@
 		CCB348F61926025D007EBCE3 /* SoShoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SoShoTests-Info.plist"; sourceTree = "<group>"; };
 		CCB348F81926025D007EBCE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCB348FA1926025D007EBCE3 /* SoShoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoShoTests.m; sourceTree = "<group>"; };
-		CCB3490419260428007EBCE3 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		CCB3490419260428007EBCE3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CCB34906192614AA007EBCE3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSLoginViewController.h; sourceTree = "<group>"; };
 		CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLoginViewController.m; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 		CCBB3A82197CE98F00E8C919 /* fb-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb-login.png"; path = "images/fb-login.png"; sourceTree = "<group>"; };
 		CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bla.ttf"; path = "fonts/Lato-Bla.ttf"; sourceTree = "<group>"; };
 		CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Reg.ttf"; path = "fonts/Lato-Reg.ttf"; sourceTree = "<group>"; };
+		CCBBA99D19817D3700D43738 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "../Main-iPad.storyboard"; sourceTree = "<group>"; };
 		CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoritesViewController.h; sourceTree = "<group>"; };
 		CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoritesViewController.m; sourceTree = "<group>"; };
 		CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewCell.h; sourceTree = "<group>"; };
@@ -180,7 +182,7 @@
 				CCB348E61926025C007EBCE3 /* Images.xcassets */,
 				CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */,
 				CCB348D81926025A007EBCE3 /* Supporting Files */,
-				CCB3490419260428007EBCE3 /* Storyboard.storyboard */,
+				CCB3490419260428007EBCE3 /* Main.storyboard */,
 				CCB348E01926025A007EBCE3 /* SOSAppDelegate.h */,
 				CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */,
 				CC13263D1970127C00657E54 /* SOSVoteViewController.h */,
@@ -262,6 +264,7 @@
 		CCC1070B19793457004BAB5D /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				CCBBA99D19817D3700D43738 /* Main-iPad.storyboard */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -355,12 +358,13 @@
 				CCBB3A75197C2B4700E8C919 /* text-logo.png in Resources */,
 				CCBB3A73197C2B0500E8C919 /* pic-logo.png in Resources */,
 				CCBB3A7D197C51EC00E8C919 /* wishlist-button.png in Resources */,
+				CCBBA99E19817D3700D43738 /* Main-iPad.storyboard in Resources */,
 				CC13264119704D5700657E54 /* yes-icon.png in Resources */,
 				CC09B533196E8205000E1B3F /* login-button.png in Resources */,
 				CC13264319704D6000657E54 /* no-icon.png in Resources */,
 				CCBB3A79197C2C7D00E8C919 /* like-icon.png in Resources */,
 				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
-				CCB3490519260428007EBCE3 /* Storyboard.storyboard in Resources */,
+				CCB3490519260428007EBCE3 /* Main.storyboard in Resources */,
 				CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */,
 				CC09B537196EA043000E1B3F /* dis-icon.png in Resources */,
 			);

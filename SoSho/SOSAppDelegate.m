@@ -156,17 +156,17 @@
 {
     NSString *scheme = [url scheme];
     NSString *query = [url query];
-    NSLog(@"URL scheme: %@", scheme);
-    NSLog(@"URL query: %@", query);
     if([scheme isEqualToString:@"soshoapp"]){
-        NSDictionary *asdparams = [self parseURLParams:query];
-        NSLog(@"%@", [asdparams valueForKey:@"fbId"]);
-        NSLog(@"%@", [asdparams valueForKey:@"id"]);
+        NSDictionary *params = [self parseURLParams:query];
+        //NSLog(@"%@", );
+        //NSLog(@"%@", [params valueForKey:@"pid"]);
         self.sosLoginViewController.vote = true;
+        self.sosLoginViewController.fbId = [params valueForKey:@"fbId"];
+         NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
+        self.sosLoginViewController.pid = [formatString numberFromString:[params valueForKey:@"pid"]];
         if(FBSession.activeSession.state == FBSessionStateOpen){
-            NSLog(@"Session found, going to vote");
+            //NSLog(@"Session found, going to vote");
             [self.sosLoginViewController goVote];
-            //[self.navi pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>
         }
         return true;
     }
@@ -183,11 +183,11 @@
                 NSDictionary *applinkData =
                 [NSJSONSerialization JSONObjectWithData:[appLinkDataString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
                 if (!error && [applinkData isKindOfClass:[NSDictionary class]] && applinkData[@"target_url"]) {
-                    NSString *targetURLString = applinkData[@"target_url"];
+                    //NSString *targetURLString = applinkData[@"target_url"];
                     // Show the incoming link in an alert
                     // Your code to direct the user to the
                     // appropriate flow within your app goes here
-                    [[[UIAlertView alloc] initWithTitle:@"Received link:" message:targetURLString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                    //[[[UIAlertView alloc] initWithTitle:@"Received link:" message:targetURLString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                 }
             }
         }];

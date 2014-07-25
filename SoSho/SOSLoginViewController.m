@@ -130,6 +130,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
+    if([[segue identifier] isEqualToString:@"govote"]){
+        SOSVoteViewController *vote = (SOSVoteViewController *) [segue destinationViewController];
+        vote.fbId = self.fbId;
+        vote.pid = self.pid;
+    }
     // Pass the selected object to the new view controller.
 }
 

@@ -15,12 +15,13 @@
     </entity>
     <entity name="Votes" syncable="YES">
         <attribute name="fbId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="voted" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
         <element name="Favorites" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Products" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Votes" positionX="-54" positionY="27" width="128" height="90"/>
+        <element name="Votes" positionX="-54" positionY="27" width="128" height="105"/>
     </elements>
 </model>

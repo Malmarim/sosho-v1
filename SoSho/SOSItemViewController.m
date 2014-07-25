@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *wishlist;
 @property (weak, nonatomic) IBOutlet UIButton *menu;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logout;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
@@ -56,43 +55,18 @@
 
 - (IBAction)buttonTouched:(id)sender
 {
-    if((UIBarButtonItem *)sender == self.logout){
-    // If the session state is any of the two "open" states when the button is clicked
-        if (FBSession.activeSession.state == FBSessionStateOpen
-            || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-            // Close the session and remove the access token from the cache
-            // The session state handler (in the app delegate) will be called automatically
-            [FBSession.activeSession closeAndClearTokenInformation];
-        }
+    if((UIButton *) sender == self.like) {
+        [self addFavorite];
+    }else if ((UIButton *)sender == self.dis){
+        [self setNextItem];
     }
-    else if((UIButton *) sender == self.like) {
-        [self performSegueWithIdentifier:@"voteView" sender:sender];
-    }
-    else if((UIButton *)sender == self.dis){
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"voteView"]) {
+    else if((UIButton *)sender == self.wishlist){
+        [self performSegueWithIdentifier:@"gotofavorites" sender:self];
+    }else if((UIButton *)sender == self.menu){
         
-        // Get destination view
-        SOSVoteViewController *vc = [segue destinationViewController];
-        NSDictionary *itemForSegue;
-
-        if([self.displayItems count] > 0){
-            NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
-            itemForSegue = item;
-        }
-        // Pass the information to your destination view
-        [vc setItem:itemForSegue];
     }
 }
 
--(void) fetchFacebookId
-{
-    
-}
 
 -(void) fetchNewCount
 {
@@ -214,6 +188,12 @@
         }];
     }
 }
+
+-(void) openMenu
+{
+    // Model seque to menu
+}
+
 
 // Post new favorite to the server
 -(void) postNewFavorite:(long) pid
@@ -384,6 +364,7 @@
     [self loadPresets];
     [self fetchNewCount];
     self.hasCheckedForNew = FALSE;
+    self.view.backgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:245/255.0 alpha:1];
 }
 
 - (void)didReceiveMemoryWarning

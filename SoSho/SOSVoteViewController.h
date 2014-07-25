@@ -11,7 +11,7 @@
 
 @interface SOSVoteViewController : UIViewController
 
-@property (nonatomic) long id;
+@property (strong, nonatomic) NSNumber *pid;
 @property (strong, nonatomic) NSString *fbId;
 @property (strong, nonatomic) NSDictionary *item;
 

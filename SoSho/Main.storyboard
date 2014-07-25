@@ -154,7 +154,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERD-gA-FK0">
-                                <rect key="frame" x="10" y="359" width="84" height="84"/>
+                                <rect key="frame" x="10" y="359" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="dis">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -164,11 +164,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-6b-v9U">
-                                <rect key="frame" x="216" y="359" width="84" height="84"/>
+                                <rect key="frame" x="216" y="359" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="like">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonTouched:" destination="Kna-pb-C7F" eventType="touchUpInside" id="Ffx-ng-dNe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foR-Y8-lox">
                                 <rect key="frame" x="295" y="70" width="25" height="25"/>
@@ -176,6 +179,9 @@
                                 <state key="normal" title="fav">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="nAK-cb-5ag" kind="push" identifier="gotofavorites" id="Hsl-mg-Sv0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwc-Ba-qj3">
                                 <rect key="frame" x="0.0" y="70" width="25" height="25"/>
@@ -183,6 +189,9 @@
                                 <state key="normal" title="m">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonTouched:" destination="Kna-pb-C7F" eventType="touchUpInside" id="BrZ-Hx-jIi"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsv-fx-Tw0">
                                 <rect key="frame" x="137" y="70" width="46" height="31"/>
@@ -198,9 +207,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="rEH-bd-TwL"/>
                     <connections>
-                        <outlet property="dis" destination="ERD-gA-FK0" id="XMD-bC-L3F"/>
+                        <outlet property="dis" destination="ERD-gA-FK0" id="Sph-jZ-wXA"/>
                         <outlet property="image" destination="Mjf-hD-hLp" id="o5D-ep-VJu"/>
-                        <outlet property="like" destination="lL0-6b-v9U" id="yCi-sa-6Me"/>
+                        <outlet property="like" destination="lL0-6b-v9U" id="Dhd-gd-Tez"/>
                         <outlet property="logo" destination="nsv-fx-Tw0" id="8Gr-cV-U2k"/>
                         <outlet property="menu" destination="uwc-Ba-qj3" id="UFJ-aM-sfo"/>
                         <outlet property="wishlist" destination="foR-Y8-lox" id="7GQ-vx-ScO"/>
@@ -320,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5q-Dv-JHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="-197"/>
+            <point key="canvasLocation" x="3916" y="-229"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LCH-X6-t60">

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSLoginViewController.h"
-#import "SOSItemViewController.h"
 
 @interface SOSAppDelegate : UIResponder <UIApplicationDelegate>
 

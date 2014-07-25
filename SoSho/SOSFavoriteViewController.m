@@ -36,13 +36,8 @@
 }
 
 - (IBAction)askFriend:(id)sender {
-    // Check if the Facebook app is installed and we can present the share dialog
-    // FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    /*FBLinkShareParams *params = [[FBLinkShareParams alloc] initWithLink:[NSURL URLWithString:[self.favorite valueForKey:@"url"]] name:[self.favorite valueForKey:@"name"] caption:@"" description:@"Do these suit me?" picture:[NSURL URLWithString:[self.favorite valueForKey:@"image"]]];*/
-    // fetch fbid
-    NSString *urlString = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/appLink/%@/%ld", @"foo", self.itemId];
-    NSURL *shareUrl = [NSURL URLWithString:urlString];
-    // params.link = [NSURL URLWithString:[self.favorite valueForKey: @"url"]];
+    //NSString *urlString = @"https://fb.me/672421692840623";
+    NSURL *shareUrl = [NSURL URLWithString:self.urlString];
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     params.link = [NSURL URLWithString:[self.favorite valueForKey:@"url"]];
     params.name = @"Name";
@@ -138,7 +133,6 @@
 - (void) fetchVotes
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     NSString *fbId = [defaults valueForKey:@"fbId"];
     // Fetch votes, parse them, and set them visible
     NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/votes/%@/%ld", fbId, self.itemId];
@@ -146,19 +140,21 @@
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        NSLog(@"Votes fetched");
-        NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-        NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        
-        int yesCount = [[item valueForKey: @"yes"] intValue];
-        int noCount = [[item valueForKey: @"no"] intValue];
-        if(yesCount > 0){
-            NSString *yesText = [NSString stringWithFormat:@"%d", yesCount];
-            [self.yesLabel setText:yesText];
-        }
-        if(noCount > 0){
-            NSString *noText = [NSString stringWithFormat:@"%d", noCount];
-            [self.noLabel setText:noText];
+        if(!error && !data == nil){
+            NSLog(@"Votes fetched");
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            int yesCount = [[item valueForKey: @"yes"] intValue];
+            int noCount = [[item valueForKey: @"no"] intValue];
+            if(yesCount > 0){
+                NSString *yesText = [NSString stringWithFormat:@"%d", yesCount];
+                [self.yesLabel setText:yesText];
+            }
+            if(noCount > 0){
+                NSString *noText = [NSString stringWithFormat:@"%d", noCount];
+                [self.noLabel setText:noText];
+            }
+            self.urlString = [item valueForKey:@"applink"];
         }
     }];
 }
