@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B170E435196EF68400AF46CC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B170E434196EF68400AF46CC /* FacebookSDK.framework */; };
-		CC09B533196E8205000E1B3F /* login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B532196E8205000E1B3F /* login-button.png */; };
+		1B1D058043D0456B8E863BB1 /* libPods-SoSho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */; };
 		CC09B537196EA043000E1B3F /* dis-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B536196EA043000E1B3F /* dis-icon.png */; };
-		CC09B53B196EB81B000E1B3F /* share-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B53A196EB81B000E1B3F /* share-button.png */; };
-		CC09B53D196EB822000E1B3F /* store-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B53C196EB822000E1B3F /* store-button.png */; };
 		CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC13263E1970127C00657E54 /* SOSVoteViewController.m */; };
 		CC13264119704D5700657E54 /* yes-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264019704D5700657E54 /* yes-icon.png */; };
 		CC13264319704D6000657E54 /* no-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264219704D6000657E54 /* no-icon.png */; };
+		CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB6691985B76E0097E3BC /* not-selected.png */; };
+		CC2BB66C1985B7730097E3BC /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB66B1985B7730097E3BC /* selected.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
+		CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */; };
 		CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
 		CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D11926025A007EBCE3 /* CoreGraphics.framework */; };
 		CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D31926025A007EBCE3 /* UIKit.framework */; };
@@ -35,7 +35,7 @@
 		CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */; };
 		CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */; };
 		CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB34912192A3E5F007EBCE3 /* SOSItem.m */; };
-		CCBB3A73197C2B0500E8C919 /* pic-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A72197C2B0500E8C919 /* pic-logo.png */; };
+		CCBB3A73197C2B0500E8C919 /* bag-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A72197C2B0500E8C919 /* bag-logo.png */; };
 		CCBB3A75197C2B4700E8C919 /* text-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A74197C2B4700E8C919 /* text-logo.png */; };
 		CCBB3A79197C2C7D00E8C919 /* like-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A78197C2C7D00E8C919 /* like-icon.png */; };
 		CCBB3A7B197C51C300E8C919 /* small-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A7A197C51C300E8C919 /* small-logo.png */; };
@@ -44,9 +44,19 @@
 		CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A82197CE98F00E8C919 /* fb-login.png */; };
 		CCBB3A88197CF59F00E8C919 /* Lato-Bla.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */; };
 		CCBB3A89197CF5A300E8C919 /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */; };
-		CCBBA99E19817D3700D43738 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA99D19817D3700D43738 /* Main-iPad.storyboard */; };
+		CCBBA9A41982340500D43738 /* SOSDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBBA9A31982340500D43738 /* SOSDetailsViewController.m */; };
+		CCBBA9A71982512E00D43738 /* SOSVotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBBA9A61982512E00D43738 /* SOSVotesViewController.m */; };
+		CCBBA9A91982960500D43738 /* info-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9A81982960500D43738 /* info-icon.png */; };
+		CCBBA9AB1982C76C00D43738 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */; };
+		CCBBA9AD1982D1BF00D43738 /* ask-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9AC1982D1BF00D43738 /* ask-friend.png */; };
+		CCBBA9AF1982D23E00D43738 /* shop-online.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9AE1982D23E00D43738 /* shop-online.png */; };
 		CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */; };
 		CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */; };
+		CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */; };
+		CCF8DEFC199E0CA000D91E57 /* Lato-LigIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */; };
+		CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */; };
+		CCF904E31982FF5A00559BA2 /* vote.png in Resources */ = {isa = PBXBuildFile; fileRef = CCF904E21982FF5A00559BA2 /* vote.png */; };
+		CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E51985254D00559BA2 /* SOSMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,17 +70,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B170E434196EF68400AF46CC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		CC09B532196E8205000E1B3F /* login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button.png"; path = "images/login-button.png"; sourceTree = "<group>"; };
+		2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoSho.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC09B536196EA043000E1B3F /* dis-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dis-icon.png"; path = "images/dis-icon.png"; sourceTree = "<group>"; };
-		CC09B53A196EB81B000E1B3F /* share-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "share-button.png"; path = "images/share-button.png"; sourceTree = "<group>"; };
-		CC09B53C196EB822000E1B3F /* store-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "store-button.png"; path = "images/store-button.png"; sourceTree = "<group>"; };
 		CC13263D1970127C00657E54 /* SOSVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSVoteViewController.h; sourceTree = "<group>"; };
 		CC13263E1970127C00657E54 /* SOSVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSVoteViewController.m; sourceTree = "<group>"; };
 		CC13264019704D5700657E54 /* yes-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "yes-icon.png"; path = "images/yes-icon.png"; sourceTree = "<group>"; };
 		CC13264219704D6000657E54 /* no-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "no-icon.png"; path = "images/no-icon.png"; sourceTree = "<group>"; };
+		CC2BB6691985B76E0097E3BC /* not-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "not-selected.png"; path = "images/not-selected.png"; sourceTree = "<group>"; };
+		CC2BB66B1985B7730097E3BC /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = images/selected.png; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
 		CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewController.m; sourceTree = "<group>"; };
+		CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook-login-button.png"; path = "images/facebook-login-button.png"; sourceTree = "<group>"; };
 		CCB348CC19260259007EBCE3 /* SoSho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoSho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB348CF19260259007EBCE3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCB348D11926025A007EBCE3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -90,14 +100,13 @@
 		CCB348F81926025D007EBCE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCB348FA1926025D007EBCE3 /* SoShoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoShoTests.m; sourceTree = "<group>"; };
 		CCB3490419260428007EBCE3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		CCB34906192614AA007EBCE3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSLoginViewController.h; sourceTree = "<group>"; };
 		CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLoginViewController.m; sourceTree = "<group>"; };
 		CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItemViewController.h; sourceTree = "<group>"; };
 		CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItemViewController.m; sourceTree = "<group>"; };
 		CCB34911192A3E5F007EBCE3 /* SOSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItem.h; sourceTree = "<group>"; };
 		CCB34912192A3E5F007EBCE3 /* SOSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItem.m; sourceTree = "<group>"; };
-		CCBB3A72197C2B0500E8C919 /* pic-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pic-logo.png"; path = "images/pic-logo.png"; sourceTree = "<group>"; };
+		CCBB3A72197C2B0500E8C919 /* bag-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bag-logo.png"; path = "images/bag-logo.png"; sourceTree = "<group>"; };
 		CCBB3A74197C2B4700E8C919 /* text-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "text-logo.png"; path = "images/text-logo.png"; sourceTree = "<group>"; };
 		CCBB3A78197C2C7D00E8C919 /* like-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-icon.png"; path = "images/like-icon.png"; sourceTree = "<group>"; };
 		CCBB3A7A197C51C300E8C919 /* small-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small-logo.png"; path = "images/small-logo.png"; sourceTree = "<group>"; };
@@ -106,11 +115,27 @@
 		CCBB3A82197CE98F00E8C919 /* fb-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb-login.png"; path = "images/fb-login.png"; sourceTree = "<group>"; };
 		CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bla.ttf"; path = "fonts/Lato-Bla.ttf"; sourceTree = "<group>"; };
 		CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Reg.ttf"; path = "fonts/Lato-Reg.ttf"; sourceTree = "<group>"; };
-		CCBBA99D19817D3700D43738 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "../Main-iPad.storyboard"; sourceTree = "<group>"; };
+		CCBBA9A21982340500D43738 /* SOSDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSDetailsViewController.h; sourceTree = "<group>"; };
+		CCBBA9A31982340500D43738 /* SOSDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSDetailsViewController.m; sourceTree = "<group>"; };
+		CCBBA9A51982512E00D43738 /* SOSVotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSVotesViewController.h; sourceTree = "<group>"; };
+		CCBBA9A61982512E00D43738 /* SOSVotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSVotesViewController.m; sourceTree = "<group>"; };
+		CCBBA9A81982960500D43738 /* info-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "info-icon.png"; path = "images/info-icon.png"; sourceTree = "<group>"; };
+		CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		CCBBA9AC1982D1BF00D43738 /* ask-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ask-friend.png"; path = "images/ask-friend.png"; sourceTree = "<group>"; };
+		CCBBA9AE1982D23E00D43738 /* shop-online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shop-online.png"; path = "images/shop-online.png"; sourceTree = "<group>"; };
 		CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoritesViewController.h; sourceTree = "<group>"; };
 		CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoritesViewController.m; sourceTree = "<group>"; };
 		CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewCell.h; sourceTree = "<group>"; };
 		CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewCell.m; sourceTree = "<group>"; };
+		CCDD56B519A5F02600DA21EB /* UICollectionView+EmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+EmptyState.h"; sourceTree = "<group>"; };
+		CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+EmptyState.m"; sourceTree = "<group>"; };
+		CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-LigIta.ttf"; path = "../../../../../../Downloads/lato/Lato-LigIta.ttf"; sourceTree = "<group>"; };
+		CCF904DF1982EC0B00559BA2 /* SOSCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSCollectionHeader.h; sourceTree = "<group>"; };
+		CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSCollectionHeader.m; sourceTree = "<group>"; };
+		CCF904E21982FF5A00559BA2 /* vote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vote.png; path = images/vote.png; sourceTree = "<group>"; };
+		CCF904E41985254D00559BA2 /* SOSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMenuViewController.h; sourceTree = "<group>"; };
+		CCF904E51985254D00559BA2 /* SOSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMenuViewController.m; sourceTree = "<group>"; };
+		F692D75107FC46689396A09D /* Pods-SoSho.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoSho.xcconfig"; path = "Pods/Pods-SoSho.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,11 +143,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B170E435196EF68400AF46CC /* FacebookSDK.framework in Frameworks */,
 				CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */,
+				CCBBA9AB1982C76C00D43738 /* FacebookSDK.framework in Frameworks */,
 				CCB348D61926025A007EBCE3 /* CoreData.framework in Frameworks */,
 				CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */,
 				CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */,
+				1B1D058043D0456B8E863BB1 /* libPods-SoSho.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +173,7 @@
 				CCB348F41926025D007EBCE3 /* SoShoTests */,
 				CCB348CE19260259007EBCE3 /* Frameworks */,
 				CCB348CD19260259007EBCE3 /* Products */,
+				F692D75107FC46689396A09D /* Pods-SoSho.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,13 +189,13 @@
 		CCB348CE19260259007EBCE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B170E434196EF68400AF46CC /* FacebookSDK.framework */,
-				CCB34906192614AA007EBCE3 /* FacebookSDK.framework */,
+				CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */,
 				CCB348CF19260259007EBCE3 /* Foundation.framework */,
 				CCB348D11926025A007EBCE3 /* CoreGraphics.framework */,
 				CCB348D31926025A007EBCE3 /* UIKit.framework */,
 				CCB348D51926025A007EBCE3 /* CoreData.framework */,
 				CCB348ED1926025D007EBCE3 /* XCTest.framework */,
+				2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,20 +212,30 @@
 				CCB3490419260428007EBCE3 /* Main.storyboard */,
 				CCB348E01926025A007EBCE3 /* SOSAppDelegate.h */,
 				CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */,
-				CC13263D1970127C00657E54 /* SOSVoteViewController.h */,
-				CC13263E1970127C00657E54 /* SOSVoteViewController.m */,
-				CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */,
-				CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */,
-				CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */,
-				CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */,
 				CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */,
 				CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */,
 				CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */,
 				CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */,
+				CCF904E41985254D00559BA2 /* SOSMenuViewController.h */,
+				CCF904E51985254D00559BA2 /* SOSMenuViewController.m */,
 				CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */,
 				CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */,
+				CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */,
+				CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */,
+				CCBBA9A51982512E00D43738 /* SOSVotesViewController.h */,
+				CCBBA9A61982512E00D43738 /* SOSVotesViewController.m */,
+				CC13263D1970127C00657E54 /* SOSVoteViewController.h */,
+				CC13263E1970127C00657E54 /* SOSVoteViewController.m */,
+				CCF904DF1982EC0B00559BA2 /* SOSCollectionHeader.h */,
+				CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */,
+				CCBBA9A21982340500D43738 /* SOSDetailsViewController.h */,
+				CCBBA9A31982340500D43738 /* SOSDetailsViewController.m */,
+				CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */,
+				CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */,
 				CCB34911192A3E5F007EBCE3 /* SOSItem.h */,
 				CCB34912192A3E5F007EBCE3 /* SOSItem.m */,
+				CCDD56B519A5F02600DA21EB /* UICollectionView+EmptyState.h */,
+				CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */,
 			);
 			path = SoSho;
 			sourceTree = "<group>";
@@ -235,18 +272,22 @@
 		CCBB3A84197CF1B300E8C919 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */,
+				CC2BB66B1985B7730097E3BC /* selected.png */,
+				CC2BB6691985B76E0097E3BC /* not-selected.png */,
+				CCF904E21982FF5A00559BA2 /* vote.png */,
+				CCBBA9AE1982D23E00D43738 /* shop-online.png */,
+				CCBBA9AC1982D1BF00D43738 /* ask-friend.png */,
+				CCBBA9A81982960500D43738 /* info-icon.png */,
 				CC13264219704D6000657E54 /* no-icon.png */,
 				CCBB3A7E197C52B900E8C919 /* menu-button.png */,
 				CCBB3A7C197C51EC00E8C919 /* wishlist-button.png */,
 				CCBB3A7A197C51C300E8C919 /* small-logo.png */,
 				CCBB3A74197C2B4700E8C919 /* text-logo.png */,
-				CCBB3A72197C2B0500E8C919 /* pic-logo.png */,
+				CCBB3A72197C2B0500E8C919 /* bag-logo.png */,
 				CC13264019704D5700657E54 /* yes-icon.png */,
-				CC09B53C196EB822000E1B3F /* store-button.png */,
-				CC09B53A196EB81B000E1B3F /* share-button.png */,
 				CCBB3A78197C2C7D00E8C919 /* like-icon.png */,
 				CC09B536196EA043000E1B3F /* dis-icon.png */,
-				CC09B532196E8205000E1B3F /* login-button.png */,
 				CCBB3A82197CE98F00E8C919 /* fb-login.png */,
 			);
 			name = images;
@@ -255,6 +296,7 @@
 		CCBB3A85197CF1F200E8C919 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */,
 				CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */,
 				CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */,
 			);
@@ -264,7 +306,6 @@
 		CCC1070B19793457004BAB5D /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				CCBBA99D19817D3700D43738 /* Main-iPad.storyboard */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -276,9 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CCB348FE1926025E007EBCE3 /* Build configuration list for PBXNativeTarget "SoSho" */;
 			buildPhases = (
+				42096D2304EB48128D9BEDE0 /* Check Pods Manifest.lock */,
 				CCB348C819260259007EBCE3 /* Sources */,
 				CCB348C919260259007EBCE3 /* Frameworks */,
 				CCB348CA19260259007EBCE3 /* Resources */,
+				32E7FCD8FCF242259DCB5070 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -348,25 +391,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF8DEFC199E0CA000D91E57 /* Lato-LigIta.ttf in Resources */,
 				CCBB3A89197CF5A300E8C919 /* Lato-Reg.ttf in Resources */,
 				CCBB3A88197CF59F00E8C919 /* Lato-Bla.ttf in Resources */,
+				CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */,
+				CCBBA9AD1982D1BF00D43738 /* ask-friend.png in Resources */,
 				CCBB3A7F197C52B900E8C919 /* menu-button.png in Resources */,
-				CC09B53B196EB81B000E1B3F /* share-button.png in Resources */,
 				CCBB3A7B197C51C300E8C919 /* small-logo.png in Resources */,
-				CC09B53D196EB822000E1B3F /* store-button.png in Resources */,
 				CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */,
 				CCBB3A75197C2B4700E8C919 /* text-logo.png in Resources */,
-				CCBB3A73197C2B0500E8C919 /* pic-logo.png in Resources */,
+				CCBB3A73197C2B0500E8C919 /* bag-logo.png in Resources */,
+				CCBBA9AF1982D23E00D43738 /* shop-online.png in Resources */,
 				CCBB3A7D197C51EC00E8C919 /* wishlist-button.png in Resources */,
-				CCBBA99E19817D3700D43738 /* Main-iPad.storyboard in Resources */,
 				CC13264119704D5700657E54 /* yes-icon.png in Resources */,
-				CC09B533196E8205000E1B3F /* login-button.png in Resources */,
 				CC13264319704D6000657E54 /* no-icon.png in Resources */,
+				CCF904E31982FF5A00559BA2 /* vote.png in Resources */,
+				CCBBA9A91982960500D43738 /* info-icon.png in Resources */,
 				CCBB3A79197C2C7D00E8C919 /* like-icon.png in Resources */,
 				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
 				CCB3490519260428007EBCE3 /* Main.storyboard in Resources */,
+				CC2BB66C1985B7730097E3BC /* selected.png in Resources */,
 				CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */,
 				CC09B537196EA043000E1B3F /* dis-icon.png in Resources */,
+				CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,20 +427,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		32E7FCD8FCF242259DCB5070 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-SoSho-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42096D2304EB48128D9BEDE0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CCB348C819260259007EBCE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBBA9A71982512E00D43738 /* SOSVotesViewController.m in Sources */,
+				CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */,
 				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
+				CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */,
 				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
 				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
+				CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */,
 				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
 				CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */,
 				CCB348DE1926025A007EBCE3 /* main.m in Sources */,
+				CCBBA9A41982340500D43738 /* SOSDetailsViewController.m in Sources */,
 				CCB348E51926025B007EBCE3 /* SoSho.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +595,7 @@
 		};
 		CCB348FF1926025E007EBCE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F692D75107FC46689396A09D /* Pods-SoSho.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -517,23 +603,23 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Teemu Kinos (27J98VR4QS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/mikkomalmari/Documents/FacebookSDK,
-					/Users/arturminasjan/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
-				"PROVISIONING_PROFILE[sdk=*]" = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "3EF85C61-3C88-46EF-8433-CFDD1172CA63";
+				"PROVISIONING_PROFILE[sdk=*]" = "FBA428C1-A5D8-4B99-B108-61137CDFF343";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		CCB349001926025E007EBCE3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F692D75107FC46689396A09D /* Pods-SoSho.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -541,17 +627,16 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoSho Oy (D7X9758DS9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/mikkomalmari/Documents/FacebookSDK,
-					/Users/arturminasjan/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "91B4CB9F-3FBD-4382-B703-0353ADB8B511";
-				"PROVISIONING_PROFILE[sdk=*]" = "07FE6764-B8E3-4333-9F9E-F1AC44B1CD21";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "91FC62E2-DE3B-465B-9A6E-56167D6B48A1";
+				"PROVISIONING_PROFILE[sdk=*]" = "f01e304b-70fa-42a2-98d8-ee9a104af9b8";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

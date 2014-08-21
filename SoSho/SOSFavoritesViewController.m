@@ -8,22 +8,28 @@
 
 #import "SOSFavoritesViewController.h"
 #import "SOSAppDelegate.h"
+#import "SOSCollectionHeader.h"
 #import "SOSFavoriteViewCell.h"
 #import "SOSFavoriteViewController.h"
 
+#import "UICollectionView+EmptyState.h"
+
 @interface SOSFavoritesViewController ()
 
-@property (strong, nonatomic) NSArray *favorites;
+@property (strong, nonatomic) NSMutableArray *favorites;
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
-@property (nonatomic) long clickedRow;
+@property (weak, nonatomic) IBOutlet UICollectionView *collection;
+@property (strong, nonatomic) UIView *emptyView;
+@property (nonatomic) NSIndexPath *clickedRow;
 
 @end
 
 @implementation SOSFavoritesViewController
 
-- (IBAction)swipeLeft:(id)sender {
+- (IBAction)bar:(id)sender {
+    [self performSegueWithIdentifier:@"favoritestovotes" sender:self];
 }
 
 // Load favorites saved to file
@@ -33,7 +39,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     NSError *error;
-    self.favorites = [self.context executeFetchRequest:request error:&error];
+    self.favorites = [[self.context executeFetchRequest:request error:&error] mutableCopy];
 }
 
 - (void) downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, NSData *data))completionBlock
@@ -57,12 +63,89 @@
     return self;
 }
 
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+    CGPoint p = [gestureRecognizer locationInView:self.collection];
+    
+    NSIndexPath *indexPath = [self.collection indexPathForItemAtPoint:p];
+    if (indexPath == nil){
+        //NSLog(@"couldn't find index path");
+    } else {
+        //NSLog(@"Found cell");
+        // get the cell at indexPath (the one you long pressed)
+        //UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        //long row = [indexPath row];
+        //NSDictionary *item = [self.favorites objectAtIndex:row];
+        // do stuff with the cell
+        self.clickedRow = indexPath;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete this favorite?" message:@"If deleted, it will be lost for good" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        [alert show];
+        /*
+        long row = [indexPath row];
+        [self.context deleteObject:[self.favorites objectAtIndex:row]];
+        NSError *error = nil;
+        if(![self.context save:&error]){
+            //NSLog(@"Delete failed");
+        }else{
+            [self.favorites removeObjectAtIndex:row];
+            [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+            //NSLog(@"Delete succeeded");
+        }
+        */
+        //[self.collection reloadData];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        NSLog(@"Cancel");
+        //cancel clicked ...do your action
+    }else{
+        NSLog(@"Delete");
+         long row = [self.clickedRow row];
+         [self.context deleteObject:[self.favorites objectAtIndex:row]];
+         NSError *error = nil;
+         if(![self.context save:&error]){
+         //NSLog(@"Delete failed");
+         }else{
+         [self.favorites removeObjectAtIndex:row];
+         [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:self.clickedRow]];
+         //NSLog(@"Delete succeeded");
+         }
+        //reset clicked
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.emptyView = [[UIView alloc] init];
+    UILabel *placeholder = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)];
+    placeholder.textAlignment = NSTextAlignmentCenter;
+    [placeholder setTextColor:[UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1]];
+    [placeholder setBackgroundColor:[UIColor clearColor]];
+    [placeholder setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
+    [placeholder setText:@"YOUR WISHLIST IS EMPTY"];
+    [self.emptyView addSubview:placeholder];
+    self.collection.emptyState_view = self.emptyView;
+    self.collection.emptyState_shouldRespectSectionHeader = YES;
+    
+    self.collection.delegate = self;
+    self.collection.dataSource = self;
+
+    
     // Do any additional setup after loading the view.
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
+    
+    // attach long press gesture to collectionView
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = .5; //seconds
+    lpgr.delegate = self;
+    [self.collectionView addGestureRecognizer:lpgr];
     [self loadItems];
 }
 
@@ -77,9 +160,12 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    SOSFavoriteViewController *destination = (SOSFavoriteViewController *) segue.destinationViewController;
-    NSArray *selected = [self.collectionView indexPathsForSelectedItems];
-    destination.favorite = [self.favorites objectAtIndex:[selected[0] row]];
+    if([segue.identifier isEqualToString:@"favoritestofavorite"])
+    {
+        SOSFavoriteViewController *destination = (SOSFavoriteViewController *) segue.destinationViewController;
+        NSArray *selected = [self.collectionView indexPathsForSelectedItems];
+        destination.favorite = [self.favorites objectAtIndex:[selected[0] row]];
+    }
 }
 
 #pragma mark -
@@ -89,6 +175,33 @@
 (UICollectionView *)collectionView
 {
     return 1;
+}
+
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reuseable = nil;
+    
+    if(kind == UICollectionElementKindSectionHeader){
+        SOSCollectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Header" forIndexPath:indexPath];
+        UIImage *logo = [UIImage imageNamed:@"wishlist-button"];
+        UIImageView *favorite = (UIImageView *)[header viewWithTag:3];
+        [favorite setImage:logo];
+        UIImage* itemImage = [UIImage imageNamed:@"small-logo.png"];
+        UIButton *item = (UIButton *)[header viewWithTag:2];
+        [item setImage:itemImage forState:UIControlStateNormal];
+        UIImage* voteImage = [UIImage imageNamed:@"vote.png"];
+        UIButton *votes = (UIButton *)[header viewWithTag:1];
+        [votes setImage:voteImage forState:UIControlStateNormal];
+        //header.controller = self;
+        reuseable = header;
+    }
+    return reuseable;
+}
+
+- (IBAction)unwindToFavorites:(UIStoryboardSegue *)unwindSegue
+{
+    
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView

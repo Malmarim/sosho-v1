@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SOSFavoritesViewController : UICollectionViewController
-<UICollectionViewDataSource, UICollectionViewDelegate>
+<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @end

@@ -25,7 +25,8 @@
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends"]
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends", @"user_location", @"user_birthday"]
+        //[FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends"]
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
@@ -34,7 +35,44 @@
                                           [self sessionStateChanged:session state:state error:error];
                                       }];
     }
+    
+    if (launchOptions != nil)
+	{
+		NSDictionary *dictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+		if (dictionary != nil)
+		{
+			//NSLog(@"Launched from push notification: %@", dictionary);
+            if([[dictionary valueForKey:@"type"] isEqualToString:@"vote"]){
+                [self voteReceivedMessage:[dictionary valueForKey:@"name"]];
+            }
+		}
+	}
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // app was already in the foreground
+    if ( application.applicationState == UIApplicationStateActive ){
+        //NSLog(@"Message received %@ active", userInfo);
+        if([[userInfo valueForKey:@"type"] isEqualToString:@"vote"]){
+            [self voteReceivedMessage:[userInfo valueForKey:@"name"]];
+        }
+    }
+    // app was just brought from background to foreground
+    else{
+        //NSLog(@"Message received %@ background", userInfo);
+        if([[userInfo valueForKey:@"type"] isEqualToString:@"vote"]){
+            [self voteReceivedMessage:[userInfo valueForKey:@"name"]];
+        }
+    }
+    
+}
+
+- (void) voteReceivedMessage:(NSString *)name
+{
+    [self showMessage:[NSString stringWithFormat:@"Your friend just voted on %@", name] withTitle:@"Vote received!"];
 }
 
 // This method will handle ALL the session state changes in the app
@@ -48,7 +86,6 @@
     if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
         [self userLoggedOut];
     }
-    
     // Handle errors
     if (error){
         //NSLog(@"Error");
@@ -104,10 +141,10 @@
     NSString *newToken = [deviceToken description];
 	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"Formatted as %@", newToken);
-    
+   //NSLog(@"Formatted as %@", newToken);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *oldToken = [defaults objectForKey:@"pushtoken"];
+   //NSLog(@"Old: %@", oldToken);
     // Check if pushtoken is not set or newToken is same as set token
     if(oldToken == nil || ![oldToken isEqualToString:newToken]){
         [defaults setValue:newToken forKey:@"pushtoken"];
@@ -132,12 +169,13 @@
                 }
             }];
         }
+    }else{
     }
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
-    NSLog(@"Failed to get token, error: %@", error);
+   //NSLog(@"Failed to get token, error: %@", error);
 }
 
 // Show an alert message
@@ -156,10 +194,11 @@
 {
     NSString *scheme = [url scheme];
     NSString *query = [url query];
+   //NSLog(@"Scheme: %@", scheme);
+   //NSLog(@"Query: %@", query);
     if([scheme isEqualToString:@"soshoapp"]){
         NSDictionary *params = [self parseURLParams:query];
-        //NSLog(@"%@", );
-        //NSLog(@"%@", [params valueForKey:@"pid"]);
+       //NSLog(@"%@", [params valueForKey:@"pid"]);
         self.sosLoginViewController.vote = true;
         self.sosLoginViewController.fbId = [params valueForKey:@"fbId"];
          NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
@@ -247,7 +286,7 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
              // Replace this implementation with code to handle the error appropriately.
              // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+           //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         } 
     }
@@ -295,7 +334,7 @@
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          

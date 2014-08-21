@@ -8,16 +8,18 @@
 
 #import "SOSVoteViewController.h"
 #import "SOSAppDelegate.h"
+#import "SOSDetailsViewController.h"
 
 @interface SOSVoteViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIImageView *shoeImage;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
+@property (strong, nonatomic) NSDictionary *tmpvoteObject;
 @property (strong, nonatomic) NSManagedObjectContext *context;
-@property NSDictionary *voteObject;
 
 @end
 
@@ -28,9 +30,11 @@
     
     if((UIButton *) sender == self.yesButton){
         [self postVote:TRUE];
+        //NSLog(@"Yes");
     }
     else if ((UIButton *)sender == self.noButton){
         [self postVote:FALSE];
+        //NSLog(@"No");
     }
 }
 
@@ -41,13 +45,14 @@
 {
     int voteInt;
     if(vote){
-        NSLog(@"Yes");
+       //NSLog(@"Yes");
         voteInt = 1;
     }else{
-        NSLog(@"No");
+       //NSLog(@"No");
         voteInt = 0;
     }
-    
+    [self.noButton setEnabled:false];
+    [self.yesButton setEnabled:false];
     NSString *url = @"http://soshoapp.herokuapp.com/vote";
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
@@ -57,13 +62,17 @@
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
         if(!error){
-            //NSLog(@"No Error");
             // set voted true
-            [self.noButton setEnabled:false];
-            [self.yesButton setEnabled:false];
+            [self.voteObject setValue: [NSNumber numberWithBool:true] forKey:@"voted"];
+            NSError *error;
+            if(![self.context save:&error]){
+               //NSLog(@"Vote update failed: %@", error.localizedDescription);
+            }else{
+               //NSLog(@"Vote updated");
+            }
         }
         else{
-            //NSLog(@"Error");
+           //NSLog(@"Vote error : %@", error.localizedDescription);
         }
     }];
     
@@ -80,32 +89,33 @@
 
 
 - (void) fetchvote{
-    NSLog(@"Fetching vote");
+   //NSLog(@"Fetching vote");
     NSEntityDescription *entityDesc = [NSEntityDescription
                                        entityForName:@"Votes" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     NSError *error;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(fbId == %@) AND (pid == %ld)", self.fbId, self.pid];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(fbId = %@) AND (pid = %ld)", self.fbId, [self.pid longValue]];
     [request setPredicate:predicate];
     NSArray *vote = [self.context executeFetchRequest:request error:&error];
     // Vote found
     if(vote.count > 0){
-        // Vote exists to things with it
+        // Vote exists do things with it
+       //NSLog(@"Vote found");
         self.voteObject = [vote objectAtIndex:0];
+        if(![[self.voteObject valueForKey:@"voted"] boolValue]){
+            [self.noButton setEnabled:true];
+            [self.yesButton setEnabled:true];
+        }
     }
     // Vote not found, needs to be created
     else{
-        NSManagedObject *newVote;
-        newVote = [NSEntityDescription insertNewObjectForEntityForName:@"Votes" inManagedObjectContext:self.context];
-        [newVote setValue:self.fbId forKey:@"fbId"];
-        [newVote setValue:self.pid forKey:@"pid"];
-        [newVote setValue: FALSE forKey:@"voted"];
-        NSError *error;
-        [self.context save:&error];
-        [self.voteObject setValue:self.fbId forKey:@"fbId"];
-        [self.voteObject setValue:self.pid forKey:@"pid"];
-        [self.voteObject setValue: FALSE forKey:@"voted"];
+       //NSLog(@"Vote not found");
+        self.tmpvoteObject = [[NSMutableDictionary alloc] init];
+        [self.tmpvoteObject setValue:self.fbId forKey:@"fbId"];
+        [self.tmpvoteObject setValue:self.pid forKey:@"pid"];
+        [self.tmpvoteObject setValue: [NSNumber numberWithBool:false] forKey:@"voted"];
+        [self fetchItem];
     }
 }
 
@@ -116,40 +126,70 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     NSError *error;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %ld", [self.pid longValue]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id = %ld", [self.pid longValue]];
     [request setPredicate:predicate];
     NSArray *product = [self.context executeFetchRequest:request error:&error];
     if(product.count > 0){
+       //NSLog(@"Item found");
         // Item was found
-        self.item = [product objectAtIndex:0];
-        NSURL *imageUrl = [NSURL URLWithString:[self.item valueForKey: @"image"]];
+        self.voteObject = [NSEntityDescription insertNewObjectForEntityForName:@"Votes" inManagedObjectContext:self.context];
+        [self.voteObject setValue:self.fbId forKey:@"fbId"];
+        [self.voteObject setValue:self.pid forKey:@"pid"];
+        [self.voteObject setValue: [NSNumber numberWithBool:false] forKey:@"voted"];
+        [self.voteObject setValue:[[product objectAtIndex:0] valueForKey: @"image"] forKey:@"image"];
+        NSError *error;
+        if(![self.context save:&error]){
+           //NSLog(@"Save failed: %@", error.localizedDescription);
+        }
+        NSURL *imageUrl = [NSURL URLWithString:[self.voteObject valueForKey: @"image"]];
         [self downloadImageWithURL:imageUrl completionBlock:^(BOOL succeeded, NSData *data) {
             if (succeeded) {
                 [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
-                if(![self.voteObject valueForKey:@"voted"]){
+               //NSLog(@"Vote: %@", [self.voteObject valueForKey:@"voted"]);
+                if(![[self.voteObject valueForKey:@"voted"] boolValue]){
                     [self.noButton setEnabled:true];
                     [self.yesButton setEnabled:true];
                 }
             }
         }];
     }else{
+       //NSLog(@"Item not found");
+        // Item not found on phone, need to check online
         NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/product/%ld", [self.pid longValue]];
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-            self.item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-            NSURL *imageUrl = [NSURL URLWithString:[self.item valueForKey: @"image"]];
-            [self downloadImageWithURL:imageUrl completionBlock:^(BOOL succeeded, NSData *data) {
-                if (succeeded) {
-                    [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
-                    if(![self.voteObject valueForKey:@"voted"]){
-                        [self.noButton setEnabled:true];
-                        [self.yesButton setEnabled:true];
-                    }
+            if(!error){
+               //NSLog(@"Item fetched");
+                NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+                NSDictionary *object = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+                self.voteObject = [NSEntityDescription insertNewObjectForEntityForName:@"Votes" inManagedObjectContext:self.context];
+                [self.voteObject setValue:self.fbId forKey:@"fbId"];
+                [self.voteObject setValue:self.pid forKey:@"pid"];
+                [self.voteObject setValue:[NSNumber numberWithBool:false] forKey:@"voted"];
+                [self.voteObject setValue:[object valueForKey: @"image"] forKey:@"image"];
+                NSError *error;
+                if(![self.context save:&error]){
+                   //NSLog(@"Save failed %@:", error.localizedDescription);
                 }
-            }];
+                else{
+                   //NSLog(@"Vote saved");
+                }
+                NSURL *imageUrl = [NSURL URLWithString:[self.voteObject valueForKey: @"image"]];
+                [self downloadImageWithURL:imageUrl completionBlock:^(BOOL succeeded, NSData *data) {
+                    if (succeeded) {
+                        [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
+                        if(![[self.voteObject valueForKey:@"voted"] boolValue]){
+                            [self.noButton setEnabled:true];
+                            [self.yesButton setEnabled:true];
+                        }
+                    }
+                }];
+            }
+            else{
+               //NSLog(@"Fetch failed :%@", error.localizedDescription);
+            }
         }];
     }
 }
@@ -157,7 +197,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage* shoe = [UIImage imageNamed:@"wishlist-button.png"];
+    UIImage* shoe = [UIImage imageNamed:@"vote.png"];
     [self.backButton setImage:shoe forState:UIControlStateNormal];
     UIImage* yes = [UIImage imageNamed:@"yes-icon.png"];
     [self.yesButton setImage:yes forState:UIControlStateNormal];
@@ -165,27 +205,27 @@
     [self.noButton setImage:no forState:UIControlStateNormal];
     [self.noButton setEnabled:false];
     [self.yesButton setEnabled:false];
+    UIImage *info = [UIImage imageNamed:@"info-icon.png"];
+    [self.infoButton setImage:info forState:UIControlStateNormal];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
-    [self fetchvote];
-    // Do any additional setup after loading the view.
-    // Check if item has already been set (coming from votes view)
-    if([self.item count] > 0){
-        NSURL *imageUrl = [NSURL URLWithString:[self.item valueForKey: @"image"]];
+    // Check if vote is already set
+    if([self.voteObject valueForKey:@"image"] != nil){
+        NSURL *imageUrl = [NSURL URLWithString:[self.voteObject valueForKey: @"image"]];
         [self downloadImageWithURL:imageUrl completionBlock:^(BOOL succeeded, NSData *data) {
             if (succeeded) {
                 [self.shoeImage setImage:[[UIImage alloc] initWithData:data]];
-                if(![self.voteObject valueForKey:@"voted"]){
+               //NSLog(@"Vote: %d", [[self.voteObject valueForKey:@"voted"] boolValue]);
+                if(![[self.voteObject valueForKey:@"voted"] boolValue]){
                     [self.noButton setEnabled:true];
                     [self.yesButton setEnabled:true];
                 }
             }
         }];
     }
-    // If item is not set it needs to be from db or server
     else
     {
-        [self fetchItem];
+        [self fetchvote];
     }
 }
 
@@ -207,15 +247,18 @@
     }];
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"votetodetails"])
+    {
+        SOSDetailsViewController *dest = segue.destinationViewController;
+        dest.pid = [self.voteObject valueForKey:@"pid"];
+       //NSLog(@"Set new destitnation %d", [dest.pid intValue]);
+    }
 }
-*/
 
 @end

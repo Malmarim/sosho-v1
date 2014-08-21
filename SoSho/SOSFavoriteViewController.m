@@ -15,8 +15,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIButton *store;
 @property (weak, nonatomic) IBOutlet UIButton *share;
+@property (weak, nonatomic) IBOutlet UIButton *wishlist;
 
 @property (strong, nonatomic) NSString *urlString;
+
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
@@ -25,28 +27,29 @@
 @property (weak, nonatomic) IBOutlet UIImageView *noIcon;
 @property (weak, nonatomic) IBOutlet UILabel *noLabel;
 
-@property (nonatomic) long itemId;
+@property NSNumber *pid;
 
 @end
 
 @implementation SOSFavoriteViewController
 
 - (IBAction)buttonTouched:(id)sender {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.favorite valueForKey:@"url"]]];
 }
 
 - (IBAction)askFriend:(id)sender {
-    //NSString *urlString = @"https://fb.me/672421692840623";
-    NSURL *shareUrl = [NSURL URLWithString:self.urlString];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *fbId = [defaults valueForKey:@"fbId"];
+    //NSURL *shareUrl = [NSURL URLWithString:self.urlString];
+    NSString *foo = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/getApplink/%@/%ld", fbId, [self.pid longValue]];
+    NSURL *shareUrl = [NSURL URLWithString:foo];
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     params.link = [NSURL URLWithString:[self.favorite valueForKey:@"url"]];
     params.name = @"Name";
     params.caption = @"Caption";
     params.picture = [NSURL URLWithString:[self.favorite valueForKey:@"image"]];
     params.linkDescription = @"Check it out.";
-    // Check if the Facebook app is installed and we can present
-    // the message dialog
-    // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentMessageDialogWithParams:params]) {
         // Enable button or other UI to initiate launch of the Message Dialog
         [FBDialogs presentMessageDialogWithLink:shareUrl
@@ -60,53 +63,19 @@
                                                 NSLog(@"result %@", results);
                                             }
                                         }];
+    }else{
+        [self showMessage:@"Facebook Messenger is required for sharing!" withTitle:@"Error"];
     }
-    else if ([FBDialogs canPresentShareDialogWithParams:params]) {
-        // Present the share dialog
-        [FBDialogs presentShareDialogWithLink:params.link
-                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error) {
-                                              // An error occurred, we need to handle the error
-                                              // See: https://developers.facebook.com/docs/ios/errors
-                                              NSLog(@"Error publishing story: %@", error.description);
-                                          } else {
-                                              // Success
-                                              NSLog(@"result %@", results);
-                                          }
-                                      }];
-    } else {
-        // Present the feed dialog
-        NSLog(@"Present feed dialog");
-        // Put together the dialog parameters
-        params = nil;
-        // NSString *appUrl = @"fb600087446740715";
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys: [self.favorite valueForKey: @"name"], @"name", @"", @"caption", @"", @"description", [self.favorite valueForKey: @"url"], @"link", [self.favorite valueForKey: @"image"], @"picture", nil];
-        [FBWebDialogs presentFeedDialogModallyWithSession:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-                                                      if (error) {
-                                                          // An error occurred, we need to handle the error
-                                                          // See: https://developers.facebook.com/docs/ios/errors
-                                                          NSLog(@"Error publishing story: %@", error.description);
-                                                      } else {
-                                                          if (result == FBWebDialogResultDialogNotCompleted) {
-                                                              // User cancelled.
-                                                              NSLog(@"User cancelled.");
-                                                          } else {
-                                                              // Handle the publish feed callback
-                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
-                                                              
-                                                              if (![urlParams valueForKey:@"post_id"]) {
-                                                                  // User cancelled.
-                                                                  NSLog(@"User cancelled.");
-                                                                  
-                                                              } else {
-                                                                  // User clicked the Share button
-                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
-                                                                  NSLog(@"result %@", result);
-                                                              }
-                                                          }
-                                                      }
-                                                  }];
-    }
+}
+
+// Show an alert message
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title
+{
+    [[[UIAlertView alloc] initWithTitle:title
+                                message:text
+                               delegate:self
+                      cancelButtonTitle:@"OK!"
+                      otherButtonTitles:nil] show];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -135,58 +104,143 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fbId = [defaults valueForKey:@"fbId"];
     // Fetch votes, parse them, and set them visible
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/votes/%@/%ld", fbId, self.itemId];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/votes/%@/%ld", fbId, [self.pid longValue]];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        if(!error && !data == nil){
+        if(!error){
             NSLog(@"Votes fetched");
             NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
             NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-            int yesCount = [[item valueForKey: @"yes"] intValue];
-            int noCount = [[item valueForKey: @"no"] intValue];
-            if(yesCount > 0){
-                NSString *yesText = [NSString stringWithFormat:@"%d", yesCount];
-                [self.yesLabel setText:yesText];
-            }
-            if(noCount > 0){
-                NSString *noText = [NSString stringWithFormat:@"%d", noCount];
-                [self.noLabel setText:noText];
-            }
-            self.urlString = [item valueForKey:@"applink"];
+            NSString *yes = [NSString stringWithFormat:@"%@",[item valueForKey:@"yesVote"]];
+            NSString *no = [NSString stringWithFormat:@"%@",[item valueForKey:@"noVote"]];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.yesLabel setText:yes];
+                [self.noLabel setText:no];
+                self.urlString = [item valueForKey:@"applink"];
+            }];
         }
     }];
 }
 
+-(UIImage *) drawPrice:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
+{
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(0,0, image.size.width, image.size.height)];
+    CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
+    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:30], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [text drawInRect:CGRectIntegral(rect) withAttributes:attrs];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+-(UIImage *) drawWithText:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
+{
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(0,0, image.size.width, image.size.height)];
+    CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
+    //NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:50], NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1], NSBackgroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:50], NSForegroundColorAttributeName: [UIColor whiteColor], NSBackgroundColorAttributeName: [UIColor blackColor]};
+    [text drawInRect:CGRectIntegral(rect) withAttributes:attrs];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 - (void)loadItem
 {
-    if(self.favorite != nil){
-        self.itemId = [[self.favorite valueForKey: @"id"] longValue];
-        [self.name setText:[self.favorite valueForKey: @"name"]];
+    if([self.favorite valueForKey:@"image"] != nil){
+        self.pid = [self.favorite valueForKey: @"id"];
+        UIImage* storeImage = [UIImage imageNamed:@"shop-online.png"];
+        UIImage *shopped = [self drawPrice:[self.favorite valueForKey:@"price"] inImage:storeImage at:CGPointMake(380, 26)];
+        [self.store setImage:shopped forState:UIControlStateNormal];
         NSURL *url = [NSURL URLWithString:[self.favorite valueForKey: @"image"]];
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
             if (succeeded) {
-                [self.image setImage:[[UIImage alloc] initWithData:data]];
+                UIImage *img = [[UIImage alloc] initWithData:data];
+                UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
+                UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
+                [self.image setImage:img3];
             }
         }];
         self.urlString = [self.favorite valueForKey:@"url"];
+    }else{
+        // We came here in a different way
+        NSEntityDescription *entityDesc = [NSEntityDescription
+                                           entityForName:@"Favorites" inManagedObjectContext:self.context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        NSError *error;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id = %ld", [self.pid longValue]];
+        [request setPredicate:predicate];
+        NSArray *product = [self.context executeFetchRequest:request error:&error];
+        if(product.count > 0){
+            //NSLog(@"Item found");
+            self.favorite = [product objectAtIndex:0];
+            UIImage* storeImage = [UIImage imageNamed:@"shop-online.png"];
+            UIImage *shopped = [self drawPrice:[self.favorite valueForKey:@"price"] inImage:storeImage at:CGPointMake(380, 26)];
+            [self.store setImage:shopped forState:UIControlStateNormal];
+            NSURL *url = [NSURL URLWithString:[self.favorite valueForKey: @"image"]];
+            [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
+                if (succeeded) {
+                    UIImage *img = [[UIImage alloc] initWithData:data];
+                    UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
+                    UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
+                    [self.image setImage:img3];
+                }
+            }];
+            self.urlString = [self.favorite valueForKey:@"url"];
+        }else{
+            //NSLog(@"Item not found");
+            // Item not found on phone, need to check online
+            NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/product/%ld", [self.pid longValue]];
+            NSURL * fetchURL = [NSURL URLWithString:url];
+            NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+            NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+                if(!error){
+                    //NSLog(@"Item fetched");
+                    NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+                    NSDictionary *object = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+                    self.favorite = object;
+                    UIImage* storeImage = [UIImage imageNamed:@"shop-online.png"];
+                    UIImage *shopped = [self drawPrice:[self.favorite valueForKey:@"price"] inImage:storeImage at:CGPointMake(380, 26)];
+                    [self.store setImage:shopped forState:UIControlStateNormal];
+                    NSURL *url = [NSURL URLWithString:[self.favorite valueForKey: @"image"]];
+                    [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
+                        if (succeeded) {
+                            UIImage *img = [[UIImage alloc] initWithData:data];
+                            UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
+                            UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
+                            [self.image setImage:img3];
+                        }
+                    }];
+                    self.urlString = [self.favorite valueForKey:@"url"];
+                }
+                else{
+                    NSLog(@"Fetch failed :%@", error.localizedDescription);
+                }
+            }];
+        }
     }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage* shareImage = [UIImage imageNamed:@"share-button.png"];
+    UIImage* shareImage = [UIImage imageNamed:@"ask-friend.png"];
     [self.share setImage:shareImage forState:UIControlStateNormal];
-    UIImage* storeImage = [UIImage imageNamed:@"store-button.png"];
-    [self.store setImage:storeImage forState:UIControlStateNormal];
     UIImage* no = [UIImage imageNamed:@"no-icon.png"];
     [self.noIcon setImage:no];
     UIImage* yes = [UIImage imageNamed:@"yes-icon.png"];
     [self.yesIcon setImage:yes];
+    UIImage *wishImage = [UIImage imageNamed:@"wishlist-button"];
+    [self.wishlist setImage:wishImage forState:UIControlStateNormal];
     [self loadItem];
     [self fetchVotes];
+    //NSLog(@"Fetching vote");
 }
 
 - (void)didReceiveMemoryWarning

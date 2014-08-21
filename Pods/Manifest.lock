@@ -1,0 +1,35 @@
+PODS:
+  - BlocksKit (2.2.2):
+    - BlocksKit/All
+  - BlocksKit/All (2.2.2):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.2)
+  - BlocksKit/DynamicDelegate (2.2.2)
+  - BlocksKit/MessageUI (2.2.2):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.2):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - JRSwizzle (1.0)
+  - libextobjc/EXTScope (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4)
+  - ObjcAssociatedObjectHelpers (1.2.1)
+
+DEPENDENCIES:
+  - BlocksKit (= 2.2.2)
+  - JRSwizzle (= 1.0)
+  - libextobjc/EXTScope (= 0.4)
+  - ObjcAssociatedObjectHelpers (= 1.2.1)
+
+SPEC CHECKSUMS:
+  BlocksKit: 49fda17cbd628f3d6683f62de57edeaa315b386c
+  JRSwizzle: 30da7a2c539a4ebf954b16d15f6dd8221c9f6fa5
+  libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
+  ObjcAssociatedObjectHelpers: bbb9f597f62ab0d7b0c187f56bc887c9f7d0c8f0
+
+COCOAPODS: 0.33.1

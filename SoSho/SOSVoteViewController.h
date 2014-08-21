@@ -13,6 +13,6 @@
 
 @property (strong, nonatomic) NSNumber *pid;
 @property (strong, nonatomic) NSString *fbId;
-@property (strong, nonatomic) NSDictionary *item;
+@property NSManagedObject *voteObject;
 
 @end

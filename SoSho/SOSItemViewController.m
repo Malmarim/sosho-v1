@@ -10,6 +10,7 @@
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSAppDelegate.h"
 #import "SOSVoteViewController.h"
+#import "SOSDetailsViewController.h"
 
 @interface SOSItemViewController ()
 
@@ -17,8 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *like;
 @property (weak, nonatomic) IBOutlet UIButton *wishlist;
 @property (weak, nonatomic) IBOutlet UIButton *menu;
+@property (weak, nonatomic) IBOutlet UIButton *info;
 
-@property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 
@@ -30,10 +31,13 @@
 
 @property (strong, nonatomic) NSString *fbId;
 @property (strong, nonatomic) NSString *pushtoken;
+@property (strong, nonatomic) NSDictionary *user;
 @property (nonatomic) int lastFetched;
 @property (nonatomic) int viewIndex;
 
 @property (nonatomic) BOOL hasCheckedForNew;
+
+@property NSDictionary *fbUser;
 
 @end
 
@@ -61,45 +65,27 @@
         [self setNextItem];
     }
     else if((UIButton *)sender == self.wishlist){
-        [self performSegueWithIdentifier:@"gotofavorites" sender:self];
+        [self performSegueWithIdentifier:@"itemtofavorites" sender:self];
     }else if((UIButton *)sender == self.menu){
-        
+            // Open menu
+    }else if((UIButton *)sender == self.info){
+            // Open info
     }
 }
 
-
--(void) fetchNewCount
+- (IBAction)unwindToItem:(UIStoryboardSegue *)unwindSegue
 {
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/newCount/%d", self.lastFetched];
-    NSURL * fetchURL = [NSURL URLWithString:url];
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-        NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        int newCount = [[item valueForKey: @"newCount"] intValue];
-        if(newCount > 0){
-            self.hasCheckedForNew = FALSE;
-            [self fetchData];
-        }
-        else{
-            [self loadItems];
-        }
-    }];
+    
 }
 
-// Fetch itemdata asynchroniously
-- (void) fetchData
+// Show an alert message
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title
 {
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/new/%d", self.lastFetched];
-    NSURL * fetchURL = [NSURL URLWithString:url];
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-        self.loadedItems = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        [self saveItems];
-    }];
+    [[[UIAlertView alloc] initWithTitle:title
+                                message:text
+                               delegate:self
+                      cancelButtonTitle:@"OK!"
+                      otherButtonTitles:nil] show];
 }
 
 // Load info regarding last fetched item and last viewed item
@@ -117,20 +103,28 @@
         self.lastFetched = (int)[defaults integerForKey:@"lastFetched"];
     }
     
-    if([defaults objectForKey:@"fbId"] == nil)
+    if([defaults objectForKey:@"fbId"] == nil || [defaults objectForKey:@"location"] == nil)
     {
         [[FBRequest requestForMe] startWithCompletionHandler:
          ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
              if (!error) {
+                 self.user = aUser;
                  self.fbId = [aUser objectForKey:@"id"];
-                 // Save required field to server
-                 // name = [aUser objectForKey:@"name"];
-                 // email = [aUser obejctForKey:@"email"];
+                 // location = objectForKey:@"location"["name"]
+                 // birthday = objectForKey:@"birthday"
+                 // gender = objectForKey:@"gender"
+                 /*
+                 for(NSString *key in aUser){
+                     NSLog(@"Key: %@, Value: %@", key, [aUser valueForKey:key]);
+                 }
+                 */
+                 NSLog(@"Location = %@", [self.user objectForKey:@"location"][@"name"]);
                  [defaults setValue:self.fbId forKey:@"fbId"];
+                 [defaults setValue:[self.user objectForKey:@"location"][@"name"] forKey:@"location"];
                  [defaults synchronize];
                  self.pushtoken = [defaults valueForKey:@"pushtoken"];
+                 //Create new user with fbdata and pushtoken
                  [self postUserData];
-                 // Create new user with fbId and pushtoken
              }
          }];
     }
@@ -138,6 +132,61 @@
     {
         self.fbId = [defaults valueForKey:@"fbId"];
     }
+    if([defaults objectForKey:@"category"] == nil){
+        [defaults setObject:@"All" forKey:@"category"];
+        [defaults synchronize];
+    }
+}
+
+-(void) fetchNewCount
+{
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/newCount/%d", self.lastFetched];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            if(!error){
+                int newCount = [[item valueForKey: @"newCount"] intValue];
+                if(newCount > 0){
+                    self.hasCheckedForNew = FALSE;
+                    [self fetchData];
+                }
+                else{
+                    [self loadItems];
+                }
+            }else{
+                [self loadItems];
+            }
+            
+        }else{
+            //NSLog(@"Unable to fetch count: %@", error.localizedDescription);
+            [self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
+            [self loadItems];
+        }
+    }];
+}
+
+// Fetch itemdata asynchroniously
+- (void) fetchData
+{
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/new/%d", self.lastFetched];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            self.loadedItems = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            [self saveItems];
+        }else{
+           //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+            [self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
+            [self loadItems];
+        }
+    }];
 }
 
 // Save info regarding last fetched item
@@ -148,7 +197,6 @@
     [defaults synchronize];
 }
 
-
 // Create a new user with fbId and pushtoken
 -(void) postUserData
 {
@@ -156,7 +204,7 @@
         NSString *url = @"http://soshoapp.herokuapp.com/userData";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@", self.fbId, self.pushtoken];
+        NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@&first_name=%@&last_name=%@&gender=%@&email=%@&location=%@&birthday=%@", self.fbId, self.pushtoken, [self.user valueForKey:@"first_name"], [self.user valueForKey:@"last_name"], [self.user valueForKey:@"gender"], [self.user valueForKey:@"email"], [self.user objectForKey:@"location"][@"name"], [self.user objectForKey:@"birthday"]];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -165,7 +213,7 @@
                 //NSLog(@"No Error");
             }
             else{
-                //NSLog(@"Error");
+                //NSLog(@"Error: %@", error.localizedDescription);
             }
         }];
     }
@@ -174,26 +222,20 @@
         NSString *url = @"http://soshoapp.herokuapp.com/userData";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@", self.fbId, @"testuser"];
+        NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@&first_name=%@&last_name=%@&gender=%@&email=%@&location=%@&birthday=%@", self.fbId, @"test", [self.user valueForKey:@"first_name"], [self.user valueForKey:@"last_name"], [self.user valueForKey:@"gender"], [self.user valueForKey:@"email"], [self.user objectForKey:@"location"][@"name"], [self.user objectForKey:@"birthday"]];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
             if(!error){
-                NSLog(@"Testpost: No Error");
+                //NSLog(@"Testpost: No Error");
             }
             else{
-                NSLog(@"Testpost: Error");
+               //NSLog(@"Testpost: Error %@", error.localizedDescription);
             }
         }];
     }
 }
-
--(void) openMenu
-{
-    // Model seque to menu
-}
-
 
 // Post new favorite to the server
 -(void) postNewFavorite:(long) pid
@@ -234,16 +276,13 @@
     else
     {
         if(!self.hasCheckedForNew){
-            NSLog(@"Checking for new shoes");
+           //NSLog(@"Checking for new shoes");
             self.hasCheckedForNew = TRUE;
-            [self.name setText:@"Checking for more shoes"];
-            [self.name setHidden:FALSE];
             [self fetchNewCount];
         }
         else{
-            NSLog(@"No new shoes to be found");
-            [self.name setText:@"No new items found"];
-            [self.name setHidden:FALSE];
+           //NSLog(@"No new shoes to be found");
+            [self showMessage:@"No more matching shoes, try again later" withTitle:@"No matchies"];
             [self.image setImage:nil];
         }
     }
@@ -260,12 +299,14 @@
         [newFavorite setValue: [item valueForKey: @"name"] forKey:@"name"];
         [newFavorite setValue: [item valueForKey: @"url"] forKey:@"url"];
         [newFavorite setValue: [item valueForKey: @"image"] forKey:@"image"];
+        [newFavorite setValue: [item valueForKey: @"price"] forKey:@"price"];
+        [newFavorite setValue: [item valueForKey: @"store"] forKey:@"store"];
+        [newFavorite setValue: [item valueForKey: @"category"] forKey:@"category"];
         NSError *error;
         [self.context save:&error];
         [self postNewFavorite:[[item valueForKey: @"id"] longValue]];
         [self setNextItem];
     }
-    //else{}
 }
 
 // Save items loaded from JSON to file
@@ -279,6 +320,8 @@
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"url"] forKey:@"url"];
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"image"] forKey:@"image"];
         [newProduct setValue:[self.loadedItems objectAtIndex: i][@"category"][@"name"] forKey:@"category"];
+        [newProduct setValue:[self.loadedItems objectAtIndex: i][@"store"][@"name"] forKey:@"store"];
+        [newProduct setValue:[self.loadedItems objectAtIndex: i][@"price"] forKey:@"price"];
         NSError *error;
         [self.context save:&error];
         if(i == [self.loadedItems count]-1)
@@ -294,13 +337,19 @@
 - (void) loadItems
 {
     self.viewIndex = 0;
+    
     NSEntityDescription *entityDesc = [NSEntityDescription
                                        entityForName:@"Products" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [request setEntity:entityDesc];
-    NSError *error;
+    NSString *category = [defaults objectForKey:@"category"];
+    if(![category isEqualToString:@"All"]){
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"category == %@", category];
+        [request setPredicate:pred];
+    }
+     NSError *error;
     self.displayItems = [self.context executeFetchRequest:request error:&error];
-    [self.name setText:@""];
     [self loadDisplayItem];
 }
 
@@ -313,9 +362,9 @@
         NSURL *url = [NSURL URLWithString:[item valueForKey: @"image"]];
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
             if (succeeded) {
-                //[self.name setText:[item valueForKey: @"name"]];
-                [self.name setHidden:TRUE];
-                [self.image setImage:[[UIImage alloc] initWithData:data]];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.image setImage:[[UIImage alloc] initWithData:data]];
+                }];
             }else{
                 // If unable to load image, show next product instead
                 [self setNextItem];
@@ -357,6 +406,8 @@
     [self.wishlist setImage:favImage forState:UIControlStateNormal];
     UIImage* menuImage = [UIImage imageNamed:@"menu-button.png"];
     [self.menu setImage:menuImage forState:UIControlStateNormal];
+    UIImage* infoImage = [UIImage imageNamed:@"info-icon.png"];
+    [self.info setImage:infoImage forState:UIControlStateNormal];
     UIImage* logoImg = [UIImage imageNamed:@"small-logo.png"];
     [self.logo setImage:logoImg];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
@@ -364,7 +415,6 @@
     [self loadPresets];
     [self fetchNewCount];
     self.hasCheckedForNew = FALSE;
-    self.view.backgroundColor = [UIColor colorWithRed:245/255.0 green:240/255.0 blue:245/255.0 alpha:1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -373,15 +423,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"itemtodetails"]){
+        SOSDetailsViewController *dest = [segue destinationViewController];
+        dest.item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
+    }
 }
-*/
+
 
 @end

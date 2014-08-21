@@ -3,55 +3,55 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iphone ipad 2x  settings.png",
+      "filename" : "nappi2.58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iphone spotlight.png",
+      "filename" : "nappi2.80x80.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "iphone appicon.png",
+      "filename" : "nappi2-120x120.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "ipad1xsettings.png",
+      "filename" : "nappi2.29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iphone ipad 2x  settings-1.png",
+      "filename" : "nappi2.58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "ipad 1x spotlight.png",
+      "filename" : "nappi2.40x40.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "iphone spotlight-1.png",
+      "filename" : "nappi2.80x80-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "ipad appicon 1x.png",
+      "filename" : "nappi2.76x76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "ipad appicon 2x.png",
+      "filename" : "nappi2.152x152.png",
       "scale" : "2x"
     }
   ],
