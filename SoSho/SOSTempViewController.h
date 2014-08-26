@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOSTempViewController : UITableViewController
+@interface SOSTempViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)backAction:(id)sender;
 @end
