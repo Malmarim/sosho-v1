@@ -359,6 +359,76 @@
             </objects>
             <point key="canvasLocation" x="4195" y="-3564"/>
         </scene>
+        <!--Temp View Controller - Sosho-->
+        <scene sceneID="fd0-vf-doe">
+            <objects>
+                <tableViewController id="l4Q-7u-8xV" customClass="SOSTempViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="k7b-ZF-6Ys" customClass="SOSTemp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="BPA-yX-Mp2">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="l4Q-7u-8xV" id="4bn-aV-1A1"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FacebookFriendCell" id="XXk-Pp-W2e" customClass="SOSFacebookFriendTableViewCell">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XXk-Pp-W2e" id="RW1-eG-rDp">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKS-8X-iRs">
+                                            <rect key="frame" x="88" y="11" width="212" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJC-Mx-xDa">
+                                            <rect key="frame" x="20" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="nameLabel" destination="iKS-8X-iRs" id="bJ0-RG-Ys2"/>
+                                    <outlet property="pictureImage" destination="CJC-Mx-xDa" id="kcS-br-gvm"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="l4Q-7u-8xV" id="wYs-et-Z3v"/>
+                            <outlet property="delegate" destination="l4Q-7u-8xV" id="6sg-PE-t63"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Sosho" id="6su-K0-sU7"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="zsJ-i2-Yeq" id="Kq6-uf-416"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edy-Ie-WRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="zsJ-i2-Yeq">
+                    <connections>
+                        <outlet property="delegate" destination="l4Q-7u-8xV" id="FzF-3U-pn1"/>
+                        <outlet property="searchBar" destination="BPA-yX-Mp2" id="U81-kN-4WZ"/>
+                        <outlet property="searchContentsController" destination="l4Q-7u-8xV" id="XpF-Oc-NE3"/>
+                        <outlet property="searchResultsDataSource" destination="l4Q-7u-8xV" id="2Cn-js-hVt"/>
+                        <outlet property="searchResultsDelegate" destination="l4Q-7u-8xV" id="8vT-yK-dxZ"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="4658" y="-3561"/>
+        </scene>
         <!--Item View Controller - Item-->
         <scene sceneID="0yt-Mo-qHI">
             <objects>
@@ -443,6 +513,17 @@
                                 <rect key="frame" x="25" y="68" width="270" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1o-z9-jdb">
+                                <rect key="frame" x="230" y="29" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="temp">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonTouched:" destination="Kna-pb-C7F" eventType="touchUpInside" id="sho-tq-BgI"/>
+                                    <segue destination="l4Q-7u-8xV" kind="push" id="sXe-ql-HWD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -467,6 +548,7 @@
                         <outlet property="like" destination="lL0-6b-v9U" id="Dhd-gd-Tez"/>
                         <outlet property="logo" destination="nsv-fx-Tw0" id="yJR-D9-byc"/>
                         <outlet property="menu" destination="uwc-Ba-qj3" id="UFJ-aM-sfo"/>
+                        <outlet property="tempButton" destination="P1o-z9-jdb" id="YSR-aY-INU"/>
                         <outlet property="wishlist" destination="foR-Y8-lox" id="vbc-l8-xlH"/>
                         <segue destination="nAK-cb-5ag" kind="push" identifier="itemtofavorites" id="UEJ-w1-N9I"/>
                     </connections>
@@ -842,11 +924,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pdy-mR-uuZ"/>
+        <segue reference="xsL-JB-pa8"/>
+        <segue reference="xZX-GZ-7gw"/>
         <segue reference="rUa-NH-0Np"/>
-        <segue reference="Lcq-Ca-gd0"/>
+        <segue reference="UEJ-w1-N9I"/>
         <segue reference="6ke-FN-cbK"/>
         <segue reference="Jzc-6L-njj"/>
-        <segue reference="I7p-TB-l59"/>
     </inferredMetricsTieBreakers>
 </document>

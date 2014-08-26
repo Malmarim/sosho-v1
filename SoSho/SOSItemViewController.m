@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *wishlist;
 @property (weak, nonatomic) IBOutlet UIButton *menu;
 @property (weak, nonatomic) IBOutlet UIButton *info;
+@property (strong, nonatomic) IBOutlet UIButton *tempButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
@@ -70,6 +71,27 @@
             // Open menu
     }else if((UIButton *)sender == self.info){
             // Open info
+    }else if((UIButton *)sender == self.tempButton) {
+//        FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+//        [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+//                                                      NSDictionary* result,
+//                                                      NSError *error) {
+//            NSArray* friends = [result objectForKey:@"data"];
+//            NSLog(@"Found: %i friends", friends.count);
+//            for (NSDictionary<FBGraphUser>* friend in friends) {
+//                NSLog(@"I have a friend named %@ with id %@", friend.name, friend.id);
+//            }
+//        }];
+        
+        [FBRequestConnection startForMyFriendsWithCompletionHandler:
+         ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
+         {
+             if(!error){
+                NSLog(@"results = %@", friends);
+             }
+         }
+         ];
+        
     }
 }
 

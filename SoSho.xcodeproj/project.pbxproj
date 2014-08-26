@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B1D058043D0456B8E863BB1 /* libPods-SoSho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */; };
+		B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */; };
+		B1A2190619AA6D1E0029B420 /* SOSTempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190519AA6D1E0029B420 /* SOSTempViewController.m */; };
+		B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */; };
+		B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */; };
 		CC09B537196EA043000E1B3F /* dis-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B536196EA043000E1B3F /* dis-icon.png */; };
 		CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC13263E1970127C00657E54 /* SOSVoteViewController.m */; };
 		CC13264119704D5700657E54 /* yes-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264019704D5700657E54 /* yes-icon.png */; };
@@ -53,13 +56,47 @@
 		CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */; };
 		CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */; };
 		CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */; };
-		CCF8DEFC199E0CA000D91E57 /* Lato-LigIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */; };
 		CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */; };
 		CCF904E31982FF5A00559BA2 /* vote.png in Resources */ = {isa = PBXBuildFile; fileRef = CCF904E21982FF5A00559BA2 /* vote.png */; };
 		CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E51985254D00559BA2 /* SOSMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B1B332B519A93CA5003574E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 30374D44B515462FA4FD304D;
+			remoteInfo = "Pods-SoSho";
+		};
+		B1B332B719A93CA5003574E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0481892D16D04D73853C70AF;
+			remoteInfo = "Pods-SoSho-BlocksKit";
+		};
+		B1B332B919A93CA5003574E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC2F2262365C44699F8C3F21;
+			remoteInfo = "Pods-SoSho-JRSwizzle";
+		};
+		B1B332BB19A93CA5003574E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AF6DC90891234548A4D357BF;
+			remoteInfo = "Pods-SoSho-ObjcAssociatedObjectHelpers";
+		};
+		B1B332BD19A93CA5003574E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D147F13C0E141EABA51177C;
+			remoteInfo = "Pods-SoSho-libextobjc";
+		};
 		CCB348F21926025D007EBCE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CCB348C419260258007EBCE3 /* Project object */;
@@ -71,6 +108,15 @@
 
 /* Begin PBXFileReference section */
 		2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoSho.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendTableViewCell.h; sourceTree = "<group>"; };
+		B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriendTableViewCell.m; sourceTree = "<group>"; };
+		B1A2190419AA6D1E0029B420 /* SOSTempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSTempViewController.h; sourceTree = "<group>"; };
+		B1A2190519AA6D1E0029B420 /* SOSTempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSTempViewController.m; sourceTree = "<group>"; };
+		B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriend.h; sourceTree = "<group>"; };
+		B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriend.m; sourceTree = "<group>"; };
+		B1A2190F19AA94000029B420 /* SOSFacebookFriendsDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendsDataController.h; sourceTree = "<group>"; };
+		B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriendsDataController.m; sourceTree = "<group>"; };
+		B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		CC09B536196EA043000E1B3F /* dis-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dis-icon.png"; path = "images/dis-icon.png"; sourceTree = "<group>"; };
 		CC13263D1970127C00657E54 /* SOSVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSVoteViewController.h; sourceTree = "<group>"; };
 		CC13263E1970127C00657E54 /* SOSVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSVoteViewController.m; sourceTree = "<group>"; };
@@ -148,7 +194,6 @@
 				CCB348D61926025A007EBCE3 /* CoreData.framework in Frameworks */,
 				CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */,
 				CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */,
-				1B1D058043D0456B8E863BB1 /* libPods-SoSho.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +211,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1B332AE19A93CA5003574E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1B332B619A93CA5003574E7 /* libPods-SoSho.a */,
+				B1B332B819A93CA5003574E7 /* libPods-SoSho-BlocksKit.a */,
+				B1B332BA19A93CA5003574E7 /* libPods-SoSho-JRSwizzle.a */,
+				B1B332BC19A93CA5003574E7 /* libPods-SoSho-ObjcAssociatedObjectHelpers.a */,
+				B1B332BE19A93CA5003574E7 /* libPods-SoSho-libextobjc.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CCB348C319260258007EBCE3 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +246,7 @@
 		CCB348CE19260259007EBCE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */,
 				CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */,
 				CCB348CF19260259007EBCE3 /* Foundation.framework */,
 				CCB348D11926025A007EBCE3 /* CoreGraphics.framework */,
@@ -236,6 +294,14 @@
 				CCB34912192A3E5F007EBCE3 /* SOSItem.m */,
 				CCDD56B519A5F02600DA21EB /* UICollectionView+EmptyState.h */,
 				CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */,
+				B1A2190419AA6D1E0029B420 /* SOSTempViewController.h */,
+				B1A2190519AA6D1E0029B420 /* SOSTempViewController.m */,
+				B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */,
+				B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */,
+				B1A2190F19AA94000029B420 /* SOSFacebookFriendsDataController.h */,
+				B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */,
+				B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */,
+				B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */,
 			);
 			path = SoSho;
 			sourceTree = "<group>";
@@ -378,6 +444,12 @@
 			mainGroup = CCB348C319260258007EBCE3;
 			productRefGroup = CCB348CD19260259007EBCE3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B1B332AE19A93CA5003574E7 /* Products */;
+					ProjectRef = B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CCB348CB19260259007EBCE3 /* SoSho */,
@@ -386,12 +458,49 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		B1B332B619A93CA5003574E7 /* libPods-SoSho.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-SoSho.a";
+			remoteRef = B1B332B519A93CA5003574E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1B332B819A93CA5003574E7 /* libPods-SoSho-BlocksKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-SoSho-BlocksKit.a";
+			remoteRef = B1B332B719A93CA5003574E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1B332BA19A93CA5003574E7 /* libPods-SoSho-JRSwizzle.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-SoSho-JRSwizzle.a";
+			remoteRef = B1B332B919A93CA5003574E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1B332BC19A93CA5003574E7 /* libPods-SoSho-ObjcAssociatedObjectHelpers.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-SoSho-ObjcAssociatedObjectHelpers.a";
+			remoteRef = B1B332BB19A93CA5003574E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1B332BE19A93CA5003574E7 /* libPods-SoSho-libextobjc.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-SoSho-libextobjc.a";
+			remoteRef = B1B332BD19A93CA5003574E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		CCB348CA19260259007EBCE3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF8DEFC199E0CA000D91E57 /* Lato-LigIta.ttf in Resources */,
 				CCBB3A89197CF5A300E8C919 /* Lato-Reg.ttf in Resources */,
 				CCBB3A88197CF59F00E8C919 /* Lato-Bla.ttf in Resources */,
 				CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */,
@@ -469,6 +578,7 @@
 				CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */,
 				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
 				CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */,
+				B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */,
 				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
 				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
@@ -477,7 +587,10 @@
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
 				CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */,
+				B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */,
+				B1A2190619AA6D1E0029B420 /* SOSTempViewController.m in Sources */,
 				CCB348DE1926025A007EBCE3 /* main.m in Sources */,
+				B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */,
 				CCBBA9A41982340500D43738 /* SOSDetailsViewController.m in Sources */,
 				CCB348E51926025B007EBCE3 /* SoSho.xcdatamodeld in Sources */,
 			);
