@@ -38,8 +38,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*.xcworkspace
-!default.xcworkspace
+#*.xcworkspace
+#!default.xcworkspace
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
