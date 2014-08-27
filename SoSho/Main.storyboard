@@ -359,10 +359,10 @@
             </objects>
             <point key="canvasLocation" x="4195" y="-3564"/>
         </scene>
-        <!--Temp View Controller-->
+        <!--Messenger List View Controller-->
         <scene sceneID="rIG-MG-1y8">
             <objects>
-                <viewController id="O8H-Pa-uIs" customClass="SOSTempViewController" sceneMemberID="viewController">
+                <viewController id="O8H-Pa-uIs" customClass="SOSMessengerListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oJZ-hj-pCY"/>
                         <viewControllerLayoutGuide type="bottom" id="SIz-Pv-qa7"/>

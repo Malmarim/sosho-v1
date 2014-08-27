@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOSTempViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
+@interface SOSMessengerListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *friendsTableView;
 @end

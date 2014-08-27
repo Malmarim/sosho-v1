@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 SoSho. All rights reserved.
 //
 
-#import "SOSTempViewController.h"
+#import "SOSMessengerListViewController.h"
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSFacebookFriendTableViewCell.h"
 #import "SOSFacebookFriend.h"
 
-@interface SOSTempViewController () {
+@interface SOSMessengerListViewController () {
     NSArray *searchResults;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
 
-@implementation SOSTempViewController
+@implementation SOSMessengerListViewController
 @synthesize friendsTableView;
 - (id)init
 {

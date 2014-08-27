@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */; };
 		B176F52F19ADE92000C5ADAC /* libPods-SoSho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B332B619A93CA5003574E7 /* libPods-SoSho.a */; };
-		B1A2190619AA6D1E0029B420 /* SOSTempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190519AA6D1E0029B420 /* SOSTempViewController.m */; };
+		B1A2190619AA6D1E0029B420 /* SOSMessengerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */; };
 		B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */; };
 		B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */; };
 		CC09B537196EA043000E1B3F /* dis-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B536196EA043000E1B3F /* dis-icon.png */; };
@@ -111,8 +111,8 @@
 		2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoSho.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendTableViewCell.h; sourceTree = "<group>"; };
 		B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriendTableViewCell.m; sourceTree = "<group>"; };
-		B1A2190419AA6D1E0029B420 /* SOSTempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSTempViewController.h; sourceTree = "<group>"; };
-		B1A2190519AA6D1E0029B420 /* SOSTempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSTempViewController.m; sourceTree = "<group>"; };
+		B1A2190419AA6D1E0029B420 /* SOSMessengerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerListViewController.h; sourceTree = "<group>"; };
+		B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerListViewController.m; sourceTree = "<group>"; };
 		B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriend.h; sourceTree = "<group>"; };
 		B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriend.m; sourceTree = "<group>"; };
 		B1A2190F19AA94000029B420 /* SOSFacebookFriendsDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendsDataController.h; sourceTree = "<group>"; };
@@ -296,8 +296,8 @@
 				CCB34912192A3E5F007EBCE3 /* SOSItem.m */,
 				CCDD56B519A5F02600DA21EB /* UICollectionView+EmptyState.h */,
 				CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */,
-				B1A2190419AA6D1E0029B420 /* SOSTempViewController.h */,
-				B1A2190519AA6D1E0029B420 /* SOSTempViewController.m */,
+				B1A2190419AA6D1E0029B420 /* SOSMessengerListViewController.h */,
+				B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */,
 				B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */,
 				B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */,
 				B1A2190F19AA94000029B420 /* SOSFacebookFriendsDataController.h */,
@@ -590,7 +590,7 @@
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
 				CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */,
 				B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */,
-				B1A2190619AA6D1E0029B420 /* SOSTempViewController.m in Sources */,
+				B1A2190619AA6D1E0029B420 /* SOSMessengerListViewController.m in Sources */,
 				CCB348DE1926025A007EBCE3 /* main.m in Sources */,
 				B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */,
 				CCBBA9A41982340500D43738 /* SOSDetailsViewController.m in Sources */,
