@@ -367,7 +367,7 @@
                         <viewControllerLayoutGuide type="top" id="oJZ-hj-pCY"/>
                         <viewControllerLayoutGuide type="bottom" id="SIz-Pv-qa7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="o3A-2R-Xrg" customClass="SOSTemp">
+                    <view key="view" contentMode="scaleToFill" id="o3A-2R-Xrg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -383,8 +383,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="khI-Js-Xaz">
                                 <rect key="frame" x="0.0" y="131" width="320" height="349"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FacebookFriendCell" id="HGz-ej-eF2" customClass="SOSFacebookFriendTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -419,7 +420,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEL-v1-q26">
-                                <rect key="frame" x="8" y="36" width="30" height="30"/>
+                                <rect key="frame" x="13" y="29" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="wishlist-button.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -434,6 +435,7 @@
                     <navigationItem key="navigationItem" id="zcj-xl-mmE"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="mWu-hR-3hE" id="Ena-As-ZZg"/>
+                        <outlet property="tableView" destination="khI-Js-Xaz" id="kBi-PQ-UW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxh-U8-Vke" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -448,7 +450,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="4637" y="-3566"/>
+            <point key="canvasLocation" x="4712" y="-3564"/>
         </scene>
         <!--Item View Controller - Item-->
         <scene sceneID="0yt-Mo-qHI">

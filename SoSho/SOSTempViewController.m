@@ -17,7 +17,7 @@
 @end
 
 @implementation SOSTempViewController
-
+@synthesize tableView;
 - (id)init
 {
     self = [super init];
@@ -66,9 +66,9 @@
                           }];
 }
 
-- (void)closeTableView
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -153,7 +153,4 @@
 }
 */
 
-- (IBAction)backAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

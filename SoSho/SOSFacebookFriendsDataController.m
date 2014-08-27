@@ -39,8 +39,10 @@
 }
 
 - (void)initializeDefaultFriends {
-    SOSFacebookFriend *friend = [[SOSFacebookFriend alloc] initWithName:@"Jonh Doe"];
-    [self.friendsList addObject:friend];
+    SOSFacebookFriend *friend1 = [[SOSFacebookFriend alloc] initWithName:@"Jonh Doe"];
+    [self.friendsList addObject:friend1];
+    SOSFacebookFriend *friend2 = [[SOSFacebookFriend alloc] initWithName:@"Tony Stark"];
+    [self.friendsList addObject:friend2];
 }
 
 

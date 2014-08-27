@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SOSTempViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-- (IBAction)backAction:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
