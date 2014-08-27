@@ -113,7 +113,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="askFriend:" destination="O5m-Rp-S2O" eventType="touchUpInside" id="Et6-eH-OVX"/>
+                                    <segue destination="O8H-Pa-uIs" kind="push" id="ZUs-HN-ljX"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-5N-Ygv">
@@ -426,7 +426,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="w3u-KQ-Y1F" kind="unwind" unwindAction="unwindToItem:" id="5Ug-ds-SDj"/>
+                                    <segue destination="w3u-KQ-Y1F" kind="unwind" unwindAction="unwindToFavorite:" id="Um9-3U-dev"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -450,7 +450,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="4712" y="-3564"/>
+            <point key="canvasLocation" x="5378" y="-2887"/>
         </scene>
         <!--Item View Controller - Item-->
         <scene sceneID="0yt-Mo-qHI">
@@ -536,18 +536,6 @@
                                 <rect key="frame" x="25" y="68" width="270" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1o-z9-jdb">
-                                <rect key="frame" x="230" y="29" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="M">
-                                    <color key="titleColor" red="1" green="0.29977318549999998" blue="0.65877016129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTouched:" destination="Kna-pb-C7F" eventType="touchUpInside" id="sho-tq-BgI"/>
-                                    <segue destination="O8H-Pa-uIs" kind="push" id="y3M-fH-GsA"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -572,7 +560,6 @@
                         <outlet property="like" destination="lL0-6b-v9U" id="Dhd-gd-Tez"/>
                         <outlet property="logo" destination="nsv-fx-Tw0" id="yJR-D9-byc"/>
                         <outlet property="menu" destination="uwc-Ba-qj3" id="UFJ-aM-sfo"/>
-                        <outlet property="tempButton" destination="P1o-z9-jdb" id="YSR-aY-INU"/>
                         <outlet property="wishlist" destination="foR-Y8-lox" id="vbc-l8-xlH"/>
                         <segue destination="nAK-cb-5ag" kind="push" identifier="itemtofavorites" id="UEJ-w1-N9I"/>
                     </connections>
@@ -951,11 +938,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xsL-JB-pa8"/>
+        <segue reference="GNR-Lj-5re"/>
+        <segue reference="Jzc-6L-njj"/>
         <segue reference="xZX-GZ-7gw"/>
         <segue reference="rUa-NH-0Np"/>
-        <segue reference="UEJ-w1-N9I"/>
-        <segue reference="6ke-FN-cbK"/>
-        <segue reference="Jzc-6L-njj"/>
+        <segue reference="xsL-JB-pa8"/>
+        <segue reference="WO9-EB-HlJ"/>
     </inferredMetricsTieBreakers>
 </document>

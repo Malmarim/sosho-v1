@@ -68,6 +68,11 @@
     }
 }
 
+- (IBAction)unwindToFavorite:(UIStoryboardSegue *)unwindSegue
+{
+    
+}
+
 // Show an alert message
 - (void)showMessage:(NSString *)text withTitle:(NSString *)title
 {
