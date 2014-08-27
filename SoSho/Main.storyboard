@@ -420,7 +420,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEL-v1-q26">
-                                <rect key="frame" x="13" y="29" width="30" height="30"/>
+                                <rect key="frame" x="13" y="30" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="wishlist-button.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -434,8 +434,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="zcj-xl-mmE"/>
                     <connections>
+                        <outlet property="friendsTableView" destination="khI-Js-Xaz" id="FVU-DL-03V"/>
                         <outlet property="searchDisplayController" destination="mWu-hR-3hE" id="Ena-As-ZZg"/>
-                        <outlet property="tableView" destination="khI-Js-Xaz" id="kBi-PQ-UW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxh-U8-Vke" userLabel="First Responder" sceneMemberID="firstResponder"/>

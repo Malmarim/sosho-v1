@@ -12,12 +12,14 @@
 #import "SOSFacebookFriendTableViewCell.h"
 #import "SOSFacebookFriend.h"
 
-@interface SOSTempViewController ()
+@interface SOSTempViewController () {
+    NSArray *searchResults;
+}
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
 
 @implementation SOSTempViewController
-@synthesize tableView;
+@synthesize friendsTableView;
 - (id)init
 {
     self = [super init];
@@ -68,7 +70,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    friendsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,28 +79,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    searchResults = [self.friendsDataController.allFriendsList filteredArrayUsingPredicate:resultPredicate];
+}
+
+#pragma mark - Search Display delegate
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.friendsDataController friendsCount];
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+        
+    } else {
+        return [self.friendsDataController friendsCount];
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SOSFacebookFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FacebookFriendCell" forIndexPath:indexPath];
+    SOSFacebookFriendTableViewCell *cell = [friendsTableView dequeueReusableCellWithIdentifier:@"FacebookFriendCell" forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[SOSFacebookFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FacebookFriendCell"];
+    }
     
     // Configure the cell...
-    cell.nameLabel.text = [[[self.friendsDataController friendAtIndex:indexPath.row] name] uppercaseString];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.nameLabel.text = [[[searchResults objectAtIndex:indexPath.row] name] uppercaseString];
+    } else {
+        cell.nameLabel.text = [[[self.friendsDataController friendAtIndex:indexPath.row] name] uppercaseString];
+    }
+    
+    
+    
     
     return cell;
 }

@@ -10,5 +10,6 @@
 
 @interface SOSFacebookFriend : NSObject
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSArray *messagesHistory;
 - (id)initWithName:(NSString *)name;
 @end

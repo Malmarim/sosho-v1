@@ -43,6 +43,12 @@
     [self.friendsList addObject:friend1];
     SOSFacebookFriend *friend2 = [[SOSFacebookFriend alloc] initWithName:@"Tony Stark"];
     [self.friendsList addObject:friend2];
+    SOSFacebookFriend *friend3 = [[SOSFacebookFriend alloc] initWithName:@"Charles Xavier"];
+    [self.friendsList addObject:friend3];
+}
+
+- (NSArray *)allFriendsList {
+    return self.friendsList;
 }
 
 

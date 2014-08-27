@@ -12,4 +12,5 @@
 @interface SOSFacebookFriendsDataController : NSObject
 - (NSUInteger)friendsCount;
 - (SOSFacebookFriend *)friendAtIndex:(NSUInteger)index;
+- (NSArray *)allFriendsList;
 @end
