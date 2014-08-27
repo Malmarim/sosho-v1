@@ -41,31 +41,30 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-//    [FBRequestConnection startForMyFriendsWithCompletionHandler:
-//     ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
-//     {
-//         if(!error){
-//             NSLog(@"results = %@", friends);
-//             
-//         }
-//         self.contacts = (NSArray*)[friends objectForKey:@"data"];
-//     }
-//     ];
+    [FBRequestConnection startForMyFriendsWithCompletionHandler:
+     ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
+     {
+         if(!error){
+             NSLog(@"results = %@", friends);
+             
+         }
+     }
+     ];
     
-    [FBRequestConnection startWithGraphPath:@"/me/taggable_friends"
-                                 parameters:nil
-                                 HTTPMethod:@"GET"
-                          completionHandler:^(
-                                              FBRequestConnection *connection,
-                                              id result,
-                                              NSError *error
-                                              ) {
-                              /* handle the result */
-                              if(error){
-                                  NSLog(@"results = %@", result);
-                                  
-                              }
-                          }];
+//    [FBRequestConnection startWithGraphPath:@"/me/taggable_friends"
+//                                 parameters:nil
+//                                 HTTPMethod:@"GET"
+//                          completionHandler:^(
+//                                              FBRequestConnection *connection,
+//                                              id result,
+//                                              NSError *error
+//                                              ) {
+//                              /* handle the result */
+//                              if(error){
+//                                  NSLog(@"results = %@", result);
+//                                  
+//                              }
+//                          }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
