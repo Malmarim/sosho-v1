@@ -9,10 +9,11 @@
 #import "SOSFacebookFriend.h"
 
 @implementation SOSFacebookFriend
-- (id)initWithName:(NSString *)name {
+- (id)initWithName:(NSString *)name andImageUrl:(NSString *) url{
     self = [super init];
     if(self) {
         _name = name;
+        _imageUrl = url;
         return self;
     }
     return nil;

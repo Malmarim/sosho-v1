@@ -8,10 +8,10 @@
 
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSFacebookFriend.h"
+#import "FacebookSDK/FacebookSDK.h"
 @interface SOSFacebookFriendsDataController ()
 
 @property (nonatomic, readonly) NSMutableArray *friendsList;
-- (void)initializeDefaultFriends;
 
 @end
 
@@ -22,7 +22,6 @@
     
     if(self) {
         _friendsList = [[NSMutableArray alloc] init];
-        [self initializeDefaultFriends];
         
         return self;
     }
@@ -38,17 +37,13 @@
     return [self.friendsList objectAtIndex:index];
 }
 
-- (void)initializeDefaultFriends {
-    SOSFacebookFriend *friend1 = [[SOSFacebookFriend alloc] initWithName:@"Jonh Doe"];
-    [self.friendsList addObject:friend1];
-    SOSFacebookFriend *friend2 = [[SOSFacebookFriend alloc] initWithName:@"Tony Stark"];
-    [self.friendsList addObject:friend2];
-    SOSFacebookFriend *friend3 = [[SOSFacebookFriend alloc] initWithName:@"Charles Xavier"];
-    [self.friendsList addObject:friend3];
-}
-
 - (NSArray *)allFriendsList {
     return self.friendsList;
+}
+
+- (void)addFriend:(NSString *)name withImage:(NSString *)image {
+    SOSFacebookFriend *friend = [[SOSFacebookFriend alloc] initWithName:name andImageUrl:image];
+    [self.friendsList addObject:friend];
 }
 
 

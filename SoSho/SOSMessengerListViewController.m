@@ -39,6 +39,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     
     
     [FBRequestConnection startForMyFriendsWithCompletionHandler:
@@ -50,26 +51,42 @@
          }
      }
      ];
-    
-//    [FBRequestConnection startWithGraphPath:@"/me/taggable_friends"
-//                                 parameters:nil
-//                                 HTTPMethod:@"GET"
-//                          completionHandler:^(
-//                                              FBRequestConnection *connection,
-//                                              id result,
-//                                              NSError *error
-//                                              ) {
-//                              /* handle the result */
-//                              if(error){
-//                                  NSLog(@"results = %@", result);
-//                                  
-//                              }
-//                          }];
+ 
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     friendsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    if([self.friendsDataController friendsCount] == 0) {
+        UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        
+        activityView.center=self.view.center;
+        
+        [activityView startAnimating];
+        
+        [self.view addSubview:activityView];
+        
+        [FBRequestConnection startForMyFriendsWithCompletionHandler:
+         ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
+         {
+             if(!error){
+                 NSLog(@"results = %@", friends);
+                 NSArray* listOfFriends = [friends objectForKey:@"data"];
+                 
+                 for (NSDictionary<FBGraphUser>* friend in listOfFriends) {
+                     NSString *imageUrl = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", friend.objectID];
+                     [self.friendsDataController addFriend:friend.name withImage:imageUrl];
+                 }
+                 [activityView stopAnimating];
+                 [self.friendsTableView reloadData];
+             }
+         }
+         ];
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,8 +143,24 @@
     // Configure the cell...
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.nameLabel.text = [[[searchResults objectAtIndex:indexPath.row] name] uppercaseString];
+        UIImage * img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[searchResults objectAtIndex:indexPath.row] imageUrl]]]];
+        cell.pictureImage.image = img;
+        
+        CALayer *imageLayer = cell.pictureImage.layer;
+        [imageLayer setCornerRadius:15];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
+        
     } else {
         cell.nameLabel.text = [[[self.friendsDataController friendAtIndex:indexPath.row] name] uppercaseString];
+        
+        UIImage * img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[self.friendsDataController friendAtIndex:indexPath.row] imageUrl]]]];
+        cell.pictureImage.image = img;
+        
+        CALayer *imageLayer = cell.pictureImage.layer;
+        [imageLayer setCornerRadius:15];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
     }
     
     
