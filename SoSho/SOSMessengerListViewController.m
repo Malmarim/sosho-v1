@@ -7,6 +7,7 @@
 //
 
 #import "SOSMessengerListViewController.h"
+#import "SOSMessengerTalkViewController.h"
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSFacebookFriendTableViewCell.h"
@@ -63,7 +64,7 @@
         UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
         activityView.center=self.view.center;
-        
+        [activityView setColor:[UIColor blackColor]];
         [activityView startAnimating];
         
         [self.view addSubview:activityView];
@@ -163,12 +164,14 @@
         [imageLayer setMasksToBounds:YES];
     }
     
-    
-    
-    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SOSMessengerTalkViewController *talkView = [[SOSMessengerTalkViewController alloc] initWithFriend:[self.friendsDataController friendAtIndex:indexPath.row]];
+    
+    [[self navigationController] pushViewController:talkView animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

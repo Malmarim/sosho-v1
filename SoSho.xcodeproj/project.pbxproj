@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */; };
 		B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */; };
 		B176F52F19ADE92000C5ADAC /* libPods-SoSho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B332B619A93CA5003574E7 /* libPods-SoSho.a */; };
 		B1A2190619AA6D1E0029B420 /* SOSMessengerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */; };
@@ -109,6 +110,8 @@
 
 /* Begin PBXFileReference section */
 		2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoSho.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B13EA3C119C18D6900B47C70 /* SOSMessengerTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerTalkViewController.h; sourceTree = "<group>"; };
+		B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerTalkViewController.m; sourceTree = "<group>"; };
 		B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendTableViewCell.h; sourceTree = "<group>"; };
 		B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriendTableViewCell.m; sourceTree = "<group>"; };
 		B1A2190419AA6D1E0029B420 /* SOSMessengerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerListViewController.h; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */,
 				B1A2190419AA6D1E0029B420 /* SOSMessengerListViewController.h */,
 				B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */,
+				B13EA3C119C18D6900B47C70 /* SOSMessengerTalkViewController.h */,
+				B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */,
 				B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */,
 				B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */,
 				B1A2190F19AA94000029B420 /* SOSFacebookFriendsDataController.h */,
@@ -576,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */,
 				CCBBA9A71982512E00D43738 /* SOSVotesViewController.m in Sources */,
 				CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */,
 				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
