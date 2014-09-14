@@ -9,14 +9,19 @@
 #import "SOSFacebookFriend.h"
 
 @implementation SOSFacebookFriend
-- (id)initWithName:(NSString *)name andImageUrl:(NSString *) url{
+- (id)initWithName:(NSString *)name ImageUrl:(NSString *) url andId:(NSString *)id{
     self = [super init];
     if(self) {
         _name = name;
         _imageUrl = url;
+        _id = id;
         return self;
     }
     return nil;
+}
+
+- (void)setMessagesHistory:(NSArray *)messagesHistory {
+    _messagesHistory = messagesHistory;
 }
 
 @end

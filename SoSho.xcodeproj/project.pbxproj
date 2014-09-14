@@ -10,6 +10,10 @@
 		B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */; };
 		B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */; };
 		B176F52F19ADE92000C5ADAC /* libPods-SoSho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B332B619A93CA5003574E7 /* libPods-SoSho.a */; };
+		B17D404719C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D404519C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m */; };
+		B17D404819C61E5B006BB6BF /* SOSMessengerMineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17D404619C61E5B006BB6BF /* SOSMessengerMineTableViewCell.xib */; };
+		B17D404F19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D404D19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m */; };
+		B17D405019C61F75006BB6BF /* SOSMessengerFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17D404E19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.xib */; };
 		B1A2190619AA6D1E0029B420 /* SOSMessengerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */; };
 		B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */; };
 		B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */; };
@@ -114,6 +118,12 @@
 		B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerTalkViewController.m; sourceTree = "<group>"; };
 		B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendTableViewCell.h; sourceTree = "<group>"; };
 		B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriendTableViewCell.m; sourceTree = "<group>"; };
+		B17D404419C61E5B006BB6BF /* SOSMessengerMineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerMineTableViewCell.h; sourceTree = "<group>"; };
+		B17D404519C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerMineTableViewCell.m; sourceTree = "<group>"; };
+		B17D404619C61E5B006BB6BF /* SOSMessengerMineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SOSMessengerMineTableViewCell.xib; sourceTree = "<group>"; };
+		B17D404C19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerFriendTableViewCell.h; sourceTree = "<group>"; };
+		B17D404D19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerFriendTableViewCell.m; sourceTree = "<group>"; };
+		B17D404E19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SOSMessengerFriendTableViewCell.xib; sourceTree = "<group>"; };
 		B1A2190419AA6D1E0029B420 /* SOSMessengerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerListViewController.h; sourceTree = "<group>"; };
 		B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerListViewController.m; sourceTree = "<group>"; };
 		B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriend.h; sourceTree = "<group>"; };
@@ -309,6 +319,12 @@
 				B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */,
 				B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */,
 				B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */,
+				B17D404419C61E5B006BB6BF /* SOSMessengerMineTableViewCell.h */,
+				B17D404519C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m */,
+				B17D404619C61E5B006BB6BF /* SOSMessengerMineTableViewCell.xib */,
+				B17D404C19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.h */,
+				B17D404D19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m */,
+				B17D404E19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.xib */,
 			);
 			path = SoSho;
 			sourceTree = "<group>";
@@ -527,7 +543,9 @@
 				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
 				CCB3490519260428007EBCE3 /* Main.storyboard in Resources */,
 				CC2BB66C1985B7730097E3BC /* selected.png in Resources */,
+				B17D404819C61E5B006BB6BF /* SOSMessengerMineTableViewCell.xib in Resources */,
 				CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */,
+				B17D405019C61F75006BB6BF /* SOSMessengerFriendTableViewCell.xib in Resources */,
 				CC09B537196EA043000E1B3F /* dis-icon.png in Resources */,
 				CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */,
 			);
@@ -584,8 +602,10 @@
 				B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */,
 				CCBBA9A71982512E00D43738 /* SOSVotesViewController.m in Sources */,
 				CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */,
+				B17D404F19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m in Sources */,
 				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
 				CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */,
+				B17D404719C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m in Sources */,
 				B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */,
 				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
 				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,

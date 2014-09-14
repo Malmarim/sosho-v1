@@ -7,9 +7,11 @@
 //
 
 #import "SOSMessengerTalkViewController.h"
+#import "SOSMessengerMineTableViewCell.h"
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
+    UITableView *messagesTableView;
 }
 @end
 
@@ -56,6 +58,22 @@
     label.numberOfLines=0;
     label.text = @"ASK A FRIEND";
     [self.view addSubview:label];
+    
+    messagesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, 360, 390)];
+    messagesTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    messagesTableView.delegate = self;
+    messagesTableView.dataSource = self;
+    [messagesTableView setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                         green:240.0f/255.0f
+                                                          blue:245.0f/255.0f
+                                                         alpha:1.0f]];
+    
+    [self.view addSubview:messagesTableView];
+}
+
+- (void) viewWillAppear:(BOOL)animated  {
+    [super viewWillAppear:animated];
+    messagesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,5 +96,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[fbFriend messagesHistory] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SOSMessengerMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell" forIndexPath:indexPath];
+    return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return NO;
+}
 
 @end

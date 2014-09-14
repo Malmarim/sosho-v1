@@ -78,7 +78,7 @@
                  
                  for (NSDictionary<FBGraphUser>* friend in listOfFriends) {
                      NSString *imageUrl = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", friend.objectID];
-                     [self.friendsDataController addFriend:friend.name withImage:imageUrl];
+                     [self.friendsDataController addFriend:friend.name withImage:imageUrl andId:friend.objectID];
                  }
                  [activityView stopAnimating];
                  [self.friendsTableView reloadData];
@@ -87,7 +87,9 @@
          ];
     }
     
-
+    NSIndexPath *selected = [friendsTableView indexPathForSelectedRow];
+    if ( selected ) [friendsTableView deselectRowAtIndexPath:selected animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

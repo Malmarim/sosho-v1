@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SOSFacebookFriend.h"
 
-@interface SOSMessengerTalkViewController : UIViewController 
+@interface SOSMessengerTalkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 -(id)initWithFriend:(SOSFacebookFriend *)friend;
 

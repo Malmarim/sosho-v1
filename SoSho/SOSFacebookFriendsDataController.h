@@ -13,5 +13,5 @@
 - (NSUInteger)friendsCount;
 - (SOSFacebookFriend *)friendAtIndex:(NSUInteger)index;
 - (NSArray *)allFriendsList;
-- (void)addFriend:(NSString *)name withImage:(NSString *)image;
+- (void)addFriend:(NSString *)name withImage:(NSString *)image andId:(NSString *)id;
 @end

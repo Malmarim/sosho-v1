@@ -41,8 +41,8 @@
     return self.friendsList;
 }
 
-- (void)addFriend:(NSString *)name withImage:(NSString *)image {
-    SOSFacebookFriend *friend = [[SOSFacebookFriend alloc] initWithName:name andImageUrl:image];
+- (void)addFriend:(NSString *)name withImage:(NSString *)image andId:(NSString *)id {
+    SOSFacebookFriend *friend = [[SOSFacebookFriend alloc] initWithName:name ImageUrl:image andId:id];
     [self.friendsList addObject:friend];
 }
 

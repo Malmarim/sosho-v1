@@ -12,5 +12,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *imageUrl;
 @property (nonatomic, copy) NSArray *messagesHistory;
-- (id)initWithName:(NSString *)name andImageUrl:(NSString *)url;
+@property (nonatomic, copy) NSString* id;
+- (id)initWithName:(NSString *)name ImageUrl:(NSString *)url andId:(NSString *)id;
+- (void)setMessagesHistory:(NSArray *)messagesHistory;
 @end
