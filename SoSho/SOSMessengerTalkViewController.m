@@ -8,19 +8,31 @@
 
 #import "SOSMessengerTalkViewController.h"
 #import "SOSMessengerMineTableViewCell.h"
+#import "SOSFacebookFriendsDataController.h"
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
-    UITableView *messagesTableView;
+    NSArray *people;
 }
+@property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
 
 @implementation SOSMessengerTalkViewController
+@synthesize messengerTableView;
+
+-(id) init{
+    self = [super init];
+    if(self){
+         [_friendsDataController fetchMessages];
+    }
+    return self;
+}
 
 - (id)initWithFriend:(SOSFacebookFriend *)friend {
     self = [super init];
     if(self) {
         fbFriend = friend;
+       
     }
     return self;
 }
@@ -30,6 +42,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+         [_friendsDataController fetchMessages];
     }
     return self;
 }
@@ -37,7 +50,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self fetchMessages];
     // Do any additional setup after loading the view.
+    self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
     
     [self.view setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
                                                   green:240.0f/255.0f
@@ -59,21 +74,22 @@
     label.text = @"ASK A FRIEND";
     [self.view addSubview:label];
     
-    messagesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, 360, 390)];
-    messagesTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    messagesTableView.delegate = self;
-    messagesTableView.dataSource = self;
-    [messagesTableView setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
-                                                         green:240.0f/255.0f
-                                                          blue:245.0f/255.0f
-                                                         alpha:1.0f]];
+//    messengerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, 360, 390)];
+//    messengerTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//    messengerTableView.delegate = self;
+//    messengerTableView.dataSource = self;
+//    [messengerTableView setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+//                                                         green:240.0f/255.0f
+//                                                          blue:245.0f/255.0f
+//                                                         alpha:1.0f]];
+//    
+//    [self.view addSubview:messengerTableView];
     
-    [self.view addSubview:messagesTableView];
 }
 
 - (void) viewWillAppear:(BOOL)animated  {
     [super viewWillAppear:animated];
-    messagesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    messengerTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,6 +100,10 @@
 
 - (void)buttonPressed:(id)sender {
    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setFriend:(SOSFacebookFriend *)friend {
+    fbFriend = friend;
 }
 
 /*
@@ -106,12 +126,33 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[fbFriend messagesHistory] count];
+//    return [[fbFriend messagesHistory] count];
+    return [people count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SOSMessengerMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell" forIndexPath:indexPath];
+    static NSString *CellIdentifier;
+    
+    if([[[[people objectAtIndex:indexPath.row] valueForKey:@"recipent"] valueForKey:@"fbId" ]  isEqual: @"test1"]) {
+        CellIdentifier = @"MineCell";
+    } else {
+        CellIdentifier = @"FriendCell";
+    }
+    
+    
+    SOSMessengerMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Check if a reusable cell object was dequeued
+    if (cell == nil) {
+        cell = [[SOSMessengerMineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Populate the cell with the appropriate name based on the indexPath
+    if([people count] > 0) {
+        cell.mineMessageLabel.text = [[people objectAtIndex:indexPath.row] valueForKey:@"message"];
+    }
+    
     return cell;
 }
 
@@ -120,5 +161,39 @@
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
+
+-(void)fetchMessages{
+    
+    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
+    
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        
+        if(!error){
+            
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            
+            people = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            
+            [messengerTableView reloadData];
+            NSLog([NSString stringWithFormat:@"%@", [people description]]);
+        }else{
+            
+            //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+            
+            //[self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
+            
+        }
+        
+    }];
+    
+}
+
+
 
 @end

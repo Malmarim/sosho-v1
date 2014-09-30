@@ -80,6 +80,11 @@
                      NSString *imageUrl = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", friend.objectID];
                      [self.friendsDataController addFriend:friend.name withImage:imageUrl andId:friend.objectID];
                  }
+                 
+                 // TEMPORARY TESTING DATA
+                 [self.friendsDataController addFriend:@"Test1" withImage:nil andId:@"test1"];
+                 [self.friendsDataController addFriend:@"Test2" withImage:nil andId:@"test2"];
+                 
                  [activityView stopAnimating];
                  [self.friendsTableView reloadData];
              }
@@ -170,9 +175,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SOSMessengerTalkViewController *talkView = [[SOSMessengerTalkViewController alloc] initWithFriend:[self.friendsDataController friendAtIndex:indexPath.row]];
-    
-    [[self navigationController] pushViewController:talkView animated:YES];
+//    SOSMessengerTalkViewController *talkView = [[SOSMessengerTalkViewController alloc] initWithFriend:[self.friendsDataController friendAtIndex:indexPath.row]];
+//    
+//    [[self navigationController] pushViewController:talkView animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Assume self.view is the table view
+    NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
+    [self.friendsDataController fetchMessages];
+    SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
+    [segue.destinationViewController setFriend:friend];
 }
 
 /*

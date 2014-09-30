@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cro-CV-JZQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cro-CV-JZQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -387,11 +387,11 @@
                                 <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FacebookFriendCell" id="HGz-ej-eF2" customClass="SOSFacebookFriendTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FacebookFriendCell" id="HGz-ej-eF2" customClass="SOSFacebookFriendTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HGz-ej-eF2" id="qtw-6C-wjf">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoN-BV-m0x">
@@ -411,6 +411,7 @@
                                         <connections>
                                             <outlet property="nameLabel" destination="xoN-BV-m0x" id="PT2-1Q-HXL"/>
                                             <outlet property="pictureImage" destination="atH-QV-Vsp" id="PGr-rj-ksV"/>
+                                            <segue destination="lbt-0M-ZgF" kind="push" id="dSB-TW-luh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -451,6 +452,79 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="5378" y="-2887"/>
+        </scene>
+        <!--Messenger Talk View Controller-->
+        <scene sceneID="5lo-qq-QtO">
+            <objects>
+                <viewController id="lbt-0M-ZgF" customClass="SOSMessengerTalkViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7oo-XO-243"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zm5-xY-MqA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TgQ-2Q-4os">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-a2-SWE">
+                                <rect key="frame" x="0.0" y="85" width="320" height="339"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MineCell" id="rng-H5-5Wy" customClass="SOSMessengerMineTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rng-H5-5Wy" id="MdX-Hz-YYE">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAU-W9-JWI">
+                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mineMessageLabel" destination="HAU-W9-JWI" id="qd2-G6-Go3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="Emj-Bb-g00" customClass="SOSMessengerFriendTableViewCell">
+                                        <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Emj-Bb-g00" id="Dzt-3f-0s1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa4-dl-nA5">
+                                                    <rect key="frame" x="15" y="11" width="285" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mineMessageLabel" destination="Pa4-dl-nA5" id="PVB-kl-1Jc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lbt-0M-ZgF" id="UDv-6u-hzZ"/>
+                                    <outlet property="delegate" destination="lbt-0M-ZgF" id="gEI-YP-C2e"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SJg-eH-DOd"/>
+                    <connections>
+                        <outlet property="messengerTableView" destination="gjz-a2-SWE" id="7NE-Mk-ZQ7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D1B-lr-WDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5775" y="-2887"/>
         </scene>
         <!--Item View Controller - Item-->
         <scene sceneID="0yt-Mo-qHI">
