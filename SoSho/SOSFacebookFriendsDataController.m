@@ -12,7 +12,6 @@
 @interface SOSFacebookFriendsDataController ()
 
 @property (nonatomic, readonly) NSMutableArray *friendsList;
-@property (nonatomic, readonly) NSMutableArray *conversationMessages;
 
 @end
 
@@ -23,7 +22,6 @@
     
     if(self) {
         _friendsList = [[NSMutableArray alloc] init];
-        _conversationMessages = [[NSMutableArray alloc] init];
         return self;
     }
     
@@ -46,39 +44,5 @@
     SOSFacebookFriend *friend = [[SOSFacebookFriend alloc] initWithName:name ImageUrl:image andId:id];
     [self.friendsList addObject:friend];
 }
-
--(void)fetchMessages{
-    
-    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
-    
-    NSURL * fetchURL = [NSURL URLWithString:url];
-    
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    
-    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        
-        if(!error){
-            
-            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-            
-            _conversationMessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-
-        }else{
-            
-            //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
-            
-            //[self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
-            
-        }
-        
-    }];
-}
-
-- (NSArray *)getMessages {
-    return _conversationMessages;
-}
-
 
 @end

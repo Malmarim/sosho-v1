@@ -12,7 +12,7 @@
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
-    NSArray *people;
+    NSArray *messages;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
@@ -20,19 +20,10 @@
 @implementation SOSMessengerTalkViewController
 @synthesize messengerTableView;
 
--(id) init{
-    self = [super init];
-    if(self){
-         [_friendsDataController fetchMessages];
-    }
-    return self;
-}
-
 - (id)initWithFriend:(SOSFacebookFriend *)friend {
     self = [super init];
     if(self) {
         fbFriend = friend;
-       
     }
     return self;
 }
@@ -42,7 +33,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-         [_friendsDataController fetchMessages];
     }
     return self;
 }
@@ -127,14 +117,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 //    return [[fbFriend messagesHistory] count];
-    return [people count];
+    return [messages count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier;
     
-    if([[[[people objectAtIndex:indexPath.row] valueForKey:@"recipent"] valueForKey:@"fbId" ]  isEqual: @"test1"]) {
+    if([[[[messages objectAtIndex:indexPath.row] valueForKey:@"recipent"] valueForKey:@"fbId" ]  isEqual: @"test1"]) {
         CellIdentifier = @"MineCell";
     } else {
         CellIdentifier = @"FriendCell";
@@ -149,8 +139,8 @@
     }
     
     // Populate the cell with the appropriate name based on the indexPath
-    if([people count] > 0) {
-        cell.mineMessageLabel.text = [[people objectAtIndex:indexPath.row] valueForKey:@"message"];
+    if([messages count] > 0) {
+        cell.mineMessageLabel.text = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
     }
     
     return cell;
@@ -178,10 +168,10 @@
             
             NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
             
-            people = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            messages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             
             [messengerTableView reloadData];
-            NSLog([NSString stringWithFormat:@"%@", [people description]]);
+            NSLog([NSString stringWithFormat:@"%@", [messages description]]);
         }else{
             
             //NSLog(@"Unable to fetch items: %@", error.localizedDescription);

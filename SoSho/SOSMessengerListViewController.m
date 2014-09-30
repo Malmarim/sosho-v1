@@ -184,7 +184,6 @@
 {
     // Assume self.view is the table view
     NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
-    [self.friendsDataController fetchMessages];
     SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
     [segue.destinationViewController setFriend:friend];
 }

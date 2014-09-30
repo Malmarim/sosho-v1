@@ -14,6 +14,4 @@
 - (SOSFacebookFriend *)friendAtIndex:(NSUInteger)index;
 - (NSArray *)allFriendsList;
 - (void)addFriend:(NSString *)name withImage:(NSString *)image andId:(NSString *)id;
-- (void)fetchMessages;
-- (NSArray *)getMessages;
 @end
