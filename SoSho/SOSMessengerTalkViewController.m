@@ -12,7 +12,7 @@
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
-    NSArray *messages;
+    NSMutableArray *messages;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    messages = [[NSMutableArray alloc] init];
     [self fetchMessages];
     // Do any additional setup after loading the view.
     self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
@@ -125,8 +126,13 @@
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y - 215.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
     messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height - 215);
-    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
-    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    
+    
+    if([messages count] > 0) {
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+        [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    }
+    
     
 	[UIView commitAnimations];
 }
@@ -137,9 +143,12 @@
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y + 215.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
     messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height + 215);
-    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
-    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
-
+    
+    if([messages count] > 0) {
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+        [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    }
+    
 	[UIView commitAnimations];
 }
 
