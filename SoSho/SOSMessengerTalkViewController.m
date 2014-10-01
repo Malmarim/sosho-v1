@@ -156,11 +156,11 @@
     
     UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
-    activityView.center=self.view.center;
+    activityView.center=self.messengerTableView.center;
     [activityView setColor:[UIColor blackColor]];
     [activityView startAnimating];
     
-    [self.view addSubview:activityView];
+    [self.messengerTableView addSubview:activityView];
     
     NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
     
@@ -178,12 +178,14 @@
             
             messages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             
+            [activityView stopAnimating];
+            activityView.hidden = YES;
             
             [messengerTableView reloadData];
             NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
             [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
             
-            NSLog([NSString stringWithFormat:@"%@", [messages description]]);
+//            NSLog([NSString stringWithFormat:@"%@", [messages description]]);
         }else{
             
             //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
@@ -191,7 +193,7 @@
             //[self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
             
         }
-        [activityView stopAnimating];
+
     }];
     
 }
