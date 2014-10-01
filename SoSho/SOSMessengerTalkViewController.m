@@ -44,6 +44,11 @@
     // Do any additional setup after loading the view.
     self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
     
+    [messengerTableView setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                          green:240.0f/255.0f
+                                                           blue:245.0f/255.0f
+                                                          alpha:1.0f]];
+    
     [self.view setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
                                                   green:240.0f/255.0f
                                                    blue:245.0f/255.0f
@@ -154,13 +159,13 @@
 
 -(void)fetchMessages{
     
-    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    activityView.center=self.messengerTableView.center;
-    [activityView setColor:[UIColor blackColor]];
-    [activityView startAnimating];
-    
-    [self.messengerTableView addSubview:activityView];
+//    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    
+//    activityView.center=self.messengerTableView.center;
+//    [activityView setColor:[UIColor blackColor]];
+//    [activityView startAnimating];
+//    
+//    [self.messengerTableView addSubview:activityView];
     
     NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
     
@@ -178,8 +183,8 @@
             
             messages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             
-            [activityView stopAnimating];
-            activityView.hidden = YES;
+//            [activityView stopAnimating];
+//            activityView.hidden = YES;
             
             [messengerTableView reloadData];
             NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
