@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SOSFacebookFriend.h"
 
-@interface SOSMessengerTalkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SOSMessengerTalkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *messengerTableView;
+@property (strong, nonatomic) IBOutlet UITextField *messageTextField;
+@property (strong, nonatomic) IBOutlet UIView *sendingMessageView;
 -(id)initWithFriend:(SOSFacebookFriend *)friend;
 -(void)setFriend:(SOSFacebookFriend *)friend;
 

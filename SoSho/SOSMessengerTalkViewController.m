@@ -19,6 +19,8 @@
 
 @implementation SOSMessengerTalkViewController
 @synthesize messengerTableView;
+@synthesize messageTextField;
+@synthesize sendingMessageView;
 
 - (id)initWithFriend:(SOSFacebookFriend *)friend {
     self = [super init];
@@ -69,6 +71,9 @@
     label.text = @"ASK A FRIEND";
     [self.view addSubview:label];
     
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [messengerTableView addGestureRecognizer:gestureRecognizer];
+    
 //    messengerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, 360, 390)];
 //    messengerTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 //    messengerTableView.delegate = self;
@@ -111,6 +116,37 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Text Field delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y - 215.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
+    messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height - 215);
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    
+	[UIView commitAnimations];
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y + 215.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
+    messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height + 215);
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+
+	[UIView commitAnimations];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[messageTextField resignFirstResponder];
+}
 
 #pragma mark - Table View
 
@@ -201,6 +237,10 @@
 
     }];
     
+}
+
+- (void) hideKeyboard {
+    [messageTextField resignFirstResponder];
 }
 
 

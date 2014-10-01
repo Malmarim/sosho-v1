@@ -465,7 +465,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-a2-SWE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-a2-SWE">
                                 <rect key="frame" x="0.0" y="85" width="320" height="339"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -534,6 +534,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="lbt-0M-ZgF" id="j9u-bD-RmY"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOa-VI-Fqo">
                                         <rect key="frame" x="243" y="13" width="57" height="30"/>
@@ -551,7 +554,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="SJg-eH-DOd"/>
                     <connections>
+                        <outlet property="messageTextField" destination="rph-24-ZPq" id="kAE-05-XwL"/>
                         <outlet property="messengerTableView" destination="gjz-a2-SWE" id="7NE-Mk-ZQ7"/>
+                        <outlet property="sendingMessageView" destination="Dmp-Eu-ScD" id="hKa-Ac-Ab3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1B-lr-WDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
