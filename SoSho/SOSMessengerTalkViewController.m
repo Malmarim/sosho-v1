@@ -13,6 +13,7 @@
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
     NSMutableArray *messages;
+    NSMutableArray *newMessages;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
@@ -43,6 +44,7 @@
 {
     [super viewDidLoad];
     messages = [[NSMutableArray alloc] init];
+    newMessages = [[NSMutableArray alloc] init];
     [self fetchMessages];
     // Do any additional setup after loading the view.
     self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
@@ -174,7 +176,7 @@
 {
     static NSString *CellIdentifier;
     
-    if([[[[messages objectAtIndex:indexPath.row] valueForKey:@"recipent"] valueForKey:@"fbId" ]  isEqual: @"test1"]) {
+    if([[[[messages objectAtIndex:indexPath.row] valueForKey:@"recipent"] valueForKey:@"fbId" ]  isEqual: @"test2"]) {
         CellIdentifier = @"MineCell";
     } else {
         CellIdentifier = @"FriendCell";
@@ -226,8 +228,9 @@
             
             NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
             
-            messages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            NSArray *tempmessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             
+            messages = [NSMutableArray arrayWithArray:tempmessages];
 //            [activityView stopAnimating];
 //            activityView.hidden = YES;
             
@@ -235,7 +238,7 @@
             NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
             [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
             
-//            NSLog([NSString stringWithFormat:@"%@", [messages description]]);
+            NSLog([NSString stringWithFormat:@"%@", [messages description]]);
         }else{
             
             //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
@@ -252,6 +255,53 @@
     [messageTextField resignFirstResponder];
 }
 
+- (IBAction)sendMessageAction:(id)sender {
+    
+    if([messageTextField.text length] > 0) {
+        NSString *url = @"http://soshotest.herokuapp.com/message";
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@", @"test1", @"test2", messageTextField.text];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+            if(!error){
+                //NSLog(@"No Error");
+                [self requestNewMessages];
+            }
+            else{
+                //NSLog(@"Error");
+            }
+        }];
 
+    }
+    
+    messageTextField.text = @"";
+}
 
+- (void)requestNewMessages {
+    
+    NSString *lastTime = [[messages lastObject] valueForKey:@"postedOn"];
+    
+    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            newMessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            if([newMessages count ] > 0) {
+                // New messages, do something
+                [messages addObjectsFromArray:newMessages];
+                [messengerTableView reloadData];
+                NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+                [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+                }else{
+                    //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+                    //[self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
+                }
+        }}];
+}
 @end

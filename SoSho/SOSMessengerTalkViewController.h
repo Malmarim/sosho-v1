@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIView *sendingMessageView;
 -(id)initWithFriend:(SOSFacebookFriend *)friend;
 -(void)setFriend:(SOSFacebookFriend *)friend;
+- (IBAction)sendMessageAction:(id)sender;
 
 @end
