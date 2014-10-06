@@ -232,11 +232,11 @@
         }
         
         
-        //    [messageText.layer setBorderColor:[[[UIColor whiteColor] colorWithAlphaComponent:0.5] CGColor]];
+
         //    [messageText.layer setBorderWidth:2.0];
         //
         //    //The rounded corner part, where you specify your view's corner radius:
-        //    messageText.layer.cornerRadius = 5;
+        messageText.layer.cornerRadius = 5;
         messageText.clipsToBounds = YES;
         messageText.textAlignment = NSTextAlignmentCenter;
         
