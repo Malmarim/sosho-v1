@@ -43,6 +43,7 @@
 		CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */; };
 		CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */; };
 		CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB34912192A3E5F007EBCE3 /* SOSItem.m */; };
+		CCB94C5919E2A520007BD6E1 /* SOSOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB94C5819E2A520007BD6E1 /* SOSOptionsViewController.m */; };
 		CCBB3A73197C2B0500E8C919 /* bag-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A72197C2B0500E8C919 /* bag-logo.png */; };
 		CCBB3A75197C2B4700E8C919 /* text-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A74197C2B4700E8C919 /* text-logo.png */; };
 		CCBB3A79197C2C7D00E8C919 /* like-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A78197C2C7D00E8C919 /* like-icon.png */; };
@@ -165,6 +166,8 @@
 		CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItemViewController.m; sourceTree = "<group>"; };
 		CCB34911192A3E5F007EBCE3 /* SOSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItem.h; sourceTree = "<group>"; };
 		CCB34912192A3E5F007EBCE3 /* SOSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItem.m; sourceTree = "<group>"; };
+		CCB94C5719E2A51F007BD6E1 /* SOSOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSOptionsViewController.h; sourceTree = "<group>"; };
+		CCB94C5819E2A520007BD6E1 /* SOSOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSOptionsViewController.m; sourceTree = "<group>"; };
 		CCBB3A72197C2B0500E8C919 /* bag-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bag-logo.png"; path = "images/bag-logo.png"; sourceTree = "<group>"; };
 		CCBB3A74197C2B4700E8C919 /* text-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "text-logo.png"; path = "images/text-logo.png"; sourceTree = "<group>"; };
 		CCBB3A78197C2C7D00E8C919 /* like-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-icon.png"; path = "images/like-icon.png"; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */,
 				CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */,
 				CCB3490919261AB4007EBCE3 /* SOSLoginViewController.m */,
+				CCB94C5719E2A51F007BD6E1 /* SOSOptionsViewController.h */,
+				CCB94C5819E2A520007BD6E1 /* SOSOptionsViewController.m */,
 				CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */,
 				CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */,
 				CCF904E41985254D00559BA2 /* SOSMenuViewController.h */,
@@ -609,6 +614,7 @@
 				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
 				CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */,
+				CCB94C5919E2A520007BD6E1 /* SOSOptionsViewController.m in Sources */,
 				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
