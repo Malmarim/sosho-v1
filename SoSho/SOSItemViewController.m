@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 
-@property (strong, nonatomic) NSArray *displayItems;
+@property (strong, nonatomic) NSMutableArray *displayItems;
 @property (strong, nonatomic) NSMutableArray *loadedItems;
 
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
@@ -103,11 +103,14 @@
 // Show an alert message
 - (void)showMessage:(NSString *)text withTitle:(NSString *)title
 {
-    [[[UIAlertView alloc] initWithTitle:title
-                                message:text
-                               delegate:self
-                      cancelButtonTitle:@"OK!"
-                      otherButtonTitles:nil] show];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [[[UIAlertView alloc] initWithTitle:title
+                                    message:text
+                                   delegate:self
+                          cancelButtonTitle:@"OK!"
+                          otherButtonTitles:nil] show];
+    }];
 }
 
 // Load info regarding last fetched item and last viewed item
@@ -298,12 +301,12 @@
     else
     {
         if(!self.hasCheckedForNew){
-           //NSLog(@"Checking for new shoes");
+            NSLog(@"Checking for new shoes");
             self.hasCheckedForNew = TRUE;
             [self fetchNewCount];
         }
         else{
-           //NSLog(@"No new shoes to be found");
+            NSLog(@"No new shoes to be found");
             [self showMessage:@"No more matching shoes, try again later" withTitle:@"No matchies"];
             [self.image setImage:nil];
         }
@@ -358,8 +361,8 @@
 // Load items saved to file
 - (void) loadItems
 {
+    NSLog(@"Loading items");
     self.viewIndex = 0;
-    
     NSEntityDescription *entityDesc = [NSEntityDescription
                                        entityForName:@"Products" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -371,36 +374,60 @@
         [request setPredicate:pred];
     }
      NSError *error;
-    self.displayItems = [self.context executeFetchRequest:request error:&error];
-    [self loadDisplayItem];
+    self.displayItems = [[self.context executeFetchRequest:request error:&error] mutableCopy];
+    NSLog(@"%d items loaded", [self.displayItems count]);
+    [self shuffle];
+    //[self loadDisplayItem];
 }
 
+-(void) shuffle
+{
+    NSUInteger count = [self.displayItems count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform(remainingCount);
+        [self.displayItems exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    NSLog(@"Shuffle completed");
+    [self loadDisplayItem];
+}
 
 // Set up item to display from array
 -(void) loadDisplayItem
 {
+    
     if([self.displayItems count] > 0){
         NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
         NSURL *url = [NSURL URLWithString:[item valueForKey: @"image"]];
-        [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
+        [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
             if (succeeded) {
+                //NSLog(@"Image found");
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.image setImage:[[UIImage alloc] initWithData:data]];
+                    [self.image setImage:image];
                 }];
             }else{
                 // If unable to load image, show next product instead
+                NSLog(@"Image not found, setting next");
                 [self setNextItem];
             }
         }];
+    }else{
+        NSLog(@"No shoes found");
+        //[self showMessage:@"No shoes in selected category found, fetching more" withTitle:@"No matchies"];
+        //[self fetchNewCount];
     }
 }
 
-- (void) downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, NSData *data))completionBlock
+- (void) downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
-            completionBlock(YES, data);
+            UIImage *image = [[UIImage alloc] initWithData:data];
+            if(image == nil)
+                completionBlock(NO, image);
+            else
+                completionBlock(YES, image);
         } else {
             completionBlock(NO, nil);
         }

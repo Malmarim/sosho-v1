@@ -182,10 +182,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Assume self.view is the table view
-    NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
-    SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
-    [segue.destinationViewController setFriend:friend];
+    // Make sure segue is forwards not backwards (Favorite view)
+    if([segue.destinationViewController isKindOfClass:[SOSMessengerTalkViewController class]]){
+        // Assume self.view is the table view
+        NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
+        SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
+        [segue.destinationViewController setFriend:friend];
+    }
 }
 
 /*
