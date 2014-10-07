@@ -9,6 +9,7 @@
 #import "SOSMessengerTalkViewController.h"
 #import "SOSMessengerMineTableViewCell.h"
 #import "SOSFacebookFriendsDataController.h"
+#import "SOSMineMessageView.h"
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
@@ -208,6 +209,11 @@
             [cell.contentView addSubview:youLabel];
         }
         
+        CGRect bgFrame = CGRectMake(50, 0, 200, 30);
+        SOSMineMessageView *messageBg = [[SOSMineMessageView alloc] initWithFrame:bgFrame];
+        [cell.contentView addSubview:messageBg];
+        
+        
 //        CGRect messageViewFrame = CGRectMake(50, 11, 200, 22);
 //        imageView = [[UIImageView alloc] init];
 //        [imageView setFrame:messageViewFrame];
@@ -216,21 +222,21 @@
 //        } else {
 //            [imageView setBackgroundColor:[UIColor redColor]];
 //        }
+//        if([CellIdentifier isEqualToString:@"MineCell"]) {
+//            [messageText setBackgroundColor:[UIColor clearColor]];
+//        } else {
+//            [messageText setBackgroundColor:[UIColor redColor]];
+//        }
         
-        
-        CGRect messageFrame = CGRectMake(50, 11, 150, 22);
+        CGRect messageFrame = CGRectMake(50, 0, 150, 30);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
         messageText.font = [UIFont systemFontOfSize:14.0];
         messageText.textColor = [UIColor blackColor];
         messageText.editable = NO;
         messageText.selectable = NO;
         messageText.scrollEnabled = NO;
-        if([CellIdentifier isEqualToString:@"MineCell"]) {
-            [messageText setBackgroundColor:[UIColor whiteColor]];
-        } else {
-            [messageText setBackgroundColor:[UIColor redColor]];
-        }
-        
+        [messageText setBackgroundColor:[UIColor clearColor]];
+
         
         //    [messageText.layer setBorderWidth:2.0];
         //
