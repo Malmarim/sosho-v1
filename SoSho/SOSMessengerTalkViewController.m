@@ -209,9 +209,9 @@
             [cell.contentView addSubview:youLabel];
         }
         
-        CGRect bgFrame = CGRectMake(50, 0, 200, 30);
-        SOSMineMessageView *messageBg = [[SOSMineMessageView alloc] initWithFrame:bgFrame];
-        [cell.contentView addSubview:messageBg];
+//        CGRect bgFrame = CGRectMake(200, 0, 200, 30);
+//        SOSMineMessageView *messageBg = [[SOSMineMessageView alloc] initWithFrame:bgFrame];
+//        [cell.contentView addSubview:messageBg];
         
         
 //        CGRect messageViewFrame = CGRectMake(50, 11, 200, 22);

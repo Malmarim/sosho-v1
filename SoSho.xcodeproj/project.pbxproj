@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B13E056219E332DB00CE8F7A /* SOSMineMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B13E056119E332DB00CE8F7A /* SOSMineMessageView.m */; };
 		B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */; };
+		B163BD9219E436BE006FB6D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13E055919E3316F00CE8F7A /* QuartzCore.framework */; };
 		B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */; };
 		B176F52F19ADE92000C5ADAC /* libPods-SoSho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B332B619A93CA5003574E7 /* libPods-SoSho.a */; };
 		B17D404719C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D404519C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m */; };
@@ -209,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B163BD9219E436BE006FB6D9 /* QuartzCore.framework in Frameworks */,
 				B176F52F19ADE92000C5ADAC /* libPods-SoSho.a in Frameworks */,
 				CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */,
 				CCBBA9AB1982C76C00D43738 /* FacebookSDK.framework in Frameworks */,
