@@ -223,7 +223,7 @@
 //            [messageText setBackgroundColor:[UIColor redColor]];
 //        }
         
-        CGRect messageFrame = CGRectMake(50, 0, 150, 30);
+        CGRect messageFrame = CGRectMake(50, 0, 250, 30);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
         messageText.font = [UIFont systemFontOfSize:14.0];
         messageText.textColor = [UIColor blackColor];
@@ -231,6 +231,14 @@
         messageText.selectable = NO;
         messageText.scrollEnabled = NO;
         [messageText setBackgroundColor:[UIColor clearColor]];
+        
+        if([CellIdentifier isEqualToString:@"MineCell"]) {
+            messageText.textAlignment = NSTextAlignmentLeft;
+            [messageText setBackgroundColor:[UIColor whiteColor]];
+        } else {
+            messageText.textAlignment = NSTextAlignmentRight;
+            [messageText setBackgroundColor:[UIColor purpleColor]];
+        }
 
         
         //    [messageText.layer setBorderWidth:2.0];
