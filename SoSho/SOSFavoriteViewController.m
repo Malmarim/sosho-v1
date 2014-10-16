@@ -235,6 +235,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Favorite";
+    
     UIImage* shareImage = [UIImage imageNamed:@"ask-friend.png"];
     [self.share setImage:shareImage forState:UIControlStateNormal];
     UIImage* no = [UIImage imageNamed:@"no-icon.png"];

@@ -102,6 +102,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Login";
     // Do any additional setup after loading the view.
     UIImage* bg = [UIImage imageNamed:@"bag-logo.png"];
     [self.imageLogo setImage:bg];

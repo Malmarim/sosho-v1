@@ -127,6 +127,10 @@
 {
     [super viewDidLoad];
     
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Favorites"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
     self.emptyView = [[UIView alloc] init];
     UILabel *placeholder = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)];
     placeholder.textAlignment = NSTextAlignmentCenter;

@@ -374,6 +374,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsv-fx-Tw0">
                                 <rect key="frame" x="145" y="29" width="31" height="31"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6u-Sy-0CY">
+                                <rect key="frame" x="25" y="74" width="270" height="275"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-DC-Ngd">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geE-7i-Xdo">
                                 <rect key="frame" x="135" y="464" width="50" height="50"/>
                                 <constraints>
@@ -388,9 +397,18 @@
                                     <segue destination="kib-kU-vfQ" kind="modal" identifier="itemtodetails" id="xsL-JB-pa8"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFt-Pb-B77">
-                                <rect key="frame" x="25" y="68" width="270" height="270"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcp-2I-XZa">
+                                <rect key="frame" x="25" y="74" width="270" height="270"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFt-Pb-B77">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tCx-QC-q6D">
+                                        <rect key="frame" x="85" y="85" width="100" height="100"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -402,35 +420,24 @@
                             <constraint firstItem="aQW-a7-pzC" firstAttribute="top" secondItem="ERD-gA-FK0" secondAttribute="bottom" constant="57" id="zTA-9Z-WCB"/>
                             <constraint firstItem="aQW-a7-pzC" firstAttribute="top" secondItem="geE-7i-Xdo" secondAttribute="bottom" constant="26" id="zyB-Cs-HXt"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Ikp-fc-i8z" appends="YES" id="4cS-Go-8ay"/>
-                            <outletCollection property="gestureRecognizers" destination="ijB-4M-1D3" appends="YES" id="IsS-Jl-a6J"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="rEH-bd-TwL"/>
                     <connections>
+                        <outlet property="backView" destination="a6u-Sy-0CY" id="xl2-OU-RJD"/>
+                        <outlet property="background" destination="ewc-DC-Ngd" id="vfq-Tt-luo"/>
                         <outlet property="dis" destination="ERD-gA-FK0" id="Sph-jZ-wXA"/>
+                        <outlet property="dragView" destination="Pcp-2I-XZa" id="GLA-Yn-DiA"/>
                         <outlet property="image" destination="hFt-Pb-B77" id="NLO-x6-ORK"/>
                         <outlet property="info" destination="geE-7i-Xdo" id="T0G-oE-SlQ"/>
                         <outlet property="like" destination="lL0-6b-v9U" id="Dhd-gd-Tez"/>
                         <outlet property="logo" destination="nsv-fx-Tw0" id="yJR-D9-byc"/>
                         <outlet property="menu" destination="uwc-Ba-qj3" id="UFJ-aM-sfo"/>
+                        <outlet property="overlay" destination="tCx-QC-q6D" id="7xi-34-YSu"/>
                         <outlet property="wishlist" destination="foR-Y8-lox" id="vbc-l8-xlH"/>
                         <segue destination="nAK-cb-5ag" kind="push" identifier="itemtofavorites" id="UEJ-w1-N9I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjz-mu-ZTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="Ikp-fc-i8z">
-                    <connections>
-                        <action selector="swipeRight:" destination="Kna-pb-C7F" id="WKI-ln-ieI"/>
-                        <outlet property="delegate" destination="Kna-pb-C7F" id="dlv-FH-n9D"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="ijB-4M-1D3">
-                    <connections>
-                        <action selector="swipeLeft:" destination="Kna-pb-C7F" id="hbD-zv-G3B"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3749" y="-3558"/>
         </scene>

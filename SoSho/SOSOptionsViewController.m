@@ -88,6 +88,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Options";
     self.buttons = [[NSArray alloc] initWithObjects:self.allButton, self.ballerinasButton, self.bootsButton, self.broguesButton, self.espadrillesButton, self.flipflopsButton, self.laceupshoeButton, self.loafersButton, self.mulesButton, self.pumpsButton, self.sandalsButton, self.slippersButton, self.trainersButton, nil];
     self.names = [[NSArray alloc] initWithObjects:@"All", @"Ballerinas", @"Boots", @"Brogues", @"Espadrilles", @"Flip Flops", @"Lace-up Shoe", @"Loafers", @"Mules", @"Pumps", @"Sandals", @"Slippers", @"Trainers", nil];
     self.labels = [[NSArray alloc] initWithObjects:self.all, self.ballerinas, self.boots, self.brogues, self.espadrilles, self.flipflops, self.laceupshoe, self.loafers, self.mules, self.pumps, self.sandals, self.slippers, self.trainers, nil];

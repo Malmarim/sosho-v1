@@ -25,6 +25,7 @@
 		CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB6691985B76E0097E3BC /* not-selected.png */; };
 		CC2BB66C1985B7730097E3BC /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB66B1985B7730097E3BC /* selected.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
+		CC84351219EBD84A00256BC8 /* SOSItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC84351119EBD84A00256BC8 /* SOSItemView.m */; };
 		CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */; };
 		CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
 		CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D11926025A007EBCE3 /* CoreGraphics.framework */; };
@@ -63,6 +64,10 @@
 		CCBBA9AF1982D23E00D43738 /* shop-online.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9AE1982D23E00D43738 /* shop-online.png */; };
 		CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */; };
 		CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */; };
+		CCD2646C19ED54EE00A1109F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2646B19ED54EE00A1109F /* SystemConfiguration.framework */; };
+		CCD2647319ED54F800A1109F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2647219ED54F800A1109F /* libz.dylib */; };
+		CCD2648E19ED5BC600A1109F /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2648D19ED5BC600A1109F /* libGoogleAnalyticsServices.a */; };
+		CCD2649019ED5D5000A1109F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2648F19ED5D5000A1109F /* libsqlite3.0.dylib */; };
 		CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */; };
 		CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */; };
 		CCF904E31982FF5A00559BA2 /* vote.png in Resources */ = {isa = PBXBuildFile; fileRef = CCF904E21982FF5A00559BA2 /* vote.png */; };
@@ -145,6 +150,8 @@
 		CC2BB66B1985B7730097E3BC /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = images/selected.png; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
 		CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewController.m; sourceTree = "<group>"; };
+		CC84351019EBD84900256BC8 /* SOSItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItemView.h; sourceTree = "<group>"; };
+		CC84351119EBD84A00256BC8 /* SOSItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItemView.m; sourceTree = "<group>"; };
 		CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook-login-button.png"; path = "images/facebook-login-button.png"; sourceTree = "<group>"; };
 		CCB348CC19260259007EBCE3 /* SoSho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoSho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB348CF19260259007EBCE3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,6 +201,19 @@
 		CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoritesViewController.m; sourceTree = "<group>"; };
 		CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewCell.h; sourceTree = "<group>"; };
 		CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewCell.m; sourceTree = "<group>"; };
+		CCD2646B19ED54EE00A1109F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CCD2647219ED54F800A1109F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CCD2648119ED586A00A1109F /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		CCD2648219ED586A00A1109F /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		CCD2648419ED586A00A1109F /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		CCD2648519ED586A00A1109F /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		CCD2648619ED586A00A1109F /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		CCD2648719ED586A00A1109F /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		CCD2648819ED586A00A1109F /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		CCD2648919ED586A00A1109F /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		CCD2648A19ED586A00A1109F /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		CCD2648D19ED5BC600A1109F /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		CCD2648F19ED5D5000A1109F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		CCDD56B519A5F02600DA21EB /* UICollectionView+EmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+EmptyState.h"; sourceTree = "<group>"; };
 		CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+EmptyState.m"; sourceTree = "<group>"; };
 		CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-LigIta.ttf"; path = "../../../../../../Downloads/lato/Lato-LigIta.ttf"; sourceTree = "<group>"; };
@@ -210,11 +230,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCD2649019ED5D5000A1109F /* libsqlite3.0.dylib in Frameworks */,
+				CCD2647319ED54F800A1109F /* libz.dylib in Frameworks */,
+				CCD2646C19ED54EE00A1109F /* SystemConfiguration.framework in Frameworks */,
 				B163BD9219E436BE006FB6D9 /* QuartzCore.framework in Frameworks */,
 				B176F52F19ADE92000C5ADAC /* libPods-SoSho.a in Frameworks */,
 				CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */,
 				CCBBA9AB1982C76C00D43738 /* FacebookSDK.framework in Frameworks */,
 				CCB348D61926025A007EBCE3 /* CoreData.framework in Frameworks */,
+				CCD2648E19ED5BC600A1109F /* libGoogleAnalyticsServices.a in Frameworks */,
 				CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */,
 				CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */,
 			);
@@ -269,6 +293,9 @@
 		CCB348CE19260259007EBCE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CCD2648F19ED5D5000A1109F /* libsqlite3.0.dylib */,
+				CCD2647219ED54F800A1109F /* libz.dylib */,
+				CCD2646B19ED54EE00A1109F /* SystemConfiguration.framework */,
 				B13E055919E3316F00CE8F7A /* QuartzCore.framework */,
 				B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */,
 				CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */,
@@ -285,6 +312,7 @@
 		CCB348D71926025A007EBCE3 /* SoSho */ = {
 			isa = PBXGroup;
 			children = (
+				CCD2648019ED586A00A1109F /* GAnalytics */,
 				CCBB3A85197CF1F200E8C919 /* fonts */,
 				CCBB3A84197CF1B300E8C919 /* images */,
 				CCC1070B19793457004BAB5D /* iPad */,
@@ -300,6 +328,8 @@
 				CCB94C5819E2A520007BD6E1 /* SOSOptionsViewController.m */,
 				CCB3490E1926420B007EBCE3 /* SOSItemViewController.h */,
 				CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */,
+				CC84351019EBD84900256BC8 /* SOSItemView.h */,
+				CC84351119EBD84A00256BC8 /* SOSItemView.m */,
 				CCF904E41985254D00559BA2 /* SOSMenuViewController.h */,
 				CCF904E51985254D00559BA2 /* SOSMenuViewController.m */,
 				CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */,
@@ -410,6 +440,23 @@
 			children = (
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		CCD2648019ED586A00A1109F /* GAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				CCD2648D19ED5BC600A1109F /* libGoogleAnalyticsServices.a */,
+				CCD2648119ED586A00A1109F /* GAI.h */,
+				CCD2648219ED586A00A1109F /* GAIDictionaryBuilder.h */,
+				CCD2648419ED586A00A1109F /* GAIEcommerceProduct.h */,
+				CCD2648519ED586A00A1109F /* GAIEcommerceProductAction.h */,
+				CCD2648619ED586A00A1109F /* GAIEcommercePromotion.h */,
+				CCD2648719ED586A00A1109F /* GAIFields.h */,
+				CCD2648819ED586A00A1109F /* GAILogger.h */,
+				CCD2648919ED586A00A1109F /* GAITrackedViewController.h */,
+				CCD2648A19ED586A00A1109F /* GAITracker.h */,
+			);
+			path = GAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -611,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */,
+				CC84351219EBD84A00256BC8 /* SOSItemView.m in Sources */,
 				CCBBA9A71982512E00D43738 /* SOSVotesViewController.m in Sources */,
 				B17D405319C62EA7006BB6BF /* SOSMessageHistory.m in Sources */,
 				CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */,
@@ -765,6 +813,10 @@
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SoSho/GAnalytics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3EF85C61-3C88-46EF-8433-CFDD1172CA63";
 				"PROVISIONING_PROFILE[sdk=*]" = "FBA428C1-A5D8-4B99-B108-61137CDFF343";
@@ -789,6 +841,10 @@
 				GCC_PREFIX_HEADER = "SoSho/SoSho-Prefix.pch";
 				INFOPLIST_FILE = "SoSho/SoSho-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SoSho/GAnalytics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91FC62E2-DE3B-465B-9A6E-56167D6B48A1";
 				"PROVISIONING_PROFILE[sdk=*]" = "f01e304b-70fa-42a2-98d8-ee9a104af9b8";

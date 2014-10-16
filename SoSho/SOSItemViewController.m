@@ -11,6 +11,7 @@
 #import "SOSAppDelegate.h"
 #import "SOSVoteViewController.h"
 #import "SOSDetailsViewController.h"
+#import "SOSItemView.h"
 
 @interface SOSItemViewController ()
 
@@ -20,9 +21,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *menu;
 @property (weak, nonatomic) IBOutlet UIButton *info;
 @property (strong, nonatomic) IBOutlet UIButton *tempButton;
+@property (weak, nonatomic) IBOutlet UIImageView *background;
 
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet UIImageView *overlay;
+@property (weak, nonatomic) UIImage *overlayImage;
 
 @property (strong, nonatomic) NSMutableArray *displayItems;
 @property (strong, nonatomic) NSMutableArray *loadedItems;
@@ -38,12 +42,109 @@
 
 @property (nonatomic) BOOL hasCheckedForNew;
 
+@property (nonatomic) CGPoint originalPoint;
+
+@property (weak, nonatomic) IBOutlet UIView *dragView;
+@property (weak, nonatomic) IBOutlet UIView *backView;
+
+
+@property (nonatomic) BOOL overlayStatus;
+
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *derp;
+
 @property NSDictionary *fbUser;
 
 @end
 
 @implementation SOSItemViewController
 
+- (IBAction)dragged:(UIPanGestureRecognizer *)gestureRecognizer {
+    CGFloat xDistance = [gestureRecognizer translationInView:self.dragView].x;
+    CGFloat yDistance = [gestureRecognizer translationInView:self.dragView].y;
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:{
+            self.originalPoint = self.dragView.center;
+            break;
+        };
+        case UIGestureRecognizerStateChanged:{
+            //CGFloat rotationStrength = MIN(xDistance / 180, 1);
+            //CGFloat rotationAngel = (CGFloat) (2*M_PI * rotationStrength / 12);
+            //CGFloat scaleStrength = 1 - fabsf(rotationStrength) / 4;
+            //CGFloat scale = MAX(scaleStrength, 0.93);
+            //CGAffineTransform transform = CGAffineTransformMakeRotation(rotationAngel);
+            //CGAffineTransform scaleTransform = CGAffineTransformScale(transform, scale, scale);
+            //self.dragView.transform = scaleTransform;
+            self.dragView.center = CGPointMake(self.originalPoint.x + xDistance, self.originalPoint.y + yDistance);
+            [self updateOverlay:xDistance];
+            break;
+        };
+        case UIGestureRecognizerStateEnded: {
+            if(xDistance > 150){
+                //NSLog(@"Favorited");
+                [self resetPosition];
+                [self addFavorite];
+            }else if(xDistance < -150){
+                //NSLog(@"Discarded");
+                [self resetPosition];
+                [self setNextItem];
+            }else{
+                [self resetViewPositionAndTransformations];
+            }
+            break;
+        };
+        case UIGestureRecognizerStatePossible:break;
+        case UIGestureRecognizerStateCancelled:break;
+        case UIGestureRecognizerStateFailed:break;
+    }
+}
+
+- (void) resetPosition{
+    [self.dragView setHidden:true];
+    self.overlay.alpha = 0;
+    self.dragView.center = self.originalPoint;
+}
+
+
+- (void)resetViewPositionAndTransformations
+{
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.dragView.center = self.originalPoint;
+                         self.dragView.transform = CGAffineTransformMakeRotation(0);
+                         self.overlay.alpha = 0;
+                     }];
+}
+
+- (void) updateOverlay:(CGFloat) distance{
+    if(distance > 10){
+        //right
+        [self setOverlayPic:TRUE];
+    }
+    else if(distance < -10){
+        // left
+        [self setOverlayPic:FALSE];
+    }
+    CGFloat overlayStr = MIN(fabsf(distance)/150, 1);
+    self.overlay.alpha = overlayStr;
+}
+
+- (void) setOverlayPic:(BOOL)liked
+{
+    if(liked != self.overlayStatus){
+        self.overlayStatus = liked;
+        if(liked){
+            self.overlayImage = [UIImage imageNamed:@"like-icon.png"];
+            //NSLog(@"Like icon set");
+        }
+        else{
+            self.overlayImage = [UIImage imageNamed:@"dis-icon.png"];
+            //NSLog(@"Dislike icon set");
+        }
+        [self.overlay setImage:self.overlayImage];
+    }
+}
+
+/*
 - (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
     if(sender.direction == UISwipeGestureRecognizerDirectionRight)
     {
@@ -57,6 +158,8 @@
         [self setNextItem];
     }
 }
+*/
+
 
 - (IBAction)buttonTouched:(id)sender
 {
@@ -91,7 +194,6 @@
              }
          }
          ];
-        
     }
 }
 
@@ -401,9 +503,11 @@
         NSURL *url = [NSURL URLWithString:[item valueForKey: @"image"]];
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
             if (succeeded) {
+                [self loadBackgroundImage];
                 //NSLog(@"Image found");
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.image setImage:image];
+                    [self.dragView setHidden:false];
                 }];
             }else{
                 // If unable to load image, show next product instead
@@ -415,6 +519,27 @@
         NSLog(@"No shoes found");
         //[self showMessage:@"No shoes in selected category found, fetching more" withTitle:@"No matchies"];
         //[self fetchNewCount];
+    }
+}
+
+- (void) loadBackgroundImage
+{
+    int background = self.viewIndex+1;
+    
+    if([self.displayItems count] > background){
+        NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)background];
+        NSURL *url = [NSURL URLWithString:[item valueForKey: @"image"]];
+        [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
+            if (succeeded) {
+                //NSLog(@"Image found");
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.background setImage:image];
+                }];
+            }else{
+                // If unable to load image, show next product instead
+                NSLog(@"Set placeholder");
+            }
+        }];
     }
 }
 
@@ -446,6 +571,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Item";
+    
+    self.derp = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragged:)];
+    [self.view addGestureRecognizer:self.derp];
+    
+    
+    self.overlayImage = [UIImage imageNamed:@"dis-icon.png"];
+    [self.overlay setImage:self.overlayImage];
+    self.overlay.alpha = 0;
+    self.overlayStatus = false;
+    
+    self.dragView.layer.borderColor = [UIColor colorWithRed:245/255 green:240/255 blue:245/255 alpha:0.5].CGColor;
+    self.backView.layer.borderColor = [UIColor colorWithRed:245/255 green:240/255 blue:245/255 alpha:0.5].CGColor;
+    self.dragView.layer.borderWidth = 0.5;
+    self.backView.layer.borderWidth = 0.5;
+    
     // Do any additional setup after loading the view.
     UIImage* disImage = [UIImage imageNamed:@"dis-icon.png"];
     [self.dis setImage:disImage forState:UIControlStateNormal];

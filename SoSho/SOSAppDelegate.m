@@ -7,6 +7,9 @@
 //
 
 #import "SOSAppDelegate.h"
+#import "GAI.h"
+
+/******* Set your tracking ID here *******/
 
 @implementation SOSAppDelegate
 
@@ -14,8 +17,22 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-55736714-1"];
+    
     self.navi = (UINavigationController *) self.window.rootViewController;
     self.sosLoginViewController = (SOSLoginViewController *)self.navi.topViewController;
     // Let the device know we want to receive push notifications

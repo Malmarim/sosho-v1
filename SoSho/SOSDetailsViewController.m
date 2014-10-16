@@ -149,6 +149,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Details";
+    
     // Do any additional setup after loading the view.
     UIImage* backImage = [UIImage imageNamed:@"dis-icon.png"];
     [self.back setImage:backImage forState:UIControlStateNormal];

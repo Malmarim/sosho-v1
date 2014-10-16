@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOSOptionsViewController : UIViewController <UIScrollViewDelegate>
+#import "GAITrackedViewController.h"
+
+@interface SOSOptionsViewController : GAITrackedViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 

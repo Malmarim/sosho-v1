@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOSDetailsViewController : UIViewController
+#import "GAITrackedViewController.h"
+
+
+@interface SOSDetailsViewController : GAITrackedViewController
 
 @property NSManagedObject *item;
 @property NSNumber *pid;

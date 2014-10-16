@@ -352,7 +352,7 @@
     NSString *lastTime = [[messages lastObject] valueForKey:@"postedOn"];
     NSLog(@"Last time %@", lastTime);
     
-    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/newMessages/%@/%@/%lld", @"test1", @"test2", [lastTime longLongValue]];
+    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -362,6 +362,7 @@
             newMessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             if([newMessages count ] > 0) {
                 // New messages, do something
+                NSLog(@"Message count: %d", [newMessages count]);
                 NSLog(@"Message: %@", [newMessages objectAtIndex:0][@"message"]);
                 [messages addObjectsFromArray:newMessages];
                 [messengerTableView reloadData];

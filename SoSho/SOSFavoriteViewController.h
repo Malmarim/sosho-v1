@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface SOSFavoriteViewController : UIViewController 
+@interface SOSFavoriteViewController : GAITrackedViewController
 
 -(void) loadItem;
 
