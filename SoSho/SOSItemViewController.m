@@ -13,6 +13,8 @@
 #import "SOSDetailsViewController.h"
 #import "SOSItemView.h"
 
+
+
 @interface SOSItemViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *dis;
@@ -80,10 +82,21 @@
         };
         case UIGestureRecognizerStateEnded: {
             if(xDistance > 150){
+                
+                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                      action:@"button_press"  // Event action (required)
+                                                                       label:@"Liked (pan)"          // Event label
+                                                                       value:nil] build]];    // Event value
                 //NSLog(@"Favorited");
                 [self resetPosition];
                 [self addFavorite];
             }else if(xDistance < -150){
+                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                                      action:@"button_press"  // Event action (required)
+                                                                       label:@"Disliked (pan)"          // Event label
+                                                                       value:nil] build]];    // Event value
                 //NSLog(@"Discarded");
                 [self resetPosition];
                 [self setNextItem];

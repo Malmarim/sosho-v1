@@ -20,6 +20,9 @@
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
 @property (strong, nonatomic) NSManagedObjectContext *context;
+
+@property (strong, nonatomic) NSString *friendId;
+
 @end
 
 @implementation SOSMessengerTalkViewController
@@ -47,6 +50,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.friendId = @"test2";
+    
     messages = [[NSMutableArray alloc] init];
     newMessages = [[NSMutableArray alloc] init];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
@@ -175,12 +181,11 @@
     UITextView *messageText;
     UIImageView *imageView;
     
-    if([[[[messages objectAtIndex:indexPath.row] valueForKey:@"recipent"] valueForKey:@"fbId" ]  isEqual: @"test2"]) {
+    if([[messages objectAtIndex:indexPath.row] valueForKey:@"own"]) {
         CellIdentifier = @"MineCell";
     } else {
         CellIdentifier = @"FriendCell";
     }
-    
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -254,11 +259,10 @@
     
     // Populate the cell with the appropriate name based on the indexPath
         if([messages count] > 0) {
-        messageText.text = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
+            messageText.text = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
+            NSLog(@"Message at %d : %@", indexPath.row, [[messages objectAtIndex:indexPath.row] valueForKey:@"message"]);
     }
    
-    
-    
     return cell;
 }
 
@@ -273,6 +277,7 @@
 {
     return 44;
 }
+
 #pragma mark Messenger related
 -(void)fetchMessages{
     NSEntityDescription *entityDesc = [NSEntityDescription
@@ -284,11 +289,11 @@
     
     
     if(messagesData.count > 0) {
-        NSLog(@"Item found");
         messages = [NSMutableArray arrayWithArray:messagesData];
+        NSLog(@"%d Items found", [messages count]);
     } else {
         NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
-        
+
         NSURL * fetchURL = [NSURL URLWithString:url];
         
         NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
@@ -302,23 +307,77 @@
                 NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
                 
                 NSArray *tempmessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-                
+                // This will save the messages to core data
+                [self saveMessages:tempmessages];
+                /*
                 messages = [NSMutableArray arrayWithArray:tempmessages];
-                
                 [messengerTableView reloadData];
                 NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
                 [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
                 
-                NSLog([NSString stringWithFormat:@"%@", [messages description]]);
+                NSLog(@"%d messages downloaded", [messages count]);
+                //NSLog([NSString stringWithFormat:@"%@", [messages description]]);
+                 */
             }else{
-                
                 NSLog(@"Unable to fetch items: %@", error.localizedDescription);
-                
             }
             
         }];
-
     }
+}
+
+- (void) saveMessages: (NSArray *)tempmessages
+{
+    NSManagedObject *newMessage;
+    NSError *error;
+    for(int i=0; i<[tempmessages count]; i++) {
+        newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"Messages" inManagedObjectContext:self.context];
+        
+        BOOL own = [[tempmessages objectAtIndex:i][@"recipent"][@"fbId"] isEqualToString: self.friendId] ? YES : NO;
+        
+        if(own){
+            // Message is ours, set friend from recipent
+            [newMessage setValue: [tempmessages objectAtIndex: i][@"recipent"][@"fbId"] forKey:@"friend"];
+        }else{
+            // Message is theirs, set friend from sender and own status to false
+            [newMessage setValue: [tempmessages objectAtIndex: i][@"sender"][@"fbId"] forKey:@"friend"];
+        }
+        [newMessage setValue: [NSNumber numberWithBool:own] forKey:@"own"];
+        
+        // check if image is not or not, if not set image to message
+        if(![[tempmessages objectAtIndex:i][@"image"] isEqual:[NSNull null]])
+            [newMessage setValue: [tempmessages objectAtIndex: i][@"image"] forKey:@"image"];
+        
+        [newMessage setValue: [tempmessages objectAtIndex:i][@"message"] forKey:@"message"];
+        [newMessage setValue: [tempmessages objectAtIndex:i][@"postedOn"] forKey:@"timestamp"];
+        //[newMessage setValue: [NSDate dateWithTimeIntervalSince1970:[[tempmessages objectAtIndex: i][@"postedOn"] doubleValue]] forKey:@"timestamp"];
+        
+        [self.context save:&error];
+        /*
+        if(i == [tempmessages count]-1)
+        {
+            // You can use this to save the timestamp of last message to user defaults for faster access, needs the logic to do it
+            self.lastFetched = [[self.loadedItems objectAtIndex: i][@"id"] intValue];
+            [self saveLastFetched];
+        }
+        */
+    }
+    NSLog(@"%d messages saved", [tempmessages count]);
+    [self loadMessages];
+}
+
+// Load messages saved to file
+- (void) loadMessages
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Messages" inManagedObjectContext:self.context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    // Friends fbId needs to be passed
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"friend == %@", @"test2"];
+    [request setPredicate:pred];
+    NSError *error;
+    messages = [[self.context executeFetchRequest:request error:&error] mutableCopy];
+    NSLog(@"%d items loaded", [messages count]);
 }
 
 - (void) hideKeyboard {
@@ -378,7 +437,6 @@
         }
         else{
             NSLog(@"Unable to fetch items: %@", error.localizedDescription);
-            
         }
     }];
 }
