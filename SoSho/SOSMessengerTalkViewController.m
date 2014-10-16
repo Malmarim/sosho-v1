@@ -10,6 +10,7 @@
 #import "SOSMessengerMineTableViewCell.h"
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSMineMessageView.h"
+#import "SOSAppDelegate.h"
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
@@ -17,6 +18,8 @@
     NSMutableArray *newMessages;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
+@property (strong, nonatomic) SOSAppDelegate *appDelegate;
+@property (strong, nonatomic) NSManagedObjectContext *context;
 @end
 
 @implementation SOSMessengerTalkViewController
@@ -46,7 +49,9 @@
     [super viewDidLoad];
     messages = [[NSMutableArray alloc] init];
     newMessages = [[NSMutableArray alloc] init];
-    [self fetchMessages];
+    self.appDelegate = [[UIApplication sharedApplication] delegate];
+    self.context = [self.appDelegate managedObjectContext];
+   
     // Do any additional setup after loading the view.
     self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
     
@@ -78,17 +83,7 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [messengerTableView addGestureRecognizer:gestureRecognizer];
     
-//    messengerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, 360, 390)];
-//    messengerTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//    messengerTableView.delegate = self;
-//    messengerTableView.dataSource = self;
-//    [messengerTableView setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
-//                                                         green:240.0f/255.0f
-//                                                          blue:245.0f/255.0f
-//                                                         alpha:1.0f]];
-//    
-//    [self.view addSubview:messengerTableView];
-    
+     [self fetchMessages];
 }
 
 - (void) viewWillAppear:(BOOL)animated  {
@@ -272,50 +267,50 @@
 }
 #pragma mark Messenger related
 -(void)fetchMessages{
+    NSEntityDescription *entityDesc = [NSEntityDescription
+                                       entityForName:@"Messages" inManagedObjectContext:self.context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    NSError *error;
+    NSArray *messagesData = [self.context executeFetchRequest:request error:&error];
     
-//    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    
-//    activityView.center=self.messengerTableView.center;
-//    [activityView setColor:[UIColor blackColor]];
-//    [activityView startAnimating];
-//    
-//    [self.messengerTableView addSubview:activityView];
     
-    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
-    
-    NSURL * fetchURL = [NSURL URLWithString:url];
-    
-    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    
-    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+    if(messagesData.count > 0) {
+        NSLog(@"Item found");
+        messages = [NSMutableArray arrayWithArray:messagesData];
+    } else {
+        NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
         
-        if(!error){
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        
+        NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
             
-            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            if(!error){
+                
+                NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+                
+                NSArray *tempmessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+                
+                messages = [NSMutableArray arrayWithArray:tempmessages];
+                
+                [messengerTableView reloadData];
+                NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+                [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+                
+                NSLog([NSString stringWithFormat:@"%@", [messages description]]);
+            }else{
+                
+                NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+                
+            }
             
-            NSArray *tempmessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-            
-            messages = [NSMutableArray arrayWithArray:tempmessages];
-//            [activityView stopAnimating];
-//            activityView.hidden = YES;
-            
-            [messengerTableView reloadData];
-            NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
-            [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
-            
-            NSLog([NSString stringWithFormat:@"%@", [messages description]]);
-        }else{
-            
-            //NSLog(@"Unable to fetch items: %@", error.localizedDescription);
-            
-            //[self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
-            
-        }
+        }];
 
-    }];
-    
+    }
 }
 
 - (void) hideKeyboard {
