@@ -53,7 +53,8 @@
     
     self.friendId = @"test2";
     
-    messages = [[NSMutableArray alloc] init];
+   // messages = [[NSMutableArray alloc] init];
+    
     newMessages = [[NSMutableArray alloc] init];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
@@ -88,8 +89,8 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [messengerTableView addGestureRecognizer:gestureRecognizer];
-    
-     [self fetchMessages];
+    //[self fetchMessages];
+    [self loadMessages];
 }
 
 - (void) viewWillAppear:(BOOL)animated  {
@@ -181,7 +182,9 @@
     UITextView *messageText;
     UIImageView *imageView;
     
-    if([[messages objectAtIndex:indexPath.row] valueForKey:@"own"]) {
+    messageText.tag = 100;
+    
+    if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
         CellIdentifier = @"MineCell";
     } else {
         CellIdentifier = @"FriendCell";
@@ -192,8 +195,6 @@
     // Check if a reusable cell object was dequeued
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-        
         [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
                                                  green:240.0f/255.0f
                                                   blue:245.0f/255.0f
@@ -207,26 +208,8 @@
             youLabel.textAlignment = NSTextAlignmentLeft;
             youLabel.text = @"YOU";
             [cell.contentView addSubview:youLabel];
+            
         }
-        
-//        CGRect bgFrame = CGRectMake(200, 0, 200, 30);
-//        SOSMineMessageView *messageBg = [[SOSMineMessageView alloc] initWithFrame:bgFrame];
-//        [cell.contentView addSubview:messageBg];
-        
-        
-//        CGRect messageViewFrame = CGRectMake(50, 11, 200, 22);
-//        imageView = [[UIImageView alloc] init];
-//        [imageView setFrame:messageViewFrame];
-//        if([CellIdentifier isEqualToString:@"MineCell"]) {
-//            [imageView setBackgroundColor:[UIColor whiteColor]];
-//        } else {
-//            [imageView setBackgroundColor:[UIColor redColor]];
-//        }
-//        if([CellIdentifier isEqualToString:@"MineCell"]) {
-//            [messageText setBackgroundColor:[UIColor clearColor]];
-//        } else {
-//            [messageText setBackgroundColor:[UIColor redColor]];
-//        }
         
         CGRect messageFrame = CGRectMake(50, 0, 250, 30);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
@@ -244,7 +227,6 @@
             messageText.textAlignment = NSTextAlignmentRight;
             [messageText setBackgroundColor:[UIColor purpleColor]];
         }
-
         
         //    [messageText.layer setBorderWidth:2.0];
         //
@@ -252,17 +234,32 @@
         messageText.layer.cornerRadius = 5;
         messageText.clipsToBounds = YES;
         messageText.textAlignment = NSTextAlignmentCenter;
-        
-
+        [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
         [cell.contentView addSubview:messageText];
+    }else{
+        //NSLog(@"Subviews");
+        // TODO remove textview, change text and readd
+        [(UITextView *)[cell.contentView viewWithTag:100] setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
     }
     
-    // Populate the cell with the appropriate name based on the indexPath
-        if([messages count] > 0) {
-            messageText.text = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
-            NSLog(@"Message at %d : %@", indexPath.row, [[messages objectAtIndex:indexPath.row] valueForKey:@"message"]);
-    }
-   
+        
+    //CGRect bgFrame = CGRectMake(200, 0, 200, 30);
+    //SOSMineMessageView *messageBg = [[SOSMineMessageView alloc] initWithFrame:bgFrame];
+    //[cell.contentView addSubview:messageBg];
+    //        CGRect messageViewFrame = CGRectMake(50, 11, 200, 22);
+    //        imageView = [[UIImageView alloc] init];
+    //        [imageView setFrame:messageViewFrame];
+    //        if([CellIdentifier isEqualToString:@"MineCell"]) {
+    //            [imageView setBackgroundColor:[UIColor whiteColor]];
+    //        } else {
+    //            [imageView setBackgroundColor:[UIColor redColor]];
+    //        }
+    //        if([CellIdentifier isEqualToString:@"MineCell"]) {
+    //            [messageText setBackgroundColor:[UIColor clearColor]];
+    //        } else {
+    //            [messageText setBackgroundColor:[UIColor redColor]];
+    //        }
+
     return cell;
 }
 
@@ -279,51 +276,54 @@
 }
 
 #pragma mark Messenger related
--(void)fetchMessages{
-    NSEntityDescription *entityDesc = [NSEntityDescription
-                                       entityForName:@"Messages" inManagedObjectContext:self.context];
+
+
+// Load messages saved to file
+- (void) loadMessages
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Messages" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
+    // Friends fbId needs to be passed
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"friend == %@", @"test2"];
+    [request setPredicate:pred];
     NSError *error;
-    NSArray *messagesData = [self.context executeFetchRequest:request error:&error];
+    messages = [[self.context executeFetchRequest:request error:&error] mutableCopy];
+    NSLog(@"%d items loaded", [messages count]);
     
-    
-    if(messagesData.count > 0) {
-        messages = [NSMutableArray arrayWithArray:messagesData];
-        NSLog(@"%d Items found", [messages count]);
-    } else {
-        NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
+    if(messages.count == 0)
+        [self fetchMessages];
 
-        NSURL * fetchURL = [NSURL URLWithString:url];
-        
-        NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        
-        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-            
-            if(!error){
-                
-                NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-                
-                NSArray *tempmessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-                // This will save the messages to core data
+}
+
+-(void)fetchMessages{
+    NSLog(@"Fetching messages");
+    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            NSArray *tempmessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            // This will save the messages to core data
+            if([tempmessages count] > 0)
                 [self saveMessages:tempmessages];
-                /*
-                messages = [NSMutableArray arrayWithArray:tempmessages];
-                [messengerTableView reloadData];
-                NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
-                [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
-                
-                NSLog(@"%d messages downloaded", [messages count]);
-                //NSLog([NSString stringWithFormat:@"%@", [messages description]]);
-                 */
-            }else{
-                NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+            else{
+                // No messages, need to do something
             }
-            
-        }];
-    }
+            /*
+            messages = [NSMutableArray arrayWithArray:tempmessages];
+            [messengerTableView reloadData];
+            NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+            [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+            NSLog(@"%d messages downloaded", [messages count]);
+            //NSLog([NSString stringWithFormat:@"%@", [messages description]]);
+            */
+        }else{
+            NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void) saveMessages: (NSArray *)tempmessages
@@ -365,21 +365,7 @@
     NSLog(@"%d messages saved", [tempmessages count]);
     [self loadMessages];
 }
-
-// Load messages saved to file
-- (void) loadMessages
-{
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Messages" inManagedObjectContext:self.context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    // Friends fbId needs to be passed
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"friend == %@", @"test2"];
-    [request setPredicate:pred];
-    NSError *error;
-    messages = [[self.context executeFetchRequest:request error:&error] mutableCopy];
-    NSLog(@"%d items loaded", [messages count]);
-}
-
+    
 - (void) hideKeyboard {
     [messageTextField resignFirstResponder];
 }
@@ -411,7 +397,7 @@
 
 - (void)requestNewMessages {
     
-    NSString *lastTime = [[messages lastObject] valueForKey:@"postedOn"];
+    NSString *lastTime = [[messages lastObject] valueForKey:@"timestamp"];
     NSLog(@"Last time %@", lastTime);
     
     NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
@@ -426,7 +412,8 @@
                 // New messages, do something
                 NSLog(@"Message count: %d", [newMessages count]);
                 NSLog(@"Message: %@", [newMessages objectAtIndex:0][@"message"]);
-                [messages addObjectsFromArray:newMessages];
+                //[messages addObjectsFromArray:newMessages];
+                [self saveMessages:newMessages];
                 [messengerTableView reloadData];
                 NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
                 [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
