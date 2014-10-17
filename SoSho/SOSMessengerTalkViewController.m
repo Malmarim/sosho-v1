@@ -181,7 +181,7 @@
     UITextView *messageText;
     UIImageView *imageView;
     
-    if([[messages objectAtIndex:indexPath.row] valueForKey:@"own"]) {
+    if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
         CellIdentifier = @"MineCell";
     } else {
         CellIdentifier = @"FriendCell";
@@ -291,6 +291,8 @@
     if(messagesData.count > 0) {
         messages = [NSMutableArray arrayWithArray:messagesData];
         NSLog(@"%d Items found", [messages count]);
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+        [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
     } else {
         NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
 
@@ -378,6 +380,9 @@
     NSError *error;
     messages = [[self.context executeFetchRequest:request error:&error] mutableCopy];
     NSLog(@"%d items loaded", [messages count]);
+    
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
 }
 
 - (void) hideKeyboard {
@@ -411,7 +416,7 @@
 
 - (void)requestNewMessages {
     
-    NSString *lastTime = [[messages lastObject] valueForKey:@"postedOn"];
+    NSString *lastTime = [[messages lastObject] valueForKey:@"timestamp"];
     NSLog(@"Last time %@", lastTime);
     
     NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
