@@ -30,6 +30,16 @@
 
 - (IBAction)bar:(id)sender {
     [self performSegueWithIdentifier:@"favoritestovotes" sender:self];
+    [self sendEvent:@"Votelist"];
+}
+
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
 }
 
 // Load favorites saved to file
@@ -105,6 +115,7 @@
         //cancel clicked ...do your action
     }else{
         NSLog(@"Delete");
+        [self sendEvent:@"Favorite deleted"];
          long row = [self.clickedRow row];
          [self.context deleteObject:[self.favorites objectAtIndex:row]];
          NSError *error = nil;
@@ -167,6 +178,7 @@
 {
     if([segue.identifier isEqualToString:@"favoritestofavorite"])
     {
+        [self sendEvent:@"Favorite"];
         SOSFavoriteViewController *destination = (SOSFavoriteViewController *) segue.destinationViewController;
         NSArray *selected = [self.collectionView indexPathsForSelectedItems];
         destination.favorite = [self.favorites objectAtIndex:[selected[0] row]];

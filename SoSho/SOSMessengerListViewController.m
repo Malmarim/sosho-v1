@@ -34,6 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Friendlist"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
     self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

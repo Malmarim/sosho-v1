@@ -51,6 +51,11 @@
 {
     [super viewDidLoad];
     
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Chat"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    
     self.friendId = @"test2";
     
    // messages = [[NSMutableArray alloc] init];

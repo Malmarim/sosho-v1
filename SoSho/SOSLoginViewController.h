@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSVoteViewController.h"
-#import "GAITrackedViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface SOSLoginViewController : GAITrackedViewController
 

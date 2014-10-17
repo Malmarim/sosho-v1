@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SOSItem.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface SOSVoteViewController : UIViewController
 

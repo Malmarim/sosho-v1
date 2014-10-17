@@ -25,15 +25,25 @@
 
 @implementation SOSVoteViewController
 
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
+}
 
 - (IBAction)buttonTouched:(id)sender {
     
     if((UIButton *) sender == self.yesButton){
         [self postVote:TRUE];
+        [self sendEvent:@"Yes vote"];
         //NSLog(@"Yes");
     }
     else if ((UIButton *)sender == self.noButton){
         [self postVote:FALSE];
+        [self sendEvent:@"No vote"];
         //NSLog(@"No");
     }
 }
@@ -255,6 +265,7 @@
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"votetodetails"])
     {
+        [self sendEvent:@"Votes (from vote)"];
         SOSDetailsViewController *dest = segue.destinationViewController;
         dest.pid = [self.voteObject valueForKey:@"pid"];
        //NSLog(@"Set new destitnation %d", [dest.pid intValue]);

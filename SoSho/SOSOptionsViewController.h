@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GAITrackedViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface SOSOptionsViewController : GAITrackedViewController <UIScrollViewDelegate>
 

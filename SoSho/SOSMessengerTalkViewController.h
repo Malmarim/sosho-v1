@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SOSFacebookFriend.h"
 
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface SOSMessengerTalkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *messengerTableView;
 @property (strong, nonatomic) IBOutlet UITextField *messageTextField;

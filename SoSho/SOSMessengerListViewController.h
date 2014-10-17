@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
+
 @interface SOSMessengerListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *friendsTableView;
 @end

@@ -66,6 +66,7 @@
         // If button matches selected index
         if((UIButton *)sender == [self.buttons objectAtIndex:i]){
             self.category = [self.names objectAtIndex:i];
+            [self sendEvent:[NSString stringWithFormat:@"Category: %@" , self.category]];
             //NSLog(@"Category set as: %@", self.category);
             [[self.buttons objectAtIndex:i] setImage:self.selected forState:UIControlStateNormal];
         }
@@ -74,6 +75,15 @@
             [[self.buttons objectAtIndex:i] setImage:self.notSelected forState:UIControlStateNormal];
         }
     }
+}
+
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -163,9 +173,12 @@
     [defaults synchronize];
     
     if([segue.identifier isEqualToString:@"menutologin"]){
+        [self sendEvent:@"Logout"];
         NSLog(@"Logging out");
         SOSLoginViewController *dest = segue.destinationViewController;
         [dest logout];
+    }else{
+        [self sendEvent:@"Item (from options)"];
     }
 }
 

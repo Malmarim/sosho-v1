@@ -82,21 +82,12 @@
         };
         case UIGestureRecognizerStateEnded: {
             if(xDistance > 150){
-                
-                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                                      action:@"button_press"  // Event action (required)
-                                                                       label:@"Liked (pan)"          // Event label
-                                                                       value:nil] build]];    // Event value
+                [self sendEvent:@"Liked (pan)"];
                 //NSLog(@"Favorited");
                 [self resetPosition];
                 [self addFavorite];
             }else if(xDistance < -150){
-                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                                      action:@"button_press"  // Event action (required)
-                                                                       label:@"Disliked (pan)"          // Event label
-                                                                       value:nil] build]];    // Event value
+                [self sendEvent:@"Disliked (pan)"];
                 //NSLog(@"Discarded");
                 [self resetPosition];
                 [self setNextItem];
@@ -177,41 +168,20 @@
 - (IBAction)buttonTouched:(id)sender
 {
     if((UIButton *) sender == self.like) {
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                              action:@"button_press"  // Event action (required)
-                                                               label:@"Liked (button)"          // Event label
-                                                               value:nil] build]];    // Event value
+        [self sendEvent:@"Liked (button)"];
         [self addFavorite];
     }else if ((UIButton *)sender == self.dis){
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                              action:@"button_press"  // Event action (required)
-                                                               label:@"Disliked (button)"          // Event label
-                                                               value:nil] build]];    // Event value
+        [self sendEvent:@"Disliked (button)"];
         [self setNextItem];
     }
     else if((UIButton *)sender == self.wishlist){
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                              action:@"button_press"  // Event action (required)
-                                                               label:@"Wishlist (from item)"          // Event label
-                                                               value:nil] build]];    // Event value
+        [self sendEvent:@"Wishlist (from item)"];
         [self performSegueWithIdentifier:@"itemtofavorites" sender:self];
     }else if((UIButton *)sender == self.menu){
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                              action:@"button_press"  // Event action (required)
-                                                               label:@"Options"          // Event label
-                                                               value:nil] build]];    // Event value
-            // Open menu
+        [self sendEvent:@"Options"];
+        // Open menu
     }else if((UIButton *)sender == self.info){
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                              action:@"button_press"  // Event action (required)
-                                                               label:@"Info (from item)"          // Event label
-                                                               value:nil] build]];    // Event value
-            // Open info
+        [self sendEvent:@"Info"];// Open info
     }else if((UIButton *)sender == self.tempButton) {
 //        FBRequest* friendsRequest = [FBRequest requestForMyFriends];
 //        [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
@@ -234,6 +204,16 @@
          ];
     }
 }
+
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
+}
+
 
 - (IBAction)unwindToItem:(UIStoryboardSegue *)unwindSegue
 {

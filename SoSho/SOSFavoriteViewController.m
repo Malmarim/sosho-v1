@@ -33,11 +33,23 @@
 
 @implementation SOSFavoriteViewController
 
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
+}
+
 - (IBAction)buttonTouched:(id)sender {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.favorite valueForKey:@"url"]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.favorite valueForKey:@"url"]]];
+    [self sendEvent:@"Store (favorite)"];
 }
 
 - (IBAction)askFriend:(id)sender {
+    
+    [self sendEvent:@"Ask a friend"];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fbId = [defaults valueForKey:@"fbId"];
@@ -286,15 +298,16 @@
     return params;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self sendEvent:@"Wishlist (from favorite)"];
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

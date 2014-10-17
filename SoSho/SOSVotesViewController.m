@@ -26,6 +26,15 @@
 
 @implementation SOSVotesViewController
 
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
+}
+
 // Load votes saved to file
 - (void) loadItems
 {
@@ -170,6 +179,7 @@
     
     if([segue.identifier isEqualToString:@"votestovote"])
     {
+        [self sendEvent:@"Vote"];
         SOSVoteViewController *destination = (SOSVoteViewController *) segue.destinationViewController;
         NSArray *selected = [self.collectionView indexPathsForSelectedItems];
         destination.voteObject = [self.votes objectAtIndex:[selected[0] row]];

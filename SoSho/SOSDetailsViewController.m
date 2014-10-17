@@ -19,8 +19,6 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @property (strong, nonatomic) UIFont *font;
 
-
-
 @property (weak, nonatomic) IBOutlet UILabel *store;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property NSString *url;
@@ -29,17 +27,25 @@
 
 @implementation SOSDetailsViewController
 
+
 - (IBAction)buttonTouched:(id)sender {
-    if((UIButton * )sender == self.back)
+    if((UIButton * )sender == self.back){
         [self dismissViewControllerAnimated:YES completion:nil];
+        [self sendEvent:@"Closing info"];
+    }
     else if((UIButton * )sender == self.shopButton){
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
-                                                          action:@"button_press"  // Event action (required)
-                                                           label:@"Store (from info)"          // Event label
-                                                           value:nil] build]];    // Event value
+        [self sendEvent:@"Store (from info)"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.url]];
     }
+}
+
+- (void)sendEvent:(NSString *) label
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:label          // Event label
+                                                           value:nil] build]];    // Event value
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
