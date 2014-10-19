@@ -177,15 +177,40 @@
 - (IBAction)buttonTouched:(id)sender
 {
     if((UIButton *) sender == self.like) {
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                              action:@"button_press"  // Event action (required)
+                                                               label:@"Liked (button)"          // Event label
+                                                               value:nil] build]];    // Event value
         [self addFavorite];
     }else if ((UIButton *)sender == self.dis){
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                              action:@"button_press"  // Event action (required)
+                                                               label:@"Disliked (button)"          // Event label
+                                                               value:nil] build]];    // Event value
         [self setNextItem];
     }
     else if((UIButton *)sender == self.wishlist){
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                              action:@"button_press"  // Event action (required)
+                                                               label:@"Wishlist (from item)"          // Event label
+                                                               value:nil] build]];    // Event value
         [self performSegueWithIdentifier:@"itemtofavorites" sender:self];
     }else if((UIButton *)sender == self.menu){
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                              action:@"button_press"  // Event action (required)
+                                                               label:@"Options"          // Event label
+                                                               value:nil] build]];    // Event value
             // Open menu
     }else if((UIButton *)sender == self.info){
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                              action:@"button_press"  // Event action (required)
+                                                               label:@"Info (from item)"          // Event label
+                                                               value:nil] build]];    // Event value
             // Open info
     }else if((UIButton *)sender == self.tempButton) {
 //        FBRequest* friendsRequest = [FBRequest requestForMyFriends];

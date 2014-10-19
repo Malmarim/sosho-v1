@@ -32,8 +32,14 @@
 - (IBAction)buttonTouched:(id)sender {
     if((UIButton * )sender == self.back)
         [self dismissViewControllerAnimated:YES completion:nil];
-    else if((UIButton * )sender == self.shopButton)
+    else if((UIButton * )sender == self.shopButton){
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"     // Event category (required)
+                                                          action:@"button_press"  // Event action (required)
+                                                           label:@"Store (from info)"          // Event label
+                                                           value:nil] build]];    // Event value
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.url]];
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
