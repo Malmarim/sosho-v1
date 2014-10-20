@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SOSItem.h"
 
 @interface SOSMessengerListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *friendsTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 @end

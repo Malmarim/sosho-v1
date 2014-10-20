@@ -188,6 +188,7 @@
         NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
         SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
         [segue.destinationViewController setFriend:friend];
+        [segue.destinationViewController setItemImage:self.image];
     }
 }
 

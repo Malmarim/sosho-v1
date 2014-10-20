@@ -8,6 +8,7 @@
 
 #import "SOSFavoriteViewController.h"
 #import "SOSAppDelegate.h"
+#import "SOSMessengerListViewController.h"
 
 @interface SOSFavoriteViewController ()
 
@@ -296,5 +297,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"messenger"])
+    {
+        SOSMessengerListViewController * vc = segue.destinationViewController;
+        [vc setImage:self.image];
+    }
+}
 
 @end

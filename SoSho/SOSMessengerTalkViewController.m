@@ -112,6 +112,10 @@
     fbFriend = friend;
 }
 
+- (void)setItemImage:(UIImageView *)image {
+    _itemImage = image;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -211,7 +215,10 @@
             
         }
         
-        CGRect messageFrame = CGRectMake(50, 0, 250, 30);
+        float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
+        numberOfRows++;
+        
+        CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
         messageText.font = [UIFont systemFontOfSize:14.0];
         messageText.textColor = [UIColor blackColor];
@@ -234,6 +241,8 @@
         messageText.layer.cornerRadius = 5;
         messageText.clipsToBounds = YES;
         messageText.textAlignment = NSTextAlignmentCenter;
+//        [messageText sizeToFit];
+        [messageText layoutIfNeeded];
         [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
         [cell.contentView addSubview:messageText];
     }else{
@@ -241,24 +250,6 @@
         // TODO remove textview, change text and readd
         [(UITextView *)[cell.contentView viewWithTag:100] setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
     }
-    
-        
-    //CGRect bgFrame = CGRectMake(200, 0, 200, 30);
-    //SOSMineMessageView *messageBg = [[SOSMineMessageView alloc] initWithFrame:bgFrame];
-    //[cell.contentView addSubview:messageBg];
-    //        CGRect messageViewFrame = CGRectMake(50, 11, 200, 22);
-    //        imageView = [[UIImageView alloc] init];
-    //        [imageView setFrame:messageViewFrame];
-    //        if([CellIdentifier isEqualToString:@"MineCell"]) {
-    //            [imageView setBackgroundColor:[UIColor whiteColor]];
-    //        } else {
-    //            [imageView setBackgroundColor:[UIColor redColor]];
-    //        }
-    //        if([CellIdentifier isEqualToString:@"MineCell"]) {
-    //            [messageText setBackgroundColor:[UIColor clearColor]];
-    //        } else {
-    //            [messageText setBackgroundColor:[UIColor redColor]];
-    //        }
 
     return cell;
 }
@@ -284,6 +275,10 @@
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Messages" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
     // Friends fbId needs to be passed
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"friend == %@", @"test2"];
     [request setPredicate:pred];
@@ -293,6 +288,9 @@
     
     if(messages.count == 0)
         [self fetchMessages];
+    
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
 
 }
 
@@ -393,6 +391,10 @@
     }
     
     messageTextField.text = @"";
+}
+
+- (IBAction)addPictureAction:(id)sender {
+    [messageTextField addSubview:_itemImage];
 }
 
 - (void)requestNewMessages {

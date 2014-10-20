@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cro-CV-JZQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cro-CV-JZQ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Login-->
+        <!--Login View Controller - Login-->
         <scene sceneID="3n9-Pu-h0w">
             <objects>
                 <viewController storyboardIdentifier="LoginView" id="5Lz-bN-AnG" customClass="SOSLoginViewController" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
             </objects>
             <point key="canvasLocation" x="3501" y="-2887"/>
         </scene>
-        <!--Favorite-->
+        <!--Favorite View Controller - Favorite-->
         <scene sceneID="s4r-Hh-Q4z">
             <objects>
                 <viewController id="O5m-Rp-S2O" customClass="SOSFavoriteViewController" sceneMemberID="viewController">
@@ -107,7 +107,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="O8H-Pa-uIs" kind="push" id="ZUs-HN-ljX"/>
+                                    <segue destination="O8H-Pa-uIs" kind="push" identifier="messenger" id="ZUs-HN-ljX"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-5N-Ygv">
@@ -279,7 +279,7 @@
                                 <rect key="frame" x="0.0" y="423" width="320" height="57"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rph-24-ZPq">
-                                        <rect key="frame" x="20" y="14" width="215" height="30"/>
+                                        <rect key="frame" x="20" y="14" width="175" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -296,6 +296,16 @@
                                             <action selector="sendMessageAction:" destination="lbt-0M-ZgF" eventType="touchUpInside" id="Ybn-yv-Itr"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVO-Cq-iTy">
+                                        <rect key="frame" x="213" y="18" width="22" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addPictureAction:" destination="lbt-0M-ZgF" eventType="touchUpInside" id="gYY-ps-QSz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
@@ -304,6 +314,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SJg-eH-DOd"/>
                     <connections>
+                        <outlet property="addPictureButton" destination="YVO-Cq-iTy" id="z3O-AF-vEY"/>
                         <outlet property="messageTextField" destination="rph-24-ZPq" id="kAE-05-XwL"/>
                         <outlet property="messengerTableView" destination="gjz-a2-SWE" id="7NE-Mk-ZQ7"/>
                         <outlet property="sendingMessageView" destination="Dmp-Eu-ScD" id="hKa-Ac-Ab3"/>
@@ -313,7 +324,7 @@
             </objects>
             <point key="canvasLocation" x="5775" y="-2887"/>
         </scene>
-        <!--Item-->
+        <!--Item View Controller - Item-->
         <scene sceneID="0yt-Mo-qHI">
             <objects>
                 <viewController storyboardIdentifier="ItemView" id="Kna-pb-C7F" customClass="SOSItemViewController" sceneMemberID="viewController">
@@ -440,7 +451,7 @@
             </objects>
             <point key="canvasLocation" x="3749" y="-3558"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorites View Controller - Favorites-->
         <scene sceneID="fg1-tD-GRD">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="nAK-cb-5ag" customClass="SOSFavoritesViewController" sceneMemberID="viewController">
