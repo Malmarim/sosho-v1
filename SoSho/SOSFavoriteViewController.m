@@ -304,6 +304,7 @@
     {
         SOSMessengerListViewController * vc = segue.destinationViewController;
         [vc setImage:self.image];
+        [vc setImageUrl:[self.favorite valueForKey: @"image"]];
     }
 }
 

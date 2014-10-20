@@ -116,6 +116,10 @@
     _itemImage = image;
 }
 
+-(void)setItemUrl:(NSString *)itemUrl {
+    _itemUrl = itemUrl;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -393,8 +397,31 @@
     messageTextField.text = @"";
 }
 
+- (void)sendImage {
+    if (_itemImage != nil) {
+        NSString *url = @"http://soshotest.herokuapp.com/message";
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&image=%@", @"test1", @"test2", _itemUrl];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+            if(!error){
+                //NSLog(@"No Error");
+                [self requestNewMessages];
+            }
+            else{
+                //NSLog(@"Error");
+            }
+        }];
+    } else {
+        NSLog(@"item image cannot be sent");
+    }
+}
+
 - (IBAction)addPictureAction:(id)sender {
-    [messageTextField addSubview:_itemImage];
+    [self sendImage];
 }
 
 - (void)requestNewMessages {

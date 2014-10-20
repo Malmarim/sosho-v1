@@ -189,6 +189,7 @@
         SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
         [segue.destinationViewController setFriend:friend];
         [segue.destinationViewController setItemImage:self.image];
+        [segue.destinationViewController setItemUrl:_imageUrl];
     }
 }
 

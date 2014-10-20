@@ -12,4 +12,5 @@
 @interface SOSMessengerListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *friendsTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) NSString *imageUrl;
 @end
