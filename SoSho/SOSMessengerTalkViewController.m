@@ -222,6 +222,8 @@
         float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
         numberOfRows++;
         
+        cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
+        
         CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
         messageText.font = [UIFont systemFontOfSize:14.0];
@@ -248,6 +250,24 @@
 //        [messageText sizeToFit];
         [messageText layoutIfNeeded];
         [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
+        
+        
+        if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
+            NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
+            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+            UIImage * image = [UIImage imageWithData:imageData];
+            imageView = [[UIImageView alloc] initWithImage:image];
+            
+            cell.frame = CGRectMake(0, 0, 360, messageText.frame.size.height + imageView.frame.size.height);
+            [cell.contentView addSubview:imageView];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            NSLog(@"Image url is present");
+        }
+        
+//        NSLog([NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] valueForKey:@"image"]]);
+        
+        
+        
         [cell.contentView addSubview:messageText];
     }else{
         //NSLog(@"Subviews");
@@ -293,6 +313,7 @@
     if(messages.count == 0)
         [self fetchMessages];
     
+    [messengerTableView reloadData];
     NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
     [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
 
@@ -402,7 +423,7 @@
         NSString *url = @"http://soshotest.herokuapp.com/message";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&image=%@", @"test1", @"test2", _itemUrl];
+        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@&image=%@", @"test1", @"test2", @"",  _itemUrl];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
