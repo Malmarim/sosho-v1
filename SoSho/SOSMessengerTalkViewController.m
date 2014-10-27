@@ -185,33 +185,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier;
+    static NSString* mineCellId = @"MineCellId";
+    static NSString* friendCellId = @"FriendCellId";
+    static NSString* mineImageCellId = @"MineImageCellId";
+    static NSString* friendImageCellId = @"FriendImageCellId";
+    UITableViewCell* cell = nil;
+    
     UILabel *youLabel;
     UITextView *messageText;
     UIImageView *imageView;
     
     messageText.tag = 100;
     
+    float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
+    numberOfRows++;
     
-    if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
-        CellIdentifier = @"ImageCell";
-    } else if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
-        CellIdentifier = @"MineCell";
-    } else {
-        CellIdentifier = @"FriendCell";
-    }
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Check if a reusable cell object was dequeued
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
-                                                 green:240.0f/255.0f
-                                                  blue:245.0f/255.0f
-                                                 alpha:1.0f]];
-        
-        if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
+    if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil) && [[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
+        //Mine cell with image
+        cell = [tableView dequeueReusableCellWithIdentifier:mineImageCellId];
+        if( !cell ) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:mineImageCellId];
+            
+            [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                     green:240.0f/255.0f
+                                                      blue:245.0f/255.0f
+                                                     alpha:1.0f]];
+            
             CGRect myFrame = CGRectMake(10.0, 11.0, 42.0, 21.0);
             youLabel = [[UILabel alloc] initWithFrame:myFrame];
             youLabel.font = [UIFont systemFontOfSize:16.0];
@@ -220,14 +219,6 @@
             youLabel.text = @"YOU";
             [cell.contentView addSubview:youLabel];
             
-        }
-        
-        //[CellIdentifier isEqualToString:@"MineCell"]
-        
-        float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
-        numberOfRows++;
-        
-        if([CellIdentifier isEqualToString:@"ImageCell"]) {
             NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
@@ -237,9 +228,35 @@
             [cell.contentView addSubview:imageView];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             NSLog(@"Image url is present");
-        } else {
-            cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
         }
+        
+        NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage * image = [UIImage imageWithData:imageData];
+        imageView = [[UIImageView alloc] initWithImage:image];
+        
+    } else if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
+        //Mine cell
+        cell = [tableView dequeueReusableCellWithIdentifier:mineCellId];
+        if( !cell ) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:mineCellId];
+            
+            [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                     green:240.0f/255.0f
+                                                      blue:245.0f/255.0f
+                                                     alpha:1.0f]];
+            
+            CGRect myFrame = CGRectMake(10.0, 11.0, 42.0, 21.0);
+            youLabel = [[UILabel alloc] initWithFrame:myFrame];
+            youLabel.font = [UIFont systemFontOfSize:16.0];
+            youLabel.textColor = [UIColor lightGrayColor];
+            youLabel.textAlignment = NSTextAlignmentLeft;
+            youLabel.text = @"YOU";
+            [cell.contentView addSubview:youLabel];
+            
+            
+        }
+        cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
         
         CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
@@ -250,47 +267,56 @@
         messageText.scrollEnabled = NO;
         [messageText setBackgroundColor:[UIColor clearColor]];
         
-        if([CellIdentifier isEqualToString:@"MineCell"]) {
-            messageText.textAlignment = NSTextAlignmentLeft;
-            [messageText setBackgroundColor:[UIColor whiteColor]];
-        } else {
-            messageText.textAlignment = NSTextAlignmentRight;
-            [messageText setBackgroundColor:[UIColor purpleColor]];
-        }
+        messageText.textAlignment = NSTextAlignmentLeft;
+        [messageText setBackgroundColor:[UIColor whiteColor]];
         
-        //    [messageText.layer setBorderWidth:2.0];
-        //
-        //    //The rounded corner part, where you specify your view's corner radius:
         messageText.layer.cornerRadius = 5;
         messageText.clipsToBounds = YES;
         messageText.textAlignment = NSTextAlignmentCenter;
-//        [messageText sizeToFit];
         [messageText layoutIfNeeded];
         [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
         
         
         [cell.contentView addSubview:messageText];
         
-        
-        
-        
-        
-    }else{
-        //NSLog(@"Subviews");
-        // TODO remove textview, change text and readd
-        if([CellIdentifier isEqualToString:@"ImageCell"] && ([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
-            NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
-            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-            UIImage * image = [UIImage imageWithData:imageData];
-            imageView = [[UIImageView alloc] initWithImage:image];
-        } else {
-            [(UITextView *)[cell.contentView viewWithTag:100] setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
-
+    } else {
+        //Friend cell
+        cell = [tableView dequeueReusableCellWithIdentifier:friendCellId];
+        if( !cell ) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:friendCellId];
+            [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                     green:240.0f/255.0f
+                                                      blue:245.0f/255.0f
+                                                     alpha:1.0f]];
+            
+            
         }
-       
+        cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
+        
+        CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
+        messageText = [[UITextView alloc] initWithFrame:messageFrame];
+        messageText.font = [UIFont systemFontOfSize:14.0];
+        messageText.textColor = [UIColor blackColor];
+        messageText.editable = NO;
+        messageText.selectable = NO;
+        messageText.scrollEnabled = NO;
+        [messageText setBackgroundColor:[UIColor clearColor]];
+        
+        messageText.textAlignment = NSTextAlignmentRight;
+        [messageText setBackgroundColor:[UIColor purpleColor]];
+        
+        messageText.layer.cornerRadius = 5;
+        messageText.clipsToBounds = YES;
+        messageText.textAlignment = NSTextAlignmentCenter;
+        [messageText layoutIfNeeded];
+        [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
+        
+        
+        [cell.contentView addSubview:messageText];
     }
-
+    
     return cell;
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -302,7 +328,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
+    numberOfRows++;
+    
+    if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
+        return 260;
+    }
+    return (30*numberOfRows + 10);
 }
 
 #pragma mark Messenger related
