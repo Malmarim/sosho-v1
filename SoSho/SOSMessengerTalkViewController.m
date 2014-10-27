@@ -192,7 +192,10 @@
     
     messageText.tag = 100;
     
-    if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
+    
+    if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
+        CellIdentifier = @"ImageCell";
+    } else if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
         CellIdentifier = @"MineCell";
     } else {
         CellIdentifier = @"FriendCell";
@@ -208,7 +211,7 @@
                                                   blue:245.0f/255.0f
                                                  alpha:1.0f]];
         
-        if([CellIdentifier isEqualToString:@"MineCell"]) {
+        if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
             CGRect myFrame = CGRectMake(10.0, 11.0, 42.0, 21.0);
             youLabel = [[UILabel alloc] initWithFrame:myFrame];
             youLabel.font = [UIFont systemFontOfSize:16.0];
@@ -219,10 +222,24 @@
             
         }
         
+        //[CellIdentifier isEqualToString:@"MineCell"]
+        
         float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
         numberOfRows++;
         
-        cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
+        if([CellIdentifier isEqualToString:@"ImageCell"]) {
+            NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
+            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+            UIImage * image = [UIImage imageWithData:imageData];
+            imageView = [[UIImageView alloc] initWithImage:image];
+            imageView.frame = CGRectMake(60, 0, 220, 220);
+            cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows + imageView.frame.size.height);
+            [cell.contentView addSubview:imageView];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            NSLog(@"Image url is present");
+        } else {
+            cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
+        }
         
         CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
         messageText = [[UITextView alloc] initWithFrame:messageFrame];
@@ -252,27 +269,25 @@
         [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
         
         
-        if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
+        [cell.contentView addSubview:messageText];
+        
+        
+        
+        
+        
+    }else{
+        //NSLog(@"Subviews");
+        // TODO remove textview, change text and readd
+        if([CellIdentifier isEqualToString:@"ImageCell"] && ([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
             NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
             imageView = [[UIImageView alloc] initWithImage:image];
-            
-            cell.frame = CGRectMake(0, 0, 360, messageText.frame.size.height + imageView.frame.size.height);
-            [cell.contentView addSubview:imageView];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            NSLog(@"Image url is present");
+        } else {
+            [(UITextView *)[cell.contentView viewWithTag:100] setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
+
         }
-        
-//        NSLog([NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] valueForKey:@"image"]]);
-        
-        
-        
-        [cell.contentView addSubview:messageText];
-    }else{
-        //NSLog(@"Subviews");
-        // TODO remove textview, change text and readd
-        [(UITextView *)[cell.contentView viewWithTag:100] setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
+       
     }
 
     return cell;
