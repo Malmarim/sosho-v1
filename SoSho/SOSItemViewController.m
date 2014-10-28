@@ -263,7 +263,7 @@
                      NSLog(@"Key: %@, Value: %@", key, [aUser valueForKey:key]);
                  }
                  */
-                 NSLog(@"Location = %@", [self.user objectForKey:@"location"][@"name"]);
+                 //NSLog(@"Location = %@", [self.user objectForKey:@"location"][@"name"]);
                  [defaults setValue:self.fbId forKey:@"fbId"];
                  [defaults setValue:[self.user objectForKey:@"location"][@"name"] forKey:@"location"];
                  [defaults synchronize];
@@ -495,7 +495,7 @@
     }
      NSError *error;
     self.displayItems = [[self.context executeFetchRequest:request error:&error] mutableCopy];
-    NSLog(@"%d items loaded", [self.displayItems count]);
+    //NSLog(@"%d items loaded", [self.displayItems count]);
     [self shuffle];
     //[self loadDisplayItem];
 }

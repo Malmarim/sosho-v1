@@ -172,10 +172,10 @@
     NSString *newToken = [deviceToken description];
 	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-   //NSLog(@"Formatted as %@", newToken);
+    NSLog(@"Formatted as %@", newToken);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *oldToken = [defaults objectForKey:@"pushtoken"];
-   //NSLog(@"Old: %@", oldToken);
+    //NSLog(@"Old: %@", oldToken);
     // Check if pushtoken is not set or newToken is same as set token
     if(oldToken == nil || ![oldToken isEqualToString:newToken]){
         [defaults setValue:newToken forKey:@"pushtoken"];
@@ -184,7 +184,7 @@
         // If fbId is set then update the new token on the server
         if(fbId != nil){
             // Post updated push token
-            NSString *url = @"http://soshoapp.herokuapp.com/userData";
+            NSString *url = @"http://soshoapp.herokuapp.com/newToken";
             NSURL * fetchURL = [NSURL URLWithString:url];
             NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
             NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@", fbId, newToken];

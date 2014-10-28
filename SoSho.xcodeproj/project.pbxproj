@@ -25,6 +25,7 @@
 		CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB6691985B76E0097E3BC /* not-selected.png */; };
 		CC2BB66C1985B7730097E3BC /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB66B1985B7730097E3BC /* selected.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
+		CC63C21019FFCC5300B3C092 /* SoShoStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CC63C20F19FFCC5300B3C092 /* SoShoStyleKit.m */; };
 		CC84351219EBD84A00256BC8 /* SOSItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC84351119EBD84A00256BC8 /* SOSItemView.m */; };
 		CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */; };
 		CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
@@ -150,6 +151,8 @@
 		CC2BB66B1985B7730097E3BC /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = images/selected.png; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
 		CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoriteViewController.m; sourceTree = "<group>"; };
+		CC63C20E19FFCC5300B3C092 /* SoShoStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoShoStyleKit.h; sourceTree = "<group>"; };
+		CC63C20F19FFCC5300B3C092 /* SoShoStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoShoStyleKit.m; sourceTree = "<group>"; };
 		CC84351019EBD84900256BC8 /* SOSItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItemView.h; sourceTree = "<group>"; };
 		CC84351119EBD84A00256BC8 /* SOSItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItemView.m; sourceTree = "<group>"; };
 		CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook-login-button.png"; path = "images/facebook-login-button.png"; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 				B17D404D19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m */,
 				B13E056019E332DB00CE8F7A /* SOSMineMessageView.h */,
 				B13E056119E332DB00CE8F7A /* SOSMineMessageView.m */,
+				CC63C20E19FFCC5300B3C092 /* SoShoStyleKit.h */,
+				CC63C20F19FFCC5300B3C092 /* SoShoStyleKit.m */,
 			);
 			path = SoSho;
 			sourceTree = "<group>";
@@ -673,6 +678,7 @@
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
 				CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */,
 				CCB94C5919E2A520007BD6E1 /* SOSOptionsViewController.m in Sources */,
+				CC63C21019FFCC5300B3C092 /* SoShoStyleKit.m in Sources */,
 				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,

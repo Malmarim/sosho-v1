@@ -8,6 +8,7 @@
 
 #import "SOSLoginViewController.h"
 #import "SOSAppdelegate.h"
+#import "SoShoStyleKit.h"
 
 @interface SOSLoginViewController ()
 
