@@ -172,10 +172,11 @@
     [defaults setObject:self.category forKey:@"category"];
     [defaults synchronize];
     
-    if([segue.identifier isEqualToString:@"menutologin"]){
+    if([segue.identifier isEqualToString:@"logout"]){
         [self sendEvent:@"Logout"];
         NSLog(@"Logging out");
         SOSLoginViewController *dest = segue.destinationViewController;
+        //[FBSession.activeSession closeAndClearTokenInformation];
         [dest logout];
     }else{
         [self sendEvent:@"Item (from options)"];

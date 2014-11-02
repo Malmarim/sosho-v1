@@ -8,14 +8,26 @@
 
 #import "SOSFavoriteViewController.h"
 #import "SOSAppDelegate.h"
+#import "SOSLabel.h"
+#import "SoShoStyleKit.h"
 
 @interface SOSFavoriteViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *name;
+
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIButton *store;
 @property (weak, nonatomic) IBOutlet UIButton *share;
 @property (weak, nonatomic) IBOutlet UIButton *wishlist;
+@property (weak, nonatomic) IBOutlet SOSLabel *designer;
+@property (weak, nonatomic) IBOutlet SOSLabel *product;
+@property (weak, nonatomic) IBOutlet UIView *tabBar;
+
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *wishlistButton;
+@property (weak, nonatomic) IBOutlet UIButton *messagesButton;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+
+@property (weak, nonatomic) IBOutlet UIView *background;
 
 @property (strong, nonatomic) NSString *urlString;
 
@@ -23,9 +35,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet UIImageView *yesIcon;
-@property (weak, nonatomic) IBOutlet UILabel *yesLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *noIcon;
-@property (weak, nonatomic) IBOutlet UILabel *noLabel;
 
 @property NSNumber *pid;
 
@@ -116,6 +126,7 @@
     }];
 }
 
+/*
 - (void) fetchVotes
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -132,6 +143,7 @@
             NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             NSString *yes = [NSString stringWithFormat:@"%@",[item valueForKey:@"yesVote"]];
             NSString *no = [NSString stringWithFormat:@"%@",[item valueForKey:@"noVote"]];
+            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.yesLabel setText:yes];
                 [self.noLabel setText:no];
@@ -140,27 +152,30 @@
         }
     }];
 }
+*/
 
 -(UIImage *) drawPrice:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
 {
     UIGraphicsBeginImageContext(image.size);
+    
+    //NSMutableAttributedString *price = [[NSMutableAttributedString alloc] initWithString:text];
+    //[price addAttribute:NSKernAttributeName value:@(1.4) range:NSMakeRange(0, 9)];
+    
+    NSString *euro = @"€";
+    NSMutableString *price = [text mutableCopy];
+    
+    if([price rangeOfString:euro].location==NSNotFound){
+        price = [NSMutableString stringWithFormat:@"%@%@", text, euro];
+    }
+    
     [image drawInRect:CGRectMake(0,0, image.size.width, image.size.height)];
     CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
-    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:30], NSForegroundColorAttributeName: [UIColor whiteColor]};
-    [text drawInRect:CGRectIntegral(rect) withAttributes:attrs];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
--(UIImage *) drawWithText:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
-{
-    UIGraphicsBeginImageContext(image.size);
-    [image drawInRect:CGRectMake(0,0, image.size.width, image.size.height)];
-    CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
-    //NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:50], NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1], NSBackgroundColorAttributeName: [UIColor whiteColor]};
-    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:50], NSForegroundColorAttributeName: [UIColor whiteColor], NSBackgroundColorAttributeName: [UIColor blackColor]};
-    [text drawInRect:CGRectIntegral(rect) withAttributes:attrs];
+    
+    NSString *fontName = @"Lato-Black";
+    //NSString *fontName = @"PlayfairDisplay-Bold";
+    
+    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:fontName size:36], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [price drawInRect:CGRectIntegral(rect) withAttributes:attrs];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -170,18 +185,21 @@
 {
     if([self.favorite valueForKey:@"image"] != nil){
         self.pid = [self.favorite valueForKey: @"id"];
-        UIImage* storeImage = [UIImage imageNamed:@"shop-online.png"];
-        UIImage *shopped = [self drawPrice:[self.favorite valueForKey:@"price"] inImage:storeImage at:CGPointMake(380, 26)];
+        UIImage *shopped = [self drawPrice:[self.favorite valueForKey:@"price"] inImage:[SoShoStyleKit imageOfBTNBuyOnline] at:CGPointMake(370, 25)];
         [self.store setImage:shopped forState:UIControlStateNormal];
         NSURL *url = [NSURL URLWithString:[self.favorite valueForKey: @"image"]];
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
             if (succeeded) {
-                UIImage *img = [[UIImage alloc] initWithData:data];
-                UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
-                UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
-                [self.image setImage:img3];
+                //UIImage *img = [[UIImage alloc] initWithData:data];
+                //UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
+                //UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
+                [self.image setImage:[[UIImage alloc] initWithData:data]];
             }
         }];
+        [self.product setText:[[self.favorite valueForKey:@"name"]uppercaseString]];
+        [self.designer setText:[[self.favorite valueForKey:@"store"]uppercaseString]];
+        [self.product sizeToFit];
+        [self.designer sizeToFit];
         self.urlString = [self.favorite valueForKey:@"url"];
     }else{
         // We came here in a different way
@@ -203,11 +221,15 @@
             [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
                 if (succeeded) {
                     UIImage *img = [[UIImage alloc] initWithData:data];
-                    UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
-                    UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
-                    [self.image setImage:img3];
+                    //UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
+                    //UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
+                    [self.image setImage:img];
                 }
             }];
+            [self.product setText:[[self.favorite valueForKey:@"name"]uppercaseString]];
+            [self.designer setText:[[self.favorite valueForKey:@"store"]uppercaseString]];
+            [self.product sizeToFit];
+            [self.designer sizeToFit];
             self.urlString = [self.favorite valueForKey:@"url"];
         }else{
             //NSLog(@"Item not found");
@@ -229,11 +251,15 @@
                     [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, NSData *data) {
                         if (succeeded) {
                             UIImage *img = [[UIImage alloc] initWithData:data];
-                            UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
-                            UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];
-                            [self.image setImage:img3];
+                            /*UIImage *img2 = [self drawWithText:[self.favorite valueForKey:@"store"] inImage:img at:CGPointMake(0, 0)];
+                            UIImage *img3 = [self drawWithText:[self.favorite valueForKey:@"name"] inImage:img2 at:CGPointMake(0, 50)];*/
+                            [self.image setImage:img];
                         }
                     }];
+                    [self.product setText:[[self.favorite valueForKey:@"name"]uppercaseString]];
+                    [self.designer setText:[[self.favorite valueForKey:@"store"]uppercaseString]];
+                    [self.product sizeToFit];
+                    [self.designer sizeToFit];
                     self.urlString = [self.favorite valueForKey:@"url"];
                 }
                 else{
@@ -247,19 +273,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.screenName = @"Favorite";
+    [self.share setImage:[SoShoStyleKit imageOfBTNAskAFriend] forState:UIControlStateNormal];
+    [self.noIcon setImage:[SoShoStyleKit imageOfIconInsideImageDislikes]];
+    [self.yesIcon setImage:[SoShoStyleKit imageOfIconInsideImageLikes]];
+    [self.wishlist setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
     
-    UIImage* shareImage = [UIImage imageNamed:@"ask-friend.png"];
-    [self.share setImage:shareImage forState:UIControlStateNormal];
-    UIImage* no = [UIImage imageNamed:@"no-icon.png"];
-    [self.noIcon setImage:no];
-    UIImage* yes = [UIImage imageNamed:@"yes-icon.png"];
-    [self.yesIcon setImage:yes];
-    UIImage *wishImage = [UIImage imageNamed:@"wishlist-button"];
-    [self.wishlist setImage:wishImage forState:UIControlStateNormal];
+    // Add a topBorder.
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0, 0.0, self.tabBar.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor colorWithRed: 1 green: 0.463 blue: 0.376 alpha: 1].CGColor;
+    [self.tabBar.layer addSublayer:topBorder];
+    
+    self.background.layer.borderColor = [UIColor colorWithRed:245/255 green:240/255 blue:245/255 alpha:0.5].CGColor;
+    self.background.layer.borderWidth = 0.5;
+    self.background.layer.cornerRadius = 4.0;
+    self.background.layer.masksToBounds = YES;
+    
+    [self.homeButton setImage:[SoShoStyleKit imageOfTabBarHomeInActive] forState:UIControlStateNormal];
+    [self.homeButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistActive] forState:UIControlStateNormal];
+    [self.wishlistButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.messagesButton setImage:[SoShoStyleKit imageOfTabBarMessagesInActive] forState:UIControlStateNormal];
+    [self.messagesButton setContentMode:UIViewContentModeScaleAspectFit];
+    //[self.moreButton setImage:[SoShoStyleKit imageOfTabBarMoreInActive] forState:UIControlStateNormal];
+    //[self.moreButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
     [self loadItem];
-    [self fetchVotes];
+    //[self fetchVotes];
     //NSLog(@"Fetching vote");
 }
 

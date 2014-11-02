@@ -13,13 +13,6 @@
 @interface SOSLoginViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIImageView *imageLogo;
-@property (weak, nonatomic) IBOutlet UIImageView *logo;
-@property (weak, nonatomic) IBOutlet UILabel *slogan;
-
-@property (strong, nonatomic) UIFont *regular;
-@property (strong, nonatomic) UIColor *textColor;
-@property (strong, nonatomic) UIColor *background;
 
 @end
 
@@ -28,6 +21,16 @@
 
 - (IBAction)buttonTouched:(id)sender
 {
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.loginButton.transform = CGAffineTransformMakeScale(0.90, 0.90);
+                     }];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.loginButton.transform = CGAffineTransformMakeScale(1, 1);
+                     }];
+    
+    
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
@@ -64,7 +67,8 @@
         [self performSegueWithIdentifier:@"logintovote" sender:self];
     }
     else{
-        [self performSegueWithIdentifier:@"logintoitem" sender:self];
+        [self performSegueWithIdentifier:@"logintotour" sender:self];
+        //[self performSegueWithIdentifier:@"logintoitem" sender:self];
     }
 }
 
@@ -93,38 +97,12 @@
     return self;
 }
 
-
--(UIImage *) drawWithText:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
-{
-    UIGraphicsBeginImageContext(image.size);
-    [image drawInRect:CGRectMake(0,0, image.size.width, image.size.height)];
-    CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
-    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:29], NSForegroundColorAttributeName: self.textColor};
-    [text drawInRect:CGRectIntegral(rect) withAttributes:attrs];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.screenName = @"Login";
-    // Do any additional setup after loading the view.
-    UIImage* bg = [UIImage imageNamed:@"bag-logo.png"];
-    [self.imageLogo setImage:bg];
-    UIImage* lg = [UIImage imageNamed:@"text-logo.png"];
-    [self.logo setImage:lg];
-    self.regular = [UIFont fontWithName:@"Lato-LightItalic" size:15];
-    self.textColor = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
-    [self.slogan setFont:self.regular];
-    [self.slogan setTextColor:self.textColor];
-    self.slogan.textAlignment = NSTextAlignmentCenter;
-    UILabel *loginText = [UILabel alloc];
-    loginText.text = @"LOG IN WITH FACEBOOK";
-    UIImage* myImage = [UIImage imageNamed:@"facebook-login-button.png"];
-    //UIImage* withText = [self drawWithText:@"LOG IN WITH FACEBOOK" inImage:myImage at:CGPointMake(125, 28)];
-    [self.loginButton setImage:myImage forState:UIControlStateNormal];
+    [self.loginButton setImage:[SoShoStyleKit imageOfBTNLoginWithFacebook] forState:UIControlStateNormal];
+    [self.loginButton setContentMode:UIViewContentModeScaleAspectFit];
 }
 
 - (void)didReceiveMemoryWarning

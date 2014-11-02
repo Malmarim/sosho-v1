@@ -8,19 +8,35 @@
 
 #import "SOSDetailsViewController.h"
 #import "SOSAppDelegate.h"
+#import "SoShoStyleKit.h"
+#import "SOSLabel.h"
 
 @interface SOSDetailsViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *shoeView;
+
 @property (weak, nonatomic) IBOutlet UIButton *back;
 @property (weak, nonatomic) IBOutlet UIImageView *shoe;
 @property (weak, nonatomic) IBOutlet UIImageView *info;
 @property (weak, nonatomic) IBOutlet UIButton *shopButton;
+@property (weak, nonatomic) IBOutlet UIButton *askButton;
+@property (weak, nonatomic) IBOutlet UIView *tabBar;
 @property (strong, nonatomic) UIColor *textColor;
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @property (strong, nonatomic) UIFont *font;
 
-@property (weak, nonatomic) IBOutlet UILabel *store;
-@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *likes;
+@property (weak, nonatomic) IBOutlet UIImageView *dislikes;
+
+@property (weak, nonatomic) IBOutlet SOSLabel *designer;
+@property (weak, nonatomic) IBOutlet SOSLabel *product;
+
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *wishlistButton;
+@property (weak, nonatomic) IBOutlet UIButton *messagesButton;
+//@property (weak, nonatomic) IBOutlet UIButton *moreButton;
+
 @property NSString *url;
 
 @end
@@ -29,6 +45,9 @@
 
 
 - (IBAction)buttonTouched:(id)sender {
+    
+    [self resizeButton:(UIButton *)sender];
+    
     if((UIButton * )sender == self.back){
         [self dismissViewControllerAnimated:YES completion:nil];
         [self sendEvent:@"Closing info"];
@@ -36,7 +55,28 @@
     else if((UIButton * )sender == self.shopButton){
         [self sendEvent:@"Store (from info)"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.url]];
+    }else if((UIButton *)sender == self.askButton){
+        // ask a friend
+        [self sendEvent:@"Ask a friend (from info)"];
+    }else if((UIButton *)sender == self.homeButton){
+        [self sendEvent:@"Home (from info)"];
+    }else if((UIButton *)sender == self.wishlistButton){
+        [self sendEvent:@"Wishlist (from info)"];
+    }else if((UIButton *)sender == self.messagesButton){
+        [self sendEvent:@"Messages (from info)"];
     }
+}
+
+- (void) resizeButton:(UIButton *)button
+{
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         button.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                     }];
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         button.transform = CGAffineTransformMakeScale(1, 1);
+                     }];
 }
 
 - (void)sendEvent:(NSString *) label
@@ -91,8 +131,8 @@
                         UIImage *shopImage = [UIImage imageNamed:@"shop-online"];
                         UIImage *shopped = [self drawPrice:[object valueForKey:@"price"] inImage:shopImage at:CGPointMake(380, 26)];
                         [self.shopButton setImage:shopped forState:UIControlStateNormal];
-                        [self.name setText:[object valueForKey:@"name"]];
-                        [self.store setText:[object valueForKey:@"store"][@"name"]];
+                        //[self.name setText:[object valueForKey:@"name"]];
+                        //[self.store setText:[object valueForKey:@"store"][@"name"]];
                         self.url = [object valueForKey:@"url"];
                     }
                 }];
@@ -131,10 +171,25 @@
 -(UIImage *) drawPrice:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
 {
     UIGraphicsBeginImageContext(image.size);
+    
+    //NSMutableAttributedString *price = [[NSMutableAttributedString alloc] initWithString:text];
+    //[price addAttribute:NSKernAttributeName value:@(1.4) range:NSMakeRange(0, 9)];
+    
+    NSString *euro = @"€";
+    NSMutableString *price = [text mutableCopy];
+    
+    if([price rangeOfString:euro].location==NSNotFound){
+        price = [NSMutableString stringWithFormat:@"%@%@", text, euro];
+    }
+    
     [image drawInRect:CGRectMake(0,0, image.size.width, image.size.height)];
     CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
-    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:@"Lato-Regular" size:30], NSForegroundColorAttributeName: [UIColor whiteColor]};
-    [text drawInRect:CGRectIntegral(rect) withAttributes:attrs];
+    
+    NSString *fontName = @"Lato-Black";
+    //NSString *fontName = @"PlayfairDisplay-Bold";
+    
+    NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:fontName size:36], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [price drawInRect:CGRectIntegral(rect) withAttributes:attrs];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -148,15 +203,48 @@
         if (succeeded) {
             UIImage *shoeImage = [[UIImage alloc] initWithData:data];
             [self.shoe setImage:shoeImage];
-            UIImage *shopImage = [UIImage imageNamed:@"shop-online"];
-            UIImage *shopped = [self drawPrice:[self.item valueForKey:@"price"] inImage:shopImage at:CGPointMake(380, 26)];
+            //UIImage *shopImage = [UIImage imageNamed:@"shop-online"];
+            UIImage *shopImage = [SoShoStyleKit imageOfBTNBuyOnline];
+            UIImage *shopped = [self drawPrice:[self.item valueForKey:@"price"] inImage:shopImage at:CGPointMake(370, 25)];
             [self.shopButton setImage:shopped forState:UIControlStateNormal];
-            [self.name setText:[self.item valueForKey:@"name"]];
-            [self.store setText:[self.item valueForKey:@"store"]];
+            [self.product setText:[[self.item valueForKey:@"name"]uppercaseString]];
+            [self.designer setText:[[self.item valueForKey:@"store"]uppercaseString]];
+            
+            [self.product sizeToFit];
+            [self.designer sizeToFit];
             self.url = [self.item valueForKey:@"url"];
         }
     }];
 }
+
+
+// Fetch votes given to this shoe
+/*
+- (void) fetchVotes
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *fbId = [defaults valueForKey:@"fbId"];
+    // Fetch votes, parse them, and set them visible
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/votes/%@/%ld", fbId, [self.pid longValue]];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSLog(@"Votes fetched");
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            NSString *yes = [NSString stringWithFormat:@"%@",[item valueForKey:@"yesVote"]];
+            NSString *no = [NSString stringWithFormat:@"%@",[item valueForKey:@"noVote"]];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.yesLabel setText:yes];
+                [self.noLabel setText:no];
+                self.urlString = [item valueForKey:@"applink"];
+            }];
+        }
+    }];
+}
+*/
 
 - (void)viewDidLoad
 {
@@ -165,18 +253,14 @@
     self.screenName = @"Details";
     
     // Do any additional setup after loading the view.
-    UIImage* backImage = [UIImage imageNamed:@"dis-icon.png"];
-    [self.back setImage:backImage forState:UIControlStateNormal];
-    UIImage* infoImage = [UIImage imageNamed:@"info-icon"];
-    [self.info setImage:infoImage];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
     self.font = [UIFont fontWithName:@"Lato-Regular" size:18];
     self.textColor = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
-    [self.store setFont:self.font];
-    [self.store setTextColor:self.textColor];
-    [self.name setFont:self.font];
-    [self.name setTextColor:self.textColor];
+    //[self.store setFont:self.font];
+    //[self.store setTextColor:self.textColor];
+    //[self.name setFont:self.font];
+    //[self.name setTextColor:self.textColor];
     if([self.item valueForKey:@"image"] != nil){
         NSLog(@"Item set, using presets");
         [self presentProduct];
@@ -184,7 +268,33 @@
         NSLog(@"Item not set, fetching item");
         [self fetchItem];
     }
-    // Shop online nappi ja siihen hinta
+    
+    [self.back setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
+    [self.info setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
+    [self.askButton setImage:[SoShoStyleKit imageOfBTNAskAFriend] forState:UIControlStateNormal];
+    
+    // Add a topBorder.
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0, 0.0, self.tabBar.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor colorWithRed: 1 green: 0.463 blue: 0.376 alpha: 1].CGColor;
+    [self.tabBar.layer addSublayer:topBorder];
+    
+    self.shoeView.layer.borderColor = [UIColor colorWithRed:245/255 green:240/255 blue:245/255 alpha:0.5].CGColor;
+    self.shoeView.layer.borderWidth = 0.5;
+    self.shoeView.layer.cornerRadius = 4.0;
+    self.shoeView.layer.masksToBounds = YES;
+    
+    [self.homeButton setImage:[SoShoStyleKit imageOfTabBarHomeActive] forState:UIControlStateNormal];
+    [self.homeButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
+    [self.wishlistButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.messagesButton setImage:[SoShoStyleKit imageOfTabBarMessagesInActive] forState:UIControlStateNormal];
+    [self.messagesButton setContentMode:UIViewContentModeScaleAspectFit];
+    //[self.moreButton setImage:[SoShoStyleKit imageOfTabBarMoreInActive] forState:UIControlStateNormal];
+    //[self.moreButton setContentMode:UIViewContentModeScaleAspectFit];
+    
+    [self.likes setImage:[SoShoStyleKit imageOfIconInsideImageLikes]];
+    [self.dislikes setImage:[SoShoStyleKit imageOfIconInsideImageDislikes]];
     
 }
 

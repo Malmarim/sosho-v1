@@ -11,5 +11,6 @@
 @interface SOSFavoriteViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIView *background;
 
 @end

@@ -79,6 +79,16 @@
 		}
 	}
     
+    // Playfair-Display-Bold
+    /*
+    for(NSString *family in [UIFont familyNames]){
+        NSLog(@"Family: %@", family);
+        for(NSString *name in [UIFont fontNamesForFamilyName:family]){
+            NSLog(@"Name: %@", name);
+        }
+    }*/
+    
+    
     return YES;
 }
 

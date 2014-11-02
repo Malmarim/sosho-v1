@@ -11,7 +11,7 @@
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 
-@interface SOSFavoritesViewController : UICollectionViewController
+@interface SOSFavoritesViewController : UIViewController
 <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @end

@@ -13,16 +13,21 @@
 #import "SOSDetailsViewController.h"
 #import "SOSItemView.h"
 
-
+#import "SoShoStyleKit.h"
 
 @interface SOSItemViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *dis;
 @property (weak, nonatomic) IBOutlet UIButton *like;
-@property (weak, nonatomic) IBOutlet UIButton *wishlist;
 @property (weak, nonatomic) IBOutlet UIButton *menu;
 @property (weak, nonatomic) IBOutlet UIButton *info;
-@property (strong, nonatomic) IBOutlet UIButton *tempButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *wishlistButton;
+@property (weak, nonatomic) IBOutlet UIButton *messagesButton;
+//@property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIView *tabBar;
+
 @property (weak, nonatomic) IBOutlet UIImageView *background;
 
 @property (weak, nonatomic) IBOutlet UIImageView *image;
@@ -137,11 +142,11 @@
     if(liked != self.overlayStatus){
         self.overlayStatus = liked;
         if(liked){
-            self.overlayImage = [UIImage imageNamed:@"like-icon.png"];
+            self.overlayImage = [SoShoStyleKit imageOfBTNLike];
             //NSLog(@"Like icon set");
         }
         else{
-            self.overlayImage = [UIImage imageNamed:@"dis-icon.png"];
+            self.overlayImage = [SoShoStyleKit imageOfBTNDislike];
             //NSLog(@"Dislike icon set");
         }
         [self.overlay setImage:self.overlayImage];
@@ -164,45 +169,41 @@
 }
 */
 
-
 - (IBAction)buttonTouched:(id)sender
 {
+    [self resizeButton:(UIButton *) sender];
     if((UIButton *) sender == self.like) {
+        //[self resizeButton:self.like];
         [self sendEvent:@"Liked (button)"];
         [self addFavorite];
     }else if ((UIButton *)sender == self.dis){
+        //[self resizeButton:self.dis];
         [self sendEvent:@"Disliked (button)"];
         [self setNextItem];
     }
-    else if((UIButton *)sender == self.wishlist){
-        [self sendEvent:@"Wishlist (from item)"];
-        [self performSegueWithIdentifier:@"itemtofavorites" sender:self];
-    }else if((UIButton *)sender == self.menu){
+    else if((UIButton *)sender == self.menu){
         [self sendEvent:@"Options"];
         // Open menu
     }else if((UIButton *)sender == self.info){
         [self sendEvent:@"Info"];// Open info
-    }else if((UIButton *)sender == self.tempButton) {
-//        FBRequest* friendsRequest = [FBRequest requestForMyFriends];
-//        [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
-//                                                      NSDictionary* result,
-//                                                      NSError *error) {
-//            NSArray* friends = [result objectForKey:@"data"];
-//            NSLog(@"Found: %i friends", friends.count);
-//            for (NSDictionary<FBGraphUser>* friend in friends) {
-//                NSLog(@"I have a friend named %@ with id %@", friend.name, friend.id);
-//            }
-//        }];
-        
-        [FBRequestConnection startForMyFriendsWithCompletionHandler:
-         ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
-         {
-             if(!error){
-                NSLog(@"results = %@", friends);
-             }
-         }
-         ];
+    }else if((UIButton *)sender == self.messagesButton){
+        [self sendEvent:@"Messages (from item)"];
+        // Seque to messages
+    }else if((UIButton *)sender == self.wishlistButton){
+        [self sendEvent:@"Wishlist (from item)"];
     }
+}
+
+- (void) resizeButton:(UIButton *)button
+{
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         button.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                     }];
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         button.transform = CGAffineTransformMakeScale(1, 1);
+                     }];
 }
 
 - (void)sendEvent:(NSString *) label
@@ -402,6 +403,28 @@
     }];
 }
 
+// Use to post dislike to server
+/*
+-(void) postDislike:(long) pid
+{
+    NSString *url = @"http://soshoapp.herokuapp.com/addDislike";
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", self.fbId, pid];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            //NSLog(@"No Error");
+        }
+        else{
+            //NSLog(@"Error");
+        }
+    }];
+}
+*/
+
 // Select the next item from array
 - (void) setNextItem
 {
@@ -465,7 +488,7 @@
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"url"] forKey:@"url"];
         [newProduct setValue: [self.loadedItems objectAtIndex: i][@"image"] forKey:@"image"];
         [newProduct setValue:[self.loadedItems objectAtIndex: i][@"category"][@"name"] forKey:@"category"];
-        [newProduct setValue:[self.loadedItems objectAtIndex: i][@"store"][@"name"] forKey:@"store"];
+        [newProduct setValue:[self.loadedItems objectAtIndex: i][@"designer"][@"name"] forKey:@"store"];
         [newProduct setValue:[self.loadedItems objectAtIndex: i][@"price"] forKey:@"price"];
         NSError *error;
         [self.context save:&error];
@@ -504,8 +527,8 @@
 {
     NSUInteger count = [self.displayItems count];
     for (NSUInteger i = 0; i < count; ++i) {
-        NSInteger remainingCount = count - i;
-        NSInteger exchangeIndex = i + arc4random_uniform(remainingCount);
+        NSUInteger remainingCount = count - i;
+        NSUInteger exchangeIndex = i + arc4random_uniform(remainingCount);
         [self.displayItems exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
     }
     NSLog(@"Shuffle completed");
@@ -596,34 +619,53 @@
     [self.view addGestureRecognizer:self.derp];
     
     
-    self.overlayImage = [UIImage imageNamed:@"dis-icon.png"];
+    self.overlayImage = [SoShoStyleKit imageOfBTNDislike];
     [self.overlay setImage:self.overlayImage];
     self.overlay.alpha = 0;
     self.overlayStatus = false;
     
     self.dragView.layer.borderColor = [UIColor colorWithRed:245/255 green:240/255 blue:245/255 alpha:0.5].CGColor;
     self.backView.layer.borderColor = [UIColor colorWithRed:245/255 green:240/255 blue:245/255 alpha:0.5].CGColor;
+    
     self.dragView.layer.borderWidth = 0.5;
+    self.dragView.layer.cornerRadius = 4.0;
+    self.dragView.layer.masksToBounds = YES;
+    
     self.backView.layer.borderWidth = 0.5;
+    self.backView.layer.cornerRadius = 4.0;
+    self.backView.layer.masksToBounds = YES;
     
     // Do any additional setup after loading the view.
-    UIImage* disImage = [UIImage imageNamed:@"dis-icon.png"];
-    [self.dis setImage:disImage forState:UIControlStateNormal];
-    UIImage* likeImage = [UIImage imageNamed:@"like-icon.png"];
-    [self.like setImage:likeImage forState:UIControlStateNormal];
-    UIImage* favImage = [UIImage imageNamed:@"wishlist-button.png"];
-    [self.wishlist setImage:favImage forState:UIControlStateNormal];
-    UIImage* menuImage = [UIImage imageNamed:@"menu-button.png"];
-    [self.menu setImage:menuImage forState:UIControlStateNormal];
-    UIImage* infoImage = [UIImage imageNamed:@"info-icon.png"];
-    [self.info setImage:infoImage forState:UIControlStateNormal];
-    UIImage* logoImg = [UIImage imageNamed:@"small-logo.png"];
-    [self.logo setImage:logoImg];
+    [self.dis setImage:[SoShoStyleKit imageOfBTNDislike] forState:UIControlStateNormal];
+    [self.dis setContentMode:UIViewContentModeScaleAspectFit];
+    [self.like setImage:[SoShoStyleKit imageOfBTNLike] forState:UIControlStateNormal];
+    [self.like setContentMode:UIViewContentModeScaleAspectFit];
+    [self.menu setImage:[SoShoStyleKit imageOfBtnMainMenu] forState:UIControlStateNormal];
+    [self.menu setContentMode:UIViewContentModeScaleAspectFit];
+    [self.info setImage:[SoShoStyleKit imageOfBTNI] forState:UIControlStateNormal];
+    [self.info setContentMode:UIViewContentModeScaleAspectFit];
+    
+    [self.homeButton setImage:[SoShoStyleKit imageOfTabBarHomeActive] forState:UIControlStateNormal];
+    [self.homeButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
+    [self.wishlistButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.messagesButton setImage:[SoShoStyleKit imageOfTabBarMessagesInActive] forState:UIControlStateNormal];
+    [self.messagesButton setContentMode:UIViewContentModeScaleAspectFit];
+    //[self.moreButton setImage:[SoShoStyleKit imageOfTabBarMoreInActive] forState:UIControlStateNormal];
+    //[self.moreButton setContentMode:UIViewContentModeScaleAspectFit];
+    
+    [self.logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
     [self loadPresets];
     [self fetchNewCount];
     self.hasCheckedForNew = FALSE;
+    
+    // Add a topBorder.
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0, 0.0, self.tabBar.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor colorWithRed: 1 green: 0.463 blue: 0.376 alpha: 1].CGColor;
+    [self.tabBar.layer addSublayer:topBorder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -644,6 +686,5 @@
         dest.item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
     }
 }
-
 
 @end

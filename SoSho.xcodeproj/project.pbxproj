@@ -18,16 +18,23 @@
 		B1A2190619AA6D1E0029B420 /* SOSMessengerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */; };
 		B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2190D19AA930E0029B420 /* SOSFacebookFriend.m */; };
 		B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */; };
-		CC09B537196EA043000E1B3F /* dis-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC09B536196EA043000E1B3F /* dis-icon.png */; };
 		CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC13263E1970127C00657E54 /* SOSVoteViewController.m */; };
-		CC13264119704D5700657E54 /* yes-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264019704D5700657E54 /* yes-icon.png */; };
-		CC13264319704D6000657E54 /* no-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC13264219704D6000657E54 /* no-icon.png */; };
+		CC1F37021A05126D00742DEE /* SOSCollectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F37011A05126D00742DEE /* SOSCollectionFooter.m */; };
+		CC1F370A1A0558F500742DEE /* SOSCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F37091A0558F500742DEE /* SOSCollectionViewLayout.m */; };
+		CC1F37101A058A5E00742DEE /* SOSTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F370F1A058A5E00742DEE /* SOSTourViewController.m */; };
+		CC1F37141A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37111A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png */; };
+		CC1F37151A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37121A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg */; };
+		CC1F37161A058E6B00742DEE /* splashscreen_large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37131A058E6B00742DEE /* splashscreen_large.jpg */; };
+		CC1F37281A058EBE00742DEE /* tour1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37231A058EBE00742DEE /* tour1.jpg */; };
+		CC1F37291A058EBE00742DEE /* tour2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37241A058EBE00742DEE /* tour2.jpg */; };
+		CC1F372A1A058EBE00742DEE /* tour3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37251A058EBE00742DEE /* tour3.jpg */; };
+		CC1F372B1A058EBE00742DEE /* tour4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37261A058EBE00742DEE /* tour4.jpg */; };
+		CC1F372C1A058EBE00742DEE /* tour5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37271A058EBE00742DEE /* tour5.jpg */; };
 		CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB6691985B76E0097E3BC /* not-selected.png */; };
 		CC2BB66C1985B7730097E3BC /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB66B1985B7730097E3BC /* selected.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
 		CC63C21019FFCC5300B3C092 /* SoShoStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CC63C20F19FFCC5300B3C092 /* SoShoStyleKit.m */; };
 		CC84351219EBD84A00256BC8 /* SOSItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC84351119EBD84A00256BC8 /* SOSItemView.m */; };
-		CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */; };
 		CCB348D019260259007EBCE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348CF19260259007EBCE3 /* Foundation.framework */; };
 		CCB348D21926025A007EBCE3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D11926025A007EBCE3 /* CoreGraphics.framework */; };
 		CCB348D41926025A007EBCE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB348D31926025A007EBCE3 /* UIKit.framework */; };
@@ -48,21 +55,13 @@
 		CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */; };
 		CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB34912192A3E5F007EBCE3 /* SOSItem.m */; };
 		CCB94C5919E2A520007BD6E1 /* SOSOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB94C5819E2A520007BD6E1 /* SOSOptionsViewController.m */; };
-		CCBB3A73197C2B0500E8C919 /* bag-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A72197C2B0500E8C919 /* bag-logo.png */; };
-		CCBB3A75197C2B4700E8C919 /* text-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A74197C2B4700E8C919 /* text-logo.png */; };
-		CCBB3A79197C2C7D00E8C919 /* like-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A78197C2C7D00E8C919 /* like-icon.png */; };
-		CCBB3A7B197C51C300E8C919 /* small-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A7A197C51C300E8C919 /* small-logo.png */; };
-		CCBB3A7D197C51EC00E8C919 /* wishlist-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A7C197C51EC00E8C919 /* wishlist-button.png */; };
-		CCBB3A7F197C52B900E8C919 /* menu-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A7E197C52B900E8C919 /* menu-button.png */; };
-		CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A82197CE98F00E8C919 /* fb-login.png */; };
 		CCBB3A88197CF59F00E8C919 /* Lato-Bla.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */; };
 		CCBB3A89197CF5A300E8C919 /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */; };
 		CCBBA9A41982340500D43738 /* SOSDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBBA9A31982340500D43738 /* SOSDetailsViewController.m */; };
 		CCBBA9A71982512E00D43738 /* SOSVotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBBA9A61982512E00D43738 /* SOSVotesViewController.m */; };
-		CCBBA9A91982960500D43738 /* info-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9A81982960500D43738 /* info-icon.png */; };
 		CCBBA9AB1982C76C00D43738 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */; };
-		CCBBA9AD1982D1BF00D43738 /* ask-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9AC1982D1BF00D43738 /* ask-friend.png */; };
-		CCBBA9AF1982D23E00D43738 /* shop-online.png in Resources */ = {isa = PBXBuildFile; fileRef = CCBBA9AE1982D23E00D43738 /* shop-online.png */; };
+		CCC36B611A03E0D100C91F7A /* PlayfairDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC36B601A03E0A500C91F7A /* PlayfairDisplay-Bold.otf */; };
+		CCC36B641A04285700C91F7A /* SOSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC36B631A04285700C91F7A /* SOSLabel.m */; };
 		CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */; };
 		CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD14D7E19409B6700E555CC /* SOSFavoriteViewCell.m */; };
 		CCD2646C19ED54EE00A1109F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2646B19ED54EE00A1109F /* SystemConfiguration.framework */; };
@@ -71,8 +70,6 @@
 		CCD2649019ED5D5000A1109F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2648F19ED5D5000A1109F /* libsqlite3.0.dylib */; };
 		CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */; };
 		CCF904E11982EC0B00559BA2 /* SOSCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */; };
-		CCF904E31982FF5A00559BA2 /* vote.png in Resources */ = {isa = PBXBuildFile; fileRef = CCF904E21982FF5A00559BA2 /* vote.png */; };
-		CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF904E51985254D00559BA2 /* SOSMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,11 +139,22 @@
 		B1A2190F19AA94000029B420 /* SOSFacebookFriendsDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFacebookFriendsDataController.h; sourceTree = "<group>"; };
 		B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFacebookFriendsDataController.m; sourceTree = "<group>"; };
 		B1B332AD19A93CA5003574E7 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
-		CC09B536196EA043000E1B3F /* dis-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dis-icon.png"; path = "images/dis-icon.png"; sourceTree = "<group>"; };
 		CC13263D1970127C00657E54 /* SOSVoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSVoteViewController.h; sourceTree = "<group>"; };
 		CC13263E1970127C00657E54 /* SOSVoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSVoteViewController.m; sourceTree = "<group>"; };
-		CC13264019704D5700657E54 /* yes-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "yes-icon.png"; path = "images/yes-icon.png"; sourceTree = "<group>"; };
-		CC13264219704D6000657E54 /* no-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "no-icon.png"; path = "images/no-icon.png"; sourceTree = "<group>"; };
+		CC1F37001A05126D00742DEE /* SOSCollectionFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSCollectionFooter.h; sourceTree = "<group>"; };
+		CC1F37011A05126D00742DEE /* SOSCollectionFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSCollectionFooter.m; sourceTree = "<group>"; };
+		CC1F37081A0558F400742DEE /* SOSCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSCollectionViewLayout.h; sourceTree = "<group>"; };
+		CC1F37091A0558F500742DEE /* SOSCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSCollectionViewLayout.m; sourceTree = "<group>"; };
+		CC1F370E1A058A5E00742DEE /* SOSTourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSTourViewController.h; sourceTree = "<group>"; };
+		CC1F370F1A058A5E00742DEE /* SOSTourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSTourViewController.m; sourceTree = "<group>"; };
+		CC1F37111A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoshoLogo_for_Splashscreen.png; path = images/SoshoLogo_for_Splashscreen.png; sourceTree = "<group>"; };
+		CC1F37121A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashscreen_cropped_for_iphoe5s.jpg; path = images/splashscreen_cropped_for_iphoe5s.jpg; sourceTree = "<group>"; };
+		CC1F37131A058E6B00742DEE /* splashscreen_large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashscreen_large.jpg; path = images/splashscreen_large.jpg; sourceTree = "<group>"; };
+		CC1F37231A058EBE00742DEE /* tour1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour1.jpg; sourceTree = "<group>"; };
+		CC1F37241A058EBE00742DEE /* tour2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour2.jpg; sourceTree = "<group>"; };
+		CC1F37251A058EBE00742DEE /* tour3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour3.jpg; sourceTree = "<group>"; };
+		CC1F37261A058EBE00742DEE /* tour4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour4.jpg; sourceTree = "<group>"; };
+		CC1F37271A058EBE00742DEE /* tour5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour5.jpg; sourceTree = "<group>"; };
 		CC2BB6691985B76E0097E3BC /* not-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "not-selected.png"; path = "images/not-selected.png"; sourceTree = "<group>"; };
 		CC2BB66B1985B7730097E3BC /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = images/selected.png; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
@@ -155,7 +163,6 @@
 		CC63C20F19FFCC5300B3C092 /* SoShoStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoShoStyleKit.m; sourceTree = "<group>"; };
 		CC84351019EBD84900256BC8 /* SOSItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSItemView.h; sourceTree = "<group>"; };
 		CC84351119EBD84A00256BC8 /* SOSItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItemView.m; sourceTree = "<group>"; };
-		CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook-login-button.png"; path = "images/facebook-login-button.png"; sourceTree = "<group>"; };
 		CCB348CC19260259007EBCE3 /* SoSho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoSho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB348CF19260259007EBCE3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCB348D11926025A007EBCE3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -183,23 +190,16 @@
 		CCB34912192A3E5F007EBCE3 /* SOSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSItem.m; sourceTree = "<group>"; };
 		CCB94C5719E2A51F007BD6E1 /* SOSOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSOptionsViewController.h; sourceTree = "<group>"; };
 		CCB94C5819E2A520007BD6E1 /* SOSOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSOptionsViewController.m; sourceTree = "<group>"; };
-		CCBB3A72197C2B0500E8C919 /* bag-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bag-logo.png"; path = "images/bag-logo.png"; sourceTree = "<group>"; };
-		CCBB3A74197C2B4700E8C919 /* text-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "text-logo.png"; path = "images/text-logo.png"; sourceTree = "<group>"; };
-		CCBB3A78197C2C7D00E8C919 /* like-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-icon.png"; path = "images/like-icon.png"; sourceTree = "<group>"; };
-		CCBB3A7A197C51C300E8C919 /* small-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small-logo.png"; path = "images/small-logo.png"; sourceTree = "<group>"; };
-		CCBB3A7C197C51EC00E8C919 /* wishlist-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wishlist-button.png"; path = "images/wishlist-button.png"; sourceTree = "<group>"; };
-		CCBB3A7E197C52B900E8C919 /* menu-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-button.png"; path = "images/menu-button.png"; sourceTree = "<group>"; };
-		CCBB3A82197CE98F00E8C919 /* fb-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb-login.png"; path = "images/fb-login.png"; sourceTree = "<group>"; };
 		CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bla.ttf"; path = "fonts/Lato-Bla.ttf"; sourceTree = "<group>"; };
 		CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Reg.ttf"; path = "fonts/Lato-Reg.ttf"; sourceTree = "<group>"; };
 		CCBBA9A21982340500D43738 /* SOSDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSDetailsViewController.h; sourceTree = "<group>"; };
 		CCBBA9A31982340500D43738 /* SOSDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSDetailsViewController.m; sourceTree = "<group>"; };
 		CCBBA9A51982512E00D43738 /* SOSVotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSVotesViewController.h; sourceTree = "<group>"; };
 		CCBBA9A61982512E00D43738 /* SOSVotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSVotesViewController.m; sourceTree = "<group>"; };
-		CCBBA9A81982960500D43738 /* info-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "info-icon.png"; path = "images/info-icon.png"; sourceTree = "<group>"; };
 		CCBBA9AA1982C76C00D43738 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		CCBBA9AC1982D1BF00D43738 /* ask-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ask-friend.png"; path = "images/ask-friend.png"; sourceTree = "<group>"; };
-		CCBBA9AE1982D23E00D43738 /* shop-online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shop-online.png"; path = "images/shop-online.png"; sourceTree = "<group>"; };
+		CCC36B601A03E0A500C91F7A /* PlayfairDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Bold.otf"; path = "fonts/PlayfairDisplay-Bold.otf"; sourceTree = "<group>"; };
+		CCC36B621A04285700C91F7A /* SOSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSLabel.h; sourceTree = "<group>"; };
+		CCC36B631A04285700C91F7A /* SOSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLabel.m; sourceTree = "<group>"; };
 		CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoritesViewController.h; sourceTree = "<group>"; };
 		CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFavoritesViewController.m; sourceTree = "<group>"; };
 		CCD14D7D19409B6600E555CC /* SOSFavoriteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewCell.h; sourceTree = "<group>"; };
@@ -219,12 +219,8 @@
 		CCD2648F19ED5D5000A1109F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		CCDD56B519A5F02600DA21EB /* UICollectionView+EmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+EmptyState.h"; sourceTree = "<group>"; };
 		CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+EmptyState.m"; sourceTree = "<group>"; };
-		CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-LigIta.ttf"; path = "../../../../../../Downloads/lato/Lato-LigIta.ttf"; sourceTree = "<group>"; };
 		CCF904DF1982EC0B00559BA2 /* SOSCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSCollectionHeader.h; sourceTree = "<group>"; };
 		CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSCollectionHeader.m; sourceTree = "<group>"; };
-		CCF904E21982FF5A00559BA2 /* vote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vote.png; path = images/vote.png; sourceTree = "<group>"; };
-		CCF904E41985254D00559BA2 /* SOSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMenuViewController.h; sourceTree = "<group>"; };
-		CCF904E51985254D00559BA2 /* SOSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMenuViewController.m; sourceTree = "<group>"; };
 		F692D75107FC46689396A09D /* Pods-SoSho.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoSho.xcconfig"; path = "Pods/Pods-SoSho.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,6 +267,19 @@
 				B1B332BE19A93CA5003574E7 /* libPods-SoSho-libextobjc.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CC1F37221A058EBE00742DEE /* tour */ = {
+			isa = PBXGroup;
+			children = (
+				CC1F37231A058EBE00742DEE /* tour1.jpg */,
+				CC1F37241A058EBE00742DEE /* tour2.jpg */,
+				CC1F37251A058EBE00742DEE /* tour3.jpg */,
+				CC1F37261A058EBE00742DEE /* tour4.jpg */,
+				CC1F37271A058EBE00742DEE /* tour5.jpg */,
+			);
+			name = tour;
+			path = images/tour;
 			sourceTree = "<group>";
 		};
 		CCB348C319260258007EBCE3 = {
@@ -323,6 +332,12 @@
 				CCB348E31926025B007EBCE3 /* SoSho.xcdatamodeld */,
 				CCB348D81926025A007EBCE3 /* Supporting Files */,
 				CCB3490419260428007EBCE3 /* Main.storyboard */,
+				CC1F370E1A058A5E00742DEE /* SOSTourViewController.h */,
+				CC1F370F1A058A5E00742DEE /* SOSTourViewController.m */,
+				CC1F37081A0558F400742DEE /* SOSCollectionViewLayout.h */,
+				CC1F37091A0558F500742DEE /* SOSCollectionViewLayout.m */,
+				CCC36B621A04285700C91F7A /* SOSLabel.h */,
+				CCC36B631A04285700C91F7A /* SOSLabel.m */,
 				CCB348E01926025A007EBCE3 /* SOSAppDelegate.h */,
 				CCB348E11926025A007EBCE3 /* SOSAppDelegate.m */,
 				CCB3490819261AB4007EBCE3 /* SOSLoginViewController.h */,
@@ -333,8 +348,6 @@
 				CCB3490F1926420B007EBCE3 /* SOSItemViewController.m */,
 				CC84351019EBD84900256BC8 /* SOSItemView.h */,
 				CC84351119EBD84A00256BC8 /* SOSItemView.m */,
-				CCF904E41985254D00559BA2 /* SOSMenuViewController.h */,
-				CCF904E51985254D00559BA2 /* SOSMenuViewController.m */,
 				CCD14D7A194094A700E555CC /* SOSFavoritesViewController.h */,
 				CCD14D7B194094A700E555CC /* SOSFavoritesViewController.m */,
 				CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */,
@@ -344,6 +357,8 @@
 				CC13263D1970127C00657E54 /* SOSVoteViewController.h */,
 				CC13263E1970127C00657E54 /* SOSVoteViewController.m */,
 				CCF904DF1982EC0B00559BA2 /* SOSCollectionHeader.h */,
+				CC1F37001A05126D00742DEE /* SOSCollectionFooter.h */,
+				CC1F37011A05126D00742DEE /* SOSCollectionFooter.m */,
 				CCF904E01982EC0B00559BA2 /* SOSCollectionHeader.m */,
 				CCBBA9A21982340500D43738 /* SOSDetailsViewController.h */,
 				CCBBA9A31982340500D43738 /* SOSDetailsViewController.m */,
@@ -409,23 +424,12 @@
 		CCBB3A84197CF1B300E8C919 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				CC96E8B219A26EB700A7D7B0 /* facebook-login-button.png */,
+				CC1F37221A058EBE00742DEE /* tour */,
+				CC1F37111A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png */,
+				CC1F37121A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg */,
+				CC1F37131A058E6B00742DEE /* splashscreen_large.jpg */,
 				CC2BB66B1985B7730097E3BC /* selected.png */,
 				CC2BB6691985B76E0097E3BC /* not-selected.png */,
-				CCF904E21982FF5A00559BA2 /* vote.png */,
-				CCBBA9AE1982D23E00D43738 /* shop-online.png */,
-				CCBBA9AC1982D1BF00D43738 /* ask-friend.png */,
-				CCBBA9A81982960500D43738 /* info-icon.png */,
-				CC13264219704D6000657E54 /* no-icon.png */,
-				CCBB3A7E197C52B900E8C919 /* menu-button.png */,
-				CCBB3A7C197C51EC00E8C919 /* wishlist-button.png */,
-				CCBB3A7A197C51C300E8C919 /* small-logo.png */,
-				CCBB3A74197C2B4700E8C919 /* text-logo.png */,
-				CCBB3A72197C2B0500E8C919 /* bag-logo.png */,
-				CC13264019704D5700657E54 /* yes-icon.png */,
-				CCBB3A78197C2C7D00E8C919 /* like-icon.png */,
-				CC09B536196EA043000E1B3F /* dis-icon.png */,
-				CCBB3A82197CE98F00E8C919 /* fb-login.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -433,9 +437,9 @@
 		CCBB3A85197CF1F200E8C919 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CCF8DEFB199E07DB00D91E57 /* Lato-LigIta.ttf */,
 				CCBB3A86197CF20500E8C919 /* Lato-Bla.ttf */,
 				CCBB3A87197CF20500E8C919 /* Lato-Reg.ttf */,
+				CCC36B601A03E0A500C91F7A /* PlayfairDisplay-Bold.otf */,
 			);
 			name = fonts;
 			sourceTree = "<group>";
@@ -590,27 +594,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBB3A89197CF5A300E8C919 /* Lato-Reg.ttf in Resources */,
+				CC1F37141A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png in Resources */,
+				CC1F372B1A058EBE00742DEE /* tour4.jpg in Resources */,
 				CCBB3A88197CF59F00E8C919 /* Lato-Bla.ttf in Resources */,
 				CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */,
-				CCBBA9AD1982D1BF00D43738 /* ask-friend.png in Resources */,
-				CCBB3A7F197C52B900E8C919 /* menu-button.png in Resources */,
-				CCBB3A7B197C51C300E8C919 /* small-logo.png in Resources */,
+				CC1F37151A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg in Resources */,
+				CC1F372A1A058EBE00742DEE /* tour3.jpg in Resources */,
+				CC1F372C1A058EBE00742DEE /* tour5.jpg in Resources */,
+				CC1F37291A058EBE00742DEE /* tour2.jpg in Resources */,
 				CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */,
-				CCBB3A75197C2B4700E8C919 /* text-logo.png in Resources */,
-				CCBB3A73197C2B0500E8C919 /* bag-logo.png in Resources */,
-				CCBBA9AF1982D23E00D43738 /* shop-online.png in Resources */,
-				CCBB3A7D197C51EC00E8C919 /* wishlist-button.png in Resources */,
-				CC13264119704D5700657E54 /* yes-icon.png in Resources */,
-				CC13264319704D6000657E54 /* no-icon.png in Resources */,
-				CCF904E31982FF5A00559BA2 /* vote.png in Resources */,
-				CCBBA9A91982960500D43738 /* info-icon.png in Resources */,
-				CCBB3A79197C2C7D00E8C919 /* like-icon.png in Resources */,
+				CCC36B611A03E0D100C91F7A /* PlayfairDisplay-Bold.otf in Resources */,
 				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
 				CCB3490519260428007EBCE3 /* Main.storyboard in Resources */,
+				CC1F37161A058E6B00742DEE /* splashscreen_large.jpg in Resources */,
 				CC2BB66C1985B7730097E3BC /* selected.png in Resources */,
-				CCBB3A83197CE98F00E8C919 /* fb-login.png in Resources */,
-				CC09B537196EA043000E1B3F /* dis-icon.png in Resources */,
-				CC96E8B319A26EB700A7D7B0 /* facebook-login-button.png in Resources */,
+				CC1F37281A058EBE00742DEE /* tour1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,20 +668,23 @@
 				B13E056219E332DB00CE8F7A /* SOSMineMessageView.m in Sources */,
 				B17D404F19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.m in Sources */,
 				CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */,
-				CCF904E61985254D00559BA2 /* SOSMenuViewController.m in Sources */,
 				B17D404719C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m in Sources */,
 				B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */,
 				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
+				CC1F37021A05126D00742DEE /* SOSCollectionFooter.m in Sources */,
 				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,
 				CCDD56B719A5F02600DA21EB /* UICollectionView+EmptyState.m in Sources */,
 				CCB94C5919E2A520007BD6E1 /* SOSOptionsViewController.m in Sources */,
 				CC63C21019FFCC5300B3C092 /* SoShoStyleKit.m in Sources */,
+				CC1F37101A058A5E00742DEE /* SOSTourViewController.m in Sources */,
 				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
 				CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */,
+				CC1F370A1A0558F500742DEE /* SOSCollectionViewLayout.m in Sources */,
 				B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */,
+				CCC36B641A04285700C91F7A /* SOSLabel.m in Sources */,
 				B1A2190619AA6D1E0029B420 /* SOSMessengerListViewController.m in Sources */,
 				CCB348DE1926025A007EBCE3 /* main.m in Sources */,
 				B16B30F119AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m in Sources */,
@@ -852,8 +853,8 @@
 					"$(PROJECT_DIR)/SoSho/GAnalytics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "232795d3-651a-4dab-a7b8-3841fff489ce";
+				PROVISIONING_PROFILE = "abd4e159-d252-45e0-bb72-1cefb243d44a";
+				"PROVISIONING_PROFILE[sdk=*]" = "abd4e159-d252-45e0-bb72-1cefb243d44a";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
