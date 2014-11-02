@@ -22,7 +22,7 @@
                         <viewControllerLayoutGuide type="bottom" id="M6M-QF-s4c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0Tb-FF-a2f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="540"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splashscreen_large.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xkc-IP-vXu">
@@ -45,7 +45,6 @@
                     <connections>
                         <outlet property="loginButton" destination="CXO-1g-Gz6" id="trW-fB-u4L"/>
                         <segue destination="Kna-pb-C7F" kind="push" identifier="logintoitem" id="pdy-mR-uuZ"/>
-                        <segue destination="bpC-Oz-Txo" kind="push" identifier="logintovote" id="qaH-SD-zog"/>
                         <segue destination="5s4-0j-bze" kind="push" identifier="logintotour" id="Vf8-mW-99n"/>
                     </connections>
                 </viewController>
@@ -81,7 +80,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="guA-OF-oO0" kind="unwind" unwindAction="unwindToFavorites:" id="ZO6-dh-Sx9"/>
+                                    <segue destination="guA-OF-oO0" kind="unwind" unwindAction="unwindToFavorites:" id="qT3-9g-b8a"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cC8-ch-Kag">
@@ -173,6 +172,9 @@
                                 <state key="normal" title="ask">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="O8H-Pa-uIs" kind="push" identifier="messenger" id="XvQ-2y-QbG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -323,7 +325,7 @@
                                 <rect key="frame" x="0.0" y="423" width="320" height="57"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rph-24-ZPq">
-                                        <rect key="frame" x="20" y="14" width="215" height="30"/>
+                                        <rect key="frame" x="20" y="14" width="175" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -340,6 +342,15 @@
                                             <action selector="sendMessageAction:" destination="lbt-0M-ZgF" eventType="touchUpInside" id="Ybn-yv-Itr"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVO-Cq-iTy">
+                                        <rect key="frame" x="213" y="18" width="22" height="22"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addPictureAction:" destination="lbt-0M-ZgF" eventType="touchUpInside" id="gYY-ps-QSz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
@@ -348,6 +359,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SJg-eH-DOd"/>
                     <connections>
+                        <outlet property="addPictureButton" destination="YVO-Cq-iTy" id="z3O-AF-vEY"/>
                         <outlet property="messageTextField" destination="rph-24-ZPq" id="kAE-05-XwL"/>
                         <outlet property="messengerTableView" destination="gjz-a2-SWE" id="7NE-Mk-ZQ7"/>
                         <outlet property="sendingMessageView" destination="Dmp-Eu-ScD" id="hKa-Ac-Ab3"/>
@@ -541,112 +553,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjz-mu-ZTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3328" y="-4150"/>
-        </scene>
-        <!--Favorites-->
-        <scene sceneID="fg1-tD-GRD">
-            <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="nAK-cb-5ag" customClass="SOSFavoritesViewController" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="3h2-zh-VrK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.94117647058823528" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dpz-3Q-a2r">
-                            <size key="itemSize" width="145" height="145"/>
-                            <size key="headerReferenceSize" width="50" height="66"/>
-                            <size key="footerReferenceSize" width="320" height="49"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCell" id="QRP-Yo-SdQ" customClass="SOSFavoriteViewCell">
-                                <rect key="frame" x="10" y="76" width="145" height="145"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="145" height="145"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kwa-3M-ljk">
-                                            <rect key="frame" x="0.0" y="0.0" width="145" height="145"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaV-iY-PQZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="145"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="background" destination="kwa-3M-ljk" id="VZb-u8-Kdh"/>
-                                    <outlet property="image" destination="QaV-iY-PQZ" id="bOL-bR-C0z"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="kIm-w8-CCs" customClass="SOSCollectionHeader">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vfI-ll-AZF">
-                                    <rect key="frame" x="116" y="10" width="88" height="25"/>
-                                </imageView>
-                            </subviews>
-                            <connections>
-                                <outlet property="current" destination="vfI-ll-AZF" id="Hu8-rV-fNe"/>
-                            </connections>
-                        </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Footer" id="D1s-6M-jtK" customClass="SOSCollectionFooter">
-                            <rect key="frame" x="0.0" y="221" width="320" height="50"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRH-TD-JAS">
-                                    <rect key="frame" x="38" y="10" width="43" height="32"/>
-                                    <state key="normal" title="A">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="Wzs-s3-Ynh" kind="unwind" unwindAction="unwindToItem:" id="6H5-9K-a87"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYp-4f-dA6">
-                                    <rect key="frame" x="138" y="10" width="43" height="32"/>
-                                    <state key="normal" title="B">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgy-F4-mLa">
-                                    <rect key="frame" x="239" y="10" width="43" height="32"/>
-                                    <state key="normal" title="C">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <connections>
-                                <outlet property="homeButton" destination="XRH-TD-JAS" id="L35-5v-V1w"/>
-                                <outlet property="messagesButton" destination="hgy-F4-mLa" id="N2r-Fg-fXX"/>
-                                <outlet property="wishlistButton" destination="uYp-4f-dA6" id="G8N-8T-dK9"/>
-                            </connections>
-                        </collectionReusableView>
-                        <connections>
-                            <outlet property="dataSource" destination="nAK-cb-5ag" id="5a1-wE-RoA"/>
-                            <outlet property="delegate" destination="nAK-cb-5ag" id="GdU-Ih-IvW"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Favorites" id="nq5-Io-qeN"/>
-                    <connections>
-                        <outlet property="collection" destination="3h2-zh-VrK" id="w7o-PR-DeG"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YbK-vJ-HvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Wzs-s3-Ynh" userLabel="Exit" sceneMemberID="exit"/>
-                <view contentMode="scaleToFill" id="vFr-xw-cV6">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Loa-ZS-ZRf"/>
-            </objects>
-            <point key="canvasLocation" x="4636" y="-595"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="GW9-PD-d72">
@@ -1047,7 +953,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eM7-jr-if6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5109" y="-602"/>
+            <point key="canvasLocation" x="5337" y="-598"/>
         </scene>
         <!--Vote View Controller-->
         <scene sceneID="Sdf-Ib-0KP">
@@ -1412,7 +1318,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FeM-3J-eD8"/>
+        <segue reference="3tn-tW-ygg"/>
         <segue reference="FCP-vK-xXS"/>
     </inferredMetricsTieBreakers>
 </document>

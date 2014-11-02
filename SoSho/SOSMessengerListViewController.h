@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SOSItem.h"
 
 #import "GAI.h"
 #import "GAIFields.h"
@@ -15,4 +16,6 @@
 
 @interface SOSMessengerListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *friendsTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) NSString *imageUrl;
 @end

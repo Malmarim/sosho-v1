@@ -10,6 +10,7 @@
 #import "SOSAppDelegate.h"
 #import "SOSLabel.h"
 #import "SoShoStyleKit.h"
+#import "SOSMessengerListViewController.h"
 
 @interface SOSFavoriteViewController ()
 
@@ -345,10 +346,16 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self sendEvent:@"Wishlist (from favorite)"];
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"messenger"])
+    {
+        [self sendEvent:@"Shareing (from favorite)"];
+        SOSMessengerListViewController * vc = segue.destinationViewController;
+        [vc setImage:self.image];
+        [vc setImageUrl:[self.favorite valueForKey: @"image"]];
+    }else{
+        [self sendEvent:@"Wishlist (from favorite)"];
+    }
 }
-
 
 @end

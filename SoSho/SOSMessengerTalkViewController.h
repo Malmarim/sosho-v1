@@ -17,8 +17,14 @@
 @property (strong, nonatomic) IBOutlet UITableView *messengerTableView;
 @property (strong, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) IBOutlet UIView *sendingMessageView;
+@property (strong, nonatomic) IBOutlet UIButton *addPictureButton;
+@property (weak, nonatomic) UIImageView *itemImage;
+@property (weak, nonatomic) NSString *itemUrl;
 -(id)initWithFriend:(SOSFacebookFriend *)friend;
 -(void)setFriend:(SOSFacebookFriend *)friend;
+-(void)setItemImage:(UIImageView *)image;
+-(void)setItemUrl:(NSString *)itemUrl;
 - (IBAction)sendMessageAction:(id)sender;
+- (IBAction)addPictureAction:(id)sender;
 
 @end

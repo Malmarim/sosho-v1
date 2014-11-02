@@ -52,13 +52,11 @@
      ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
      {
          if(!error){
-             NSLog(@"results = %@", friends);
-             
+             //NSLog(@"results = %@", friends);
          }
      }
      ];
  
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,7 +76,7 @@
          ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
          {
              if(!error){
-                 NSLog(@"results = %@", friends);
+                 //NSLog(@"results = %@", friends);
                  NSArray* listOfFriends = [friends objectForKey:@"data"];
                  
                  for (NSDictionary<FBGraphUser>* friend in listOfFriends) {
@@ -193,6 +191,8 @@
         NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
         SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
         [segue.destinationViewController setFriend:friend];
+        [segue.destinationViewController setItemImage:self.image];
+        [segue.destinationViewController setItemUrl:_imageUrl];
     }
 }
 
