@@ -11,11 +11,18 @@
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSMineMessageView.h"
 #import "SOSAppDelegate.h"
+#import "SoShoStyleKit.h"
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
     NSMutableArray *messages;
     NSMutableArray *newMessages;
+    __weak IBOutlet UIButton *backButton;
+    __weak IBOutlet UIImageView *logo;
+    __weak IBOutlet UIView *tabBar;
+    __weak IBOutlet UIButton *homeButton;
+    __weak IBOutlet UIButton *wishlistButton;
+    __weak IBOutlet UIButton *messagesButton;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @property (strong, nonatomic) SOSAppDelegate *appDelegate;
@@ -57,6 +64,18 @@
     
     self.friendId = @"test2";
     
+    [backButton setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
+    [logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
+    
+    [homeButton setImage:[SoShoStyleKit imageOfTabBarHomeInActive] forState:UIControlStateNormal];
+    [wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
+    [messagesButton setImage:[SoShoStyleKit imageOfTabBarMessagesActive] forState:UIControlStateNormal];
+    
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0, 0.0, tabBar.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor colorWithRed: 1 green: 0.463 blue: 0.376 alpha: 1].CGColor;
+    [tabBar.layer addSublayer:topBorder];
+    
    // messages = [[NSMutableArray alloc] init];
     
     newMessages = [[NSMutableArray alloc] init];
@@ -75,22 +94,6 @@
                                                   green:240.0f/255.0f
                                                    blue:245.0f/255.0f
                                                   alpha:1.0f]];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self
-               action:@selector(buttonPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(13.0, 30.0, 30.0, 30.0);
-    [button setImage: [[UIImage imageNamed: @"wishlist-button.png"] imageWithRenderingMode: UIImageRenderingModeAlwaysOriginal] forState: UIControlStateNormal];
-    [self.view addSubview:button];
-    
-    UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 250, 50)];
-    label.backgroundColor = [UIColor clearColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor=[UIColor grayColor];
-    label.numberOfLines=0;
-    label.text = @"ASK A FRIEND";
-    [self.view addSubview:label];
-    
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [messengerTableView addGestureRecognizer:gestureRecognizer];
     //[self fetchMessages];
@@ -365,14 +368,15 @@
         [self fetchMessages];
     
     [messengerTableView reloadData];
-    NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
-    [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
-
+    if([messages count] > 0){
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
+        [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    }
 }
 
 -(void)fetchMessages{
     NSLog(@"Fetching messages");
-    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -385,6 +389,7 @@
                 [self saveMessages:tempmessages];
             else{
                 // No messages, need to do something
+                NSLog(@"No messages");
             }
             /*
             messages = [NSMutableArray arrayWithArray:tempmessages];
@@ -447,7 +452,7 @@
 - (IBAction)sendMessageAction:(id)sender {
     
     if([messageTextField.text length] > 0) {
-        NSString *url = @"http://soshotest.herokuapp.com/message";
+        NSString *url = @"http://soshoapp.herokuapp.com/message";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
         NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@", @"test1", @"test2", messageTextField.text];
@@ -471,7 +476,7 @@
 
 - (void)sendImage {
     if (_itemImage != nil) {
-        NSString *url = @"http://soshotest.herokuapp.com/message";
+        NSString *url = @"http://soshoapp.herokuapp.com/message";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
         NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@&image=%@", @"test1", @"test2", @"",  _itemUrl];
@@ -501,7 +506,7 @@
     NSString *lastTime = [[messages lastObject] valueForKey:@"timestamp"];
     NSLog(@"Last time %@", lastTime);
     
-    NSString *url = [NSString stringWithFormat:@"http://soshotest.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];

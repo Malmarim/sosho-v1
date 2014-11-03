@@ -25,11 +25,12 @@
 		CC1F37141A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37111A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png */; };
 		CC1F37151A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37121A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg */; };
 		CC1F37161A058E6B00742DEE /* splashscreen_large.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37131A058E6B00742DEE /* splashscreen_large.jpg */; };
-		CC1F37281A058EBE00742DEE /* tour1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37231A058EBE00742DEE /* tour1.jpg */; };
-		CC1F37291A058EBE00742DEE /* tour2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37241A058EBE00742DEE /* tour2.jpg */; };
 		CC1F372A1A058EBE00742DEE /* tour3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37251A058EBE00742DEE /* tour3.jpg */; };
 		CC1F372B1A058EBE00742DEE /* tour4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37261A058EBE00742DEE /* tour4.jpg */; };
 		CC1F372C1A058EBE00742DEE /* tour5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC1F37271A058EBE00742DEE /* tour5.jpg */; };
+		CC1F372F1A067BCC00742DEE /* tour1.png in Resources */ = {isa = PBXBuildFile; fileRef = CC1F372D1A067BCC00742DEE /* tour1.png */; };
+		CC1F37301A067BCC00742DEE /* tour2.png in Resources */ = {isa = PBXBuildFile; fileRef = CC1F372E1A067BCC00742DEE /* tour2.png */; };
+		CC1F37331A06AB4100742DEE /* SOSLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F37321A06AB4100742DEE /* SOSLeftSegue.m */; };
 		CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB6691985B76E0097E3BC /* not-selected.png */; };
 		CC2BB66C1985B7730097E3BC /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB66B1985B7730097E3BC /* selected.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
@@ -150,11 +151,13 @@
 		CC1F37111A058E6B00742DEE /* SoshoLogo_for_Splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoshoLogo_for_Splashscreen.png; path = images/SoshoLogo_for_Splashscreen.png; sourceTree = "<group>"; };
 		CC1F37121A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashscreen_cropped_for_iphoe5s.jpg; path = images/splashscreen_cropped_for_iphoe5s.jpg; sourceTree = "<group>"; };
 		CC1F37131A058E6B00742DEE /* splashscreen_large.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashscreen_large.jpg; path = images/splashscreen_large.jpg; sourceTree = "<group>"; };
-		CC1F37231A058EBE00742DEE /* tour1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour1.jpg; sourceTree = "<group>"; };
-		CC1F37241A058EBE00742DEE /* tour2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour2.jpg; sourceTree = "<group>"; };
 		CC1F37251A058EBE00742DEE /* tour3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour3.jpg; sourceTree = "<group>"; };
 		CC1F37261A058EBE00742DEE /* tour4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour4.jpg; sourceTree = "<group>"; };
 		CC1F37271A058EBE00742DEE /* tour5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tour5.jpg; sourceTree = "<group>"; };
+		CC1F372D1A067BCC00742DEE /* tour1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour1.png; sourceTree = "<group>"; };
+		CC1F372E1A067BCC00742DEE /* tour2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour2.png; sourceTree = "<group>"; };
+		CC1F37311A06AB4100742DEE /* SOSLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSLeftSegue.h; sourceTree = "<group>"; };
+		CC1F37321A06AB4100742DEE /* SOSLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLeftSegue.m; sourceTree = "<group>"; };
 		CC2BB6691985B76E0097E3BC /* not-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "not-selected.png"; path = "images/not-selected.png"; sourceTree = "<group>"; };
 		CC2BB66B1985B7730097E3BC /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = images/selected.png; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
@@ -272,8 +275,8 @@
 		CC1F37221A058EBE00742DEE /* tour */ = {
 			isa = PBXGroup;
 			children = (
-				CC1F37231A058EBE00742DEE /* tour1.jpg */,
-				CC1F37241A058EBE00742DEE /* tour2.jpg */,
+				CC1F372D1A067BCC00742DEE /* tour1.png */,
+				CC1F372E1A067BCC00742DEE /* tour2.png */,
 				CC1F37251A058EBE00742DEE /* tour3.jpg */,
 				CC1F37261A058EBE00742DEE /* tour4.jpg */,
 				CC1F37271A058EBE00742DEE /* tour5.jpg */,
@@ -334,6 +337,8 @@
 				CCB3490419260428007EBCE3 /* Main.storyboard */,
 				CC1F370E1A058A5E00742DEE /* SOSTourViewController.h */,
 				CC1F370F1A058A5E00742DEE /* SOSTourViewController.m */,
+				CC1F37311A06AB4100742DEE /* SOSLeftSegue.h */,
+				CC1F37321A06AB4100742DEE /* SOSLeftSegue.m */,
 				CC1F37081A0558F400742DEE /* SOSCollectionViewLayout.h */,
 				CC1F37091A0558F500742DEE /* SOSCollectionViewLayout.m */,
 				CCC36B621A04285700C91F7A /* SOSLabel.h */,
@@ -601,14 +606,14 @@
 				CC1F37151A058E6B00742DEE /* splashscreen_cropped_for_iphoe5s.jpg in Resources */,
 				CC1F372A1A058EBE00742DEE /* tour3.jpg in Resources */,
 				CC1F372C1A058EBE00742DEE /* tour5.jpg in Resources */,
-				CC1F37291A058EBE00742DEE /* tour2.jpg in Resources */,
+				CC1F37301A067BCC00742DEE /* tour2.png in Resources */,
+				CC1F372F1A067BCC00742DEE /* tour1.png in Resources */,
 				CCB348DC1926025A007EBCE3 /* InfoPlist.strings in Resources */,
 				CCC36B611A03E0D100C91F7A /* PlayfairDisplay-Bold.otf in Resources */,
 				CCB348E71926025C007EBCE3 /* Images.xcassets in Resources */,
 				CCB3490519260428007EBCE3 /* Main.storyboard in Resources */,
 				CC1F37161A058E6B00742DEE /* splashscreen_large.jpg in Resources */,
 				CC2BB66C1985B7730097E3BC /* selected.png in Resources */,
-				CC1F37281A058EBE00742DEE /* tour1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +676,7 @@
 				B17D404719C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m in Sources */,
 				B1A2190E19AA930E0029B420 /* SOSFacebookFriend.m in Sources */,
 				CCD14D7F19409B6700E555CC /* SOSFavoriteViewCell.m in Sources */,
+				CC1F37331A06AB4100742DEE /* SOSLeftSegue.m in Sources */,
 				CC1F37021A05126D00742DEE /* SOSCollectionFooter.m in Sources */,
 				CC13263F1970127C00657E54 /* SOSVoteViewController.m in Sources */,
 				CCB34913192A3E5F007EBCE3 /* SOSItem.m in Sources */,

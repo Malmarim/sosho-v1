@@ -8,6 +8,7 @@
 
 #import "SOSOptionsViewController.h"
 #import "SOSLoginViewController.h"
+#import "SoShoStyleKit.h"
 
 @interface SOSOptionsViewController ()
 
@@ -44,36 +45,46 @@
 @property (weak, nonatomic) IBOutlet UIButton *sandalsButton;
 @property (weak, nonatomic) IBOutlet UIButton *slippersButton;
 @property (weak, nonatomic) IBOutlet UIButton *trainersButton;
+ 
 @property (weak, nonatomic) IBOutlet UIButton *logout;
 
-@property UIFont *font;
-@property UIColor *textColor;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *icons;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+
+@property (weak, nonatomic) IBOutlet UIView *tabBar;
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *wishlistButton;
+@property (weak, nonatomic) IBOutlet UIButton *messagesButton;
+
+//@property UIFont *font;
+//@property UIColor *textColor;
 
 @property UIImage *selected;
 @property UIImage *notSelected;
 
-@property NSArray *buttons;
+//@property NSArray *buttons;
 @property NSArray *names;
-@property NSArray *labels;
+//@property NSArray *labels;
 
 @end
 
 @implementation SOSOptionsViewController
 
 - (IBAction)buttonTouched:(id)sender {
+    NSLog(@"Button pressed");
     // Iterate through the buttons
-    for (int i = 0; i <13; i++) {
-        // If button matches selected index
-        if((UIButton *)sender == [self.buttons objectAtIndex:i]){
+    int i = 0;
+    for(UIButton *button in self.buttons){
+        if(sender == button){
+            NSLog(@"Button %d", i);
             self.category = [self.names objectAtIndex:i];
             [self sendEvent:[NSString stringWithFormat:@"Category: %@" , self.category]];
-            //NSLog(@"Category set as: %@", self.category);
-            [[self.buttons objectAtIndex:i] setImage:self.selected forState:UIControlStateNormal];
+            [(UIImageView *)[self.icons objectAtIndex:i] setImage:self.selected];
+        }else{
+            [(UIImageView *)[self.icons objectAtIndex:i] setImage:self.notSelected];
         }
-        // If button does not match
-        else{
-            [[self.buttons objectAtIndex:i] setImage:self.notSelected forState:UIControlStateNormal];
-        }
+        i++;
     }
 }
 
@@ -100,11 +111,10 @@
     [super viewDidLoad];
     
     self.screenName = @"Options";
-    self.buttons = [[NSArray alloc] initWithObjects:self.allButton, self.ballerinasButton, self.bootsButton, self.broguesButton, self.espadrillesButton, self.flipflopsButton, self.laceupshoeButton, self.loafersButton, self.mulesButton, self.pumpsButton, self.sandalsButton, self.slippersButton, self.trainersButton, nil];
+    /*self.buttons = [[NSArray alloc] initWithObjects:self.allButton, self.ballerinasButton, self.bootsButton, self.broguesButton, self.espadrillesButton, self.flipflopsButton, self.laceupshoeButton, self.loafersButton, self.mulesButton, self.pumpsButton, self.sandalsButton, self.slippersButton, self.trainersButton, nil];*/
     self.names = [[NSArray alloc] initWithObjects:@"All", @"Ballerinas", @"Boots", @"Brogues", @"Espadrilles", @"Flip Flops", @"Lace-up Shoe", @"Loafers", @"Mules", @"Pumps", @"Sandals", @"Slippers", @"Trainers", nil];
-    self.labels = [[NSArray alloc] initWithObjects:self.all, self.ballerinas, self.boots, self.brogues, self.espadrilles, self.flipflops, self.laceupshoe, self.loafers, self.mules, self.pumps, self.sandals, self.slippers, self.trainers, nil];
-    self.font = [UIFont fontWithName:@"Lato-Regular" size:18];
-    self.textColor = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
+    /*self.labels = [[NSArray alloc] initWithObjects:self.all, self.ballerinas, self.boots, self.brogues, self.espadrilles, self.flipflops, self.laceupshoe, self.loafers, self.mules, self.pumps, self.sandals, self.slippers, self.trainers, nil];
+    */
     self.selected = [UIImage imageNamed:@"selected.png"];
     self.notSelected = [UIImage imageNamed:@"not-selected.png"];
     
@@ -122,34 +132,61 @@
     for (int i = 0; i <13; i++) {
         // Iterate through the buttons
         if([[self.names objectAtIndex:i] isEqualToString:self.category]){
-            [[self.buttons objectAtIndex:i] setImage:self.selected forState:UIControlStateNormal];
+            [(UIImageView *)[self.icons objectAtIndex:i] setImage:self.selected];
         }
         else{
-            [[self.buttons objectAtIndex:i] setImage:self.notSelected forState:UIControlStateNormal];
+            [(UIImageView *)[self.icons objectAtIndex:i] setImage:self.notSelected];
         }
     }
     
+    UIFont *myFont = [UIFont fontWithName:@"Lato-Regular" size:12];
+    UIColor *myColor = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
+    
+    
     for(int i = 0; i <13; i++){
-        [[self.labels objectAtIndex:i] setTextColor:self.textColor];
-        [[self.labels objectAtIndex:i] setFont:self.font];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[[self.names objectAtIndex:i] uppercaseString]];
+        
+        [attributedString addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attributedString.length)];
+        
+        ((UILabel *)[self.labels objectAtIndex:i]).attributedText = attributedString;
+        [[self.labels objectAtIndex:i] setTextColor:myColor];
+        [[self.labels objectAtIndex:i] setFont:myFont];
     }
     
-    [self.categoryLabel setTextColor:self.textColor];
-    [self.categoryLabel setFont:self.font];
+    UIFont *headerFont = [UIFont fontWithName:@"Lato-Black" size:20];
     
-    UIImage *itemImage = [UIImage imageNamed:@"small-logo.png"];
-    [self.item setImage:itemImage forState:UIControlStateNormal];
+    [self.categoryLabel setTextColor:myColor];
+    [self.categoryLabel setFont:headerFont];
     
-    UIImage *menuImage = [UIImage imageNamed:@"menu-button"];
-    [self.menu setImage:menuImage];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"CATEGORIES"];
+    [attributedString addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attributedString.length)];
+    self.categoryLabel.attributedText = attributedString;
+    
+    [self.item setImage:[SoShoStyleKit imageOfBtnMainMenu] forState:UIControlStateNormal];
+    
+    //[self.menu setImage:menuImage];
     
     //[self.logout setTitleColor:self.textColor forState:UIControlStateNormal];
     self.logout.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [self.logout.titleLabel setFont:self.font];
-    [self.logout.titleLabel setTextColor:self.textColor];
+    [self.logout.titleLabel setFont:myFont];
+    [self.logout.titleLabel setTextColor:myColor];
     //[self.logout.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(320, 500)];
+    [self.scrollView setContentSize:CGSizeMake(320, 620)];
+    
+    [self.homeButton setImage:[SoShoStyleKit imageOfTabBarHomeActive] forState:UIControlStateNormal];
+    //[self.homeButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
+    //[self.wishlistButton setContentMode:UIViewContentModeScaleAspectFit];
+    [self.messagesButton setImage:[SoShoStyleKit imageOfTabBarMessagesInActive] forState:UIControlStateNormal];
+    //[self.messagesButton setContentMode:UIViewContentModeScaleAspectFit];
+    //[self.moreButton setImage:[SoShoStyleKit imageOfTabBarMoreInActive] forState:UIControlStateNormal];
+    //[self.moreButton setContentMode:UIViewContentModeScaleAspectFit];
+    // Add a topBorder.
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0, 0.0, self.tabBar.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor colorWithRed: 1 green: 0.463 blue: 0.376 alpha: 1].CGColor;
+    [self.tabBar.layer addSublayer:topBorder];
     
 }
 

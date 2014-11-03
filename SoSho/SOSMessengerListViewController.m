@@ -12,9 +12,16 @@
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSFacebookFriendTableViewCell.h"
 #import "SOSFacebookFriend.h"
+#import "SoShoStyleKit.h"
 
 @interface SOSMessengerListViewController () {
     NSArray *searchResults;
+    __weak IBOutlet UIButton *backButton;
+    __weak IBOutlet UIImageView *logo;
+    __weak IBOutlet UIView *tabbar;
+    __weak IBOutlet UIButton *homeButton;
+    __weak IBOutlet UIButton *wishlistButton;
+    __weak IBOutlet UIButton *messagesButton;
 }
 @property (nonatomic, strong) SOSFacebookFriendsDataController *friendsDataController;
 @end
@@ -31,6 +38,12 @@
     return self;
 }
 
+
+- (IBAction)unwindToMessenger:(UIStoryboardSegue *)unwindSegue
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,13 +52,25 @@
     [tracker set:kGAIScreenName value:@"Friendlist"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
+    [backButton setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
+    [logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
+    
+    [homeButton setImage:[SoShoStyleKit imageOfTabBarHomeInActive] forState:UIControlStateNormal];
+    [wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
+    [messagesButton setImage:[SoShoStyleKit imageOfTabBarMessagesActive] forState:UIControlStateNormal];
+    
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0, 0.0, tabbar.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor colorWithRed: 1 green: 0.463 blue: 0.376 alpha: 1].CGColor;
+    [tabbar.layer addSublayer:topBorder];
+    
     self.friendsDataController = [[SOSFacebookFriendsDataController alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+    
     
     
     [FBRequestConnection startForMyFriendsWithCompletionHandler:

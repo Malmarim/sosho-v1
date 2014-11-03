@@ -197,8 +197,15 @@
                 [self.image setImage:[[UIImage alloc] initWithData:data]];
             }
         }];
-        [self.product setText:[[self.favorite valueForKey:@"name"]uppercaseString]];
-        [self.designer setText:[[self.favorite valueForKey:@"store"]uppercaseString]];
+        
+        NSMutableAttributedString *attr1 = [[NSMutableAttributedString alloc] initWithString:[[self.favorite valueForKey:@"name"]uppercaseString]];
+        [attr1 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr1.length)];
+        self.product.attributedText = attr1;
+        
+        NSMutableAttributedString *attr2 = [[NSMutableAttributedString alloc] initWithString:[[self.favorite valueForKey:@"store"]uppercaseString]];
+        [attr2 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr2.length)];
+        self.designer.attributedText = attr2;
+
         [self.product sizeToFit];
         [self.designer sizeToFit];
         self.urlString = [self.favorite valueForKey:@"url"];
@@ -227,8 +234,14 @@
                     [self.image setImage:img];
                 }
             }];
-            [self.product setText:[[self.favorite valueForKey:@"name"]uppercaseString]];
-            [self.designer setText:[[self.favorite valueForKey:@"store"]uppercaseString]];
+            NSMutableAttributedString *attr1 = [[NSMutableAttributedString alloc] initWithString:[[self.favorite valueForKey:@"name"]uppercaseString]];
+            [attr1 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr1.length)];
+            self.product.attributedText = attr1;
+            
+            NSMutableAttributedString *attr2 = [[NSMutableAttributedString alloc] initWithString:[[self.favorite valueForKey:@"store"]uppercaseString]];
+            [attr2 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr2.length)];
+            self.designer.attributedText = attr2;
+
             [self.product sizeToFit];
             [self.designer sizeToFit];
             self.urlString = [self.favorite valueForKey:@"url"];
@@ -257,8 +270,14 @@
                             [self.image setImage:img];
                         }
                     }];
-                    [self.product setText:[[self.favorite valueForKey:@"name"]uppercaseString]];
-                    [self.designer setText:[[self.favorite valueForKey:@"store"]uppercaseString]];
+                    NSMutableAttributedString *attr1 = [[NSMutableAttributedString alloc] initWithString:[[self.favorite valueForKey:@"name"]uppercaseString]];
+                    [attr1 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr1.length)];
+                    self.product.attributedText = attr1;
+                    
+                    NSMutableAttributedString *attr2 = [[NSMutableAttributedString alloc] initWithString:[[self.favorite valueForKey:@"store"]uppercaseString]];
+                    [attr2 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr2.length)];
+                    self.designer.attributedText = attr2;
+
                     [self.product sizeToFit];
                     [self.designer sizeToFit];
                     self.urlString = [self.favorite valueForKey:@"url"];
@@ -303,6 +322,13 @@
     [self loadItem];
     //[self fetchVotes];
     //NSLog(@"Fetching vote");
+    
+    UIFont *font = [UIFont fontWithName:@"Lato-Regular" size:12];
+    UIColor *color = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
+    [self.designer setFont:font];
+    [self.designer setTextColor:color];
+    [self.product setFont:font];
+    [self.product setTextColor:color];
 }
 
 - (void)didReceiveMemoryWarning

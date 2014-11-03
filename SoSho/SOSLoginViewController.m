@@ -63,12 +63,15 @@
                                                            label:@"Login"          // Event label
                                                            value:nil] build]];    // Event value
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     if(self.vote){
         [self performSegueWithIdentifier:@"logintovote" sender:self];
     }
-    else{
+    else if([defaults objectForKey:@"seenTutorial"] == nil){
         [self performSegueWithIdentifier:@"logintotour" sender:self];
-        //[self performSegueWithIdentifier:@"logintoitem" sender:self];
+    }else{
+        [self performSegueWithIdentifier:@"logintoitem" sender:self];
     }
 }
 

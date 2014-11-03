@@ -153,22 +153,6 @@
     }
 }
 
-/*
-- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
-    if(sender.direction == UISwipeGestureRecognizerDirectionRight)
-    {
-        [self addFavorite];
-    }
-}
-
-- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
-    if(sender.direction == UISwipeGestureRecognizerDirectionLeft)
-    {
-        [self setNextItem];
-    }
-}
-*/
-
 - (IBAction)buttonTouched:(id)sender
 {
     [self resizeButton:(UIButton *) sender];

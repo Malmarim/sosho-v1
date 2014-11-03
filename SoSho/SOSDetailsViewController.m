@@ -207,9 +207,15 @@
             UIImage *shopImage = [SoShoStyleKit imageOfBTNBuyOnline];
             UIImage *shopped = [self drawPrice:[self.item valueForKey:@"price"] inImage:shopImage at:CGPointMake(370, 25)];
             [self.shopButton setImage:shopped forState:UIControlStateNormal];
-            [self.product setText:[[self.item valueForKey:@"name"]uppercaseString]];
-            [self.designer setText:[[self.item valueForKey:@"store"]uppercaseString]];
             
+            NSMutableAttributedString *attr1 = [[NSMutableAttributedString alloc] initWithString:[[self.item valueForKey:@"name"]uppercaseString]];
+            [attr1 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr1.length)];
+            self.product.attributedText = attr1;
+            
+            NSMutableAttributedString *attr2 = [[NSMutableAttributedString alloc] initWithString:[[self.item valueForKey:@"store"]uppercaseString]];
+            [attr2 addAttribute:NSKernAttributeName value:@(4.0) range:NSMakeRange(0, attr2.length)];
+            self.designer.attributedText = attr2;
+
             [self.product sizeToFit];
             [self.designer sizeToFit];
             self.url = [self.item valueForKey:@"url"];
@@ -255,12 +261,12 @@
     // Do any additional setup after loading the view.
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = [self.appDelegate managedObjectContext];
-    self.font = [UIFont fontWithName:@"Lato-Regular" size:18];
+    self.font = [UIFont fontWithName:@"Lato-Regular" size:12];
     self.textColor = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
-    //[self.store setFont:self.font];
-    //[self.store setTextColor:self.textColor];
-    //[self.name setFont:self.font];
-    //[self.name setTextColor:self.textColor];
+    [self.designer setFont:self.font];
+    [self.designer setTextColor:self.textColor];
+    [self.product setFont:self.font];
+    [self.product setTextColor:self.textColor];
     if([self.item valueForKey:@"image"] != nil){
         NSLog(@"Item set, using presets");
         [self presentProduct];
