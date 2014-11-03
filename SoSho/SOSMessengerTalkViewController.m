@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) NSString *friendId;
+@property (strong, nonatomic) NSString *fbId;
 
 @end
 
@@ -62,7 +63,13 @@
     [tracker set:kGAIScreenName value:@"Chat"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    self.friendId = @"test2";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.fbId = [defaults objectForKey:@"fbId"];
+    NSLog(@"own: %@", self.fbId);
+    
+    self.friendId = fbFriend.id;
+    NSLog(@"friend: %@", self.friendId);
     
     [backButton setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
     [logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
@@ -358,7 +365,7 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     // Friends fbId needs to be passed
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"friend == %@", @"test2"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"friend == %@", self.friendId];
     [request setPredicate:pred];
     NSError *error;
     messages = [[self.context executeFetchRequest:request error:&error] mutableCopy];
@@ -376,7 +383,7 @@
 
 -(void)fetchMessages{
     NSLog(@"Fetching messages");
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/messages/%@/%@", @"test1", @"test2"];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/messages/%@/%@", self.fbId, self.friendId];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -455,7 +462,7 @@
         NSString *url = @"http://soshoapp.herokuapp.com/message";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@", @"test1", @"test2", messageTextField.text];
+        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@", self.fbId, self.friendId, messageTextField.text];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -479,7 +486,7 @@
         NSString *url = @"http://soshoapp.herokuapp.com/message";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@&image=%@", @"test1", @"test2", @"",  _itemUrl];
+        NSString *params = [[NSString alloc] initWithFormat:@"sender=%@&recipent=%@&message=%@&image=%@", self.fbId, self.friendId, @"",  _itemUrl];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -506,7 +513,10 @@
     NSString *lastTime = [[messages lastObject] valueForKey:@"timestamp"];
     NSLog(@"Last time %@", lastTime);
     
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/newMessages/%@/%@/%@", @"test1", @"test2", lastTime];
+    if(lastTime == nil)
+        lastTime = [NSString stringWithFormat:@"%d", 0];
+    
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/newMessages/%@/%@/%@", self.fbId, self.friendId, lastTime];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -516,7 +526,7 @@
             newMessages = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             if([newMessages count ] > 0) {
                 // New messages, do something
-                NSLog(@"Message count: %d", [newMessages count]);
+                NSLog(@"Message count: %lu", (unsigned long)[newMessages count]);
                 NSLog(@"Message: %@", [newMessages objectAtIndex:0][@"message"]);
                 //[messages addObjectsFromArray:newMessages];
                 [self saveMessages:newMessages];
@@ -524,7 +534,7 @@
                 NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
                 [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
             }else{
-                NSLog(@"Unable to fetch items: %@", error.localizedDescription);
+                NSLog(@"No new messages found");
                 //[self showMessage:@"Unable to find new items, please try again later" withTitle:@"Error"];
             }
         }

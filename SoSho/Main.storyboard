@@ -383,6 +383,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-a2-SWE">
+                                <rect key="frame" x="0.0" y="85" width="320" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -1498,10 +1499,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="sU8-EG-D4w" secondAttribute="centerX" id="SKC-0X-2Py"/>
                             <constraint firstItem="sU8-EG-D4w" firstAttribute="top" secondItem="u52-zK-VX3" secondAttribute="bottom" constant="499" id="Swc-ZN-3In"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ihp-tS-y8Z" appends="YES" id="L0h-Nl-qsh"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="5fM-mz-cuu"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -1572,6 +1577,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey1-HK-k71" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="ihp-tS-y8Z">
+                    <connections>
+                        <segue destination="Kna-pb-C7F" kind="push" id="AyS-CR-3Pp"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3780" y="-4143"/>
         </scene>

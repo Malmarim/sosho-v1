@@ -42,13 +42,15 @@
 }
 
 - (IBAction)skipPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Skip tutorial?" message:@"Do you want to skip the tutorial, it will not be shown again." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Skip", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hide forever" message:@"Do you want hide the tutorial forever?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1){
         [self hideTutorial];
+    }else{
+        [self performSegueWithIdentifier:@"tourtoitem" sender:self];
     }
 }
 

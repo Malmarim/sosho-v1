@@ -107,12 +107,7 @@
                  for (NSDictionary<FBGraphUser>* friend in listOfFriends) {
                      NSString *imageUrl = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", friend.objectID];
                      [self.friendsDataController addFriend:friend.name withImage:imageUrl andId:friend.objectID];
-                 }
-                 
-                 // TEMPORARY TESTING DATA
-                 [self.friendsDataController addFriend:@"Test1" withImage:nil andId:@"test1"];
-                 [self.friendsDataController addFriend:@"Test2" withImage:nil andId:@"test2"];
-                 
+                 }                 
                  [activityView stopAnimating];
                  [self.friendsTableView reloadData];
              }
@@ -216,8 +211,13 @@
         NSIndexPath *path = [friendsTableView indexPathForSelectedRow];
         SOSFacebookFriend *friend = [self.friendsDataController friendAtIndex:path.row];
         [segue.destinationViewController setFriend:friend];
-        [segue.destinationViewController setItemImage:self.image];
-        [segue.destinationViewController setItemUrl:_imageUrl];
+        
+        if(self.image != nil){
+            NSLog(@"Image is not nil");
+            [segue.destinationViewController setItemImage:self.image];
+            [segue.destinationViewController setItemUrl:_imageUrl];
+        }else
+            NSLog(@"Image is nil");
     }
 }
 
