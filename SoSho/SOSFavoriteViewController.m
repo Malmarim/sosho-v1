@@ -36,9 +36,11 @@
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet UIImageView *yesIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *noIcon;
+@property (weak, nonatomic) IBOutlet UILabel *noVotes;
+@property (weak, nonatomic) IBOutlet UILabel *yesVotes;
 
 @property NSNumber *pid;
+
 
 @end
 
@@ -155,6 +157,36 @@
 }
 */
 
+// Fetch votes given to this shoe
+- (void) fetchVotes
+{
+    // Fetch votes, parse them, and set them visible
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/itemVotes/%ld", [self.pid longValue]];
+    NSURL * fetchURL = [NSURL URLWithString:url];
+    NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+        if(!error){
+            NSLog(@"No fetching errors");
+            NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
+            if(jsonData != nil){
+                NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+                NSString *yes = [NSString stringWithFormat:@"%@",[item valueForKey:@"yesVote"]];
+                NSString *no = [NSString stringWithFormat:@"%@",[item valueForKey:@"noVote"]];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.yesVotes setText:yes];
+                    [self.noVotes setText:no];
+                }];
+            }
+            else{
+                NSLog(@"Json null");
+            }
+        }else{
+            NSLog(@"No votes");
+        }
+    }];
+}
+
 -(UIImage *) drawPrice:(NSString *)text inImage:(UIImage *) image at:(CGPoint) point
 {
     UIGraphicsBeginImageContext(image.size);
@@ -173,7 +205,6 @@
     CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
     
     NSString *fontName = @"Lato-Black";
-    //NSString *fontName = @"PlayfairDisplay-Bold";
     
     NSDictionary *attrs = @{ NSFontAttributeName: [UIFont fontWithName:fontName size:36], NSForegroundColorAttributeName: [UIColor whiteColor]};
     [price drawInRect:CGRectIntegral(rect) withAttributes:attrs];
@@ -295,8 +326,8 @@
     [super viewDidLoad];
     self.screenName = @"Favorite";
     [self.share setImage:[SoShoStyleKit imageOfBTNAskAFriend] forState:UIControlStateNormal];
-    [self.noIcon setImage:[SoShoStyleKit imageOfIconInsideImageDislikes]];
-    [self.yesIcon setImage:[SoShoStyleKit imageOfIconInsideImageLikes]];
+    //[self.noIcon setImage:[SoShoStyleKit imageOfIconInsideImageDislikes]];
+    [self.yesIcon setImage:[SoShoStyleKit imageOfOne_bar_for_detail_screen]];
     [self.wishlist setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
     
     // Add a topBorder.
@@ -320,8 +351,7 @@
     //[self.moreButton setContentMode:UIViewContentModeScaleAspectFit];
     [self.logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
     [self loadItem];
-    //[self fetchVotes];
-    //NSLog(@"Fetching vote");
+    [self fetchVotes];
     
     UIFont *font = [UIFont fontWithName:@"Lato-Regular" size:12];
     UIColor *color = [UIColor colorWithRed:51/255.0 green:36/255.0 blue:45/255.0 alpha:1];
@@ -329,6 +359,12 @@
     [self.designer setTextColor:color];
     [self.product setFont:font];
     [self.product setTextColor:color];
+    
+    UIColor* heartColor = [UIColor colorWithRed: 0.216 green: 0.706 blue: 0.58 alpha: 1];
+    UIColor* dislikeColor = [UIColor colorWithRed: 0.988 green: 0.486 blue: 0.408 alpha: 1];
+    
+    [self.yesVotes setTextColor:heartColor];
+    [self.noVotes setTextColor:dislikeColor];
 }
 
 - (void)didReceiveMemoryWarning

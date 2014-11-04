@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet UIButton *wishlistButton;
 @property (weak, nonatomic) IBOutlet UIButton *messagesButton;
-//@property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UIView *tabBar;
 
 @property (weak, nonatomic) IBOutlet UIImageView *background;
@@ -113,7 +112,6 @@
     self.dragView.center = self.originalPoint;
 }
 
-
 - (void)resetViewPositionAndTransformations
 {
     [UIView animateWithDuration:0.2
@@ -153,17 +151,34 @@
     }
 }
 
+- (void) animateImage:(BOOL)liked
+{
+    [self setOverlayPic:liked];
+    self.overlay.alpha = 1;
+    //CGFloat distance = liked ? 400 : -400;
+    [UIView animateWithDuration:2.0
+                     animations:^{
+                         //self.dragView.center = CGPointMake(self.originalPoint.x+distance, self.originalPoint.y);
+                         self.overlay.alpha = 1;
+
+    }];
+    //self.dragView.center = self.originalPoint;
+    //[self resetPosition];
+}
+
 - (IBAction)buttonTouched:(id)sender
 {
     [self resizeButton:(UIButton *) sender];
     if((UIButton *) sender == self.like) {
         //[self resizeButton:self.like];
         [self sendEvent:@"Liked (button)"];
+        [self animateImage:TRUE];
         [self addFavorite];
     }else if ((UIButton *)sender == self.dis){
         //[self resizeButton:self.dis];
         [self sendEvent:@"Disliked (button)"];
-        [self setNextItem];
+        [self animateImage:FALSE];
+        [self postDislike];
     }
     else if((UIButton *)sender == self.menu){
         [self sendEvent:@"Options"];
@@ -388,26 +403,30 @@
 }
 
 // Use to post dislike to server
-/*
--(void) postDislike:(long) pid
+-(void) postDislike
 {
-    NSString *url = @"http://soshoapp.herokuapp.com/addDislike";
-    NSURL * fetchURL = [NSURL URLWithString:url];
-    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
-    NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&id=%ld", self.fbId, pid];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
-        if(!error){
+    if([self.displayItems count] > 0){
+
+        NSDictionary *item = [self.displayItems objectAtIndex:(NSUInteger)self.viewIndex];
+        NSString *url = @"http://soshoapp.herokuapp.com/addDislike";
+        NSURL * fetchURL = [NSURL URLWithString:url];
+        NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+        NSString *params = [[NSString alloc] initWithFormat:@"id=%ld", [[item valueForKey: @"id"] longValue]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+        NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
+            if(!error){
             //NSLog(@"No Error");
-        }
-        else{
-            //NSLog(@"Error");
-        }
-    }];
+            }
+            else{
+                //NSLog(@"Error");
+            }
+        }];
+        [self setNextItem];
+    }
 }
-*/
+
 
 // Select the next item from array
 - (void) setNextItem
@@ -529,10 +548,15 @@
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
             if (succeeded) {
                 [self loadBackgroundImage];
-                //NSLog(@"Image found");
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.image setImage:image];
+                    self.dragView.center = self.originalPoint;
                     [self.dragView setHidden:false];
+                    [UIView animateWithDuration:0.2 animations:^{
+                        self.overlay.alpha = 0;
+                    }];
+                    [UIView animateWithDuration:5.0 animations:^{
+                        [self.image setImage:image];
+                    }];
                 }];
             }else{
                 // If unable to load image, show next product instead
@@ -598,6 +622,8 @@
     [super viewDidLoad];
     
     self.screenName = @"Item";
+    
+    self.originalPoint = self.dragView.center;
     
     self.derp = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragged:)];
     [self.view addGestureRecognizer:self.derp];

@@ -18,7 +18,7 @@
     NSMutableArray *messages;
     NSMutableArray *newMessages;
     __weak IBOutlet UIButton *backButton;
-    __weak IBOutlet UIImageView *logo;
+    //__weak IBOutlet UIImageView *logo;
     __weak IBOutlet UIView *tabBar;
     __weak IBOutlet UIButton *homeButton;
     __weak IBOutlet UIButton *wishlistButton;
@@ -30,6 +30,7 @@
 
 @property (strong, nonatomic) NSString *friendId;
 @property (strong, nonatomic) NSString *fbId;
+@property (weak, nonatomic) IBOutlet UILabel *name;
 
 @end
 
@@ -72,7 +73,9 @@
     NSLog(@"friend: %@", self.friendId);
     
     [backButton setImage:[SoShoStyleKit imageOfBTNGoBack] forState:UIControlStateNormal];
-    [logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
+    //[logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
+    
+    [self.name setText:fbFriend.name];
     
     [homeButton setImage:[SoShoStyleKit imageOfTabBarHomeInActive] forState:UIControlStateNormal];
     [wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
@@ -379,6 +382,7 @@
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
         [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
     }
+    //[self requestNewMessages];
 }
 
 -(void)fetchMessages{
@@ -396,7 +400,7 @@
                 [self saveMessages:tempmessages];
             else{
                 // No messages, need to do something
-                NSLog(@"No messages");
+                NSLog(@"No new messages");
             }
             /*
             messages = [NSMutableArray arrayWithArray:tempmessages];

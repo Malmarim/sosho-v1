@@ -39,6 +39,7 @@
 @property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* overlaydeletewishlistIconTargets;
 @property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* wishlistRoundedRectangleTargets;
 @property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* dontDeleteKonvertiertTargets;
+@property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* one_bar_for_detail_screenTargets;
 
 // Drawing Methods
 + (void)drawBTNLoginWithFacebook;
@@ -65,6 +66,7 @@
 + (void)drawOverlaydeletewishlistIcon;
 + (void)drawWishlistRoundedRectangle;
 + (void)drawDontDeleteKonvertiert;
++ (void)drawOne_bar_for_detail_screen;
 
 // Generated Images
 + (UIImage*)imageOfBTNLoginWithFacebook;
@@ -91,5 +93,6 @@
 + (UIImage*)imageOfOverlaydeletewishlistIcon;
 + (UIImage*)imageOfWishlistRoundedRectangle;
 + (UIImage*)imageOfDontDeleteKonvertiert;
++ (UIImage*)imageOfOne_bar_for_detail_screen;
 
 @end

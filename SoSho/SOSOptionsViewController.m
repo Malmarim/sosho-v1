@@ -166,13 +166,10 @@
     
     //[self.menu setImage:menuImage];
     
-    //[self.logout setTitleColor:self.textColor forState:UIControlStateNormal];
     self.logout.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [self.logout.titleLabel setFont:myFont];
-    [self.logout.titleLabel setTextColor:myColor];
     //[self.logout.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(320, 620)];
+    [self.scrollView setContentSize:CGSizeMake(320, 650)];
     
     [self.homeButton setImage:[SoShoStyleKit imageOfTabBarHomeActive] forState:UIControlStateNormal];
     //[self.homeButton setContentMode:UIViewContentModeScaleAspectFit];

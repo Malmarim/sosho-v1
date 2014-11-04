@@ -16,6 +16,11 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -28,7 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="M6M-QF-s4c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0Tb-FF-a2f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splashscreen_large.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xkc-IP-vXu">
@@ -96,11 +101,20 @@
                                         <rect key="frame" x="0.0" y="1" width="270" height="270"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-5N-Ygv">
-                                        <rect key="frame" x="0.0" y="233" width="64" height="37"/>
+                                        <rect key="frame" x="0.0" y="233" width="270" height="37"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2s-cg-UGo">
-                                        <rect key="frame" x="206" y="233" width="64" height="37"/>
-                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzQ-vQ-mm9">
+                                        <rect key="frame" x="139" y="241" width="90" height="21"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" red="0.2156862745" green="0.70588235290000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" red="0.2156862745" green="0.70588235290000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0e-xG-cNB">
+                                        <rect key="frame" x="38" y="241" width="90" height="21"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49C-uZ-Teq" customClass="SOSLabel">
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -206,7 +220,7 @@
                         <outlet property="image" destination="DKx-aC-DP2" id="3t2-zX-85F"/>
                         <outlet property="logo" destination="mDc-UW-Xme" id="BQN-ch-6JU"/>
                         <outlet property="messagesButton" destination="gew-ay-lbn" id="YFJ-nS-wLd"/>
-                        <outlet property="noIcon" destination="e2s-cg-UGo" id="8da-N5-Fto"/>
+                        <outlet property="noVotes" destination="w0e-xG-cNB" id="O8w-q3-gb1"/>
                         <outlet property="product" destination="Vt2-Rv-cRR" id="2cq-C3-bZJ"/>
                         <outlet property="share" destination="uHp-3M-GWZ" id="kvP-yz-8xg"/>
                         <outlet property="store" destination="xPW-tE-Dp0" id="HvF-lf-rIH"/>
@@ -214,6 +228,7 @@
                         <outlet property="wishlist" destination="aFm-cv-Ecv" id="na6-dQ-avI"/>
                         <outlet property="wishlistButton" destination="m6o-Yj-xtx" id="BrU-xK-JRE"/>
                         <outlet property="yesIcon" destination="dh6-5N-Ygv" id="uXx-OT-UNg"/>
+                        <outlet property="yesVotes" destination="vzQ-vQ-mm9" id="Yya-GR-Gka"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Vb-wD-OQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -462,13 +477,6 @@
                                     <constraint firstAttribute="width" constant="320" id="h0E-lh-Pgk"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yK0-2Q-Ukc">
-                                <rect key="frame" x="116" y="30" width="88" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="lVo-pZ-ufW"/>
-                                    <constraint firstAttribute="height" constant="25" id="ph1-ch-bXq"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEM-vQ-XPP">
                                 <rect key="frame" x="25" y="30" width="56" height="25"/>
                                 <constraints>
@@ -482,11 +490,15 @@
                                     <segue destination="uLQ-jp-cbu" kind="unwind" unwindAction="unwindToMessenger:" id="Q7X-eI-p7O"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7i-6m-ESN">
+                                <rect key="frame" x="108" y="34" width="117" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="yK0-2Q-Ukc" secondAttribute="centerX" id="59H-kc-eiF"/>
-                            <constraint firstItem="yK0-2Q-Ukc" firstAttribute="top" secondItem="1D2-Qu-iIx" secondAttribute="bottom" constant="10" id="9Fw-80-1ai"/>
                             <constraint firstItem="yEM-vQ-XPP" firstAttribute="top" secondItem="1D2-Qu-iIx" secondAttribute="bottom" constant="10" id="f32-wN-sAT"/>
                             <constraint firstItem="aLV-YG-Uxz" firstAttribute="top" secondItem="WhH-XT-Ir6" secondAttribute="bottom" id="ljw-Zp-3ye"/>
                             <constraint firstAttribute="centerX" secondItem="WhH-XT-Ir6" secondAttribute="centerX" id="wCO-FF-ckh"/>
@@ -498,10 +510,10 @@
                         <outlet property="addPictureButton" destination="YVO-Cq-iTy" id="z3O-AF-vEY"/>
                         <outlet property="backButton" destination="yEM-vQ-XPP" id="XNn-48-5hj"/>
                         <outlet property="homeButton" destination="ZP6-ab-4rT" id="P8F-f5-kJC"/>
-                        <outlet property="logo" destination="yK0-2Q-Ukc" id="yWs-XQ-t33"/>
                         <outlet property="messageTextField" destination="rph-24-ZPq" id="kAE-05-XwL"/>
                         <outlet property="messagesButton" destination="YNr-nw-WOl" id="YGf-4H-MYm"/>
                         <outlet property="messengerTableView" destination="gjz-a2-SWE" id="7NE-Mk-ZQ7"/>
+                        <outlet property="name" destination="H7i-6m-ESN" id="FWW-ao-NoL"/>
                         <outlet property="sendingMessageView" destination="Dmp-Eu-ScD" id="hKa-Ac-Ab3"/>
                         <outlet property="tabBar" destination="WhH-XT-Ir6" id="bdE-9c-HFq"/>
                         <outlet property="wishlistButton" destination="b5O-V2-QZU" id="YON-R8-gE5"/>
@@ -657,6 +669,15 @@
                                     <segue destination="kib-kU-vfQ" kind="push" identifier="itemtodetails" id="xsL-JB-pa8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwt-v6-u00">
+                                <rect key="frame" x="22" y="27" width="30" height="30"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="maN-eb-rJL" kind="custom" customClass="SOSLeftSegue" id="jiE-II-Q55"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -700,7 +721,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjz-mu-ZTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3328" y="-4150"/>
+            <point key="canvasLocation" x="3336" y="-4116"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="GW9-PD-d72">
@@ -735,10 +756,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J2a-gE-5OH">
-                                        <rect key="frame" x="0.0" y="233" width="64" height="37"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-UP-SqR">
-                                        <rect key="frame" x="206" y="233" width="64" height="37"/>
+                                        <rect key="frame" x="0.0" y="233" width="270" height="37"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qS-Bp-gik" customClass="SOSLabel">
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -758,6 +776,18 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRh-Nx-Uy5">
+                                        <rect key="frame" x="38" y="241" width="90" height="21"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxJ-Gc-sqb">
+                                        <rect key="frame" x="139" y="241" width="90" height="21"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="textColor" red="0.2156862745" green="0.70588235290000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -802,6 +832,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonTouched:" destination="kib-kU-vfQ" eventType="touchUpInside" id="VvU-wy-zKW"/>
+                                    <segue destination="O8H-Pa-uIs" kind="push" identifier="share" id="9wF-bc-sPn"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vm-ly-RRD">
@@ -834,7 +865,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonTouched:" destination="kib-kU-vfQ" eventType="touchUpInside" id="F6j-n8-gG0"/>
-                                            <segue destination="EIK-Wp-3NB" kind="push" id="Mhi-OB-kVB"/>
+                                            <segue destination="EIK-Wp-3NB" kind="push" identifier="detailstowishlist" id="LGp-lX-mRE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -867,23 +898,24 @@
                         <outlet property="askButton" destination="PdC-Vj-5tc" id="R0d-tz-GX8"/>
                         <outlet property="back" destination="hIY-ob-5B7" id="2EV-6a-fac"/>
                         <outlet property="designer" destination="5Sl-5q-SZy" id="1dk-Dz-rH7"/>
-                        <outlet property="dislikes" destination="Tce-UP-SqR" id="6SD-eu-QNd"/>
                         <outlet property="homeButton" destination="Vku-tB-lgv" id="IBR-IQ-Y6A"/>
                         <outlet property="info" destination="Zds-Qr-VXm" id="mjf-4k-rOJ"/>
                         <outlet property="likes" destination="J2a-gE-5OH" id="CCu-RL-rVJ"/>
                         <outlet property="messagesButton" destination="c9V-oi-lui" id="sVo-DN-L01"/>
+                        <outlet property="noVotes" destination="dRh-Nx-Uy5" id="ic2-4h-2uJ"/>
                         <outlet property="product" destination="6qS-Bp-gik" id="Dbq-3k-cDx"/>
                         <outlet property="shoe" destination="y8k-ye-Ptb" id="bev-jJ-KlP"/>
                         <outlet property="shoeView" destination="mE2-Je-19Q" id="lx8-Fd-I5V"/>
                         <outlet property="shopButton" destination="DB4-L0-XpT" id="aAk-Dh-O1p"/>
                         <outlet property="tabBar" destination="5vm-ly-RRD" id="dVg-Nz-brJ"/>
                         <outlet property="wishlistButton" destination="hst-7c-4Nh" id="QvB-C0-Mnn"/>
+                        <outlet property="yesVotes" destination="HxJ-Gc-sqb" id="rXG-pz-djQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Er-XI-jui" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Z9w-bt-Slo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4285" y="-3056"/>
+            <point key="canvasLocation" x="3859" y="-3655"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="a8R-Ow-bbl">
@@ -1433,7 +1465,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktl-rf-cM8">
-                                        <rect key="frame" x="20" y="510" width="145" height="24"/>
+                                        <rect key="frame" x="20" y="515" width="145" height="30"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <state key="normal" title="LOG OUT">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1448,6 +1481,15 @@
                                     <outlet property="delegate" destination="maN-eb-rJL" id="mHM-Se-Aze"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uux-th-Wk7">
+                                <rect key="frame" x="269" y="30" width="26" height="25"/>
+                                <state key="normal" title="i">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Kna-pb-C7F" kind="push" id="RFK-eD-m89"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sU8-EG-D4w">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <subviews>
@@ -1488,13 +1530,13 @@
                                     <constraint firstAttribute="height" constant="49" id="eNl-q5-rcv"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uux-th-Wk7">
-                                <rect key="frame" x="269" y="30" width="26" height="25"/>
-                                <state key="normal" title="i">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS8-qW-Idk">
+                                <rect key="frame" x="268" y="26" width="30" height="30"/>
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Kna-pb-C7F" kind="push" id="RFK-eD-m89"/>
+                                    <segue destination="Kna-pb-C7F" kind="push" id="Ruy-ZZ-k2O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1598,10 +1640,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9Sk-hn-lws"/>
-        <segue reference="RFK-eD-m89"/>
+        <segue reference="9wF-bc-sPn"/>
+        <segue reference="FeM-3J-eD8"/>
         <segue reference="FCP-vK-xXS"/>
-        <segue reference="VJT-2J-0cc"/>
+        <segue reference="jiE-II-Q55"/>
+        <segue reference="LGp-lX-mRE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
 </document>

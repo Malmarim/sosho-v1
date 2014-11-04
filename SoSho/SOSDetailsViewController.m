@@ -27,7 +27,7 @@
 @property (strong, nonatomic) UIFont *font;
 
 @property (weak, nonatomic) IBOutlet UIImageView *likes;
-@property (weak, nonatomic) IBOutlet UIImageView *dislikes;
+//@property (weak, nonatomic) IBOutlet UIImageView *dislikes;
 
 @property (weak, nonatomic) IBOutlet SOSLabel *designer;
 @property (weak, nonatomic) IBOutlet SOSLabel *product;
@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *wishlistButton;
 @property (weak, nonatomic) IBOutlet UIButton *messagesButton;
 //@property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UILabel *yesVotes;
+@property (weak, nonatomic) IBOutlet UILabel *noVotes;
 
 @property NSString *url;
 
@@ -225,32 +227,35 @@
 
 
 // Fetch votes given to this shoe
-/*
 - (void) fetchVotes
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *fbId = [defaults valueForKey:@"fbId"];
     // Fetch votes, parse them, and set them visible
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/votes/%@/%ld", fbId, [self.pid longValue]];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/itemVotes/%ld", [self.pid longValue]];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
         if(!error){
-            NSLog(@"Votes fetched");
+            NSLog(@"No fetching errors");
             NSData * jsonData = [NSData dataWithContentsOfURL:fetchURL];
-            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-            NSString *yes = [NSString stringWithFormat:@"%@",[item valueForKey:@"yesVote"]];
-            NSString *no = [NSString stringWithFormat:@"%@",[item valueForKey:@"noVote"]];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.yesLabel setText:yes];
-                [self.noLabel setText:no];
-                self.urlString = [item valueForKey:@"applink"];
-            }];
+            if(jsonData != nil){
+               NSDictionary *item = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+                NSString *yes = [NSString stringWithFormat:@"%@",[item valueForKey:@"yesVote"]];
+                NSString *no = [NSString stringWithFormat:@"%@",[item valueForKey:@"noVote"]];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.yesVotes setText:yes];
+                    [self.noVotes setText:no];
+                }];
+
+            }
+            else{
+                NSLog(@"Json null");
+            }
+        }else{
+            NSLog(@"No votes");
         }
     }];
 }
-*/
 
 - (void)viewDidLoad
 {
@@ -299,9 +304,9 @@
     //[self.moreButton setImage:[SoShoStyleKit imageOfTabBarMoreInActive] forState:UIControlStateNormal];
     //[self.moreButton setContentMode:UIViewContentModeScaleAspectFit];
     
-    [self.likes setImage:[SoShoStyleKit imageOfIconInsideImageLikes]];
-    [self.dislikes setImage:[SoShoStyleKit imageOfIconInsideImageDislikes]];
-    
+    [self.likes setImage:[SoShoStyleKit imageOfOne_bar_for_detail_screen]];
+    //[self.dislikes setImage:[SoShoStyleKit imageOfIconInsideImageDislikes]];
+    [self fetchVotes];
 }
 
 - (void)didReceiveMemoryWarning

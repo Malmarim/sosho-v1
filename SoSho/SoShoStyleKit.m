@@ -39,6 +39,7 @@ static UIImage* _imageOfRoundedRectangleForHomeAndDetailPictures = nil;
 static UIImage* _imageOfOverlaydeletewishlistIcon = nil;
 static UIImage* _imageOfWishlistRoundedRectangle = nil;
 static UIImage* _imageOfDontDeleteKonvertiert = nil;
+static UIImage* _imageOfOne_bar_for_detail_screen = nil;
 
 #pragma mark Initialization
 
@@ -4502,6 +4503,118 @@ static UIImage* _imageOfDontDeleteKonvertiert = nil;
     [bezier44Path fill];
 }
 
+#pragma mark Drawing Methods
+
++ (void)drawOne_bar_for_detail_screen
+{
+    //// General Declarations
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //// Color Declarations
+    UIColor* roundedRectangleColor = [UIColor colorWithRed: 0.2 green: 0.141 blue: 0.176 alpha: 1];
+    UIColor* heartColor = [UIColor colorWithRed: 0.216 green: 0.706 blue: 0.58 alpha: 1];
+    UIColor* dislikeColor = [UIColor colorWithRed: 0.988 green: 0.486 blue: 0.408 alpha: 1];
+    
+    //// Group 2
+    {
+        CGContextSaveGState(context);
+        CGContextSetAlpha(context, 0.9);
+        CGContextBeginTransparencyLayer(context, NULL);
+        
+        
+        //// rounded rectangle Drawing
+        UIBezierPath* roundedRectanglePath = UIBezierPath.bezierPath;
+        [roundedRectanglePath moveToPoint: CGPointMake(533, 72)];
+        [roundedRectanglePath addLineToPoint: CGPointMake(6, 72)];
+        [roundedRectanglePath addCurveToPoint: CGPointMake(0, 66) controlPoint1: CGPointMake(2.69, 72) controlPoint2: CGPointMake(0, 69.31)];
+        [roundedRectanglePath addLineToPoint: CGPointMake(0, -0)];
+        [roundedRectanglePath addLineToPoint: CGPointMake(539, -0)];
+        [roundedRectanglePath addLineToPoint: CGPointMake(539, 66)];
+        [roundedRectanglePath addCurveToPoint: CGPointMake(533, 72) controlPoint1: CGPointMake(539, 69.31) controlPoint2: CGPointMake(536.31, 72)];
+        [roundedRectanglePath closePath];
+        [roundedRectangleColor setFill];
+        [roundedRectanglePath fill];
+        
+        
+        CGContextEndTransparencyLayer(context);
+        CGContextRestoreGState(context);
+    }
+    
+    
+    //// heart Drawing
+    UIBezierPath* heartPath = UIBezierPath.bezierPath;
+    [heartPath moveToPoint: CGPointMake(501.08, 20)];
+    [heartPath addCurveToPoint: CGPointMake(511, 30.13) controlPoint1: CGPointMake(506.55, 20) controlPoint2: CGPointMake(511, 24.54)];
+    [heartPath addCurveToPoint: CGPointMake(507.73, 37.65) controlPoint1: CGPointMake(511, 32.99) controlPoint2: CGPointMake(509.81, 35.73)];
+    [heartPath addCurveToPoint: CGPointMake(507.43, 37.98) controlPoint1: CGPointMake(507.62, 37.75) controlPoint2: CGPointMake(507.52, 37.86)];
+    [heartPath addLineToPoint: CGPointMake(493.58, 52.04)];
+    [heartPath addCurveToPoint: CGPointMake(491.5, 53.93) controlPoint1: CGPointMake(492.99, 52.64) controlPoint2: CGPointMake(492.04, 53.6)];
+    [heartPath addCurveToPoint: CGPointMake(489.42, 52.04) controlPoint1: CGPointMake(490.96, 53.6) controlPoint2: CGPointMake(490.02, 52.64)];
+    [heartPath addLineToPoint: CGPointMake(475.58, 37.98)];
+    [heartPath addCurveToPoint: CGPointMake(475.28, 37.65) controlPoint1: CGPointMake(475.49, 37.86) controlPoint2: CGPointMake(475.39, 37.75)];
+    [heartPath addCurveToPoint: CGPointMake(472, 30.13) controlPoint1: CGPointMake(473.19, 35.73) controlPoint2: CGPointMake(472, 32.99)];
+    [heartPath addCurveToPoint: CGPointMake(481.93, 20) controlPoint1: CGPointMake(472, 24.54) controlPoint2: CGPointMake(476.45, 20)];
+    [heartPath addCurveToPoint: CGPointMake(489.27, 23.3) controlPoint1: CGPointMake(484.71, 20) controlPoint2: CGPointMake(487.39, 21.2)];
+    [heartPath addCurveToPoint: CGPointMake(491.5, 24.31) controlPoint1: CGPointMake(489.83, 23.94) controlPoint2: CGPointMake(490.65, 24.31)];
+    [heartPath addLineToPoint: CGPointMake(491.5, 24.31)];
+    [heartPath addCurveToPoint: CGPointMake(493.74, 23.3) controlPoint1: CGPointMake(492.36, 24.31) controlPoint2: CGPointMake(493.17, 23.94)];
+    [heartPath addCurveToPoint: CGPointMake(501.08, 20) controlPoint1: CGPointMake(495.62, 21.2) controlPoint2: CGPointMake(498.29, 20)];
+    [heartPath closePath];
+    [heartPath moveToPoint: CGPointMake(501.08, 17)];
+    [heartPath addCurveToPoint: CGPointMake(491.5, 21.31) controlPoint1: CGPointMake(497.28, 17) controlPoint2: CGPointMake(493.87, 18.66)];
+    [heartPath addCurveToPoint: CGPointMake(481.93, 17) controlPoint1: CGPointMake(489.14, 18.66) controlPoint2: CGPointMake(485.72, 17)];
+    [heartPath addCurveToPoint: CGPointMake(469, 30.13) controlPoint1: CGPointMake(474.79, 17) controlPoint2: CGPointMake(469, 22.88)];
+    [heartPath addCurveToPoint: CGPointMake(473.24, 39.86) controlPoint1: CGPointMake(469, 33.99) controlPoint2: CGPointMake(470.64, 37.45)];
+    [heartPath addLineToPoint: CGPointMake(473.22, 39.86)];
+    [heartPath addLineToPoint: CGPointMake(487.28, 54.14)];
+    [heartPath addCurveToPoint: CGPointMake(491.5, 57) controlPoint1: CGPointMake(488.69, 55.57) controlPoint2: CGPointMake(490.1, 57)];
+    [heartPath addCurveToPoint: CGPointMake(495.72, 54.14) controlPoint1: CGPointMake(492.91, 57) controlPoint2: CGPointMake(494.32, 55.57)];
+    [heartPath addLineToPoint: CGPointMake(509.79, 39.86)];
+    [heartPath addLineToPoint: CGPointMake(509.76, 39.86)];
+    [heartPath addCurveToPoint: CGPointMake(514.01, 30.13) controlPoint1: CGPointMake(512.37, 37.45) controlPoint2: CGPointMake(514.01, 33.99)];
+    [heartPath addCurveToPoint: CGPointMake(501.08, 17) controlPoint1: CGPointMake(514.01, 22.88) controlPoint2: CGPointMake(508.22, 17)];
+    [heartPath addLineToPoint: CGPointMake(501.08, 17)];
+    [heartPath closePath];
+    [heartColor setFill];
+    [heartPath fill];
+    
+    
+    //// dislike Drawing
+    UIBezierPath* dislikePath = UIBezierPath.bezierPath;
+    [dislikePath moveToPoint: CGPointMake(59, 21.99)];
+    [dislikePath addCurveToPoint: CGPointMake(59, 50.94) controlPoint1: CGPointMake(67, 29.99) controlPoint2: CGPointMake(67, 42.94)];
+    [dislikePath addCurveToPoint: CGPointMake(30.03, 50.94) controlPoint1: CGPointMake(51, 58.93) controlPoint2: CGPointMake(38.03, 58.93)];
+    [dislikePath addCurveToPoint: CGPointMake(30.03, 21.99) controlPoint1: CGPointMake(22.03, 42.94) controlPoint2: CGPointMake(22.03, 29.99)];
+    [dislikePath addCurveToPoint: CGPointMake(59, 21.99) controlPoint1: CGPointMake(38.03, 14) controlPoint2: CGPointMake(51, 14)];
+    [dislikePath closePath];
+    [dislikePath moveToPoint: CGPointMake(31.8, 49.17)];
+    [dislikePath addCurveToPoint: CGPointMake(57.23, 49.17) controlPoint1: CGPointMake(38.82, 56.18) controlPoint2: CGPointMake(50.21, 56.18)];
+    [dislikePath addCurveToPoint: CGPointMake(57.23, 23.76) controlPoint1: CGPointMake(64.25, 42.15) controlPoint2: CGPointMake(64.25, 30.78)];
+    [dislikePath addCurveToPoint: CGPointMake(31.8, 23.76) controlPoint1: CGPointMake(50.21, 16.75) controlPoint2: CGPointMake(38.82, 16.75)];
+    [dislikePath addCurveToPoint: CGPointMake(31.8, 49.17) controlPoint1: CGPointMake(24.78, 30.78) controlPoint2: CGPointMake(24.78, 42.15)];
+    [dislikePath closePath];
+    [dislikePath moveToPoint: CGPointMake(39.19, 29.02)];
+    [dislikePath addCurveToPoint: CGPointMake(37.06, 29.02) controlPoint1: CGPointMake(38.61, 28.43) controlPoint2: CGPointMake(37.65, 28.43)];
+    [dislikePath addCurveToPoint: CGPointMake(37.06, 31.14) controlPoint1: CGPointMake(36.48, 29.61) controlPoint2: CGPointMake(36.48, 30.56)];
+    [dislikePath addLineToPoint: CGPointMake(42.38, 36.46)];
+    [dislikePath addLineToPoint: CGPointMake(37.06, 41.77)];
+    [dislikePath addCurveToPoint: CGPointMake(37.06, 43.9) controlPoint1: CGPointMake(36.48, 42.36) controlPoint2: CGPointMake(36.48, 43.31)];
+    [dislikePath addCurveToPoint: CGPointMake(39.19, 43.9) controlPoint1: CGPointMake(37.65, 44.49) controlPoint2: CGPointMake(38.61, 44.49)];
+    [dislikePath addLineToPoint: CGPointMake(44.51, 38.59)];
+    [dislikePath addLineToPoint: CGPointMake(49.83, 43.9)];
+    [dislikePath addCurveToPoint: CGPointMake(51.96, 43.9) controlPoint1: CGPointMake(50.42, 44.49) controlPoint2: CGPointMake(51.37, 44.49)];
+    [dislikePath addCurveToPoint: CGPointMake(51.96, 41.77) controlPoint1: CGPointMake(52.55, 43.31) controlPoint2: CGPointMake(52.55, 42.36)];
+    [dislikePath addLineToPoint: CGPointMake(46.64, 36.46)];
+    [dislikePath addLineToPoint: CGPointMake(51.96, 31.14)];
+    [dislikePath addCurveToPoint: CGPointMake(51.96, 29.02) controlPoint1: CGPointMake(52.55, 30.56) controlPoint2: CGPointMake(52.55, 29.61)];
+    [dislikePath addCurveToPoint: CGPointMake(49.83, 29.02) controlPoint1: CGPointMake(51.37, 28.43) controlPoint2: CGPointMake(50.42, 28.43)];
+    [dislikePath addLineToPoint: CGPointMake(44.51, 34.33)];
+    [dislikePath addLineToPoint: CGPointMake(39.19, 29.02)];
+    [dislikePath closePath];
+    [dislikeColor setFill];
+    [dislikePath fill];
+}
+
 #pragma mark Generated Images
 
 + (UIImage*)imageOfBTNLoginWithFacebook
@@ -4840,6 +4953,20 @@ static UIImage* _imageOfDontDeleteKonvertiert = nil;
     return _imageOfDontDeleteKonvertiert;
 }
 
++ (UIImage*)imageOfOne_bar_for_detail_screen
+{
+    if (_imageOfOne_bar_for_detail_screen)
+        return _imageOfOne_bar_for_detail_screen;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(539, 72), NO, 0.0f);
+    [SoShoStyleKit drawOne_bar_for_detail_screen];
+    
+    _imageOfOne_bar_for_detail_screen = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return _imageOfOne_bar_for_detail_screen;
+}
+
 #pragma mark Customization Infrastructure
 
 - (void)setBTNLoginWithFacebookTargets: (NSArray*)bTNLoginWithFacebookTargets
@@ -5034,5 +5161,12 @@ static UIImage* _imageOfDontDeleteKonvertiert = nil;
         [target setImage: SoShoStyleKit.imageOfDontDeleteKonvertiert];
 }
 
+- (void)setOne_bar_for_detail_screenTargets: (NSArray*)one_bar_for_detail_screenTargets
+{
+    _one_bar_for_detail_screenTargets = one_bar_for_detail_screenTargets;
+    
+    for (id target in self.one_bar_for_detail_screenTargets)
+        [target setImage: SoShoStyleKit.imageOfOne_bar_for_detail_screen];
+}
 
 @end
