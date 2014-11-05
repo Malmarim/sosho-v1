@@ -70,18 +70,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    
-    [FBRequestConnection startForMyFriendsWithCompletionHandler:
-     ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
-     {
-         if(!error){
-             //NSLog(@"results = %@", friends);
-         }
-     }
-     ];
- 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,7 +84,7 @@
         [activityView startAnimating];
         
         [self.view addSubview:activityView];
-        
+        /*
         [FBRequestConnection startForMyFriendsWithCompletionHandler:
          ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
          {
@@ -113,6 +101,7 @@
              }
          }
          ];
+        */
     }
     
     NSIndexPath *selected = [friendsTableView indexPathForSelectedRow];
