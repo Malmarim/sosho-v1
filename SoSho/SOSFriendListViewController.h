@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SOSFriendListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
+@interface SOSFriendListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @end

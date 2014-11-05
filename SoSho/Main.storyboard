@@ -21,6 +21,8 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -33,7 +35,7 @@
                         <viewControllerLayoutGuide type="bottom" id="M6M-QF-s4c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0Tb-FF-a2f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splashscreen_large.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xkc-IP-vXu">
@@ -115,7 +117,7 @@
                                         <color key="textColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="highlightedColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49C-uZ-Teq" customClass="SOSLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49C-uZ-Teq" customClass="SOSLabel">
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="256" id="tIr-53-Opp"/>
@@ -125,7 +127,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vt2-Rv-cRR" customClass="SOSLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vt2-Rv-cRR" customClass="SOSLabel">
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="256" id="hg6-SU-to3"/>
@@ -164,7 +166,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="O8H-Pa-uIs" kind="push" identifier="favoritetomessages" id="WAB-yM-68B"/>
+                                            <segue destination="9lv-VD-eJf" kind="push" id="hde-pc-PPL"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6o-Yj-xtx">
@@ -196,7 +198,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="O8H-Pa-uIs" kind="push" identifier="messenger" id="XvQ-2y-QbG"/>
+                                    <segue destination="9lv-VD-eJf" kind="push" id="6Jg-7G-tFD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -259,6 +261,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="khI-Js-Xaz">
                                 <rect key="frame" x="0.0" y="129" width="320" height="390"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -428,7 +431,7 @@
                                             <action selector="sendMessageAction:" destination="lbt-0M-ZgF" eventType="touchUpInside" id="Ybn-yv-Itr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVO-Cq-iTy">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVO-Cq-iTy">
                                         <rect key="frame" x="213" y="18" width="22" height="22"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -458,7 +461,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="uLQ-jp-cbu" kind="unwind" unwindAction="unwindToMessenger:" id="T64-LS-J0s"/>
+                                            <segue destination="uLQ-jp-cbu" kind="unwind" unwindAction="unwindToFriendList:" id="Kg1-4P-vhE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5O-V2-QZU">
@@ -487,7 +490,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="uLQ-jp-cbu" kind="unwind" unwindAction="unwindToMessenger:" id="Q7X-eI-p7O"/>
+                                    <segue destination="uLQ-jp-cbu" kind="unwind" unwindAction="unwindToFriendList:" id="Trs-LE-XSO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7i-6m-ESN">
@@ -522,7 +525,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1B-lr-WDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="uLQ-jp-cbu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5229" y="-2956"/>
+            <point key="canvasLocation" x="2943" y="-3581"/>
         </scene>
         <!--Item-->
         <scene sceneID="0yt-Mo-qHI">
@@ -635,7 +638,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonTouched:" destination="Kna-pb-C7F" eventType="touchUpInside" id="i3p-bg-ggG"/>
-                                            <segue destination="O8H-Pa-uIs" kind="push" identifier="itemtomessages" id="xGd-Go-wcM"/>
+                                            <segue destination="9lv-VD-eJf" kind="push" id="S4R-QN-1X2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRC-go-E9i">
@@ -758,7 +761,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J2a-gE-5OH">
                                         <rect key="frame" x="0.0" y="233" width="270" height="37"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qS-Bp-gik" customClass="SOSLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qS-Bp-gik" customClass="SOSLabel">
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="256" id="OL2-4k-JY5"/>
@@ -768,7 +771,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sl-5q-SZy" customClass="SOSLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sl-5q-SZy" customClass="SOSLabel">
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="256" id="Xvi-Na-jFe"/>
@@ -832,7 +835,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonTouched:" destination="kib-kU-vfQ" eventType="touchUpInside" id="VvU-wy-zKW"/>
-                                    <segue destination="O8H-Pa-uIs" kind="push" identifier="share" id="9wF-bc-sPn"/>
+                                    <segue destination="9lv-VD-eJf" kind="push" id="oe6-Ap-zB4"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vm-ly-RRD">
@@ -855,7 +858,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonTouched:" destination="kib-kU-vfQ" eventType="touchUpInside" id="MNf-HG-IWS"/>
-                                            <segue destination="O8H-Pa-uIs" kind="push" identifier="detailstomessages" id="9Sk-hn-lws"/>
+                                            <segue destination="9lv-VD-eJf" kind="push" id="Nrd-NZ-HLx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hst-7c-4Nh">
@@ -915,7 +918,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Er-XI-jui" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Z9w-bt-Slo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3859" y="-3655"/>
+            <point key="canvasLocation" x="3954" y="-3445"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="a8R-Ow-bbl">
@@ -991,7 +994,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="O8H-Pa-uIs" kind="push" id="GVJ-G2-bWG"/>
+                                            <segue destination="9lv-VD-eJf" kind="push" id="IU3-8S-zhs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mq6-1b-9kX">
@@ -1084,7 +1087,144 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3866" y="-2973"/>
+            <point key="canvasLocation" x="3836" y="-2824"/>
+        </scene>
+        <!--Friend List View Controller-->
+        <scene sceneID="k3r-1f-Wvi">
+            <objects>
+                <viewController id="9lv-VD-eJf" customClass="SOSFriendListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fAW-HP-V1c"/>
+                        <viewControllerLayoutGuide type="bottom" id="QQZ-6o-qSZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Ko-05-o3s">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Fe-K7-w4W">
+                                <rect key="frame" x="0.0" y="129" width="320" height="390"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="45" id="Xwd-BH-kjQ" customClass="SOSFriendListViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FriendCell" tableViewCell="Xwd-BH-kjQ" id="Tvh-gA-SLM">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wp7-IB-2Ug">
+                                                    <rect key="frame" x="10" y="8" width="30" height="30"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Va4-9e-PeA">
+                                                    <rect key="frame" x="48" y="22" width="264" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv8-D9-uUs">
+                                                    <rect key="frame" x="48" y="0.0" width="253" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="message" destination="Va4-9e-PeA" id="SvF-1w-n3s"/>
+                                            <outlet property="name" destination="Dv8-D9-uUs" id="t49-pT-mFK"/>
+                                            <outlet property="picture" destination="wp7-IB-2Ug" id="njt-bR-aKN"/>
+                                            <segue destination="lbt-0M-ZgF" kind="push" identifier="toMessenger" id="bN4-k1-wTO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKs-Tm-ByA">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsN-9W-eVS">
+                                        <rect key="frame" x="38" y="10" width="43" height="32"/>
+                                        <state key="normal" title="A">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="yHy-Hf-QNL" kind="unwind" unwindAction="unwindToItem:" id="NeN-rs-P7T"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFN-iN-upU">
+                                        <rect key="frame" x="239" y="10" width="43" height="32"/>
+                                        <state key="normal" title="C">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gtu-9z-yHW">
+                                        <rect key="frame" x="139" y="10" width="43" height="32"/>
+                                        <state key="normal" title="B">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="EIK-Wp-3NB" kind="custom" customClass="SOSLeftSegue" id="v0U-4a-ttU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="M0h-Ns-bek"/>
+                                    <constraint firstAttribute="width" constant="320" id="Rmv-sf-XHx"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kUR-yW-Euc">
+                                <rect key="frame" x="116" y="30" width="88" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Tsz-pt-H5E"/>
+                                    <constraint firstAttribute="width" constant="88" id="i5z-g2-MYw"/>
+                                </constraints>
+                            </imageView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-K0-jJx">
+                                <rect key="frame" x="0.0" y="85" width="320" height="44"/>
+                                <color key="barTintColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9lv-VD-eJf" id="qiX-ds-7cA"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="kUR-yW-Euc" secondAttribute="centerX" id="GXW-sB-xoi"/>
+                            <constraint firstItem="fKs-Tm-ByA" firstAttribute="top" secondItem="fAW-HP-V1c" secondAttribute="bottom" constant="499" id="aeU-Rh-Dx1"/>
+                            <constraint firstItem="kUR-yW-Euc" firstAttribute="top" secondItem="fAW-HP-V1c" secondAttribute="bottom" constant="10" id="ejq-zK-0BD"/>
+                            <constraint firstAttribute="centerX" secondItem="fKs-Tm-ByA" secondAttribute="centerX" id="q0l-Fp-Psx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2f4-77-Riw"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="homeButton" destination="QsN-9W-eVS" id="SMC-U0-uMq"/>
+                        <outlet property="logo" destination="kUR-yW-Euc" id="bDa-Vy-8bD"/>
+                        <outlet property="messagesButton" destination="wFN-iN-upU" id="fwf-Wf-TS1"/>
+                        <outlet property="searchBar" destination="QGb-K0-jJx" id="EDh-Pr-sc4"/>
+                        <outlet property="searchDisplayController" destination="VCr-0s-Csu" id="0jo-e4-ZKe"/>
+                        <outlet property="tabBar" destination="fKs-Tm-ByA" id="gex-kx-S3x"/>
+                        <outlet property="table" destination="5Fe-K7-w4W" id="PP6-uh-tlN"/>
+                        <outlet property="wishlistButton" destination="Gtu-9z-yHW" id="ZIm-rP-jfs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vff-MK-0hy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yHy-Hf-QNL" userLabel="Exit" sceneMemberID="exit"/>
+                <searchDisplayController id="VCr-0s-Csu">
+                    <connections>
+                        <outlet property="delegate" destination="9lv-VD-eJf" id="1AR-Df-rjw"/>
+                        <outlet property="searchBar" destination="QGb-K0-jJx" id="JwQ-j7-f3l"/>
+                        <outlet property="searchContentsController" destination="9lv-VD-eJf" id="igM-Lf-9jR"/>
+                        <outlet property="searchResultsDataSource" destination="9lv-VD-eJf" id="nac-Gw-KGO"/>
+                        <outlet property="searchResultsDelegate" destination="9lv-VD-eJf" id="uVy-um-fJj"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="3399" y="-3506"/>
         </scene>
         <!--Votes View Controller-->
         <scene sceneID="hts-us-JKm">
@@ -1510,7 +1650,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonTouched:" destination="kib-kU-vfQ" eventType="touchUpInside" id="Pcp-Hx-ypg"/>
-                                            <segue destination="O8H-Pa-uIs" kind="push" id="UDs-Pq-acf"/>
+                                            <segue destination="9lv-VD-eJf" kind="push" id="rW2-3T-uY3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S68-cW-bxh">
@@ -1640,11 +1780,12 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9wF-bc-sPn"/>
-        <segue reference="FeM-3J-eD8"/>
-        <segue reference="FCP-vK-xXS"/>
-        <segue reference="jiE-II-Q55"/>
         <segue reference="LGp-lX-mRE"/>
+        <segue reference="fyO-Zo-upI"/>
+        <segue reference="jiE-II-Q55"/>
+        <segue reference="FCP-vK-xXS"/>
+        <segue reference="oe6-Ap-zB4"/>
+        <segue reference="bN4-k1-wTO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.89019607840000003" green="0.4039215686" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
 </document>

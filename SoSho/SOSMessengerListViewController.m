@@ -84,7 +84,7 @@
         [activityView startAnimating];
         
         [self.view addSubview:activityView];
-        /*
+        
         [FBRequestConnection startForMyFriendsWithCompletionHandler:
          ^(FBRequestConnection *connection, id<FBGraphUser> friends, NSError *error)
          {
@@ -101,7 +101,7 @@
              }
          }
          ];
-        */
+        
     }
     
     NSIndexPath *selected = [friendsTableView indexPathForSelectedRow];

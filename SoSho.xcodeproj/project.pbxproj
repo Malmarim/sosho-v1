@@ -32,6 +32,7 @@
 		CC1F37301A067BCC00742DEE /* tour2.png in Resources */ = {isa = PBXBuildFile; fileRef = CC1F372E1A067BCC00742DEE /* tour2.png */; };
 		CC1F37331A06AB4100742DEE /* SOSLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F37321A06AB4100742DEE /* SOSLeftSegue.m */; };
 		CC1F37361A0A3ED300742DEE /* SOSFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F37351A0A3ED300742DEE /* SOSFriendListViewController.m */; };
+		CC1F373D1A0A5CBD00742DEE /* SOSFriendListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC1F373C1A0A5CBD00742DEE /* SOSFriendListViewCell.m */; };
 		CC2BB66A1985B76E0097E3BC /* not-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB6691985B76E0097E3BC /* not-selected.png */; };
 		CC2BB66C1985B7730097E3BC /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2BB66B1985B7730097E3BC /* selected.png */; };
 		CC37C8A51946EEF800C4F964 /* SOSFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC37C8A41946EEF800C4F964 /* SOSFavoriteViewController.m */; };
@@ -161,6 +162,8 @@
 		CC1F37321A06AB4100742DEE /* SOSLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSLeftSegue.m; sourceTree = "<group>"; };
 		CC1F37341A0A3ED300742DEE /* SOSFriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFriendListViewController.h; sourceTree = "<group>"; };
 		CC1F37351A0A3ED300742DEE /* SOSFriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFriendListViewController.m; sourceTree = "<group>"; };
+		CC1F373B1A0A5CBD00742DEE /* SOSFriendListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFriendListViewCell.h; sourceTree = "<group>"; };
+		CC1F373C1A0A5CBD00742DEE /* SOSFriendListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSFriendListViewCell.m; sourceTree = "<group>"; };
 		CC2BB6691985B76E0097E3BC /* not-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "not-selected.png"; path = "images/not-selected.png"; sourceTree = "<group>"; };
 		CC2BB66B1985B7730097E3BC /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = images/selected.png; sourceTree = "<group>"; };
 		CC37C8A31946EEF800C4F964 /* SOSFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSFavoriteViewController.h; sourceTree = "<group>"; };
@@ -340,6 +343,10 @@
 				CCB3490419260428007EBCE3 /* Main.storyboard */,
 				CC1F370E1A058A5E00742DEE /* SOSTourViewController.h */,
 				CC1F370F1A058A5E00742DEE /* SOSTourViewController.m */,
+				CC1F373B1A0A5CBD00742DEE /* SOSFriendListViewCell.h */,
+				CC1F373C1A0A5CBD00742DEE /* SOSFriendListViewCell.m */,
+				CC1F37341A0A3ED300742DEE /* SOSFriendListViewController.h */,
+				CC1F37351A0A3ED300742DEE /* SOSFriendListViewController.m */,
 				CC1F37311A06AB4100742DEE /* SOSLeftSegue.h */,
 				CC1F37321A06AB4100742DEE /* SOSLeftSegue.m */,
 				CC1F37081A0558F400742DEE /* SOSCollectionViewLayout.h */,
@@ -378,8 +385,6 @@
 				CCDD56B619A5F02600DA21EB /* UICollectionView+EmptyState.m */,
 				B1A2190419AA6D1E0029B420 /* SOSMessengerListViewController.h */,
 				B1A2190519AA6D1E0029B420 /* SOSMessengerListViewController.m */,
-				CC1F37341A0A3ED300742DEE /* SOSFriendListViewController.h */,
-				CC1F37351A0A3ED300742DEE /* SOSFriendListViewController.m */,
 				B13EA3C119C18D6900B47C70 /* SOSMessengerTalkViewController.h */,
 				B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */,
 				B1A2190C19AA930E0029B420 /* SOSFacebookFriend.h */,
@@ -694,6 +699,7 @@
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
 				CCD14D7C194094A700E555CC /* SOSFavoritesViewController.m in Sources */,
+				CC1F373D1A0A5CBD00742DEE /* SOSFriendListViewCell.m in Sources */,
 				CC1F370A1A0558F500742DEE /* SOSCollectionViewLayout.m in Sources */,
 				B1A2191119AA94000029B420 /* SOSFacebookFriendsDataController.m in Sources */,
 				CCC36B641A04285700C91F7A /* SOSLabel.m in Sources */,
