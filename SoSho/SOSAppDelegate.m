@@ -73,6 +73,9 @@
 			//NSLog(@"Launched from push notification: %@", dictionary);
             if([[dictionary valueForKey:@"type"] isEqualToString:@"vote"]){
                 [self voteReceivedMessage:[dictionary valueForKey:@"name"]];
+            }else if([[dictionary valueForKey:@"type"] isEqualToString:@"message"]){
+                // Hand message
+                NSLog(@"Message");
             }
 		}
 	}
@@ -86,7 +89,6 @@
         }
     }*/
     
-    
     return YES;
 }
 
@@ -97,6 +99,9 @@
         //NSLog(@"Message received %@ active", userInfo);
         if([[userInfo valueForKey:@"type"] isEqualToString:@"vote"]){
             [self voteReceivedMessage:[userInfo valueForKey:@"name"]];
+        }else if([[userInfo valueForKey:@"type"] isEqualToString:@"message"]){
+            // Handle push notification
+            NSLog(@"Message");
         }
     }
     // app was just brought from background to foreground
@@ -104,9 +109,11 @@
         //NSLog(@"Message received %@ background", userInfo);
         if([[userInfo valueForKey:@"type"] isEqualToString:@"vote"]){
             [self voteReceivedMessage:[userInfo valueForKey:@"name"]];
+        }else if([[userInfo valueForKey:@"type"] isEqualToString:@"message"]){
+            // Handle push notification
+            NSLog(@"Message");
         }
     }
-    
 }
 
 - (void) voteReceivedMessage:(NSString *)name

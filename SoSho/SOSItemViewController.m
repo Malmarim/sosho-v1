@@ -352,13 +352,15 @@
         NSString *params = [[NSString alloc] initWithFormat:@"fbId=%@&pushtoken=%@&first_name=%@&last_name=%@&gender=%@&email=%@&location=%@&birthday=%@", self.fbId, self.pushtoken, [self.user valueForKey:@"first_name"], [self.user valueForKey:@"last_name"], [self.user valueForKey:@"gender"], [self.user valueForKey:@"email"], [self.user objectForKey:@"location"][@"name"], [self.user objectForKey:@"birthday"]];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+        NSLog(@"%@", params);
         NSOperationQueue * queue = [[NSOperationQueue alloc]init];
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse * response, NSData * data,   NSError * error) {
             if(!error){
-                //NSLog(@"No Error");
+                NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+                NSLog(@"No Error, code: %ld", (long)[resp statusCode]);
             }
             else{
-                //NSLog(@"Error: %@", error.localizedDescription);
+                NSLog(@"Error: %@", error.localizedDescription);
             }
         }];
     }
