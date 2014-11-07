@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SOSMessengerMineTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *mineMessageLabel;
+@property (strong, nonatomic) UILabel *mineMessageLabel;
 
 @end

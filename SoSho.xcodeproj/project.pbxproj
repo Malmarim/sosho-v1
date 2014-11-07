@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9ACDE28F1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACDE28E1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.m */; };
 		B13E056219E332DB00CE8F7A /* SOSMineMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B13E056119E332DB00CE8F7A /* SOSMineMessageView.m */; };
 		B13EA3C319C18D6900B47C70 /* SOSMessengerTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13EA3C219C18D6900B47C70 /* SOSMessengerTalkViewController.m */; };
 		B163BD9219E436BE006FB6D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13E055919E3316F00CE8F7A /* QuartzCore.framework */; };
@@ -122,6 +123,8 @@
 
 /* Begin PBXFileReference section */
 		2EDC805894184ECB8E9FC310 /* libPods-SoSho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SoSho.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ACDE28D1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMessengerImageTableViewCell.h; sourceTree = "<group>"; };
+		9ACDE28E1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMessengerImageTableViewCell.m; sourceTree = "<group>"; };
 		B13E055919E3316F00CE8F7A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B13E056019E332DB00CE8F7A /* SOSMineMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSMineMessageView.h; sourceTree = "<group>"; };
 		B13E056119E332DB00CE8F7A /* SOSMineMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSMineMessageView.m; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				B1A2191019AA94000029B420 /* SOSFacebookFriendsDataController.m */,
 				B16B30EF19AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.h */,
 				B16B30F019AC9BFE0062DB12 /* SOSFacebookFriendTableViewCell.m */,
+				9ACDE28D1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.h */,
+				9ACDE28E1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.m */,
 				B17D404419C61E5B006BB6BF /* SOSMessengerMineTableViewCell.h */,
 				B17D404519C61E5B006BB6BF /* SOSMessengerMineTableViewCell.m */,
 				B17D404C19C61F75006BB6BF /* SOSMessengerFriendTableViewCell.h */,
@@ -695,6 +700,7 @@
 				CCB94C5919E2A520007BD6E1 /* SOSOptionsViewController.m in Sources */,
 				CC63C21019FFCC5300B3C092 /* SoShoStyleKit.m in Sources */,
 				CC1F37101A058A5E00742DEE /* SOSTourViewController.m in Sources */,
+				9ACDE28F1A0CBF4C005CC1DA /* SOSMessengerImageTableViewCell.m in Sources */,
 				CCB349101926420B007EBCE3 /* SOSItemViewController.m in Sources */,
 				CCB3490A19261AB4007EBCE3 /* SOSLoginViewController.m in Sources */,
 				CCB348E21926025A007EBCE3 /* SOSAppDelegate.m in Sources */,
