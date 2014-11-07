@@ -207,6 +207,10 @@
          friend.id = [item objectForKey:@"id"];
          friend.name = [item objectForKey:@"name"];
          [segue.destinationViewController setFriend:friend];
+         
+         if (self.itemUrl) {
+             [segue.destinationViewController setItemUrl:self.itemUrl];
+         }
     
      }
      

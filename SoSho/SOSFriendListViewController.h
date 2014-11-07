@@ -10,4 +10,6 @@
 
 @interface SOSFriendListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
+@property (weak, nonatomic) NSString *itemUrl;
+
 @end

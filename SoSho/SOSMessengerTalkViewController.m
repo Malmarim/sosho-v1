@@ -8,10 +8,18 @@
 
 #import "SOSMessengerTalkViewController.h"
 #import "SOSMessengerMineTableViewCell.h"
+#import "SOSMessengerFriendTableViewCell.h"
+#import "SOSMessengerImageTableViewCell.h"
 #import "SOSFacebookFriendsDataController.h"
 #import "SOSMineMessageView.h"
 #import "SOSAppDelegate.h"
 #import "SoShoStyleKit.h"
+
+
+static NSString* mineCellId = @"MineCellId";
+static NSString* friendCellId = @"FriendCellId";
+static NSString* mineImageCellId = @"MineImageCellId";
+static NSString* friendImageCellId = @"FriendImageCellId";
 
 @interface SOSMessengerTalkViewController () {
     SOSFacebookFriend *fbFriend;
@@ -64,6 +72,11 @@
     [tracker set:kGAIScreenName value:@"Chat"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
+    [self.messengerTableView registerClass:[SOSMessengerMineTableViewCell class] forCellReuseIdentifier:mineCellId];
+    [self.messengerTableView registerClass:[SOSMessengerFriendTableViewCell class] forCellReuseIdentifier:friendCellId];
+    [self.messengerTableView registerClass:[SOSMessengerImageTableViewCell class] forCellReuseIdentifier:mineImageCellId];
+    [self.messengerTableView registerClass:[SOSMessengerImageTableViewCell class] forCellReuseIdentifier:friendImageCellId];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.fbId = [defaults objectForKey:@"fbId"];
@@ -76,6 +89,8 @@
     //[logo setImage:[SoShoStyleKit imageOfSoshoAppLogo]];
     
     [self.name setText:fbFriend.name];
+    
+    self.addPictureButton.hidden = _itemUrl ? NO : YES;
     
     [homeButton setImage:[SoShoStyleKit imageOfTabBarHomeInActive] forState:UIControlStateNormal];
     [wishlistButton setImage:[SoShoStyleKit imageOfTabBarWishlistInActive] forState:UIControlStateNormal];
@@ -202,138 +217,64 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* mineCellId = @"MineCellId";
-    static NSString* friendCellId = @"FriendCellId";
-    static NSString* mineImageCellId = @"MineImageCellId";
-    static NSString* friendImageCellId = @"FriendImageCellId";
-    UITableViewCell* cell = nil;
     
-    UILabel *youLabel;
-    UITextView *messageText;
-    UIImageView *imageView;
-    
-    messageText.tag = 100;
-    
-    float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
-    numberOfRows++;
-    
-    if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil) && [[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
+    if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
         //Mine cell with image
-        cell = [tableView dequeueReusableCellWithIdentifier:mineImageCellId];
-        if( !cell ) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:mineImageCellId];
-            
-            [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
-                                                     green:240.0f/255.0f
-                                                      blue:245.0f/255.0f
-                                                     alpha:1.0f]];
-            
-            CGRect myFrame = CGRectMake(10.0, 11.0, 42.0, 21.0);
-            youLabel = [[UILabel alloc] initWithFrame:myFrame];
-            youLabel.font = [UIFont systemFontOfSize:16.0];
-            youLabel.textColor = [UIColor lightGrayColor];
-            youLabel.textAlignment = NSTextAlignmentLeft;
-            youLabel.text = @"YOU";
-            [cell.contentView addSubview:youLabel];
-            
-            NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
-            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-            UIImage * image = [UIImage imageWithData:imageData];
-            imageView = [[UIImageView alloc] initWithImage:image];
-            imageView.frame = CGRectMake(60, 0, 220, 220);
-            cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows + imageView.frame.size.height);
-            [cell.contentView addSubview:imageView];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            NSLog(@"Image url is present");
-        }
+        SOSMessengerImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineImageCellId];
         
         NSURL * imageURL = [NSURL URLWithString:[[messages objectAtIndex:indexPath.row] valueForKey:@"image"]];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage * image = [UIImage imageWithData:imageData];
-        imageView = [[UIImageView alloc] initWithImage:image];
+        
+        [cell.pictureImage setImage:nil];
+        [self downloadImageWithURL:imageURL completionBlock:^(BOOL succeeded, NSData *data) {
+            if (succeeded) {
+                [cell.pictureImage setImage:[UIImage imageWithData:data]];
+            }
+        }];
+        
+        if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
+            cell.youLabel.hidden = NO;
+        }
+        else {
+            cell.youLabel.hidden = YES;
+        }
+        
+        return cell;
         
     } else if([[[messages objectAtIndex:indexPath.row] valueForKey:@"own"] boolValue]) {
         //Mine cell
-        cell = [tableView dequeueReusableCellWithIdentifier:mineCellId];
-        if( !cell ) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:mineCellId];
-            
-            [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
-                                                     green:240.0f/255.0f
-                                                      blue:245.0f/255.0f
-                                                     alpha:1.0f]];
-            
-            CGRect myFrame = CGRectMake(10.0, 11.0, 42.0, 21.0);
-            youLabel = [[UILabel alloc] initWithFrame:myFrame];
-            youLabel.font = [UIFont systemFontOfSize:16.0];
-            youLabel.textColor = [UIColor lightGrayColor];
-            youLabel.textAlignment = NSTextAlignmentLeft;
-            youLabel.text = @"YOU";
-            [cell.contentView addSubview:youLabel];
-            
-            
-        }
-        cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
+        SOSMessengerMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineCellId];
         
-        CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
-        messageText = [[UITextView alloc] initWithFrame:messageFrame];
-        messageText.font = [UIFont systemFontOfSize:14.0];
-        messageText.textColor = [UIColor blackColor];
-        messageText.editable = NO;
-        messageText.selectable = NO;
-        messageText.scrollEnabled = NO;
-        [messageText setBackgroundColor:[UIColor clearColor]];
+        //CGRect messageFrame = CGRectMake(50, 0, 250, 30);
         
-        messageText.textAlignment = NSTextAlignmentLeft;
-        [messageText setBackgroundColor:[UIColor whiteColor]];
+        cell.mineMessageLabel.text = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
+        //[cell.mineMessageLabel sizeToFit];
         
-        messageText.layer.cornerRadius = 5;
-        messageText.clipsToBounds = YES;
-        messageText.textAlignment = NSTextAlignmentCenter;
-        [messageText layoutIfNeeded];
-        [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
-        
-        
-        [cell.contentView addSubview:messageText];
+        return cell;
         
     } else {
         //Friend cell
-        cell = [tableView dequeueReusableCellWithIdentifier:friendCellId];
-        if( !cell ) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:friendCellId];
-            [cell setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
-                                                     green:240.0f/255.0f
-                                                      blue:245.0f/255.0f
-                                                     alpha:1.0f]];
-            
-            
-        }
-        cell.frame = CGRectMake(0, 0, 360, 30*numberOfRows);
+        SOSMessengerFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:friendCellId];
         
-        CGRect messageFrame = CGRectMake(50, 0, 250, 30*numberOfRows);
-        messageText = [[UITextView alloc] initWithFrame:messageFrame];
-        messageText.font = [UIFont systemFontOfSize:14.0];
-        messageText.textColor = [UIColor blackColor];
-        messageText.editable = NO;
-        messageText.selectable = NO;
-        messageText.scrollEnabled = NO;
-        [messageText setBackgroundColor:[UIColor clearColor]];
+        //CGRect messageFrame = CGRectMake(50, 0, 250, 30);
         
-        messageText.textAlignment = NSTextAlignmentRight;
-        [messageText setBackgroundColor:[UIColor purpleColor]];
+        cell.mineMessageLabel.text = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
+        //[cell.mineMessageLabel sizeToFit];
         
-        messageText.layer.cornerRadius = 5;
-        messageText.clipsToBounds = YES;
-        messageText.textAlignment = NSTextAlignmentCenter;
-        [messageText layoutIfNeeded];
-        [messageText setText:[[messages objectAtIndex:indexPath.row] valueForKey:@"message"]];
-        
-        
-        [cell.contentView addSubview:messageText];
+        return cell;
     }
     
-    return cell;
-    
+}
+
+- (void) downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, NSData *data))completionBlock
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (!error) {
+            completionBlock(YES, data);
+        } else {
+            completionBlock(NO, nil);
+        }
+    }];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -345,13 +286,21 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
-    numberOfRows++;
-    
     if(([[messages objectAtIndex:indexPath.row] valueForKey:@"image"] != nil)) {
         return 260;
     }
-    return (30*numberOfRows + 10);
+    
+    NSString *message = [[messages objectAtIndex:indexPath.row] valueForKey:@"message"];
+    CGSize constraint = CGSizeMake(250, MAXFLOAT);
+    //set your text attribute dictionary
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14.0] forKey:NSFontAttributeName];
+    CGRect textsize = [message boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    
+    
+    return textsize.size.height+ 20;
+    //float numberOfRows = [[[messages objectAtIndex:indexPath.row] valueForKey:@"message"] length] / 30;
+    //numberOfRows++;
+    //return (30*numberOfRows + 10);
 }
 
 #pragma mark Messenger related
@@ -372,16 +321,18 @@
     [request setPredicate:pred];
     NSError *error;
     messages = [[self.context executeFetchRequest:request error:&error] mutableCopy];
-    NSLog(@"%d items loaded", [messages count]);
-    
-    if(messages.count == 0)
-        [self fetchMessages];
+    NSLog(@"%lu items loaded", (unsigned long)[messages count]);
     
     [messengerTableView reloadData];
-    if([messages count] > 0){
+    if(messages.count == 0) {
+        [self fetchMessages];
+    }
+    else {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
         [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+        [self requestNewMessages];
     }
+    
     //[self requestNewMessages];
 }
 
@@ -452,7 +403,7 @@
         }
         */
     }
-    NSLog(@"%d messages saved", [tempmessages count]);
+    NSLog(@"%lu messages saved", (unsigned long)[tempmessages count]);
     [self loadMessages];
 }
     
@@ -486,7 +437,7 @@
 }
 
 - (void)sendImage {
-    if (_itemImage != nil) {
+    if (_itemUrl != nil) {
         NSString *url = @"http://soshoapp.herokuapp.com/message";
         NSURL * fetchURL = [NSURL URLWithString:url];
         NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
