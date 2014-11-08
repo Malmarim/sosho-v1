@@ -26,7 +26,6 @@ static NSString* friendImageCellId = @"FriendImageCellId";
     NSMutableArray *messages;
     NSMutableArray *newMessages;
     __weak IBOutlet UIButton *backButton;
-    //__weak IBOutlet UIImageView *logo;
     __weak IBOutlet UIView *tabBar;
     __weak IBOutlet UIButton *homeButton;
     __weak IBOutlet UIButton *wishlistButton;
@@ -64,9 +63,51 @@ static NSString* friendImageCellId = @"FriendImageCellId";
     return self;
 }
 
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification *)aNotification
+{
+    [UIView animateWithDuration:0.1
+                     animations:^{
+                    messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height - 202);
+                         sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y - 202.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
+
+    }];
+}
+
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    [UIView animateWithDuration:0.1
+                     animations:^{
+                         sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y - 202.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
+                         messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height - 202);
+                     }];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)aNotification
+{
+    //NSLog(@"Hidden");
+    [UIView animateWithDuration:0.1
+                     animations:^{
+                         messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height + 202);
+                         sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y + 202.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
+    }];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self registerForKeyboardNotifications];
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Chat"];
@@ -169,15 +210,11 @@ static NSString* friendImageCellId = @"FriendImageCellId";
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y - 215.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
-    messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height - 215);
-    
     
     if([messages count] > 0) {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];
         [messengerTableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
     }
-    
     
 	[UIView commitAnimations];
 }
@@ -186,8 +223,6 @@ static NSString* friendImageCellId = @"FriendImageCellId";
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	sendingMessageView.frame = CGRectMake(sendingMessageView.frame.origin.x, (sendingMessageView.frame.origin.y + 215.0), sendingMessageView.frame.size.width, sendingMessageView.frame.size.height);
-    messengerTableView.frame = CGRectMake(messengerTableView.frame.origin.x, (messengerTableView.frame.origin.y), messengerTableView.frame.size.width, messengerTableView.frame.size.height + 215);
     
     if([messages count] > 0) {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messages count]-1 inSection:0];

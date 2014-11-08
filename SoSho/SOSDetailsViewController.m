@@ -232,7 +232,7 @@
 - (void) fetchVotes
 {
     // Fetch votes, parse them, and set them visible
-    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/itemVotes/%ld", [self.pid longValue]];
+    NSString *url = [NSString stringWithFormat:@"http://soshoapp.herokuapp.com/itemVotes/%ld", [[self.item valueForKey:@"id"] longValue]];
     NSURL * fetchURL = [NSURL URLWithString:url];
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     NSOperationQueue * queue = [[NSOperationQueue alloc]init];
@@ -248,7 +248,6 @@
                     [self.yesVotes setText:yes];
                     [self.noVotes setText:no];
                 }];
-
             }
             else{
                 NSLog(@"Json null");

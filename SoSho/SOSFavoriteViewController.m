@@ -10,7 +10,7 @@
 #import "SOSAppDelegate.h"
 #import "SOSLabel.h"
 #import "SoShoStyleKit.h"
-#import "SOSMessengerListViewController.h"
+#import "SOSFriendListViewController.h"
 
 @interface SOSFavoriteViewController ()
 
@@ -409,13 +409,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"messenger"])
-    {
-        [self sendEvent:@"Shareing (from favorite)"];
-        SOSMessengerListViewController * vc = segue.destinationViewController;
-        [vc setImage:self.image];
-        [vc setImageUrl:[self.favorite valueForKey: @"image"]];
-    }else{
+    if([segue.destinationViewController isKindOfClass:[SOSFriendListViewController class]]){
+        [segue.destinationViewController setItemUrl:[self.favorite valueForKey:@"image"]];
+    }
+    else{
         [self sendEvent:@"Wishlist (from favorite)"];
     }
 }

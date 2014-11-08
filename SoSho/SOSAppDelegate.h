@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FacebookSDK/FacebookSDK.h"
 #import "SOSLoginViewController.h"
+#import "SOSFacebookFriend.h"
 
 @interface SOSAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,6 +19,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) SOSLoginViewController *sosLoginViewController;
 @property (strong, nonatomic) UINavigationController *navi;
+@property (strong, nonatomic) SOSFacebookFriend *friend;
 
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 - (void)userLoggedIn;

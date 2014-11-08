@@ -74,8 +74,10 @@
             if([[dictionary valueForKey:@"type"] isEqualToString:@"vote"]){
                 [self voteReceivedMessage:[dictionary valueForKey:@"name"]];
             }else if([[dictionary valueForKey:@"type"] isEqualToString:@"message"]){
-                // Hand message
-                NSLog(@"Message");
+                self.friend = [[SOSFacebookFriend alloc] init];
+                self.friend.id = [dictionary valueForKey:@"id"];
+                self.friend.name = [dictionary valueForKey:@"name"];
+                [self messageReceivedMessage:[dictionary valueForKey:@"message"] from:[dictionary valueForKey:@"name"]];
             }
 		}
 	}
@@ -94,6 +96,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    NSLog(@"Push");
     // app was already in the foreground
     if ( application.applicationState == UIApplicationStateActive ){
         //NSLog(@"Message received %@ active", userInfo);
@@ -101,7 +104,11 @@
             [self voteReceivedMessage:[userInfo valueForKey:@"name"]];
         }else if([[userInfo valueForKey:@"type"] isEqualToString:@"message"]){
             // Handle push notification
-            NSLog(@"Message");
+            //NSLog(@"Message");
+            self.friend = [[SOSFacebookFriend alloc] init];
+            self.friend.id = [userInfo valueForKey:@"id"];
+            self.friend.name = [userInfo valueForKey:@"name"];
+            [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
         }
     }
     // app was just brought from background to foreground
@@ -111,10 +118,28 @@
             [self voteReceivedMessage:[userInfo valueForKey:@"name"]];
         }else if([[userInfo valueForKey:@"type"] isEqualToString:@"message"]){
             // Handle push notification
-            NSLog(@"Message");
+            //NSLog(@"Message");
+            self.friend = [[SOSFacebookFriend alloc] init];
+            self.friend.id = [userInfo valueForKey:@"id"];
+            self.friend.name = [userInfo valueForKey:@"name"];
+            [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
         }
     }
 }
+
+- (void) messageReceivedMessage:(NSString *)message from:(NSString * )friend
+{
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message received" message:[NSString stringWithFormat:@"%@: %@", friend, message] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Show", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:[NSString stringWithFormat:@"%@: %@", friend, message] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+}
+
+/*
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1){
+        
+    }
+}*/
 
 - (void) voteReceivedMessage:(NSString *)name
 {
