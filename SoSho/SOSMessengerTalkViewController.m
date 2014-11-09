@@ -185,6 +185,11 @@ static NSString* friendImageCellId = @"FriendImageCellId";
     fbFriend = friend;
 }
 
+-(SOSFacebookFriend *)getFriend
+{
+    return fbFriend;
+}
+
 - (void)setItemImage:(UIImageView *)image {
     _itemImage = image;
 }

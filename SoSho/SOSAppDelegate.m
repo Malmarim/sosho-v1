@@ -8,6 +8,7 @@
 
 #import "SOSAppDelegate.h"
 #import "GAI.h"
+#import "SOSMessengerTalkViewController.h"
 
 /******* Set your tracking ID here *******/
 
@@ -108,7 +109,19 @@
             self.friend = [[SOSFacebookFriend alloc] init];
             self.friend.id = [userInfo valueForKey:@"id"];
             self.friend.name = [userInfo valueForKey:@"name"];
-            [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
+            if([self.navi.visibleViewController isKindOfClass:[SOSMessengerTalkViewController class]]){
+                SOSMessengerTalkViewController *contr = (SOSMessengerTalkViewController *)self.navi.visibleViewController;
+                SOSFacebookFriend *fr = contr.getFriend;
+                if(![fr.name isEqualToString:self.friend
+                     .name]){
+                    [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
+                }else{
+                    [contr requestNewMessages];
+                }
+            }
+            else{
+                [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
+            }
         }
     }
     // app was just brought from background to foreground

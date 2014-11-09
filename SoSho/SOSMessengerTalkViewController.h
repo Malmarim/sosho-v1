@@ -21,9 +21,11 @@
 @property (weak, nonatomic) UIImageView *itemImage;
 @property (weak, nonatomic) NSString *itemUrl;
 -(id)initWithFriend:(SOSFacebookFriend *)friend;
+-(SOSFacebookFriend *)getFriend;
 -(void)setFriend:(SOSFacebookFriend *)friend;
 -(void)setItemImage:(UIImageView *)image;
 -(void)setItemUrl:(NSString *)itemUrl;
+-(void)requestNewMessages;
 - (IBAction)sendMessageAction:(id)sender;
 - (IBAction)addPictureAction:(id)sender;
 
