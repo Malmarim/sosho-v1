@@ -97,7 +97,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    NSLog(@"Push");
+    //NSLog(@"Push");
     // app was already in the foreground
     if ( application.applicationState == UIApplicationStateActive ){
         //NSLog(@"Message received %@ active", userInfo);
@@ -112,6 +112,7 @@
             if([self.navi.visibleViewController isKindOfClass:[SOSMessengerTalkViewController class]]){
                 SOSMessengerTalkViewController *contr = (SOSMessengerTalkViewController *)self.navi.visibleViewController;
                 SOSFacebookFriend *fr = contr.getFriend;
+                // if message is not from active friend
                 if(![fr.name isEqualToString:self.friend
                      .name]){
                     [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
@@ -135,7 +136,8 @@
             self.friend = [[SOSFacebookFriend alloc] init];
             self.friend.id = [userInfo valueForKey:@"id"];
             self.friend.name = [userInfo valueForKey:@"name"];
-            [self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
+            //[self messageReceivedMessage:[userInfo valueForKey:@"message"] from:[userInfo valueForKey:@"name"]];
+            [self goToMessage];
         }
     }
 }
@@ -143,16 +145,24 @@
 - (void) messageReceivedMessage:(NSString *)message from:(NSString * )friend
 {
     //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message received" message:[NSString stringWithFormat:@"%@: %@", friend, message] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Show", nil];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:[NSString stringWithFormat:@"%@: %@", friend, message] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@", friend] message:[NSString stringWithFormat:@"%@: %@", friend, message] delegate:self cancelButtonTitle:@"Hide" otherButtonTitles:@"Show", nil];
     [alert show];
 }
 
-/*
+-(void) goToMessage
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SOSMessengerTalkViewController *contr = (SOSMessengerTalkViewController *)[storyboard instantiateViewControllerWithIdentifier:@"Talk"];
+    [contr setFriend:self.friend];
+    [self.navi pushViewController: contr animated:YES];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1){
-        
+        [self goToMessage];
+    }else{
     }
-}*/
+}
 
 - (void) voteReceivedMessage:(NSString *)name
 {
@@ -225,18 +235,20 @@
     NSString *newToken = [deviceToken description];
 	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"Formatted as %@", newToken);
+    NSLog(@"Token formatted as %@", newToken);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *oldToken = [defaults objectForKey:@"pushtoken"];
     //NSLog(@"Old: %@", oldToken);
     // Check if pushtoken is not set or newToken is same as set token
     if(oldToken == nil || ![oldToken isEqualToString:newToken]){
+        NSLog(@"New token found");
         [defaults setValue:newToken forKey:@"pushtoken"];
         [defaults synchronize];
         NSString *fbId = [defaults objectForKey:@"fbId"];
         // If fbId is set then update the new token on the server
         if(fbId != nil){
             // Post updated push token
+            NSLog(@"Posting new token");
             NSString *url = @"http://soshoapp.herokuapp.com/newToken";
             NSURL * fetchURL = [NSURL URLWithString:url];
             NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:fetchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
